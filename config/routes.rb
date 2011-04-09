@@ -1,6 +1,7 @@
 Egat::Application.routes.draw do
   
-  get "factor_setting/new"
+  get "factor_setting/edit"
+  get "factor_setting/update"
 
   resources :transformer_informations do
     member do 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110315214100) do
+ActiveRecord::Schema.define(:version => 20110409110446) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -703,6 +703,21 @@ ActiveRecord::Schema.define(:version => 20110315214100) do
   create_table "equipment_group", :force => true do |t|
     t.integer "version"
     t.string  "description"
+  end
+
+  create_table "factor_settings", :force => true do |t|
+    t.float    "intrate"
+    t.float    "infrate"
+    t.float    "loadavg"
+    t.float    "loadloss"
+    t.float    "projectlife"
+    t.float    "zerolife"
+    t.float    "power"
+    t.float    "unavailability"
+    t.float    "powerfactor"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "failure_condition", :force => true do |t|

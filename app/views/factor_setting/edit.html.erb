@@ -1,0 +1,85 @@
+<h1>Factor Setting</h1>
+<div class='grid_12 prefix_6 chemicals' >
+		<b><%= flash[:notice] %></b>
+</div>
+<%= form_tag(factor_setting_update_path, :method => 'post') do %>
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+	<%= label_tag :intrate, "อัตราดอกเบี้ย",:class => 'inline' %>
+	<%= text_field_tag ("factor[intrate]", @factor.intrate, :size => 15) %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :infrate, "อัตราเงินเฟ้อ", :class => 'inline' %>
+   	<%= text_field_tag ("factor[infrate]", @factor.infrate, :size => 15) %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :loadavg, "% การจ่ายโหลดโดยเฉลี่ย", :class => 'inline' %>
+   	<%= text_field_tag ("factor[loadavg]", @factor.loadavg, :size => 15) %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :loadloss, "ค่า Loss ของหม้อแปลง (no-load and load loss)", :class => 'inline' %>
+   	<%= text_field_tag ("factor[loadloss]", @factor.loadloss, :size => 15) %>
+	<span class="span-ppm">[Baht/kWh]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :projectlife, "อายุใช้งานของหม้อแปลงใหม่ (project life)", :class => 'inline' %>
+   	<%= text_field_tag ("factor[projectlife]", @factor.projectlife, :size => 15) %>
+	<span class="span-ppm">[ปี]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :zerolife, "อายุหม้อแปลงปีที่ซากเป็นศูนย์", :class => 'inline' %>
+   	<%= text_field_tag ("factor[zerolife]", @factor.zerolife, :size => 15) %>
+	<span class="span-ppm">[ปี]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :power, "ค่าพลังงานที่ไม่ได้จ่ายไฟ", :class => 'inline' %>
+   	<%= text_field_tag ("factor[power]", @factor.power, :size => 15) %>
+	<span class="span-ppm">[Baht/kWh]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :unavailability, "Unavailability (%)", :class => 'inline' %>
+   	<%= text_field_tag ("factor[unavailability]", @factor.unavailability, :size => 15) %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :powerfactor, "Power Factor", :class => 'inline' %>
+   	<%= text_field_tag ("factor[powerfactor]", @factor.powerfactor, :size => 15) %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+
+<div class='grid_12 prefix_3' >
+<p>
+<%= submit_tag "Save", :class => 'cupid-green' %>
+</p>
+</div>
+
+<% end %>
