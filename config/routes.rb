@@ -1,5 +1,7 @@
 Egat::Application.routes.draw do
   
+  get "factor_setting/new"
+
   resources :transformer_informations do
     member do 
       get 'importance_and_risk_table'
