@@ -1,5 +1,11 @@
 Egat::Application.routes.draw do
-  
+
+  resources :price_loss do
+    collection do
+      get 'search'
+    end
+  end  
+
   get "factor_setting/edit"
   get "factor_setting/update"
 
@@ -64,6 +70,7 @@ Egat::Application.routes.draw do
       resources :thermo_scans
     end    
     resources :electrical_tests
+    resources :price_loss
     resources :power_factors    
   end
   

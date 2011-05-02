@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110409110446) do
+ActiveRecord::Schema.define(:version => 20110502070325) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -2054,6 +2054,16 @@ ActiveRecord::Schema.define(:version => 20110409110446) do
     t.float    "overall_condition"
     t.integer  "probability_of_force_outage_value"
     t.boolean  "recent"
+  end
+
+  create_table "transformer_price_losses", :force => true do |t|
+    t.float    "transformer_price"
+    t.float    "noload_loss"
+    t.float    "loadloss"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "transformer_id"
+    t.integer  "user_id"
   end
 
   create_table "visual_bushing", :force => true do |t|

@@ -1,0 +1,33 @@
+<h1>ราคาและ Loss ของหม้อแปลง</h1>
+<%= render :partial => 'transformer_search_form' %>
+<%= render :partial => 'transformer_details', :locals => {:transformer => @transformer} %>
+<hr>
+<%= form_for @transformer_price_loss ,:url => {:action => "update"}, :html => {:method => "post"} do |f| %>
+  <input type=hidden name=transformer_id value=<%= @transformer.id %>>
+  <div class='grid_12 prefix_4 chemicals'>
+      <p>
+        <%= f.label :transformer_price, "ราคาหม้อแปลง", :class => 'inline' %>
+        <%= f.text_field :transformer_price , :size => 15%>
+        <span class="span-ppm">[บาท]</span>
+      </p>
+  </div>
+  <div class='grid_12 prefix_4 chemicals'>
+      <p>
+        <%= f.label :noload_loss, "No-Load Loss", :class => 'inline' %>
+        <%= f.text_field :noload_loss, :size => 15%>
+        <span class="span-ppm">[kW]</span>
+      </p>
+  </div>
+  <div class='grid_12 prefix_4 chemicals'>
+      <p>
+        <%= f.label :loadloss, "Load Loss", :class => 'inline' %>
+        <%= f.text_field :loadloss, :size => 15 %>
+        <span class="span-ppm">[kW]</span>
+     </p>
+  </div>
+  <div class='grid_12 prefix_4'>
+    <p>
+        <%= f.submit "Save", :class => "cupid-green" %>
+    </p>
+  </div>
+<% end %>

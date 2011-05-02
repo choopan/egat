@@ -1,3 +1,21 @@
+# == Schema Information
+# Schema version: 20110502061514
+#
+# Table name: oltc_oil_qualities
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)
+#  u_start    :integer(4)
+#  u_end      :integer(4)
+#  start      :float
+#  end        :float
+#  score      :integer(4)
+#  weight     :integer(4)
+#  created_at :datetime
+#  updated_at :datetime
+#  color_id   :integer(4)
+#
+
 class OltcOilQuality < ActiveRecord::Base
   belongs_to :color
 

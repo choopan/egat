@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 20110502061514
+#
+# Table name: furan_factors
+#
+#  id         :integer(4)      not null, primary key
+#  hi_factor  :integer(4)
+#  condition  :string(255)
+#  start      :float
+#  end        :float
+#  color      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class FuranFactor < ActiveRecord::Base
 
   def self.hi_factor(transformer_id)
