@@ -1,0 +1,19 @@
+<h1>ราคาและ Loss ของหม้อแปลง</h1>
+<%= render :partial => 'transformer_search_form' %>
+<%= render :partial => 'transformer_details', :locals => {:transformer => @transformer, :overallcondition => @overallcondition} %>
+<hr>
+<div id="tabs">
+  <ul>
+    <li><a href="#repair_information">ข้อมูลการซ่อม</a></li>
+    <li><a href="#option1">Option 1</a></li>
+    <li><a href="#option2">Option 2</a></li>
+    <li><a href="#option3">Option 3</a></li>
+    <li><a href="#conclusion">สรุปทางเลือกที่เหมาะสม</a></li>
+  </ul>
+    <div id="repair_information"><p><%= render :partial => 'repair_information_form', :locals => {:transformer => @transformer, :repair_information => @repair_information} %></p></div>
+    <div id="option1"><p><%= render :partial => 'option1_form'%></p></div>
+    <div id="option2"><p><%= render :partial => 'option2_form'%></p></div>
+    <div id="option3"><p><%= render :partial => 'option3_form'%></p></div>
+    <div id="conclusion"><p><%= render :partial => 'conclusion_form'%></p></div>
+</div>
+

@@ -1,5 +1,12 @@
 Egat::Application.routes.draw do
 
+  resources :information_decision do
+    collection do
+      get 'search'
+    end
+  end  
+
+
   resources :price_loss do
     collection do
       get 'search'
@@ -71,6 +78,7 @@ Egat::Application.routes.draw do
     end    
     resources :electrical_tests
     resources :price_loss
+    resources :information_decision
     resources :power_factors    
   end
   
