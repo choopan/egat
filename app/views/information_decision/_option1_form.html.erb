@@ -1,1 +1,126 @@
-Option 1
+<%= form_for @option1_information ,:url => {:action => "update_option1_information"}, :html => {:method => "post", :name => 'option1_information'} do |f| %>
+  <input type=hidden name=transformer_id value=<%= @transformer.id %>>
+      <p>
+        <%= f.label :transformer_price, "ราคาซ้อขายหม้อแปลงตัวที่ 2 [Baht]", :class => 'inline' %>
+        <%= f.text_field :transformer_price, :size => 15%>
+      </p>
+      <p>
+        <%= f.label :noload_loss, "No-Load Loss [kW]", :class => 'inline' %>
+        <%= f.text_field :noload_loss, :size => 15%>
+      </p>
+      <p>
+        <%= f.label :loadloss, "Load Loss [kW]", :class => 'inline' %>
+        <%= f.text_field :loadloss, :size => 15%>
+      </p>
+      <p>
+        <%= f.label :pm, "ค่าเสียโอกาศในการจ่ายไฟเนื่องจาก PM [Baht/year]", :class => 'inline' %>
+        <%= f.text_field :pm, :size => 15%>
+      </p>
+      <p>
+        <%= f.label :mc_avg, "ค่าซ่อมบำรุงเฉลี่ยรายปี [Baht/year]", :class => 'inline' %>
+        <%= f.text_field :mc_avg, :size => 15%>
+      </p>
+      <p>
+        <%= f.label :det_cost, "ค่าทำลายหรือรื้อถอน [Baht/year]", :class => 'inline' %>
+        <%= f.text_field :det_cost, :size => 15%>
+      </p>
+
+
+      <hr>
+      <p>
+        <h3><font color=blue>รายการที่ต้องซ่อมหม้อแปลงตัวที่ 2 (รวมค่าแรงและค่าของ)</font></h3>
+      </p>
+
+      <table>
+        <tr>
+          <td width="155"><b>Winding [Baht]</b></td>
+          <td width="230"><%= f.radio_button :winding_type, "new" %> New <%= f.radio_button :winding_type, "repair" %> Repair</td>
+          <td><%= f.text_field :winding_cost, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+        <tr>
+          <td><b>Bushing [Baht]</b></td>
+          <td><%= f.radio_button :bushing_type, "OIP" %> OIP <%= f.radio_button :bushing_type, "RIP" %> RIP</td>
+          <td><%= f.text_field :bushing_cost, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+        <tr>
+          <td><b>Arrester [Baht]</b></td>
+          <td>
+            <%= f.radio_button :arrester_type, "Gap" %> Gap <br>
+            <%= f.radio_button :arrester_type, "Gapless with silicon housing" %> Gapless with silicon housing<br>
+            <%= f.radio_button :arrester_type, "Gapless with porcelain housing" %> Gapless with porcelain housing
+          </td>
+          <td><%= f.text_field :arrester_cost, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+        <tr>
+          <td><b>OLTC [Baht]</b></td>
+          <td>
+            <%= f.radio_button :oltc_type, "Oil 1 Chamber" %> Oil 1 Chamber<br>
+            <%= f.radio_button :oltc_type, "Oil 2 Chanbers" %> Oil 2 Chambers<br>
+            <%= f.radio_button :oltc_type, "Oil 3 Chambers" %> Oil 3 Chambers<br>
+            <%= f.radio_button :oltc_type, "Vacuum" %> Vacuum<br>
+            <%= f.radio_button :oltc_type, "Others" %> Others
+          </td>
+          <td><%= f.text_field :oltc_cost, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+        <tr>
+          <td><b>Hot Line Oil Filter [Baht]</b></td>
+          <td>
+            <%= f.radio_button :hotline_type, "1-2 Chamber" %> 1-2 Chamber<br>
+            <%= f.radio_button :hotline_type, "3 Chambers" %> 3 Chambers
+          </td>
+          <td><%= f.text_field :hotline_cost, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+        <tr>
+          <td><b>Cooling [Baht]</b></td>
+          <td></td>
+          <td><%= f.text_field :cooling, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+
+        <tr>
+          <td colspan=2>
+            <b>Overhaul [Baht]</b><br>
+            (Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis)
+          </td>
+          <td><%= f.text_field :overhaul, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+
+        <tr>
+          <td colspan=2>
+            <b>Overhaul and Refurbish [Baht]</b><br>
+            (Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis)
+          </td>
+          <td><%= f.text_field :overhaul_and_refurbish, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+
+        <tr>
+          <td colspan=2><b>Replacing Rubber Bag [Baht]</b></td>
+          <td><%= f.text_field :rep_rubber_bag, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+
+        <tr>
+          <td colspan=2><b>Replacing BCT, others [Baht]</b></td>
+          <td><%= f.text_field :rep_bct, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+     
+        <tr>
+          <td colspan=2><b>Others [Baht]</b></td>
+          <td><%= f.text_field :others, :size => 15, :onchange => 'summation_option1_information();'%></td>
+        </tr>
+
+        <tr>
+          <td colspan=2><font color=blue>ค่าใช้จ่ายในการซ่อมหม้อแปลงตัวที่ 2 (ค่าแรงและค่าของ)</font></td>
+          <td><input type=text name="sum_cost" size=15 value=0 disabled></td>
+        </tr>
+    
+        <tr>
+          <td></td>
+          <td>
+              <%= f.submit "Save", :class => "cupid-green" %>
+          </td>
+          <td>
+              <input type="reset" value="Clear Data">
+          </td>
+        </tr>
+      </table>
+
+<% end %>

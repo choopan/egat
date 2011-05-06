@@ -49,6 +49,57 @@ function summation_repair_information() {
   //document.repair_information.sum_cost.value = f["repair_information[winding_cost]"].value;
 };
 
+function summation_option1_information() {
+
+  var d, sum = 0, f = document.option1_information;
+  d = Number(f["eco_option1[winding_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[bushing_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[arrester_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[oltc_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[hotline_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[cooling]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[overhaul]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[overhaul_and_refurbish]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[rep_rubber_bag]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[rep_bct]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["eco_option1[others]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  document.option1_information.sum_cost.value  = sum;
+  //document.repair_information.sum_cost.value = f["repair_information[winding_cost]"].value;
+};
+
 var PriceLoss = { };
 PriceLoss.setupTransformerNameComboxBox = function(id) {
   if ($('#' + id).length > 0) {
@@ -89,5 +140,6 @@ $(function() {
   PriceLoss.setupTransformerNameComboxBox('transformer_id');
   PriceLoss.setupTransformerNameComboxBox('information_decision_transformer_id');
   summation_repair_information();
+  summation_option1_information();
   $("#tabs").tabs();
 });

@@ -13,6 +13,13 @@ class InformationDecisionController < ApplicationController
       @repair_information = RepairInformation.new
     end
 
+    #fix user_id = 1
+    @option1_information = EcoOption1.get_option1_information(1, params[:transformer_id])
+    if @option1_information.nil?
+      @option1_information = EcoOption1.new
+    end
+
+
     #@transformer_price_loss = TransformerPriceLoss.get_transformer_price_loss(1, params[:transformer_id])
     #if @transformer_price_loss.nil?
     #  @transformer_price_loss = TransformerPriceLoss.new
@@ -34,6 +41,21 @@ class InformationDecisionController < ApplicationController
     end
     redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#repair_information")
   end
+
+  def update_option1_information
+    #fix user_id = 1
+    @option1_information = EcoOption1.get_option1_information(1, params[:transformer_id])
+    if @option1_information.nil?
+      params[:eco_option1][:user_id] = 1
+      params[:eco_option1][:transformer_id] = params[:transformer_id]
+      @option1_information = EcoOption1.create(params[:eco_option1])
+    else
+      @option1_information.update_attributes(params[:eco_option1])
+    end
+    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option1")
+  end
+
+
 
   def update
     #fix user_id = 1

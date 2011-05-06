@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110503070812) do
+ActiveRecord::Schema.define(:version => 20110506080233) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -253,6 +253,35 @@ ActiveRecord::Schema.define(:version => 20110503070812) do
     t.integer  "score"
     t.string   "score_message"
     t.integer  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "eco_option1s", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "transformer_id"
+    t.integer  "transformer_price"
+    t.integer  "noload_loss"
+    t.integer  "loadloss"
+    t.integer  "pm"
+    t.integer  "mc_avg"
+    t.integer  "det_cost"
+    t.string   "winding_type"
+    t.integer  "winding_cost"
+    t.string   "bushing_type"
+    t.integer  "bushing_cost"
+    t.string   "arrester_type"
+    t.integer  "arrester_cost"
+    t.string   "oltc_type"
+    t.integer  "oltc_cost"
+    t.string   "hotline_type"
+    t.integer  "hotline_cost"
+    t.integer  "cooling"
+    t.integer  "overhaul"
+    t.integer  "overhaul_and_refurbish"
+    t.integer  "rep_rubber_bag"
+    t.integer  "rep_bct"
+    t.integer  "others"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
