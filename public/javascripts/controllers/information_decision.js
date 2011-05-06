@@ -1,30 +1,55 @@
-var PriceLoss = { };
+function summation_repair_information() {
 
-function summation_repair_information(id) {
-  //alert(document.repair_information.getElementById(repair_information_winding_cost).value);
- /*
   var d, sum = 0, f = document.repair_information;
-  d = Number(f.winding_cost.value);
+  d = Number(f["repair_information[winding_cost]"].value);
   if(isNaN(d)) d = 0;
   sum += d;
 
-  d = Number(f.bushing_cost.value);
+  d = Number(f["repair_information[bushing_cost]"].value);
   if(isNaN(d)) d = 0;
   sum += d;
 
-  d = Number(f.arrester_cost.value);
+  d = Number(f["repair_information[arrester_cost]"].value);
   if(isNaN(d)) d = 0;
   sum += d;
 
+  d = Number(f["repair_information[oltc_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
 
-  f.sum_cost.disabled = false;
-  f.sum_cost.value = sum;
-  */
-  //f.sum_cost.disabled = true;
-  id.repair_information_sum_cost.value = 5;
-}
+  d = Number(f["repair_information[hotline_cost]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
 
+  d = Number(f["repair_information[cooling]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
 
+  d = Number(f["repair_information[overhaul]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["repair_information[overhaul_and_refurbish]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["repair_information[rep_rubber_bag]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["repair_information[rep_bct]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  d = Number(f["repair_information[others]"].value);
+  if(isNaN(d)) d = 0;
+  sum += d;
+
+  document.repair_information.sum_cost.value  = sum;
+  //document.repair_information.sum_cost.value = f["repair_information[winding_cost]"].value;
+};
+
+var PriceLoss = { };
 PriceLoss.setupTransformerNameComboxBox = function(id) {
   if ($('#' + id).length > 0) {
     var transformerId;
@@ -63,6 +88,6 @@ PriceLoss.onTransformerNamChange = function(transformerId) {
 $(function() {
   PriceLoss.setupTransformerNameComboxBox('transformer_id');
   PriceLoss.setupTransformerNameComboxBox('information_decision_transformer_id');
-//  summation_repair_information('repair_information');  
+  summation_repair_information();
   $("#tabs").tabs();
 });
