@@ -2,6 +2,8 @@ class RepairInformation < ActiveRecord::Base
   belongs_to :transformer
   after_initialize :init
 
+#  attr_accessible :repair_age, :pm, :mc_avg, :det_cost, :winding_type, :winding_cost, :bushing_type, :bushing_cost, :arrester_type, :arrester_cost, :oltc_type, :oltc_cost, :hotline_type, :hotline_cost, :cooling, :overhaul, :overhaul_and_refurbish, :rep_rubber_bag, :rep_bct, :others, :user_id, :transformer_id
+
   def init
     self.repair_age ||= 0
     self.pm ||= 0
