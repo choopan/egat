@@ -48,3 +48,16 @@ input[type="submit"].cupid-green, button.cupid-green {
   padding: 2px;
   background-color: red;
 }
+
+p.ecoconclusion { 
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  background-color: #66ccff; 
+  padding: 10px 20px 10px 20px;
+}
+
+p.ecoconclusionlabel { 
+  display: inline;
+  font-size: 16px;
+}

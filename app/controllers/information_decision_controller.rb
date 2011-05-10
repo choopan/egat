@@ -20,6 +20,11 @@ class InformationDecisionController < ApplicationController
       @option1_information = EcoOption1.new
     end
 
+    
+    #fix user_id = 1
+    eco_con = EcoConclusion.new 
+    @eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])
+
   end
 
   def update_repair_information
