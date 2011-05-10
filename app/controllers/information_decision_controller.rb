@@ -26,6 +26,12 @@ class InformationDecisionController < ApplicationController
       @option3_information = EcoOption3.new
     end
     
+    factorsetting = FactorSetting.find_by_user_id(1)
+    if factorsetting.nil?
+      @projectlife = "-"
+    else
+      @projectlife = factorsetting.projectlife
+    end
     #fix user_id = 1
     eco_con = EcoConclusion.new 
     @eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])

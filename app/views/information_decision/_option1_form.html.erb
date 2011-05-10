@@ -1,7 +1,16 @@
+<p>
+  <h3><font color=blue>เลือกนำหม้อแปลงตัวอื่นมาซ่อมเพื่อใช้งานแทน</font></h3>
+</p>
+<center>
+  <object width="600" height="100">
+  <param name="movie" value="/flash/repair_flash.swf">
+  <embed src="/flash/repair_flash.swf?catNUM=1&x1=<%= @repair_information.repair_age %>&y1=<%= @projectlife %>" width="600" height="100"></embed>
+</center>
+
 <%= form_for @option1_information ,:url => {:action => "update_option1_information"}, :html => {:method => "post", :name => 'option1_information'} do |f| %>
   <input type=hidden name=transformer_id value=<%= @transformer.id %>>
       <p>
-        <%= f.label :transformer_price, "ราคาซ้อขายหม้อแปลงตัวที่ 2 [Baht]", :class => 'inline' %>
+        <%= f.label :transformer_price, "ราคาซื้อขายหม้อแปลงตัวที่ 2 [Baht]", :class => 'inline' %>
         <%= f.text_field :transformer_price, :size => 15%>
       </p>
       <p>

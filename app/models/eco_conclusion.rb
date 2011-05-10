@@ -13,9 +13,12 @@ class EcoConclusion
       transformer = Transformer.find_by_id(transformer_id)
       if transformer.nil?
         return nil
-    end
+      end
 
       price_loss = TransformerPriceLoss.get_transformer_price_loss(user_id, transformer_id)
+      if price_loss.nil?
+        return nil
+      end
  
       acquisition_cost = repinfo.winding_cost + repinfo.bushing_cost + repinfo.arrester_cost +
            repinfo.oltc_cost + repinfo.hotline_cost + repinfo.cooling + repinfo.overhaul +
@@ -45,6 +48,53 @@ class EcoConclusion
   end
 
   def computeNPVR2(user_id, transformer_id)
+      op1info = EcoOption1.get_option1_information(user_id, transformer_id)
+      if op1info.nil?
+        return nil
+      end
+
+      repinfo = RepairInformation.get_repair_information(user_id, transformer_id)
+      if repinfo.nil?
+        return nil
+      end
+
+      factorsetting = FactorSetting.find_by_user_id(user_id)
+      if factorsetting.nil?
+        return nil
+      end
+
+      transformer = Transformer.find_by_id(transformer_id)
+      if transformer.nil?
+        return nil
+      end
+
+      price_loss = TransformerPriceLoss.get_transformer_price_loss(user_id, transformer_id)
+      if price_loss.nil?
+        return nil
+      end
+
+      acquisition_cost = op1info.winding_cost + op1info.bushing_cost + op1info.arrester_cost +
+           op1info.oltc_cost + op1info.hotline_cost + op1info.cooling + op1info.overhaul +
+           op1info.overhaul_and_refurbish + op1info.rep_rubber_bag + op1info.rep_bct + 
+           op1info.others
+
+      exp1 = acquisition_cost * (((1 + (factorsetting.infrate/100))**repinfo.repair_age)/((1 + (factorsetting.intrate/100))**repinfo.repair_age))
+      exp2 = (((1 + (factorsetting.intrate/100))**(factorsetting.projectlife - repinfo.repair_age)) - 1) / 
+             ((factorsetting.intrate/100)*((1 + (factorsetting.intrate/100))**(factorsetting.projectlife - repinfo.repair_age)))
+      exp3 = 1/((1 + (factorsetting.intrate/100))**(repinfo.repair_age))
+      exp4 = (op1info.noload_loss * 8760 * factorsetting.loadloss) + (((factorsetting.loadavg/100)**2) * op1info.loadloss * 8760 * factorsetting.loadloss) +
+             op1info.pm + op1info.mc_avg + 
+             ((factorsetting.unavailability/100) * transformer.maxcapacity * factorsetting.powerfactor * 1000 * (factorsetting.loadavg/100) * factorsetting.power)
+      exp5 = op1info.det_cost * (1/((1 + (factorsetting.intrate/100))**factorsetting.projectlife))
+
+      if(factorsetting.projectlife - repinfo.repair_age >= factorsetting.zerolife)
+        pw_salvage = 0
+      else
+        pw_salvage = (1 / (1 + (factorsetting.intrate/100))**factorsetting.projectlife) * 
+                     (op1info.transformer_price - ((op1info.transformer_price * (factorsetting.projectlife - repinfo.repair_age)) / factorsetting.zerolife))
+      end
+
+      return exp1 + (exp2 * exp3 * exp4) + exp5 - pw_salvage
 
     return 0
   end
@@ -52,7 +102,7 @@ class EcoConclusion
   def computeNPV1(user_id, transformer_id)
     npvr1 = self.computeNPVR1(user_id, transformer_id)
     if npvr1.nil?
-      return "-"
+      return "-" 
     end
 
     npvr2 = self.computeNPVR2(user_id, transformer_id)
