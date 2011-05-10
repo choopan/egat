@@ -20,6 +20,11 @@ class InformationDecisionController < ApplicationController
       @option1_information = EcoOption1.new
     end
 
+    #fix user_id = 1
+    @option3_information = EcoOption3.get_option3_information(1, params[:transformer_id])
+    if @option3_information.nil?
+      @option3_information = EcoOption3.new
+    end
     
     #fix user_id = 1
     eco_con = EcoConclusion.new 
@@ -53,20 +58,17 @@ class InformationDecisionController < ApplicationController
     redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option1")
   end
 
-
-
-  def update
+  def update_option3_information
     #fix user_id = 1
-    #@transformer_price_loss = TransformerPriceLoss.get_transformer_price_loss(1, params[:transformer_id])
-    #    if @transformer_price_loss.nil?
-            #fix user_id = 1
-    #        params[:transformer_price_loss][:user_id] = 1
-    #        params[:transformer_price_loss][:transformer_id] = params[:transformer_id]
-    #        @transformer_price_loss = TransformerPriceLoss.create(params[:transformer_price_loss])
-    #    else
-    #        @transformer_price_loss.update_attributes(params[:transformer_price_loss])
-    #    end
-    #    redirect_to("/transformers/" + params[:transformer_id] + "/price_loss", :notice => 'บันทีกค่าเรียบร้อยแล้ว')
+    @option3_information = EcoOption3.get_option3_information(1, params[:transformer_id])
+    if @option3_information.nil?
+      params[:eco_option3][:user_id] = 1
+      params[:eco_option3][:transformer_id] = params[:transformer_id]
+      @option3_information = EcoOption3.create(params[:eco_option3])
+    else
+      @option3_information.update_attributes(params[:eco_option3])
+    end
+    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option3")
   end
 
   def search

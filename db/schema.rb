@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110506080233) do
+ActiveRecord::Schema.define(:version => 20110506214849) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -282,6 +282,20 @@ ActiveRecord::Schema.define(:version => 20110506080233) do
     t.integer  "rep_rubber_bag"
     t.integer  "rep_bct"
     t.integer  "others"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "eco_option3s", :force => true do |t|
+    t.float    "new_transformer_price"
+    t.float    "rated_power"
+    t.float    "noload_loss"
+    t.float    "loadloss"
+    t.float    "pm"
+    t.float    "mc_avg"
+    t.float    "det_cost"
+    t.integer  "user_id"
+    t.integer  "transformer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

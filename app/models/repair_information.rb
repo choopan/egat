@@ -1,3 +1,35 @@
+# == Schema Information
+# Schema version: 20110506080233
+#
+# Table name: repair_informations
+#
+#  id                     :integer(4)      not null, primary key
+#  repair_age             :integer(4)
+#  pm                     :integer(4)
+#  mc_avg                 :integer(4)
+#  det_cost               :integer(4)
+#  winding_type           :string(255)
+#  winding_cost           :integer(4)
+#  bushing_type           :string(255)
+#  bushing_cost           :integer(4)
+#  arrester_type          :string(255)
+#  arrester_cost          :integer(4)
+#  oltc_type              :string(255)
+#  oltc_cost              :integer(4)
+#  hotline_type           :string(255)
+#  hotline_cost           :integer(4)
+#  cooling                :integer(4)
+#  overhaul               :integer(4)
+#  overhaul_and_refurbish :integer(4)
+#  rep_rubber_bag         :integer(4)
+#  rep_bct                :integer(4)
+#  others                 :integer(4)
+#  user_id                :integer(4)
+#  transformer_id         :integer(4)
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 class RepairInformation < ActiveRecord::Base
   belongs_to :transformer
   after_initialize :init
