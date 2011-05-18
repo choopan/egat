@@ -19,6 +19,11 @@ class InformationDecisionController < ApplicationController
     if @option1_information.nil?
       @option1_information = EcoOption1.new
     end
+    
+    @option2_information = EcoOption2.get_option2_information(1, params[:transformer_id])
+    if @option2_information.nil?
+      @option2_information = EcoOption2.new
+    end
 
     #fix user_id = 1
     @option3_information = EcoOption3.get_option3_information(1, params[:transformer_id])
@@ -62,6 +67,19 @@ class InformationDecisionController < ApplicationController
       @option1_information.update_attributes(params[:eco_option1])
     end
     redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option1")
+  end
+
+  def update_option2_information
+    #fix user_id = 1
+    @option2_information = EcoOption2.get_option2_information(1, params[:transformer_id])
+    if @option2_information.nil?
+      params[:eco_option2][:user_id] = 1
+      params[:eco_option2][:transformer_id] = params[:transformer_id]
+      @option2_information = EcoOption2.create(params[:eco_option2])
+    else
+      @option2_information.update_attributes(params[:eco_option2])
+    end
+    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option2")
   end
 
   def update_option3_information

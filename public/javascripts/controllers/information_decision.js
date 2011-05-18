@@ -105,8 +105,7 @@ PriceLoss.setupTransformerNameComboxBox = function(id) {
   if ($('#' + id).length > 0) {
     var transformerId;
     var selected;
-    if (jQuery.url.attr("path").split("/")[1] == "transformers" && 
-    Number(jQuery.url.attr("path").split("/")[2]) > 0) {
+    if (jQuery.url.attr("path").split("/")[1] == "transformers" && Number(jQuery.url.attr("path").split("/")[2]) > 0) {
       transformerId = Number(jQuery.url.attr("path").split("/")[2]);
     }
     selected = $("#" + id + " " + "option:selected");
