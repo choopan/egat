@@ -166,7 +166,7 @@ class EcoConclusion
         pw_salvage = 0
       else
         pw_salvage = (1 / (1 + (factorsetting.intrate/100))**factorsetting.projectlife) * 
-                     (oplinfo.new_transformer_price - ((oplinfo.new_transformer_price * (factorsetting.projectlife - repinfo.repair_age)) / factorsetting.zerolife))
+                     (op1info.new_transformer_price - ((op1info.new_transformer_price * (factorsetting.projectlife - repinfo.repair_age)) / factorsetting.zerolife))
       end
 
       return exp1 + (exp2 * exp3 * exp4) + exp5 - pw_salvage
@@ -228,7 +228,7 @@ class EcoConclusion
         pw_salvage = 0
       else
         pw_salvage = (1 / (1 + (factorsetting.intrate/100))**factorsetting.projectlife) * 
-                     (oplinfo.new_transformer_price - ((oplinfo.new_transformer_price * factorsetting.projectlife) / factorsetting.zerolife))
+                     (op1info.new_transformer_price - ((op1info.new_transformer_price * factorsetting.projectlife) / factorsetting.zerolife))
       end
 
       return exp1 + (exp2 * exp3) + exp4 - pw_salvage
