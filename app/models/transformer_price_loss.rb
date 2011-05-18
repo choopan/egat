@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20110502070325
+# Schema version: 20110518235716
 #
 # Table name: transformer_price_losses
 #
 #  id                :integer(4)      not null, primary key
-#  transformer_price :float
-#  noload_loss       :float
-#  loadloss          :float
+#  transformer_price :integer(4)
+#  noload_loss       :integer(4)
+#  loadloss          :integer(4)
 #  created_at        :datetime
 #  updated_at        :datetime
 #  transformer_id    :integer(4)

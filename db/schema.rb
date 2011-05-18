@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511161459) do
+ActiveRecord::Schema.define(:version => 20110518235716) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -287,13 +287,13 @@ ActiveRecord::Schema.define(:version => 20110511161459) do
   end
 
   create_table "eco_option2s", :force => true do |t|
-    t.float    "new_transformer_price"
-    t.float    "rated_power"
-    t.float    "noload_loss"
-    t.float    "loadloss"
-    t.float    "pm"
-    t.float    "mc_avg"
-    t.float    "det_cost"
+    t.integer  "new_transformer_price"
+    t.integer  "rated_power"
+    t.integer  "noload_loss"
+    t.integer  "loadloss"
+    t.integer  "pm"
+    t.integer  "mc_avg"
+    t.integer  "det_cost"
     t.integer  "user_id"
     t.integer  "transformer_id"
     t.datetime "created_at"
@@ -301,13 +301,13 @@ ActiveRecord::Schema.define(:version => 20110511161459) do
   end
 
   create_table "eco_option3s", :force => true do |t|
-    t.float    "new_transformer_price"
-    t.float    "rated_power"
-    t.float    "noload_loss"
-    t.float    "loadloss"
-    t.float    "pm"
-    t.float    "mc_avg"
-    t.float    "det_cost"
+    t.integer  "new_transformer_price"
+    t.integer  "rated_power"
+    t.integer  "noload_loss"
+    t.integer  "loadloss"
+    t.integer  "pm"
+    t.integer  "mc_avg"
+    t.integer  "det_cost"
     t.integer  "user_id"
     t.integer  "transformer_id"
     t.datetime "created_at"
@@ -767,8 +767,8 @@ ActiveRecord::Schema.define(:version => 20110511161459) do
     t.float    "infrate"
     t.float    "loadavg"
     t.float    "loadloss"
-    t.float    "projectlife"
-    t.float    "zerolife"
+    t.integer  "projectlife"
+    t.integer  "zerolife"
     t.float    "power"
     t.float    "unavailability"
     t.float    "powerfactor"
@@ -2141,9 +2141,9 @@ ActiveRecord::Schema.define(:version => 20110511161459) do
   end
 
   create_table "transformer_price_losses", :force => true do |t|
-    t.float    "transformer_price"
-    t.float    "noload_loss"
-    t.float    "loadloss"
+    t.integer  "transformer_price"
+    t.integer  "noload_loss"
+    t.integer  "loadloss"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "transformer_id"

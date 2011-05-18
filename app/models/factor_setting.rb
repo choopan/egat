@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110502061514
+# Schema version: 20110518233347
 #
 # Table name: factor_settings
 #
@@ -8,8 +8,8 @@
 #  infrate        :float
 #  loadavg        :float
 #  loadloss       :float
-#  projectlife    :float
-#  zerolife       :float
+#  projectlife    :integer(4)
+#  zerolife       :integer(4)
 #  power          :float
 #  unavailability :float
 #  powerfactor    :float
