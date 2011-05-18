@@ -15,12 +15,12 @@
   <tr>
     <td><center>2</center></td>
     <td>ซ่อม ณ ปัจจุบันและซื้อหม้อแปลงใหม่เมื่อสิ้นสุดใช้งานหม้อแปลงเดิม</td>
-    <td><center>NPV2</center></td>
+    <td><center><%= number_with_precision(@eco_conclusionNPV2, :delimiter => ',', :precision => 2)  %></center></td>
   </tr>
   <tr>
     <td><center>3</center></td>
     <td>ซื้อหม้อแปลงใหม่มาใช้งานแทน</td>
-    <td><center>NPV3</center></td>
+    <td><center><%= number_with_precision(@eco_conclusionNPV3, :delimiter => ',', :precision => 2)  %></center></td>
   </tr>
   <tr>
     <td colspan =3></td>
