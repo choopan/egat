@@ -45,6 +45,14 @@ class InformationDecisionController < ApplicationController
     @eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])
     @eco_conclusionNPV2 = eco_con.computeNPV2(1, params[:transformer_id])
     @eco_conclusionNPV3 = eco_con.computeNPV3(1, params[:transformer_id])
+
+    if ((@eco_conclusion < @eco_conclusionNPV2) && (@eco_conclusion < @eco_conclusionNPV3))
+      @eco_summary = "ซ่อม ณ ปัจจุบันและซ่อมหม้อแปลงสำรองเพื่อใช้งานต่อ"
+    elsif ((@eco_conclusionNPV2 < @eco_conclusion) && (@eco_conclusionNPV2 < @eco_conclusionNPV3))
+      @eco_summary = "ซ่อม ณ ปัจจุบันและซื้อหม้อแปลงใหม่เมื่อสิ้นสุดใช้งานหม้อแปลงเดิม"
+    else
+      @eco_summary = "ซื้อหม้อแปลงใหม่มาใช้งานแทน"
+    end
   end
 
   def update_repair_information
