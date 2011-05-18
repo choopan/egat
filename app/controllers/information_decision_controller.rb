@@ -43,7 +43,8 @@ class InformationDecisionController < ApplicationController
     #fix user_id = 1
     eco_con = EcoConclusion.new 
     @eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])
-
+    @eco_conclusionNPV2 = eco_con.computeNPV2(1, params[:transformer_id])
+    @eco_conclusionNPV3 = eco_con.computeNPV3(1, params[:transformer_id])
   end
 
   def update_repair_information
