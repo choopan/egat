@@ -75,6 +75,15 @@
    </p>
 </div>
 
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= label_tag :powerfactor, "Power Factor", :class => 'inline' %>
+   	<%= text_field_tag ("factor[user_id]", @factor.user_id, :size => 15) %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+
 
 <div class='grid_12 prefix_3' >
 <p>
@@ -82,4 +91,6 @@
 </p>
 </div>
 
+<%= debug params %><hr>
+<%= debug @factor %>
 <% end %>

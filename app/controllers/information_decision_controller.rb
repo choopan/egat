@@ -1,6 +1,7 @@
 class InformationDecisionController < ApplicationController
 
   def index
+
     @transformer = Transformer.find(params[:transformer_id])
     o = OverallCondition.new(params[:transformer_id])
     @overallcondition = o.percent_overall_health_index
@@ -33,10 +34,14 @@ class InformationDecisionController < ApplicationController
     
     factorsetting = FactorSetting.find_by_user_id(1)
     if factorsetting.nil?
-      @projectlife = "-"
-    else
-      @projectlife = factorsetting.projectlife
+      factorsetting = FactorSetting.new
+      factorsetting.user_id = 1
+      FactorSetting.create(factorsetting)
     end
+    @projectlife = factorsetting.projectlife
+
+
+
     #fix user_id = 1
     eco_con = EcoConclusion.new 
     @eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])
