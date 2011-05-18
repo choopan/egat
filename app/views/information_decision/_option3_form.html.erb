@@ -1,43 +1,34 @@
+<p>
+        <h3><font color=blue>ข้อมูลการซื้อหม้อแปลงใหม่</font></h3>
+      </p>
+<center>
 <object width="600" height="100" align="center">
 <param name="movie" value="/flash/buynew_flash.swf">
 <embed src="/flash/buynew_flash.swf?para=55" width="600" height="100">
 </embed>
 </object>
+</center>
 <%= form_for @option3_information ,:url => {:action => "update_option3_information"}, :html => {:method => "post", :name => 'option3_information'} do |f| %>
-  <input type=hidden name=transformer_id value=<%= @transformer.id %>>
-      <p>
-        <h3><font color=blue>รายการที่ต้องซ่อมหม้อแปลง (รวมค่าแรงและค่าของ)</font></h3>
-      </p>
-      <p>
-        <%= f.label :new_transformer_price, "aaaaaa", :class => 'inline' %>
-        <%= f.text_field :new_transformer_price, :size => 15%>
-      </p>
-      <p>
-        <%= f.label :rated_power, " ", :class => 'inline' %>
-        <%= f.text_field :rated_power, :size => 15%>
-      </p>
-      <p>
-        <%= f.label :noload_loss, " ", :class => 'inline' %>
-        <%= f.text_field :noload_loss, :size => 15%>
-      </p>
-      <p>
-        <%= f.label :loadloss, " ", :class => 'inline' %>
-        <%= f.text_field :loadloss, :size => 15%>
-      </p>
-      <p>
-        <%= f.label :pm, " ", :class => 'inline' %>
-        <%= f.text_field :pm, :size => 15%>
-      </p>
-      <p>
-        <%= f.label :mc_avg, " ", :class => 'inline' %>
-        <%= f.text_field :mc_avg, :size => 15%>
-      </p>
-      <p>
-        <%= f.label :det_cost, "Destroy Cost", :class => 'inline' %>
-        <%= f.text_field :det_cost, :size => 15%>
-      </p>
-      <p><br></p>
-      <p>
-	<%= f.submit "Save", :class => "cupid-green" %>
-      </p>
+  <input type=hidden name=transformer_id value=<%= @transformer.id %>
+      <p><br><%= f.label :new_transformer_price, "ราคาหม้อแปลงใหม่ [Baht]", :class => 'inline' %></p>
+      <p><%= f.text_field :new_transformer_price, :size => 15%></p>
+      <p><%= f.label :rated_power, "Rated Power [MVA]", :class => 'inline' %></p>
+      <p><%= f.text_field :rated_power, :size => 15%></p>
+      <p><%= f.label :noload_loss, "No-Load Loss [kW]", :class => 'inline' %></p>
+      <p><%= f.text_field :noload_loss, :size => 15%></p>
+      <p><%= f.label :loadloss, "Load Loss [kW]", :class => 'inline' %></p>
+      <p><%= f.text_field :loadloss, :size => 15%></p>
+      <p><%= f.label :pm, "ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM [Baht/year]", :class => 'inline' %></p>
+      <p><%= f.text_field :pm, :size => 15%></p>
+      <p><%= f.label :mc_avg, "ค่าซ่อมบำรุงเฉลี่ยรายปี [Baht/year]", :class => 'inline' %></p>
+      <p><%= f.text_field :mc_avg, :size => 15%></p>
+      <p><%= f.label :det_cost, "ค่าทำลายหรือรื้อถอน [Baht/year]", :class => 'inline' %></p>
+      <p><%= f.text_field :det_cost, :size => 15%></p>
+<hr>
+<table>
+	<tr>
+	      <td width=15></td>
+	      <td width=350><right><%= f.submit "Save", :class => "cupid-green" %></right></td>
+              <td><input type="reset" value="Clear Data"></td>
+</tr></table>
       <% end %>
