@@ -29,6 +29,9 @@
       <%= render :partial => 'layouts/header' %>    
     <% end %>
     <div id="content" class="container_16 clearfix">
+    <% if notice %>
+	<p class="success">บันทึกค่าเรียบร้อยแล้ว</p>
+    <%end %>
       <%= yield %>
     </div>
   </body>

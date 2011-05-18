@@ -34,9 +34,7 @@ class InformationDecisionController < ApplicationController
     
     factorsetting = FactorSetting.find_by_user_id(1)
     if factorsetting.nil?
-      factorsetting = FactorSetting.new
-      factorsetting.user_id = 1
-      FactorSetting.create(factorsetting)
+      factorsetting = FactorSetting.newrecord_user_id(1)
     end
     @projectlife = factorsetting.projectlife
 

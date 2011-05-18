@@ -19,7 +19,7 @@
 #
 
 class FactorSetting < ActiveRecord::Base
-  attr_accessible :intrate, :infrate, :loadavg, :loadloss, :projectlife, :zerolife, :power, :unavailability, :powerfactor
+  attr_accessible :intrate, :infrate, :loadavg, :loadloss, :projectlife, :zerolife, :power, :unavailability, :powerfactor, :user_id
 
   after_initialize :init
 
@@ -39,8 +39,7 @@ class FactorSetting < ActiveRecord::Base
   def self.newrecord_user_id(userid)
     newrecord = self.new
     newrecord.user_id = userid
-    newrecord.intrate = 10
-    self.create(newrecord)
+    newrecord.save
     return newrecord
   end
 
