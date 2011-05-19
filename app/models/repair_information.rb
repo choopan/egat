@@ -36,6 +36,9 @@ class RepairInformation < ActiveRecord::Base
 
   attr_accessible :repair_age, :pm, :mc_avg, :det_cost, :winding_type, :winding_cost, :bushing_type, :bushing_cost, :arrester_type, :arrester_cost, :oltc_type, :oltc_cost, :hotline_type, :hotline_cost, :cooling, :overhaul, :overhaul_and_refurbish, :rep_rubber_bag, :rep_bct, :others, :user_id, :transformer_id
 
+  validates_presence_of :repair_age, :pm, :mc_avg, :det_cost, :winding_type, :winding_cost, :bushing_type, :bushing_cost, :arrester_type, :arrester_cost, :oltc_type, :oltc_cost, :hotline_type, :hotline_cost, :cooling, :overhaul, :overhaul_and_refurbish, :rep_rubber_bag, :rep_bct, :others, :user_id, :transformer_id
+  validates_numericality_of :repair_age, :pm, :mc_avg, :det_cost, :winding_cost, :bushing_cost, :arrester_cost, :oltc_cost, :hotline_cost, :cooling, :overhaul, :overhaul_and_refurbish, :rep_rubber_bag, :rep_bct, :others, :user_id, :transformer_id, :only_integer => true
+
   def init
     self.repair_age ||= 30
     self.pm ||= 0

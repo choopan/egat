@@ -8,6 +8,17 @@ class InformationDecisionController < ApplicationController
     if @overallcondition.nil?
       @overallcondition = "-"
     end
+
+    dp = Dp.find(1)
+    @endlife = 52.076425 - ( 36.842943 * Math.exp(-2609690.4 * (dp.dp ** (-2.493992))))
+    fal = Furan.get_fal(params[:transformer_id])
+    if fal.nil?
+      @explife = "-"
+      @remainlife = "-"
+    else
+      @explife = 53.157042 - ( 33.801277 * Math.exp(-0.003834756 * (fal ** (1.0305127))))
+      @remainlife = @endlife - @explife
+    end
   
     #fix user_id = 1
     @repair_information = RepairInformation.get_repair_information(1, params[:transformer_id])
@@ -42,16 +53,36 @@ class InformationDecisionController < ApplicationController
 
     #fix user_id = 1
     eco_con = EcoConclusion.new 
-    @eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])
-    @eco_conclusionNPV2 = eco_con.computeNPV2(1, params[:transformer_id])
-    @eco_conclusionNPV3 = eco_con.computeNPV3(1, params[:transformer_id])
+    #@eco_conclusion = eco_con.computeNPV1(1, params[:transformer_id])
+    #@eco_conclusionNPV2 = eco_con.computeNPV2(1, params[:transformer_id])
+    #@eco_conclusionNPV3 = eco_con.computeNPV3(1, params[:transformer_id])
+    @eco_conclusion = [ eco_con.computeNPV1(1, params[:transformer_id]), eco_con.computeNPV2(1, params[:transformer_id]), eco_con.computeNPV3(1, params[:transformer_id])]
 
-    if ((@eco_conclusion < @eco_conclusionNPV2) && (@eco_conclusion < @eco_conclusionNPV3))
-      @eco_summary = "ซ่อม ณ ปัจจุบันและซ่อมหม้อแปลงสำรองเพื่อใช้งานต่อ"
-    elsif ((@eco_conclusionNPV2 < @eco_conclusion) && (@eco_conclusionNPV2 < @eco_conclusionNPV3))
-      @eco_summary = "ซ่อม ณ ปัจจุบันและซื้อหม้อแปลงใหม่เมื่อสิ้นสุดใช้งานหม้อแปลงเดิม"
+    minindex = -1
+    for i in 0..2 do
+      if @eco_conclusion[i] != '-' 
+	minvalue = @eco_conclusion[i]
+        minindex = i
+	break
+      end 
+    end
+
+    if minindex != -1
+       for i in 0..2 do
+          if @eco_conclusion[i] != '-' && @eco_conclusion[i] < minvalue
+             minvalue = @eco_conclusion[i]
+             minindex = i
+          end
+       end
+       if minindex == 0
+      	 @eco_summary = "ซ่อม ณ ปัจจุบันและซ่อมหม้อแปลงสำรองเพื่อใช้งานต่อ"
+       elsif minindex == 1
+         @eco_summary = "ซ่อม ณ ปัจจุบันและซื้อหม้อแปลงใหม่เมื่อสิ้นสุดใช้งานหม้อแปลงเดิม"
+       else
+         @eco_summary = "ซื้อหม้อแปลงใหม่มาใช้งานแทน"
+       end
     else
-      @eco_summary = "ซื้อหม้อแปลงใหม่มาใช้งานแทน"
+         @eco_summary = "ข้อมูลไม่เพียงพอในการพิจารณา"
     end
   end
 

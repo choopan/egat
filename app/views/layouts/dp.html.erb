@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Economic Analysis</title>
+    <title>DP</title>
     <!--[if IE]><%= javascript_include_tag 'extcanvas.min' %><![endif]--> 
     <% unless @no_js %>
       <%= 
@@ -29,12 +29,9 @@
       <%= render :partial => 'layouts/header' %>    
     <% end %>
 
-    <div id="breadcrumb">
-      <a href="http://127.0.0.1:3000">Home</a> >> Economic Analysis >> Factor Setting
-    </div>
     <div id="content" class="container_16 clearfix">
     <% if notice %>
-	<p class="success"><%= notice %></p>
+	<p class="success">บันทึกค่าเรียบร้อยแล้ว</p>
     <%end %>
 
       <%= yield %>
