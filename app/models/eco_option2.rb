@@ -20,6 +20,9 @@
 class EcoOption2 < ActiveRecord::Base
 belongs_to :transformer
   after_initialize :init
+  validates_presence_of :new_transformer_price, :rated_power, :noload_loss, :loadloss, :pm, :mc_avg, :det_cost
+  validates_numericality_of :new_transformer_price, :rated_power, :noload_loss, :loadloss, :pm, :mc_avg, :det_cost, :only_integer => true
+
 
   def init
     self.new_transformer_price ||= 0
