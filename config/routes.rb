@@ -1,5 +1,11 @@
 Egat::Application.routes.draw do
 
+  resources :economic_analysis do
+    collection do
+      get 'index'
+    end
+  end
+
   resources :dp do
     collection do 
       get 'edit'

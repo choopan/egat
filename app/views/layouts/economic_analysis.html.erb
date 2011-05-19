@@ -15,13 +15,8 @@
       %>
       <%= yield :javascript %>
     <% end %>
-    <%= stylesheet_link_tag 'ext-all', 'xtheme-gray' %>
     <%= stylesheet_link_tag '960', 'template', 'nav', 'colour' %>
-    <%= stylesheet_link_tag  'facybox', 'faceplant'%>
-    <%= stylesheet_link_tag'jquery-ui-1.8.4.custom' %>
-    <%= stylesheet_link_tag'jquery.cluetip' %>   
-    <%= stylesheet_link_tag 'buttons' %>     
-    <%= stylesheet_link_tag 'controllers/factor_settings' %>
+    <%= stylesheet_link_tag 'glow/1.7.0/widgets/widgets' %>     
     <%= yield :css %>
   </head>
   <body name="<%= controller.action_name %>">
@@ -30,7 +25,7 @@
     <% end %>
 
     <div id="breadcrumb">
-      <a href="/">Home</a> >> <%= link_to 'Economic Analysis', economic_analysis_path %> >> Factor Setting
+      <a href="/">Home</a> >> Economic Analysis 
     </div>
     <div id="content" class="container_16 clearfix">
     <% if notice %>
