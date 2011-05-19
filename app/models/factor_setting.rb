@@ -20,8 +20,10 @@
 
 class FactorSetting < ActiveRecord::Base
   attr_accessible :intrate, :infrate, :loadavg, :loadloss, :projectlife, :zerolife, :power, :unavailability, :powerfactor, :user_id
-
   after_initialize :init
+  validates_presence_of :intrate, :infrate, :loadavg, :loadloss, :projectlife, :zerolife, :power, :unavailability, :powerfactor, :user_id
+  validates_numericality_of :intrate, :infrate, :loadavg, :loadloss, :projectlife, :zerolife, :power, :unavailability, :powerfactor
+  validates_numericality_of :projectlife, :zerolife, :only_integer => true
 
   def init
     self.intrate ||= 4

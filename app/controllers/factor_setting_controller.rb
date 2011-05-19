@@ -10,7 +10,10 @@ class FactorSettingController < ApplicationController
 
   def update
 	@factor = FactorSetting.find_by_user_id(1)
-	@factor.update_attributes(params[:factor_setting])
-	redirect_to(edit_factor_setting_index_path, :notice => 'บันทีกค่าเรียบร้อยแล้ว')
+	if @factor.update_attributes(params[:factor_setting])
+		redirect_to(edit_factor_setting_index_path, :notice => 'บันทีกค่าเรียบร้อยแล้ว')
+	else
+		redirect_to(edit_factor_setting_index_path, :notice => @factor.errors)
+	end
   end
 end
