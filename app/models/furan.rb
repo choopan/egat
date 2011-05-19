@@ -28,4 +28,10 @@ class Furan < ActiveRecord::Base
     test_date.strftime("%d/%m/%Y")
   end
 
+  def self.get_fal(transformer_id)
+    where("transformer_id = '#{transformer_id}'").order("test_date DESC").first.fal
+    rescue:
+      return nil
+  end
+
 end

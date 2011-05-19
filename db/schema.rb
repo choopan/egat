@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518235716) do
+ActiveRecord::Schema.define(:version => 20110519020453) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -253,6 +253,12 @@ ActiveRecord::Schema.define(:version => 20110518235716) do
     t.integer  "score"
     t.string   "score_message"
     t.integer  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dps", :force => true do |t|
+    t.integer  "dp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

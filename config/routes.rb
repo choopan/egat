@@ -1,5 +1,12 @@
 Egat::Application.routes.draw do
 
+  resources :dp do
+    collection do 
+      get 'edit'
+      post 'update'
+    end
+  end
+
   resources :information_decision do
     collection do
       get 'search'
@@ -13,8 +20,12 @@ Egat::Application.routes.draw do
     end
   end  
 
-  get "factor_setting/edit"
-  get "factor_setting/update"
+  resources :factor_setting do
+     collection do
+       get 'edit'
+       post 'update'
+     end
+  end
 
   resources :transformer_informations do
     member do 
