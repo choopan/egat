@@ -19,6 +19,13 @@ caption {
 	width:1000px;
 }
 
+#breadcrumb {
+	margin-right:auto;
+	margin-left:auto;
+	width:1000px;
+}
+
+
 .login {
 	margin-left:auto;
 	margin-right:auto;
@@ -29,6 +36,12 @@ caption {
 }
 
 #content {
+	width:960px;
+	position:relative;
+	zoom:1;
+}
+
+#breadcrumb {
 	width:960px;
 	position:relative;
 	zoom:1;
@@ -150,6 +163,10 @@ th, td {
 	padding:20px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-bottomright: 10px;
+}
+
+#breadcrumb {
+	padding:5px;
 }
 
 #foot {
