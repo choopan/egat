@@ -10,7 +10,7 @@
 </object>
 </center>
 <%= form_for @option2_information ,:url => {:action => "update_option2_information"}, :html => {:method => "post", :name => 'option2_information'} do |f| %>
-  <input type=hidden name=transformer_id value=<%= @transformer.id %>
+  <input type=hidden name=transformer_id value=<%= @transformer.id %>>
       <br><p><%= f.label :new_transformer_price, "ราคาหม้อแปลงใหม่ [Baht]", :class => 'inline' %></p>
       <p><%= f.text_field :new_transformer_price, :size => 15%></p>
       <p><%= f.label :rated_power, "Rated Power [MVA]", :class => 'inline' %></p>
@@ -23,7 +23,7 @@
       <p><%= f.text_field :pm, :size => 15%></p>
       <p><%= f.label :mc_avg, "ค่าซ่อมบำรุงเฉลี่ยรายปี [Baht/year]", :class => 'inline' %></p>
       <p><%= f.text_field :mc_avg, :size => 15%></p>
-      <p><%= f.label :det_cost, "ค่าทำลายหรือรื้อถอน [Baht/year]", :class => 'inline' %></p>
+      <p><%= f.label :det_cost, "ค่าทำลายหรือรื้อถอน [Baht]", :class => 'inline' %></p>
       <p><%= f.text_field :det_cost, :size => 15%></p>
 <hr>
 <table>
