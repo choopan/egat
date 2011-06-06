@@ -55,3 +55,4 @@ gem 'ruby-debug'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "pdfkit", :git => "https://huerlisi@github.com/huerlisi/PDFKit.git"
