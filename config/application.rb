@@ -41,5 +41,9 @@ module Egat
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.middleware.use "PDFKit::Middleware",  {}, :only => '/eco_report'
+    PDFKit.configure do |config|
+        config.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
+    end
+
   end
 end
