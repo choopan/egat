@@ -77,17 +77,39 @@
  <center>
 	<table border=1 width=95%>
 		<tr><td>อุปกรณ์</td><td>รายละเอียด</td><td>ค่าแรงและค่าของ (บาท)</td></tr>
-		<tr><td>Winding</td><td>Repair</td><td><%= number_with_precision(@repair_information[:winding_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>Bushing</td><td>RIP</td><td><%= number_with_precision(@repair_information[:bushing_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>Arrester</td><td>Gapless with silicon housing</td><td><%= number_with_precision(@repair_information[:arrester_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>OLTC</td><td>Oil 1 Chamber</td><td><%= number_with_precision(@repair_information[:oltc_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>Hot Line Oil Filter</td><td>1-2 Chamber</td><td><%= number_with_precision(@repair_information[:hotline_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%if @repair_information[:winding_cost] != 0 %>
+			<tr><td>Winding</td><td><%= @repair_information[:winding_type] %></td><td><%= number_with_precision(@repair_information[:winding_cost], :delimiter => ',', :precision => 2) %></td></tr>
+                <%end%>
+		<%if @repair_information[:bushing_cost] != 0 %>
+		<tr><td>Bushing</td><td><%= @repair_information[:bushing_type] %></td><td><%= number_with_precision(@repair_information[:bushing_cost], :delimiter => ',', :precision => 2) %></td></tr>
+                <%end%>
+		<%if @repair_information[:arrester_cost] != 0 %>
+		<tr><td>Arrester</td><td><%= @repair_information[:arrester_type] %></td><td><%= number_with_precision(@repair_information[:arrester_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:oltc_cost] != 0 %>
+		<tr><td>OLTC</td><td><%= @repair_information[:oltc_type] %></td><td><%= number_with_precision(@repair_information[:oltc_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:hotline_cost] != 0 %>
+		<tr><td>Hot Line Oil Filter</td><td><%= @repair_information[:hotline_type] %></td><td><%= number_with_precision(@repair_information[:hotline_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:cooling] != 0 %>
 		<tr><td>Cooling</td><td>-</td><td><%= number_with_precision(@repair_information[:cooling], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:overhaul] != 0 %>
 		<tr><td>Overhaul</td><td>Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis</td><td><%= number_with_precision(@repair_information[:overhaul], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:overhaul_and_refurbish] != 0 %>
 		<tr><td>Overhaul and Refurbish</td><td>Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis</td><td><%= number_with_precision(@repair_information[:overhaul_and_refurbish], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:rep_rubber_bag] != 0 %>
 		<tr><td>Replacing Rubber Bag</td><td>-</td><td><%= number_with_precision(@repair_information[:rep_rubber_bag], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:rep_bct] != 0 %>
 		<tr><td>Replacing BCT, others</td><td>-</td><td><%= number_with_precision(@repair_information[:rep_bct], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @repair_information[:others] != 0 %>
 		<tr><td>Others</td><td>-</td><td><%= number_with_precision(@repair_information[:others], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
 	</table>
  </center><br>
  <center>รวมค่าใช้จ่ายในการซ่อมหม้อแปลงที่เสียหาย (ค่าแรงและค่าของ) :<%= number_with_precision(@repair_information[:winding_cost]+@repair_information[:bushing_cost]+@repair_information[:arrester_cost]+@repair_information[:oltc_cost]+@repair_information[:hotline_cost]+@repair_information[:cooling]+@repair_information[:overhaul]+@repair_information[:overhaul_and_refurbish]+@repair_information[:rep_rubber_bag]+@repair_information[:rep_bct]+@repair_information[:others], :delimiter => ',', :precision => 2) %> บาท</center>
@@ -125,17 +147,39 @@
  <center>
 	<table border=1 width=95%>
 		<tr><td>อุปกรณ์</td><td>รายละเอียด</td><td>ค่าแรงและค่าของ (บาท)</td></tr>
-		<tr><td>Winding</td><td>Repair</td><td><%= number_with_precision(@option1_information[:winding_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>Bushing</td><td>RIP</td><td><%= number_with_precision(@option1_information[:bushing_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>Arrester</td><td>Gapless with silicon housing</td><td><%= number_with_precision(@option1_information[:arrester_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>OLTC</td><td>Oil 1 Chamber</td><td><%= number_with_precision(@option1_information[:oltc_cost], :delimiter => ',', :precision => 2) %></td></tr>
-		<tr><td>Hot Line Oil Filter</td><td>1-2 Chamber</td><td><%= number_with_precision(@option1_information[:hotline_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%if @option1_information[:winding_cost] != 0 %>
+		<tr><td>Winding</td><td><%= @option1_information[:winding_type] %></td><td><%= number_with_precision(@option1_information[:winding_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:bushing_cost] != 0 %>
+		<tr><td>Bushing</td><td><%= @option1_information[:bushing_type] %></td><td><%= number_with_precision(@option1_information[:bushing_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:arrester_cost] != 0 %>
+		<tr><td>Arrester</td><td><%= @option1_information[:arrester_type] %></td><td><%= number_with_precision(@option1_information[:arrester_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:oltc_cost] != 0 %>
+		<tr><td>OLTC</td><td><%= @option1_information[:oltc_type] %></td><td><%= number_with_precision(@option1_information[:oltc_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:hotline_cost] != 0 %>
+		<tr><td>Hot Line Oil Filter</td><td><%= @option1_information[:hotline_type] %></td><td><%= number_with_precision(@option1_information[:hotline_cost], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:cooling] != 0 %>
 		<tr><td>Cooling</td><td>-</td><td><%= number_with_precision(@option1_information[:cooling], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:overhaul] != 0 %>
 		<tr><td>Overhaul</td><td>Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis</td><td><%= number_with_precision(@option1_information[:overhaul], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:overhaul_and_refurbish] != 0 %>
 		<tr><td>Overhaul and Refurbish</td><td>Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis</td><td><%= number_with_precision(@option1_information[:overhaul_and_refurbish], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:rep_rubber_bag] != 0 %>
 		<tr><td>Replacing Rubber Bag</td><td>-</td><td><%= number_with_precision(@option1_information[:rep_rubber_bag], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:rep_bct] != 0 %>
 		<tr><td>Replacing BCT, others</td><td>-</td><td><%= number_with_precision(@option1_information[:rep_bct], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
+		<%if @option1_information[:others] != 0 %>
 		<tr><td>Others</td><td>-</td><td><%= number_with_precision(@option1_information[:others], :delimiter => ',', :precision => 2) %></td></tr>
+		<%end%>
 	</table>
  </center><br>
  <center>รวมค่าใช้จ่ายในการซ่อมหม้อแปลงตัวที่ 2 (ค่าแรงและค่าของ) :<%= number_with_precision(@option1_information[:winding_cost]+@option1_information[:bushing_cost]+@option1_information[:arrester_cost]+@option1_information[:oltc_cost]+@option1_information[:hotline_cost]+@option1_information[:cooling]+@option1_information[:overhaul]+@option1_information[:overhaul_and_refurbish]+@option1_information[:rep_rubber_bag]+@option1_information[:rep_bct]+@option1_information[:others], :delimiter => ',', :precision => 2) %> บาท</center>
