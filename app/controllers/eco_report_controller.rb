@@ -43,11 +43,11 @@ class EcoReportController < ApplicationController
     if @option3_information.nil?
       @option3_information = EcoOption3.new
     end
-    factorsetting = FactorSetting.find_by_user_id(1)
-    if factorsetting.nil?
-      factorsetting = FactorSetting.newrecord_user_id(1)
+    @factorsetting = FactorSetting.find_by_user_id(1)
+    if @factorsetting.nil?
+      @factorsetting = FactorSetting.newrecord_user_id(1)
     end
-    @projectlife = factorsetting.projectlife
+    @projectlife = @factorsetting.projectlife
 
 
     @transformer_id = params[:transformer_id];
@@ -59,7 +59,16 @@ class EcoReportController < ApplicationController
     #@eco_conclusionNPV2 = eco_con.computeNPV2(1, params[:transformer_id])
     #@eco_conclusionNPV3 = eco_con.computeNPV3(1, params[:transformer_id])
     @eco_conclusion = [ eco_con.computeNPV1(1, params[:transformer_id]), eco_con.computeNPV2(1, params[:transformer_id]), eco_con.computeNPV3(1, params[:transformer_id])]
+     @transformer = Transformer.find(params[:transformer_id])
 
+    #fix user_id = 1
+    @transformer_price_loss = TransformerPriceLoss.get_transformer_price_loss(1, params[:transformer_id])
+    if @transformer_price_loss.nil?
+      @transformer_price_loss = TransformerPriceLoss.new
+      @transformer_price_loss.transformer_price = 0
+      @transformer_price_loss.noload_loss = 0
+      @transformer_price_loss.loadloss = 0
+    end
     minindex = -1
     for i in 0..2 do
       if @eco_conclusion[i] != '-'
