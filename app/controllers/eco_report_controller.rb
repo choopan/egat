@@ -32,7 +32,7 @@ class EcoReportController < ApplicationController
     if @option1_information.nil?
       @option1_information = EcoOption1.new
     end
-
+    
     @option2_information = EcoOption2.get_option2_information(1, params[:transformer_id])
     if @option2_information.nil?
       @option2_information = EcoOption2.new
@@ -43,6 +43,8 @@ class EcoReportController < ApplicationController
     if @option3_information.nil?
       @option3_information = EcoOption3.new
     end
+
+    @num = 0
     @factorsetting = FactorSetting.find_by_user_id(1)
     if @factorsetting.nil?
       @factorsetting = FactorSetting.newrecord_user_id(1)
