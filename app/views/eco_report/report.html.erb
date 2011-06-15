@@ -18,6 +18,7 @@
 </center>
 
 
+<p><br><br></p>
 
 
 
@@ -25,17 +26,17 @@
 <p><center><b><font size=1>ราคาต้นทุนทั้ง 3 ทางเลือก</font></b></center></p>
 <p> <center>
    <table border=1 width=95%>
-	<tr align = "center"><th><font size=1>ทางเลือก</font></th><th><font size=1>รายละเอียด</font></th><th><font size=1>ราคาต้นทุน ณ เวลาปัจจุบัน (NPV)</font></th></tr>
-	<tr><td align="center"><font size=1>1</font></td><td><font size=1>ซ่อม ณ ปัจจุบันและซ่อมหม้อแปลงสำรองเพื่อใช้งานต่อ</fonter></td><td><font size=1><%= number_with_precision(@eco_conclusion[0], :delimiter => ',', :precision => 2) %></font></td></tr>
-	<tr><td align="center"><font size=1>2</font></td><td><font size=1>ซ่อม ณ ปัจจุบันและซื้อหม้อแปลงใหม่เมื่อสิ้นสุดใช้งานหม้อแปลงตัวเดิม</font></td><td><font size=1><%= number_with_precision(@eco_conclusion[1], :delimiter => ',', :precision => 2) %></font></td></tr>
-	<tr><td align="center"><font size=1>3</font></td><td><font size=1>ซื้อหม้อแปลงใหม่มาใช้แทน</font></td><td><font size=1><%= number_with_precision(@eco_conclusion[2], :delimiter => ',', :precision => 2) %></fonter></td></tr>
+<tr align = "center"><th><font size=1>ทางเลือก</font></th><th><font size=1>รายละเอียด</font></th><th><font size=1>ราคาต้นทุน ณ เวลาปัจจุบัน (NPV)</font></th></tr>
+<tr><td align="center"><font size=1>1</font></td><td><font size=1>ซ่อม ณ ปัจจุบันและซ่อมหม้อแปลงสำรองเพื่อใช้งานต่อ</fonter></td><td><font size=1><%= number_with_precision(@eco_conclusion[0], :delimiter => ',', :precision => 2) %></font></td></tr>
+<tr><td align="center"><font size=1>2</font></td><td><font size=1>ซ่อม ณ ปัจจุบันและซื้อหม้อแปลงใหม่เมื่อสิ้นสุดใช้งานหม้อแปลงตัวเดิม</font></td><td><font size=1><%= number_with_precision(@eco_conclusion[1], :delimiter => ',', :precision => 2) %></font></td></tr>
+<tr><td align="center"><font size=1>3</font></td><td><font size=1>ซื้อหม้อแปลงใหม่มาใช้แทน</font></td><td><font size=1><%= number_with_precision(@eco_conclusion[2], :delimiter => ',', :precision => 2) %></fonter></td></tr>
    </table>
 </center></p>
  <p><center><font size=1>ทางเลือกที่เหมาะสมเชิงเศรษฐศาสตร์ คือ <%= @eco_summary %></font></center></p>
 
 
 
-
+<p><br><br></p>
 
 
 
@@ -45,17 +46,17 @@
 <p><center>
 <fieldset size style="width:600px;height:80px;">
  <center>
-	<table border=0 width=95%>
-		<tr><td><font size=1>อัตราดอกเบี้ย</font></td><td><font size=1>:<%= @factorsetting[:intrate] %> %</font></td><td><font size=1>อายุหม้อแปลงปีที่ค่าซากเป็นศูนย์</font></td><td><font size=1>:<%= @factorsetting[:zerolife] %> ปี</font></td></tr>
-		<tr><td><font size=1>อัตราเงินเฟ้อ</font></td><td><font size=1>:<%= @factorsetting[:infrate] %> %</font></td><td><font size=1>อายุใช้งานของหม้อแปลงที่ซ่อม</font></td><td><font size=1>:<%= @repair_information[:repair_age] %> ปี</font></td></tr>
-		<tr><td><font size=1>การจ่ายโหลดโดยเฉลี่ย</font></td><td><font size=1>:<%= @factorsetting[:loadavg] %> %</font></td><td><font size=1>อายุใช้งานของหม้อแปลงใหม่</font></td><td><font size=1>:<%= @factorsetting[:projectlife] %> ปี</font></td></tr>
-		<tr><td><font size=1>ค่า Loss ของหม้อแปลง (no-load and load loss)</font></td><td><font size=1>:<%= @factorsetting[:loadloss] %> Baht/kWh</font></td><td><font size=1>ค่าพลังงานที่ไม่ได้จ่ายไฟ</font></td><td><font size=1>:<%= @factorsetting[:power] %> Baht/kWh</font></td></tr>
-		<tr><td><font size=1>Power Factor</font></td><td><font size=1>:<%= @factorsetting[:powerfactor] %> %</font></td><td><font size=1>Unavailability</font></td><td><font size=1>:<%= @factorsetting[:unavailability] %></font></td></tr>
+<table border=0 width=95%>
+<tr><td><font size=1>อัตราดอกเบี้ย</font></td><td><font size=1>:<%= @factorsetting[:intrate] %> %</font></td><td><font size=1>อายุหม้อแปลงปีที่ค่าซากเป็นศูนย์</font></td><td><font size=1>:<%= @factorsetting[:zerolife] %> ปี</font></td></tr>
+<tr><td><font size=1>อัตราเงินเฟ้อ</font></td><td><font size=1>:<%= @factorsetting[:infrate] %> %</font></td><td><font size=1>อายุใช้งานของหม้อแปลงที่ซ่อม</font></td><td><font size=1>:<%= @repair_information[:repair_age] %> ปี</font></td></tr>
+<tr><td><font size=1>การจ่ายโหลดโดยเฉลี่ย</font></td><td><font size=1>:<%= @factorsetting[:loadavg] %> %</font></td><td><font size=1>อายุใช้งานของหม้อแปลงใหม่</font></td><td><font size=1>:<%= @factorsetting[:projectlife] %> ปี</font></td></tr>
+<tr><td><font size=1>ค่า Loss ของหม้อแปลง (no-load and load loss)</font></td><td><font size=1>:<%= @factorsetting[:loadloss] %> Baht/kWh</font></td><td><font size=1>ค่าพลังงานที่ไม่ได้จ่ายไฟ</font></td><td><font size=1>:<%= @factorsetting[:power] %> Baht/kWh</font></td></tr>
+<tr><td><font size=1>Power Factor</font></td><td><font size=1>:<%= @factorsetting[:powerfactor] %> %</font></td><td><font size=1>Unavailability</font></td><td><font size=1>:<%= @factorsetting[:unavailability] %></font></td></tr>
 </table></center></fieldset></center></p>
 
 
 
-
+<p><br><br><br><br><br><br><br><br><br><br></p>
 
 
 
@@ -65,57 +66,62 @@
 <p><center>
 <fieldset size style="width:600px;height:50px;">
  <center>
-	<table border=0 width=95%>
-		<tr><td><font size=1>ราคาหม้อแปลง</font></td><td><font size=1>:<%= number_with_precision(@transformer_price_loss.transformer_price, :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@repair_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
-		<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @transformer_price_loss.noload_loss %> kW</font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@repair_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
-		<tr><td><font size=1>Load Loss</font></td><td><font size=1>:<%= @transformer_price_loss.loadloss %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@repair_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
+<table border=0 width=95%>
+<tr><td><font size=1>ราคาหม้อแปลง</font></td><td><font size=1>:<%= number_with_precision(@transformer_price_loss.transformer_price, :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@repair_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
+<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @transformer_price_loss.noload_loss %> kW</font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@repair_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
+<tr><td><font size=1>Load Loss</font></td><td><font size=1>:<%= @transformer_price_loss.loadloss %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@repair_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
 </table></center></fieldset></center></p>
-
-
-
-
-
-
-
 
 <p><center><font size=1>รายการซ่อมหม้อแปลงตัวที่ 1</font></center></p>
 <p><center>
-	<table border=1 width=95% align="center">
-		<tr><td><font size=1>อุปกรณ์</font></td><td><font size=1>รายละเอียด</font></td><td><font size=1>ค่าแรงและค่าของ (บาท)</font></td></tr>
-		<%if @repair_information[:winding_cost] != 0 %>
-			<tr><td><font size=1>Winding</font></td><td><font size=1><%= @repair_information[:winding_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:winding_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-                <%end%>
-		<%if @repair_information[:bushing_cost] != 0 %>
-		<tr><td><font size=1>Bushing</font></td><td><font size=1><%= @repair_information[:bushing_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:bushing_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-                <%end%>
-		<%if @repair_information[:arrester_cost] != 0 %>
-		<tr><td><font size=1>Arrester</font></td><td><font size=1><%= @repair_information[:arrester_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:arrester_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:oltc_cost] != 0 %>
-		<tr><td><font size=1>OLTC</font></td><td><font size=1><%= @repair_information[:oltc_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:oltc_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:hotline_cost] != 0 %>
-		<tr><td><font size=1>Hot Line Oil Filter</font></td><td><font size=1><%= @repair_information[:hotline_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:hotline_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:cooling] != 0 %>
-		<tr><td><font size=1>Cooling</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:cooling], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:overhaul] != 0 %>
-		<tr><td><font size=1>Overhaul</font></td><td><font size=1>Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@repair_information[:overhaul], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:overhaul_and_refurbish] != 0 %>
-		<tr><td><font size=1>Overhaul and Refurbish</font></td><td><font size=1>Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@repair_information[:overhaul_and_refurbish], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:rep_rubber_bag] != 0 %>
-		<tr><td><font size=1>Replacing Rubber Bag</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:rep_rubber_bag], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:rep_bct] != 0 %>
-		<tr><td><font size=1>Replacing BCT, others</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:rep_bct], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @repair_information[:others] != 0 %>
-		<tr><td><font size=1>Others</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:others], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-	</table>
+<%@counter = 0%>
+<table border=1 width=95% align="center">
+<tr><th align = "center"><font size=1>อุปกรณ์</font></td><th><font size=1>รายละเอียด</font></td><th><font size=1>ค่าแรงและค่าของ (บาท)</font></td></tr>
+<%if @repair_information[:winding_cost]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>Winding</font></td><td><font size=1><%= @repair_information[:winding_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:winding_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<% end %>
+<%if @repair_information[:bushing_cost]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>Bushing</font></td><td><font size=1><%= @repair_information[:bushing_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:bushing_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:arrester_cost]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>Arrester</font></td><td><font size=1><%= @repair_information[:arrester_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:arrester_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:oltc_cost]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>OLTC</font></td><td><font size=1><%= @repair_information[:oltc_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:oltc_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:hotline_cost]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>Hot Line Oil Filter</font></td><td><font size=1><%= @repair_information[:hotline_type] %></font></td><td><font size=1><%= number_with_precision(@repair_information[:hotline_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:cooling]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>Cooling</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:cooling], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:overhaul]!=0%>
+<%@counter +=2 %>
+<tr align = "center"><td><font size=1>Overhaul</font></td><td><font size=1>Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@repair_information[:overhaul], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:overhaul_and_refurbish]!=0%>
+<%@counter +=2 %>
+<tr align = "center"><td><font size=1>Overhaul and Refurbish</font></td><td><font size=1>Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@repair_information[:overhaul_and_refurbish], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:rep_rubber_bag]!=0%>
+<%@counter +=2 %>
+<tr align = "center"><td><font size=1>Replacing Rubber Bag</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:rep_rubber_bag], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:rep_bct]!=0%>
+<%@counter +=2 %>
+<tr align = "center"><td><font size=1>Replacing BCT, others</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:rep_bct], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @repair_information[:others]!=0%>
+<%@counter +=1 %>
+<tr align = "center"><td><font size=1>Others</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@repair_information[:others], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+</table>
  </center><br>
  <center><font size=1>รวมค่าใช้จ่ายในการซ่อมหม้อแปลงที่เสียหาย (ค่าแรงและค่าของ) :<%= number_with_precision(@repair_information[:winding_cost]+@repair_information[:bushing_cost]+@repair_information[:arrester_cost]+@repair_information[:oltc_cost]+@repair_information[:hotline_cost]+@repair_information[:cooling]+@repair_information[:overhaul]+@repair_information[:overhaul_and_refurbish]+@repair_information[:rep_rubber_bag]+@repair_information[:rep_bct]+@repair_information[:others], :delimiter => ',', :precision => 2) %> บาท</font></center>
 </p>
@@ -123,76 +129,60 @@
 
 
 
-
-
-
-
-
-
-<p><center><b><font size=1>ข้อมูลหม้อแปลงซ่อมตัวที่ 2</font></b></center></p>
-<p><center>
-<fieldset size style="width:600px;height:50px;">
- <center>
-	<table border=0 width=95%>
-		<tr><td><font size=1>ราคาซื้อขายหม้อแปลง</font></td><td><font size=1>:<%= number_with_precision(@option1_information[:transformer_price], :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@option1_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
-		<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @option1_information[:noload_loss] %> kW<font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@option1_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
-		<tr><td><font size=1>Load Loss</font></td><td><font size=1>:<%= @option1_information[:loadloss] %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@option1_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
-</table></center></fieldset></center></p>
-
-
-
-
-
-
-
-
+<p>
+<%@counter = 15 - @counter%>
+<%for i in 1..@counter do%>
+<br>
+<%end%>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</p>
 
 
 <p><center><font size=1>รายการซ่อมหม้อแปลงตัวที่ 2</font></center></p>
  <p><center>
-	<table border=1 width=95% align="center">
-		<tr><td><font size=1>อุปกรณ์</font></td><td><font size=1>รายละเอียด</font></td><td><font size=1>ค่าแรงและค่าของ (บาท)</font></td></tr>
-		<%if @option1_information[:winding_cost] != 0 %>
-		<tr><td><font size=1>Winding</font></td><td><font size=1><%= @option1_information[:winding_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:winding_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:bushing_cost] != 0 %>
-		<tr><td><font size=1>Bushing</font></td><td><font size=1><%= @option1_information[:bushing_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:bushing_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:arrester_cost] != 0 %>
-		<tr><td><font size=1>Arrester</font></td><td><font size=1><%= @option1_information[:arrester_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:arrester_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:oltc_cost] != 0 %>
-		<tr><td><font size=1>OLTC</td><td><%= @option1_information[:oltc_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:oltc_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:hotline_cost] != 0 %>
-		<tr><td><font size=1>Hot Line Oil Filter</font></td><td><font size=1><%= @option1_information[:hotline_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:hotline_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:cooling] != 0 %>
-		<tr><td><font size=1>Cooling</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@option1_information[:cooling], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:overhaul] != 0 %>
-		<tr><td><font size=1>Overhaul</font></td><td><font size=1>Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@option1_information[:overhaul], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:overhaul_and_refurbish] != 0 %>
-		<tr><td><font size=1>Overhaul and Refurbish</font></td><td><font size=1>Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@option1_information[:overhaul_and_refurbish], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:rep_rubber_bag] != 0 %>
-		<tr><td><font size=1>Replacing Rubber Bag</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@option1_information[:rep_rubber_bag], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:rep_bct] != 0 %>
-		<tr><td><font size=1>Replacing BCT, others</td><td>-</td><td><%= number_with_precision(@option1_information[:rep_bct], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-		<%if @option1_information[:others] != 0 %>
-		<tr><td><font size=1>Others</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@option1_information[:others], :delimiter => ',', :precision => 2) %></font></td></tr>
-		<%end%>
-	</table>
+<table border=1 width=95% align="center">
+<tr align = "center"><th><font size=1>อุปกรณ์</font></td><th><font size=1>รายละเอียด</font></td><th><font size=1>ค่าแรงและค่าของ (บาท)</font></td></tr>
+<%if @option1_information[:winding_cost] != 0 %>
+<tr align = "center"><td><font size=1>Winding</font></td><td><font size=1><%= @option1_information[:winding_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:winding_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:bushing_cost] != 0 %>
+<tr align = "center"><td><font size=1>Bushing</font></td><td><font size=1><%= @option1_information[:bushing_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:bushing_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:arrester_cost] != 0 %>
+<tr align = "center"><td><font size=1>Arrester</font></td><td><font size=1><%= @option1_information[:arrester_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:arrester_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:oltc_cost] != 0 %>
+<tr align = "center"><td><font size=1>OLTC</td><td><%= @option1_information[:oltc_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:oltc_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:hotline_cost] != 0 %>
+<tr align = "center"><td><font size=1>Hot Line Oil Filter</font></td><td><font size=1><%= @option1_information[:hotline_type] %></font></td><td><font size=1><%= number_with_precision(@option1_information[:hotline_cost], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:cooling] != 0 %>
+<tr align = "center"><td><font size=1>Cooling</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@option1_information[:cooling], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:overhaul] != 0 %>
+<tr align = "center"><td><font size=1>Overhaul</font></td><td><font size=1>Renew Gasket, Oil recondition and dryout, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@option1_information[:overhaul], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:overhaul_and_refurbish] != 0 %>
+<tr align = "center"><td><font size=1>Overhaul and Refurbish</font></td><td><font size=1>Renew Gasket, Oil refurbish, Internal inspection, OLTC inspection, Electrical test and Oil analysis</font></td><td><font size=1><%= number_with_precision(@option1_information[:overhaul_and_refurbish], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:rep_rubber_bag] != 0 %>
+<tr align = "center"><td><font size=1>Replacing Rubber Bag</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@option1_information[:rep_rubber_bag], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:rep_bct] != 0 %>
+<tr align = "center"><td><font size=1>Replacing BCT, others</td><td>-</td><td><%= number_with_precision(@option1_information[:rep_bct], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+<%if @option1_information[:others] != 0 %>
+<tr align = "center"><td><font size=1>Others</font></td><td><font size=1>-</font></td><td><font size=1><%= number_with_precision(@option1_information[:others], :delimiter => ',', :precision => 2) %></font></td></tr>
+<%end%>
+</table>
  </center><br>
  <center><font size=1>รวมค่าใช้จ่ายในการซ่อมหม้อแปลงตัวที่ 2 (ค่าแรงและค่าของ) :<%= number_with_precision(@option1_information[:winding_cost]+@option1_information[:bushing_cost]+@option1_information[:arrester_cost]+@option1_information[:oltc_cost]+@option1_information[:hotline_cost]+@option1_information[:cooling]+@option1_information[:overhaul]+@option1_information[:overhaul_and_refurbish]+@option1_information[:rep_rubber_bag]+@option1_information[:rep_bct]+@option1_information[:others], :delimiter => ',', :precision => 2) %> บาท</font></center>
 </p>
 
 
 
-
+<p><br></p>
 
 
 
@@ -209,6 +199,16 @@
 <fieldset size style="width:600px;height:65px;">
 <center>
 <table border=0 width=95%>
+<tr><td><font size=1>ราคาหม้อแปลงใหม่</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:new_transformer_price], :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
+<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @option2_information[:noload_loss] %> kW</font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
+<tr><td><font size=1>Load Loss</td><td><font size=1>:<%= @option2_information[:loadloss] %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
+<tr><td><font size=1>Rated Power</font></td><td><font size=1>:<%= @option2_information[:rated_power] %> MVA</font></td><td></td><td></td></tr>
+</table></center></fieldset></center></p>
+
+<p><center>
+<fieldset size style="width:600px;height:65px;">
+<center>
+<table border=0 width=95%>
 		<tr><td><font size=1>ราคาหม้อแปลงใหม่</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:new_transformer_price], :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
 		<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @option2_information[:noload_loss] %> kW</font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
 		<tr><td><font size=1>Load Loss</td><td><font size=1>:<%= @option2_information[:loadloss] %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@option2_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
@@ -218,8 +218,7 @@
 
 
 
-
-
+<p><br></p>
 
 
 
@@ -232,8 +231,8 @@
 <fieldset size style="width:600px;height:65px;">
 <center>
 <table border=0 width=95%>
-		<tr><td><font size=1>ราคาหม้อแปลงใหม่</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:new_transformer_price], :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
-		<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @option3_information[:noload_loss] %> kW</font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
-		<tr><td><font size=1>Load Loss</font></td><td><font size=1>:<%= @option3_information[:loadloss] %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
-		<tr><td><font size=1>Rated Power</font></td><td><font size=1>:<%= @option3_information[:rated_power] %> MVA</font></td><td></td><td></td></tr>
+<tr><td><font size=1>ราคาหม้อแปลงใหม่</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:new_transformer_price], :delimiter => ',', :precision => 2) %> Baht</font></td><td><font size=1>ค่าเสียโอกาสในการจ่ายไฟเนื่องจาก PM</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:pm], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
+<tr><td><font size=1>No-Load Loss</font></td><td><font size=1>:<%= @option3_information[:noload_loss] %> kW</font></td><td><font size=1>ค่าซ่อมบำรุงเฉลี่ยรายปี</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:mc_avg], :delimiter => ',', :precision => 2) %> Baht/year</font></td></tr>
+<tr><td><font size=1>Load Loss</font></td><td><font size=1>:<%= @option3_information[:loadloss] %> kW</font></td><td><font size=1>ค่าทำลายหรือรื้อถอน</font></td><td><font size=1>:<%= number_with_precision(@option3_information[:det_cost], :delimiter => ',', :precision => 2) %> Baht</font></td></tr>
+<tr><td><font size=1>Rated Power</font></td><td><font size=1>:<%= @option3_information[:rated_power] %> MVA</font></td><td></td><td></td></tr>
 </table></center></fieldset></center></p>
