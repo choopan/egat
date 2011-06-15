@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <style>
+      body { 
+        font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+        font-size: 16px;
+      }
+      /* Page Breaks */
+      .pb_before { page-break-before:always !important; }
+      .pb_after  { page-break-after:always !important; }
+      .pbi_avoid { page-break-inside:avoid !important; }
+    </style>
+
+  </head>
+  <body name="<%= controller.action_name %>">
+      <%= yield %>
+  </body>
+</html>

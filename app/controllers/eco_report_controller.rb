@@ -7,6 +7,8 @@ class EcoReportController < ApplicationController
       @overallcondition = "-"
     end
 
+    manu = Manufacturer.find(@transformer[:manufacturing])
+    @manufacturer = manu[:name] 
     w_type = WindingType.find(@transformer[:winding_type_id])
     @winding_type = w_type[:description]
 
