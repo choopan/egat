@@ -56,3 +56,4 @@ gem 'ruby-debug'
 #   gem 'webrat'
 # end
 gem "pdfkit", :git => "https://huerlisi@github.com/huerlisi/PDFKit.git"
+gem "mongrel"
