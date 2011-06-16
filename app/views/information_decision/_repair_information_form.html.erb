@@ -15,6 +15,7 @@
       <p>
         <%= f.label :det_cost, "ค่าทำลายหรือรื้อถอน [Baht]", :class => 'inline' %>
         <%= f.text_field :det_cost, :size => 15%>
+      <font color=red>*กรณีขายค่าซากได้ ให้ใส่เครื่องหมายลบหน้าตัวเลขที่กรอก*</font>
       </p>
 
 
@@ -26,7 +27,7 @@
       <table border=0>
         <tr>
           <td width="155"><b>Winding [Baht]</b></td>
-          <td width="230"><%= f.radio_button :winding_type, "new" %> New <%= f.radio_button :winding_type, "repair" %> Repair</td>
+          <td width="230"><%= f.radio_button :winding_type, "New" %> New <%= f.radio_button :winding_type, "Repair" %> Repair</td>
           <td><%= f.text_field :winding_cost, :size => 15, :onchange => 'summation_repair_information();'%></td>
         </tr>
         <tr>
