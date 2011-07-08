@@ -1,0 +1,10 @@
+<h1>แก้ไขปริมาณน้ำมันในคลังเริ่มต้น</h1>
+<p>
+<%= form_for @icoilinit ,:url => {:action => "update_icoilinit"}, :html => {:method => "post", :name => 'icoilinit'} do |f| %>
+	<table>
+	  <tr><td><%= f.label :Date, "วันที่แก้ไข", :class => 'inline' %></td><td><%= f.text_field :Date, :size => 15%></td></tr>
+	  <tr><td><%= f.label :InitQuantity, "ปริมาณน้ำมันในคลัง [ถัง]", :class => 'inline' %></td><td><%= f.text_field :InitQuantity, :size => 15%></td></tr>
+	  <tr><td><%= f.submit "Save", :class => "cupid-green" %></td><td></td></tr>
+	</table>
+<%end%>
+</p>
