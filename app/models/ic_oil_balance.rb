@@ -1,10 +1,23 @@
 class IcOilBalance < ActiveRecord::Base
+	after_initialize :init
+	def init
+		self.Date ||= "2552-12-01"
+		self.Quantity ||=212
+		self.Price ||=55
+		self.Recv_date ||= "2552-12-02"
+	end
 
 	 def self.get_icoilbalance()
 		order("Date")
 	    rescue:
 		return nil
          end
+
+	def self.get_icoilbalance_id(id)
+		where("id = '#{id}'").first
+    	     rescue:
+      		return nil
+  	end
 
 end
 
