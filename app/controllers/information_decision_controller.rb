@@ -143,5 +143,4 @@ class InformationDecisionController < ApplicationController
   def search
     @transformers = Transformer.all
   end
-
 end
