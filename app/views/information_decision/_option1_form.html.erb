@@ -5,6 +5,7 @@
   <object width="600" height="100">
   <param name="movie" value="/flash/repair_flash.swf?catNUM=1&x1=<%= @repair_information.repair_age %>&y1=<%= @projectlife %>">
   <embed src="/flash/repair_flash.swf?catNUM=1&x1=<%= @repair_information.repair_age %>&y1=<%= @projectlife %>" width="600" height="100"></embed>
+  </object>
 </center>
 
 <%= form_for @option1_information ,:url => {:action => "update_option1_information"}, :html => {:method => "post", :name => 'option1_information'} do |f| %>
