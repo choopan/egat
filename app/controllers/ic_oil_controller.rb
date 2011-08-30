@@ -1,5 +1,8 @@
 class IcOilController < ApplicationController
 
+def index
+end
+
 def menu_withdraw
 	oil_withdraw
 end

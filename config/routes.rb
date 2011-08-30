@@ -1,9 +1,11 @@
 Egat::Application.routes.draw do
   resources :ic_oil do
      collection do
+	get "index"
+        get "menu_withdraw"
 	get "oil_chart"
 	get "oil_store"
-	get "oil_withdraw"
+	#get "oil_withdraw"
 	get "oil_buy"
 	get "oil_calculate"
 	get "oil_calresult"
