@@ -1,6 +1,33 @@
 class IcOilController < ApplicationController
 
-  def oil_store
+def menu_withdraw
+	oil_withdraw
+end
+ 
+ def oil_chart
+	icoilbalance=IcOilBalance.get_icoilbalance()
+	if icoilbalance.nil?
+	 icoilbalance = IcOilBalance.new
+	end
+	icoilinit = IcOilInit.get_icoilinit()
+	if icoilinit.nil?
+	 icoilinit = IcOilInit.new
+	end
+ 	num = icoilbalance.count
+	@Quantity_1=icoilinit.InitQuantity
+	if num!=0
+	 for i in 0..num-1 do
+	    if icoilbalance[i].Quantity>=0&&icoilbalance[i].Recv_date!=nil&&icoilbalance[i].Quantitypass!=nil
+		@Quantity_1+=icoilbalance[i].Quantitypass
+	    end
+	    if icoilbalance[i].Quantity<0
+		@Quantity_1+=icoilbalance[i].Quantity
+	    end
+	 end
+	end
+ end
+  
+ def oil_store
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
 	 @icoilinit = IcOilInit.new
@@ -57,26 +84,18 @@ class IcOilController < ApplicationController
 
   def modify_buy
 	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
-	stringDate1=@icoilbalance[:Date].to_s
-	stringDate2=@icoilbalance[:Recv_date].to_s
-	m=stringDate1.split('-')
-	n=stringDate2.split('-')
-	@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
-	@icoilbalance_2=n[2]+"/"+n[1]+"/"+n[0]
   end
 
   def new_withdraw
 	@icoilbalance = IcOilBalance.new
-	m=@icoilbalance[:Date].to_s.split('-')
-	@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
+	#m=@icoilbalance[:Date].to_s.split('-')
+	#@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
   end
 
   def new_buy
 	@icoilbalance = IcOilBalance.new
-	m=@icoilbalance[:Date].to_s.split('-')
-	n=@icoilbalance[:Recv_date].to_s.split('-')
-	@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
-	@icoilbalance_2=n[2]+"/"+n[1]+"/"+n[0]
+	#m=@icoilbalance[:Date].to_s.split('-')
+	#@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
   end
 
   def update_icoilinit
@@ -100,7 +119,7 @@ class IcOilController < ApplicationController
 	@icoilbalance[:Date]=m[2]+"-"+m[1]+"-"+m[0]
 	@icoilbalance[:Quantity] = -1*(params[:Quantity]).to_i
  	@icoilbalance.update_attributes(@icoilbalance)
-	redirect_to("/ic_oil/oil_withdraw")
+	redirect_to("/ic_oil/menu_withdraw#option1")
   end
 
   def update_buy
@@ -111,6 +130,7 @@ class IcOilController < ApplicationController
 	@icoilbalance[:Recv_date]=n[2]+"-"+n[1]+"-"+n[0]
 	@icoilbalance[:Quantity] = params[:Quantity].to_i
 	@icoilbalance[:Price] = params[:Price].to_i
+	@icoilbalance[:Quantitypass] = params[:Quantitypass].to_i
  	@icoilbalance.update_attributes(@icoilbalance)
 	redirect_to("/ic_oil/oil_buy")
   end
@@ -120,14 +140,14 @@ class IcOilController < ApplicationController
 	params[:ic_oil_balance][:Date]=m[2]+"-"+m[1]+"-"+m[0]
 	params[:ic_oil_balance][:Quantity] = -1*(params[:ic_oil_balance][:Quantity]).to_i
 	IcOilBalance.create(params[:ic_oil_balance])
-	redirect_to("/ic_oil/oil_withdraw")
+	redirect_to("/ic_oil/menu_withdraw#option1")
   end
 
   def create_buy
 	m=params[:Date].split('/')
-	n=params[:Recv_date].split('/')
+	#n=params[:Recv_date].split('/')
 	params[:ic_oil_balance][:Date]=m[2]+"-"+m[1]+"-"+m[0]
-	params[:ic_oil_balance][:Recv_date]=n[2]+"-"+n[1]+"-"+n[0]
+	#params[:ic_oil_balance][:Recv_date]=n[2]+"-"+n[1]+"-"+n[0]
 	params[:ic_oil_balance][:Quantity] = params[:ic_oil_balance][:Quantity].to_i
 	params[:ic_oil_balance][:Price] = params[:ic_oil_balance][:Price].to_i
 	IcOilBalance.create(params[:ic_oil_balance])
@@ -136,7 +156,7 @@ class IcOilController < ApplicationController
 
   def delete_withdraw
 	IcOilBalance.delete(params[:id])
-	redirect_to("/ic_oil/oil_withdraw")
+	redirect_to("/ic_oil/menu_withdraw#option1")
   end
   def delete_buy
 	IcOilBalance.delete(params[:id])
