@@ -20,6 +20,19 @@ class IcOilBalance < ActiveRecord::Base
       		return nil
   	end
 
+	def self.get_oilwithdraw(year)
+                endyear = year + 1
+		where("Date BETWEEN '#{year}-01-01' AND '#{endyear}-01-01'")
+	      rescue:
+		return nil
+	end
+
+	def self.historical_data(year)
+		startyear=year-2
+		where("Date BETWEEN '#{startyear}-01-01' AND '#{year}-01-01'")
+	    rescue:
+		return nil
+	end
 end
 
 # == Schema Information

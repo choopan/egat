@@ -1,0 +1,26 @@
+<script>
+	$(function(){
+		setValueText(); 
+	});
+	
+	function setValueText(){
+		$("#valuetext").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+	}
+</script>
+<p><h2>รายการเบิกจ่ายน้ำมัน</h2></p>
+
+<p>
+<%= form_for @icoilbalance ,:url => {:action => "update_withdraw"}, :html => {:method => "post", :name => 'icoilbalance'} do |f| %>
+	<table>
+	   <input type=hidden name="id" value=<%= @icoilbalance.id %>>
+	  <tr><td><%= f.label :Date, "วันที่เบิกน้ำมันไปใช้งาน", :class => 'inline' %></td><td><input id="valuetext" type="text" name="Date" size="15" value= <%=@icoilbalance_1%> /></td></tr>
+	  <tr><td><%= f.label :Quantity, "ปริมาณการเบิกต่อครั้ง [ถัง]", :class => 'inline' %></td><td><input type="text" name="Quantity" size="15" value=<%=-1*@icoilbalance.Quantity%> /></td></tr>
+	  <tr><td><%= f.submit "Save", :class => "cupid-green" %></td><td></td></tr>
+	</table>
+<%end%>
+</p>

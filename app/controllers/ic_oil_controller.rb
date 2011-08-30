@@ -25,6 +25,29 @@ end
 	    end
 	 end
 	end
+
+	@updateprice=UpdatePrice.get_updateprice(Date.today.year.to_i-1)
+ end
+
+ def fill_price
+	@updateprice_1=UpdatePrice.new
+
+	icoilbalance=IcOilBalance.get_oilwithdraw(Date.today.year.to_i-1)
+	if icoilbalance.nil?
+		icoilbalance=IcOilBalance.new
+		@quantity_withdraw=0
+	else
+		@quantity_withdraw=0
+		num=icoilbalance.count
+	      if num!=0
+		for i in 0..num-1 do
+		 	if icoilbalance[i].Quantity<0
+		 		@quantity_withdraw+=icoilbalance[i].Quantity
+		 	end
+		 end
+	     end
+		 @quantity_withdraw*=-1
+	end
  end
   
  def oil_store
@@ -152,6 +175,13 @@ end
 	params[:ic_oil_balance][:Price] = params[:ic_oil_balance][:Price].to_i
 	IcOilBalance.create(params[:ic_oil_balance])
 	redirect_to("/ic_oil/oil_buy")
+  end
+  
+  def create_updateprice
+	params[:update_price][:Year]=params[:Year].to_i
+	params[:update_price][:Price]=params[:update_price][:Price].to_f
+	UpdatePrice.create(params[:update_price])
+	redirect_to("/ic_oil/oil_chart")
   end
 
   def delete_withdraw
