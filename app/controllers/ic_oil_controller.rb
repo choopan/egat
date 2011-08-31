@@ -205,6 +205,18 @@ end
  	@icoilbalance.update_attributes(@icoilbalance)
 	redirect_to("/ic_oil/oil_buy")
   end
+
+  def update_oilperiod
+	oilperiod=OilCalculate.get_period()
+	if oilperiod.nil?
+		params[:oil_calculate][:W]=params[:oil_calculate][:W]
+		OilCalculate.create(params[:oil_calculate])
+	else 
+		oilperiod[:W]=params[:oil_calculate][:W]
+		oilperiod.update_attributes(oilperiod)
+	end
+	redirect_to("/ic_oil/oil_period")
+  end
   
   def update_annually
 	updateprice = UpdatePrice.get_updatepriceid(params[:id])
