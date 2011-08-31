@@ -2,10 +2,11 @@
 	<p><b>กรุณากรอกราคาน้ำมันของปีเบิกจ่ายที่ผ่านมา</b><br>
 	(เพื่อคำนวณพารามิเตอร์ต่างๆ)</p>
 	<p>
+	<hr>
 	<%= form_for @updateprice_1 ,:url => {:action => "create_updateprice"}, :html => {:method => "post", :name => 'updateprice'} do |f| %>
 	<table>
 	  <tr><td><b>ปีเบิกจ่ายน้ำมัน</b></td><td><input id="valuetext" type="text" name="Year" size="15" value= <%=Date.today.year.to_i-1%> /></td></tr>
-	  <tr><td><b>ปริมาณการเบิกทั้งปี [ถัง]</b></td><td><input type="text" size="15" value=<%=@quantity_withdraw%> /></td></tr>
+	  <tr><td><b>ปริมาณการเบิกทั้งปี [ถัง]</b></td><td><input type="text" name="Quantity" size="15" value=<%=@quantity_withdraw%> /></td></tr>
 	  <tr><td><b>ราคา [บาทต่อลิตร]</b></td><td><%= f.text_field :Price, :size => 15%></td></tr>
 	  <tr><td><%= f.submit "Save", :class => "cupid-green" %></td><td></td></tr>
 	</table>
