@@ -44,6 +44,12 @@ input[type="submit"].cupid-green, button.cupid-green {
   width: 370px;
 }
 
+input[type="submit"].ic-cupid-green, button.cupid-green {
+  width: 250px;
+}
+
+
+
 .field_with_errors {
   padding: 2px;
   background-color: red;

@@ -1,0 +1,88 @@
+<p>
+  <h1>รายการค่าใช้จ่าย</font></h1>
+</p>
+
+<%= form_for @payment_cost ,:url => {:action => "update_payment_cost"}, :html => {:method => "post", :name => 'payment_cost'} do |f| %>
+      <p>
+		<h3>Ordering Cost</h3>
+      </p>
+
+      <table width=85%>
+      	<tr>
+		<td>1. ค่าบริการงานจัดหาในประเทศ 10% ของมูลค่าน้ำมัน (ไม่เกิน 60,000)</td>
+        	<td><%= f.text_field :oc1, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+      	</tr>
+      	<tr> 
+		<td>2. ค่าบริการงานแจ้งและสำรวจความเสียหายเนื่องจากการขนส่งและติดตั้ง 2700 บาท/วัน</td>
+        	<td><%= f.text_field :oc2, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+      	</tr>
+	<tr>
+        	<td>3. ค่าบริการพัสดุงานตรง 2% ของมูลค่าน้ำมัน</td>
+        	<td><%= f.text_field :oc3, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>4. ค่าบริการครุภัณฑ์เครื่องมือเครื่องใช้ 3% ของมูลค่าน้ำมัน</td>
+        	<td><%= f.text_field :oc4, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>5. ค่าบริการรับฝากขายหรือแจกแบบประกวดราคาและสอบราคางานจัดหาในประเทศ 1,900 บาท/เรื่อง</td>
+        	<td><%= f.text_field :oc5, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>6. ค่าบริการงานแจ้งเอาประกัน 160 บาท/เรื่อง"</td>
+        	<td><%= f.text_field :oc6, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>7. ค่าบริการงานเรียกค่าใช้จ่ายในการออกของและอุปกรณ์ที่ขาดส่งจากคู่สัญญา 1,600 บาท/ชิ้นงาน</td>
+        	<td><%= f.text_field :oc7, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>8. ค่าบริการการใช้รถฟอร์คลิฟท์ 2,000 บาท/คัน/วัน</td>
+        	<td><%= f.text_field :oc8, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>9. ค่าบริการถ่ายเอกสาร 1 บาท/แผ่น</td>
+        	<td><%= f.text_field :oc9, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+        	<td>10. ค่าจัดทำ  catalogue และกำหนดรหัสพัสดุ 100 บาท/รายการ</td>
+        	<td><%= f.text_field :oc10, :size => 15, :onchange => 'summation_ordering_cost();'%></td>
+	</tr>
+	<tr>
+		<td><p align=right><b>ค่าใช้จ่ายในการสั่ง รวมเป็น</b></p></td>
+        	<td><%= f.text_field :x1, :size => 15, :readonly => true%></td>
+	</tr>
+      </table>
+
+      <p>
+        <h3>Carrying Cost</h3>
+      </p>
+      <table>
+	<tr>
+        	<td>1. โกดังวางน้ำมันซ้อนกัน</td>
+        	<td colspan=3><%= f.text_field :x2, :size => 15%> [ถัง]</td>
+	</tr>
+	<tr>
+        	<td>2. ค่าเช่าพื้นที่</td>
+        	<td><%= f.text_field :x3, :size => 15%> [บาท/ตารางเมตร/เดือน]</td>
+		<td>คิดเป็น</td>
+		<td><%= f.text_field :x5, :size => 15, :readonly => true%> [บาท/ถัง/ปี]</td>
+	</tr>
+	<tr>
+        	<td>3. ค่าบริการงานพัสดุสำรองคลัง</td>
+        	<td><%= f.text_field :x4, :size => 15%> [% ของราคาเฉลี่ยน้ำมัน 1 ถัง]</td>
+		<td>คิดเป็น</td>
+		<td><%= f.text_field :x6, :size => 15,:readyonly => true %> [บาท/ถัง]</td>
+	</tr>
+	<tr>
+		<td></td>
+        	<td colspan=2><p align=right><b>ค่าใช้จ่ายในการเก็บ รวมเป็น</b></p></td>
+        	<td><%= f.text_field :x7, :size => 15, :readonly => true%> [บาท/ถัง/ปี]</td>
+	</tr>
+	<tr>
+		<td></td>
+         	<td colspan=2><p align=right><%= f.submit "คำนวณ", :class => "cupid-green2" %></p></td>
+         	<td><input type="button" value="Clear Data" onClick="clear_option1_information();"></td>
+	</tr>
+      </table>
+<% end %>

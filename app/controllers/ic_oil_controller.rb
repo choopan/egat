@@ -1,5 +1,47 @@
 class IcOilController < ApplicationController
 
+def payment_list
+	@payment_cost = IcAllcost.get_payment_list()
+	if @payment_cost.nil?
+		@payment_cost = IcAllcost.new
+	end
+end
+
+def update_payment_cost
+
+	################Calculate x5####################
+	if params[:ic_allcost][:x2].nil?
+		x2 = 0;
+	else
+		x2 = params[:ic_allcost][:x2].to_f
+	end
+
+	if params[:ic_allcost][:x3].nil?
+		x3 = 0;
+	else
+		x3 = params[:ic_allcost][:x3].to_f
+	end
+	
+	x5 = x2 + x3
+	params[:ic_allcost][:x5] = x5
+
+	################Calculate x6####################
+
+
+	################Calculate x7####################
+	params[:ic_allcost][:x7] = x5 + x6
+
+
+
+	@payment_cost = IcAllcost.get_payment_list()
+	if @payment_cost.nil?
+	 @payment_cost = IcAllcost.create(params[:ic_allcost])
+	else
+	 @payment_cost.update_attributes(params[:ic_allcost])
+  	end
+	redirect_to("/ic_oil/payment_list")
+end
+
 def index
 end
 

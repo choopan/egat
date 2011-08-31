@@ -10,6 +10,11 @@ Egat::Application.routes.draw do
 	get "oil_calculate"
 	get "oil_calresult"
 	get "oil_period"
+	get "fill_price"
+	get "new_withdraw"
+	get "new_buy"
+	get "payment_list"
+	post "update_payment_cost"
      end
    end
 
