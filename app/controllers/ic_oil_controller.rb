@@ -175,6 +175,10 @@ end
   end
 
   def oil_period
+	@oilperiod=OilCalculate.get_period()
+	if @oilperiod.nil?
+		@oilperiod=OilCalculate.new
+	end
   end
 
   def modify_icoilinit
