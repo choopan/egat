@@ -26,7 +26,15 @@ def update_payment_cost
 	params[:ic_allcost][:x5] = x5
 
 	################Calculate x6####################
+	if params[:ic_allcost][:x4].nil?
+		x4 = 0;
+	else
+		x4 = params[:ic_allcost][:x2].to_f
+	end
 
+
+	x6 = (x4/100) * (UpdatePrice.get_sumDC200() / UpdatePrice.get_sumD())
+	params[:ic_allcost][:x6] = x6
 
 	################Calculate x7####################
 	params[:ic_allcost][:x7] = x5 + x6
@@ -161,9 +169,6 @@ end
 	else
 	 @num = @icoilbalance.count
 	end
-  end
-
-  def oil_calculate
   end
 
   def oil_calresult

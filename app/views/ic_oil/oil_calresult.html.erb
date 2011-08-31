@@ -1,2 +1,32 @@
-<h1>IcOil#oil_calresult</h1>
-<p>Find me in app/views/ic_oil/oil_calresult.html.erb</p>
+<p>
+  <h1>รายการค่าใช้จ่าย</font></h1>
+</p>
+
+<%= form_for @cal_result , :html => {:method => "post", :name => 'cal_result'} do |f| %>
+      <p>
+                <h3>ผลการคำนวณ</h3>
+      </p>
+
+      <table width=85%>
+        <tr>
+                <td>Re-order Level [ถัง]</td>
+                <td><%= f.text_field :y1, :size => 15, :readonly => true%></td>
+        </tr>
+        <tr>
+                <td>ปริมาณการสั่งน้ำมัน [ถัง/ครั้ง]</td>
+                <td><%= f.text_field :y2, :size => 15, :readonly => true%></td>
+        </tr>
+        <tr>
+                <td>Safety Stock [ถัง]</td>
+                <td><%= f.text_field :y3, :size => 15, :readonly => true%></td>
+        </tr>
+        <tr>
+                <td>จำนวนครั้งที่สั่งน้ำมัน</td>
+                <td><%= f.text_field :y4, :size => 15, :readonly => true%></td>
+        </tr>
+        <tr>
+                <td>ค่าใช้จ่ายในการสั่ง [บาท/ปี]</td>
+                <td><%= f.text_field :y5, :size => 15, :readonly => true%></td>
+        </tr>
+
+<% end %>
