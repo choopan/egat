@@ -1,2 +1,8 @@
-<h1>IcOil#oil_period</h1>
-<p>Find me in app/views/ic_oil/oil_period.html.erb</p>
+<p><h2>ระยะเวลาได้รับน้ำมัน</h2></p>
+<p>
+<center>
+<%= form_for @oilperiod ,:url => {:action => "update_oilperiod"}, :html => {:method => "post", :name => 'oilperiod'} do |f| %>
+<table><tr><td><b>ระยะเวลาได้รับน้ำมัน</b></td><td><%= f.text_field :W, :size => 15%> <b>วัน</b></td></tr>
+	<rtr><td><%= f.submit "Save",:class => "cupid-green" %></td><td></td></tr></table>
+
+<%end%>
