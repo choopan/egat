@@ -11,7 +11,7 @@ class IcOilInit < ActiveRecord::Base
 #
 after_initialize :init
 	def init
-		self.Date ||= "2552-12-01"
+		self.Date ||= "2005-01-01"
 		self.InitQuantity ||= 212
 	end
 
