@@ -35,11 +35,20 @@ end
 	if icoilinit.nil?
 		@icoilinit=IcOilInit.new
 	end
+
 	@countnum=0
 	@NumberOfCylinders=@icoilinit.InitQuantity
+	mostRecent=UpdatePrice.get_updatepriceall()
+
+	if mostRecent.count==0
+		@mostRecent=Date.today.year.to_i
+	else
+		@mostRecent=mostRecent[mostRecent.count-1].Year.to_i+1
+	end
+
 	if @num1!=0
 		for i in 0..@num1-1 do
-			if @HistoricalData[i].Date.year.to_i>=Date.today.year.to_i-2
+			if @HistoricalData[i].Date.year.to_i>=@mostRecent-2
 				break
 			end
 			if @HistoricalData[i].Quantity<0

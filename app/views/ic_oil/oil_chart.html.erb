@@ -19,7 +19,7 @@ $(document).ready(function(){
   var line_1=[['<%=@icoilinit.Date%>',<%=@icoilinit.InitQuantity%>]
 	     <%if @num1!=0%>
 		<%for i in @countnum..@num1-1 do%>
-		  <%if i==@num1-1 || Date.today.year.to_i==@HistoricalData[i].Date.year.to_i%>
+		  <%if i==@num1-1 || @mostRecent==@HistoricalData[i].Date.year.to_i%>
 			<%break%>
 		  <%else%>
 			,
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	  xaxis: {
 			renderer:$.jqplot.DateAxisRenderer,          
 			tickOptions:{ formatString:'%d/%m/%y'} ,
-			min:'Jan 1,  <%=Date.today.year.to_i-2%>',
+			min:'Jan 1,  <%=@mostRecent-2%>',
 			tickInterval:'2 month'
 	  },
       yaxis: {
