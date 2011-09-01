@@ -54,7 +54,7 @@ $(document).ready(function(){
       objects: [
         {dashedHorizontalLine: {
           name: 'pebbles',
-          y: <%=y_1%>,
+          y: <%=@oilcalculate.Y3.to_i%>,
           lineWidth: 3,
           color: 'rgb(100, 55, 124)',
           shadow: true,
@@ -63,7 +63,7 @@ $(document).ready(function(){
         }},
         {dashedHorizontalLine: {
           name: 'bam-bam',
-          y: <%=y_2%>,
+          y: <%=@oilcalculate.Y1.to_i%>,
           lineWidth: 3,
           lineCap: 'round',
           xOffset: '10',

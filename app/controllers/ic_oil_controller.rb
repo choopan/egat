@@ -61,6 +61,11 @@ end
 			@countnum+=1
 		end
 	end
+
+	@oilcalculate=OilCalculate.get_period()
+	if @oilcalculate.nil?
+		@oilcalculate=OilCalculate.new
+	end
 		
  end
 
