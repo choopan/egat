@@ -109,11 +109,20 @@ end
 	if icoilinit.nil?
 		@icoilinit=IcOilInit.new
 	end
+
 	@countnum=0
 	@NumberOfCylinders=@icoilinit.InitQuantity
+	mostRecent=UpdatePrice.get_updatepriceall()
+
+	if mostRecent.count==0
+		@mostRecent=Date.today.year.to_i
+	else
+		@mostRecent=mostRecent[mostRecent.count-1].Year.to_i+1
+	end
+
 	if @num1!=0
 		for i in 0..@num1-1 do
-			if @HistoricalData[i].Date.year.to_i>=Date.today.year.to_i-2
+			if @HistoricalData[i].Date.year.to_i>=@mostRecent-2
 				break
 			end
 			if @HistoricalData[i].Quantity<0
@@ -125,6 +134,11 @@ end
 			end
 			@countnum+=1
 		end
+	end
+
+	@oilcalculate=OilCalculate.get_period()
+	if @oilcalculate.nil?
+		@oilcalculate=OilCalculate.new
 	end
 		
  end
@@ -279,6 +293,18 @@ end
 	@icoilbalance[:Quantitypass] = params[:Quantitypass].to_i
  	@icoilbalance.update_attributes(@icoilbalance)
 	redirect_to("/ic_oil/oil_buy")
+  end
+
+  def update_oilperiod
+	oilperiod=OilCalculate.get_period()
+	if oilperiod.nil?
+		params[:oil_calculate][:W]=params[:oil_calculate][:W]
+		OilCalculate.create(params[:oil_calculate])
+	else 
+		oilperiod[:W]=params[:oil_calculate][:W]
+		oilperiod.update_attributes(oilperiod)
+	end
+	redirect_to("/ic_oil/oil_period")
   end
   
   def update_annually
