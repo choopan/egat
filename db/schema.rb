@@ -906,6 +906,28 @@ ActiveRecord::Schema.define(:version => 20110831220513) do
     t.integer "visual_inspection_id"
   end
 
+  create_table "ic_allcosts", :force => true do |t|
+    t.float    "oc1"
+    t.float    "oc2"
+    t.float    "oc3"
+    t.float    "oc4"
+    t.float    "oc5"
+    t.float    "oc6"
+    t.float    "oc7"
+    t.float    "oc8"
+    t.float    "oc9"
+    t.float    "oc10"
+    t.float    "x1"
+    t.float    "x2"
+    t.float    "x3"
+    t.float    "x4"
+    t.float    "x5"
+    t.float    "x6"
+    t.float    "x7"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ic_oil_balances", :force => true do |t|
     t.date     "Date"
     t.integer  "Quantity"

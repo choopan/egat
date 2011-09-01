@@ -1,16 +1,27 @@
 Egat::Application.routes.draw do
 
-  get "ic_oil/oil_store"
+  resource :oil_calculate do
+  end
 
-  get "ic_oil/oil_withdraw"
 
-  get "ic_oil/oil_buy"
-
-  get "ic_oil/oil_calculate"
-
-  get "ic_oil/oil_calresult"
-
-  get "ic_oil/oil_period"
+  resources :ic_oil do
+     collection do
+	get "index"
+        get "menu_withdraw"
+	get "oil_chart"
+	get "oil_store"
+	#get "oil_withdraw"
+	get "oil_buy"
+	get "payment_list"
+	get "oil_calresult"
+	get "oil_period"
+	get "fill_price"
+	get "new_withdraw"
+	get "new_buy"
+	get "payment_list"
+	post "update_payment_cost"
+     end
+   end
 
   resources :eco_report do
     collection do

@@ -1,5 +1,79 @@
 class IcOilController < ApplicationController
 
+def payment_list
+	@payment_cost = IcAllcost.get_payment_list()
+	if @payment_cost.nil?
+		@payment_cost = IcAllcost.new
+	end
+end
+
+def update_payment_cost
+
+	x1 = params[:ic_allcost][:x1].to_i
+	################Calculate x5####################
+	if params[:ic_allcost][:x2].nil?
+		x2 = 0;
+	else
+		x2 = params[:ic_allcost][:x2].to_f
+	end
+
+	if params[:ic_allcost][:x3].nil?
+		x3 = 0;
+	else
+		x3 = params[:ic_allcost][:x3].to_f
+	end
+	
+	x5 = x2 + x3
+	params[:ic_allcost][:x5] = x5
+
+	################Calculate x6####################
+	if params[:ic_allcost][:x4].nil?
+		x4 = 0;
+	else
+		x4 = params[:ic_allcost][:x2].to_f
+	end
+
+
+	x6 = (x4/100) * (UpdatePrice.get_sumDC200() / UpdatePrice.get_sumD())
+	params[:ic_allcost][:x6] = x6
+
+	################Calculate x7####################
+	x7 = x5 + x6
+	params[:ic_allcost][:x7] = x7
+
+
+
+	############# Update IcAllCost table ######################
+	@payment_cost = IcAllcost.get_payment_list()
+	if @payment_cost.nil?
+	 @payment_cost = IcAllcost.create(params[:ic_allcost])
+	else
+	 @payment_cost.update_attributes(params[:ic_allcost])
+  	end
+
+
+
+	############## Update OilCalculate table #################
+
+	@calresult = OilCalculate.get_period()
+	if @calresult.nil?
+		@calresult = OilCalculate.create()
+	end
+
+	avgD = UpdatePrice.get_avgD()
+
+	@calresult[:Y1] = (((@calresult[:W] * avgD)/365) + UpdatePrice.get_y3()).to_i
+	@calresult[:Y2] = (Math.sqrt((2 * avgD * x1) / x7)).to_i
+	@calresult[:Y3] = UpdatePrice.get_y3().to_i
+	@calresult[:Y4] = (avgD/@calresult[:Y2]).to_i
+	@calresult[:Y5] = ((avgD * UpdatePrice.get_sumDC200())/UpdatePrice.get_sumD()) + (x1 * @calresult[:Y4]) + ((x7 + @calresult[:Y2])/2)
+	@calresult.update_attributes(@calresult)
+	redirect_to("/ic_oil/payment_list")
+end
+
+def index
+end
+
 def menu_withdraw
 	oil_withdraw
 	oil_annually
@@ -32,7 +106,7 @@ end
 	@HistoricalData=IcOilBalance.get_icoilbalance()
 	@num1=@HistoricalData.count
 	@icoilinit=IcOilInit.get_icoilinit()
-	if icoilinit.nil?
+	if @icoilinit.nil?
 		@icoilinit=IcOilInit.new
 	end
 
@@ -132,10 +206,11 @@ end
 	end
   end
 
-  def oil_calculate
-  end
-
   def oil_calresult
+	@calresult = OilCalculate.get_period()
+	if @calresult.nil?
+		@calresult = OilCalculate.new
+	end
   end
 
   def oil_period

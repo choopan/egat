@@ -3,7 +3,7 @@
    <li> 
      <a href="12/">Importance Index</a> 
      <ul> 
-       <li><%= link_to 'Graph', transformer_informations_path %>
+       <li><%= link_to 'Graph', transformer_informations_path %></li>
        <li><%= link_to 'New', new_transformer_information_path %></li>
        <li><%= link_to 'Search', search_transformer_informations_path%></li> 
      </ul> 
@@ -23,9 +23,21 @@
    <li> 
      <%= link_to 'Economic Analysis', economic_analysis_path %>
       <ul> 
-       <li><%= link_to 'Factor Setting', edit_factor_setting_index_path %>
+       <li><%= link_to 'Factor Setting', edit_factor_setting_index_path %></li>
        <li><%= link_to 'ราคาและ Loss ของหม้อแปลง', search_price_loss_path %></li>
        <li><%= link_to 'ข้อมูลที่จำเป็นในการพิจารณา', search_information_decision_index_path %></li> 
      </ul> 
    </li>       
+   <li>
+     <%= link_to 'Inventory Control', ic_oil_index_path %>
+      <ul> 
+       <li><%= link_to 'น้ำมันหม้อแปลง', oil_chart_ic_oil_index_path %></li>
+       <li><%= link_to 'คลังรายการน้ำมัน', oil_store_ic_oil_index_path %></li>
+       <li><%= link_to 'รายการเบิกจ่าย', menu_withdraw_ic_oil_index_path %></li> 
+       <li><%= link_to 'รายการสั่งซื้อ', oil_buy_ic_oil_index_path %></li> 
+       <li><%= link_to 'รายการค่าใช้จ่าย', payment_list_ic_oil_index_path %></li> 
+       <li><%= link_to 'ผลการคำนวณ',  oil_calresult_ic_oil_index_path %></li> 
+       <li><%= link_to 'ระยะเวลาได้รับน้ำมัน', oil_period_ic_oil_index_path  %></li> 
+     </ul> 
+   </li>
  </ul> 
