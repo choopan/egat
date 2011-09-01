@@ -36,11 +36,13 @@ $(document).ready(function(){
 			renderer:$.jqplot.DateAxisRenderer,          
 			tickOptions:{ formatString:'%d/%m/%y'} ,
 			min:'<%=Date.today.month.to_i%> <%=Date.today.day.to_i%>,  <%=Date.today.year.to_i-2%>',
-			tickInterval:'2 month'
+			tickInterval:'2 month',
+			label: 'Date'
 	  },
       yaxis: {
         rendererOptions: { forceTickAt0: true, forceTickAt100: true },
-		min: 0
+		min: 0,
+		label: 'ปริมาณน้ำมัน [ถัง]'
       }
     },
     highlighter: {show: true,tooltipAxes: 'x',sizeAdjust: 7.5},
@@ -82,7 +84,7 @@ $(document).ready(function(){
 <p><b><%for i in 0..50 do%>
 	&nbsp
 	<%end%>
-ปริมาณน้ำมัน</b></p>
+</p>
 <p>
-<div id="chart6" style="height:300px; width:600px;margin: 30px;"></div>
+<div id="chart6" style="height:400px; width:800px;margin: 30px;"></div>
 </p>
