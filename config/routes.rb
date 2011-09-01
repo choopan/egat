@@ -1,4 +1,9 @@
 Egat::Application.routes.draw do
+
+  resource :oil_calculate do
+  end
+
+
   resources :ic_oil do
      collection do
 	get "index"
