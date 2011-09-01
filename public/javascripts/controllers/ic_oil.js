@@ -66,7 +66,3 @@ function summation_ordering_cost() {
 };
 
 
-$(function() {
-  summation_ordering_cost();
-  $("#tabs").tabs();
-});
