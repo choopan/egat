@@ -106,7 +106,7 @@ end
 	@HistoricalData=IcOilBalance.get_icoilbalance()
 	@num1=@HistoricalData.count
 	@icoilinit=IcOilInit.get_icoilinit()
-	if icoilinit.nil?
+	if @icoilinit.nil?
 		@icoilinit=IcOilInit.new
 	end
 
