@@ -1,5 +1,15 @@
 Egat::Application.routes.draw do
 
+  get "transformer_info/txlist"
+
+  get "transformer_info/txadd"
+
+  get "transformer_info/txlistmove"
+
+  get "transformer_info/txaddmove"
+
+  get "transformer_info/failurereport"
+
   resource :oil_calculate do
   end
 

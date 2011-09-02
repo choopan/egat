@@ -1,0 +1,23 @@
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'jquery.flot.min.js',
+                             'jquery.flot.selection.min.js',
+                             'jquery.flot.axislabels.js',
+                             'jquery.multirowcheckboxmenu',
+                             'controllers/transformer_informations.js'
+  %>
+                           
+  
+<% end %>
+
+<%= form_for :station do |f| -%>
+<div class="grid_3">
+  <%= f.label(:station, "เขต")%>
+</div>
+<div class="grid_3">
+  <%= 
+      @stations = Station.group("region").all
+      f.collection_select(:station, @stations, :region, :region, 
+                          {:prompt => 'All', :selected => params[:region]})
+  %>
+<% end %>
+</div>
