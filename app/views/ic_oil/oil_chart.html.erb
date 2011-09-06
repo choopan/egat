@@ -14,8 +14,9 @@
 $(document).ready(function(){
   var line_1=[['<%=@icoilinit.Date%>',<%=@icoilinit.InitQuantity%>]
 	     <%if @num1!=0%>
-		,
 		<%for i in @countnum..@num1-1 do%>
+		 <%if @HistoricalData[i].Date>=@icoilinit.Date%>
+			,
 		  <%if @HistoricalData[i].Quantity<0%>
 			<%@NumberOfCylinders+=@HistoricalData[i].Quantity%>
 			['<%=@HistoricalData[i].Date%>',<%=@NumberOfCylinders%>]
@@ -25,9 +26,7 @@ $(document).ready(function(){
 				['<%=@HistoricalData[i].Recv_date%>',<%=@NumberOfCylinders%>]
 			<%end%>
 		  <%end%>
-		  <%if i!=@num1-1%>
-			,
-		  <%end%>
+		<%end%>
 	      <%end%>
 	    <%end%>];
   plot6 = $.jqplot('chart6',[line_1], {
@@ -72,19 +71,17 @@ $(document).ready(function(){
   });
 });
 </script>
+<h1>น้ำมันหม้อแปลง</h1>
 <%if @updateprice.nil?%>
 <p><b><center>กรุณากรอกราคาน้ำมันของปีเบิกจ่ายที่ผ่านมา</b><br>(เพื่อคำนวณพารามิเตอร์ต่างๆ)<br><%=link_to "คลิกเพื่อกรอกข้อมูล",:controller => "ic_oil",:action => "fill_price"%></center></p>
 <%end%>
-<p><h2>ปริมาณน้ำมันคงเหลือ <%=@Quantity_1%> ลิตร</h2></p>
-<p><b>Action
-	<%for i in 0..12 do%>
-	&nbsp
+<label>ปริมาณน้ำมันคงเหลือ &nbsp;&nbsp;&nbsp;<%=@Quantity_1%> &nbsp;&nbsp;ลิตร </label>
+<label>Action
+	<%for i in 0..13 do%>
+	&nbsp;
 	<%end%>
-เบิกใช้ได้ตามปกติ</b></p>
-<p><b><%for i in 0..50 do%>
-	&nbsp
-	<%end%>
-</p>
-<p>
+เบิกใช้ได้ตามปกติ
+</label>
+
 <div id="chart6" style="height:400px; width:800px;margin: 30px;"></div>
 </p>

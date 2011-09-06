@@ -5,6 +5,15 @@ class IcOilController < ApplicationController
 @@bc_oil_link = "/ic_oil/oil_chart"
 
 def payment_list
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการค่าใช้จ่าย'
+	@breadcrumb_link[2]  = ""
+	
 	@payment_cost = IcAllcost.get_payment_list()
 	if @payment_cost.nil?
 		@payment_cost = IcAllcost.new
@@ -78,11 +87,33 @@ end
 def index
 end
 
+def menu_store
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'คลังรายการน้ำมัน'
+	@breadcrumb_link[2]  = ""
+
+	oil_start
+	oil_store
+end
+
 def menu_withdraw
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการเบิกจ่าย'
+	@breadcrumb_link[2]  = ""
 	oil_withdraw
 	oil_annually
 end
- 
+
  def oil_chart
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -102,12 +133,14 @@ end
 	@Quantity_1=icoilinit.InitQuantity
 	if num!=0
 	 for i in 0..num-1 do
+	   if icoilbalance[i].Date>=icoilinit.Date
 	    if icoilbalance[i].Quantity>=0&&icoilbalance[i].Recv_date!=nil&&icoilbalance[i].Quantitypass!=nil
 		@Quantity_1+=icoilbalance[i].Quantitypass
 	    end
 	    if icoilbalance[i].Quantity<0
 		@Quantity_1+=icoilbalance[i].Quantity
 	    end
+	  end
 	 end
 	end
 
@@ -128,6 +161,7 @@ end
 			if @HistoricalData[i].Date.year.to_i>=Date.today.year.to_i-2
 				break
 			end
+		     if @HistoricalData[i].Date>=@icoilinit.Date
 			if @HistoricalData[i].Quantity<0
 				@NumberOfCylinders+=@HistoricalData[i].Quantity
 			else
@@ -135,6 +169,7 @@ end
 					@NumberOfCylinders+=@HistoricalData[i].Quantitypass
 				end
 			end
+		     end
 			@countnum+=1
 		end
 	end
@@ -167,19 +202,14 @@ end
 	end
  end
   
- def oil_store
-	@breadcrumb_title = Array.new()
-	@breadcrumb_link  = Array.new()
-	@breadcrumb_title[0] = @@bc_ic
-	@breadcrumb_link[0]  = @@bc_ic_link
-	@breadcrumb_title[1] = @@bc_oil
-	@breadcrumb_link[1]  = @@bc_oil_link
-	@breadcrumb_title[2] = 'คลังรายการน้ำมัน'
-	@breadcrumb_link[2]  = ""
+def oil_start
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
 	 @icoilinit = IcOilInit.new
 	end
+end
+  
+ def oil_store
 	@icoilbalance = IcOilBalance.get_icoilbalance()
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
@@ -188,15 +218,6 @@ end
   end
 
   def oil_withdraw
-	@breadcrumb_title = Array.new()
-	@breadcrumb_link  = Array.new()
-	@breadcrumb_title[0] = @@bc_ic
-	@breadcrumb_link[0]  = @@bc_ic_link
-	@breadcrumb_title[1] = @@bc_oil
-	@breadcrumb_link[1]  = @@bc_oil_link
-	@breadcrumb_title[2] = 'คลังรายการน้ำมัน'
-	@breadcrumb_link[2]  = ""
-	
 	@icoilbalance = IcOilBalance.get_icoilbalance()
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
@@ -217,6 +238,16 @@ end
   end 
 
   def oil_buy
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการสั่งซื้อ/รับน้ำมัน'
+	@breadcrumb_link[2]  = ""
+
+
 	@icoilbalance = IcOilBalance.get_icoilbalance()
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
@@ -227,6 +258,15 @@ end
   end
 
   def oil_calresult
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'ผลการคำนวณ'
+	@breadcrumb_link[2]  = ""
+	
 	@calresult = OilCalculate.get_period()
 	if @calresult.nil?
 		@calresult = OilCalculate.new
@@ -234,6 +274,15 @@ end
   end
 
   def oil_period
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'ระยะเวลาที่ได้รับน้ำมัน'
+	@breadcrumb_link[2]  = ""
+	
 	@oilperiod=OilCalculate.get_period()
 	if @oilperiod.nil?
 		@oilperiod=OilCalculate.new
@@ -241,6 +290,18 @@ end
   end
 
   def modify_icoilinit
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'คลังรายการน้ำมัน'
+	@breadcrumb_link[2]  = "/ic_oil/menu_store"
+	@breadcrumb_title[3] = 'แก้ไขปริมาณน้ำมันในคลังเริ่มต้น'
+	@breadcrumb_link[3]  = ""
+
+
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
 	 @icoilinit = IcOilInit.new
@@ -252,6 +313,17 @@ end
   	end
   end
   def modify_withdraw
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการเบิกจ่าย'
+	@breadcrumb_link[2]  = "/ic_oil/menu_withdraw"
+	@breadcrumb_title[3] = 'แก้ไขรายการเบิกจ่ายน้ำมัน'
+	@breadcrumb_link[3]  = ""
+	
 	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
 	stringDate=@icoilbalance[:Date].to_s
 	m=stringDate.split('-')
@@ -263,16 +335,50 @@ end
   end
 
   def modify_buy
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการสั่งซื้อ/รับน้ำมัน'
+	@breadcrumb_link[2]  = "/ic_oil/oil_buy"
+	@breadcrumb_title[3] = 'แก้ไขรายการรับน้ำมัน'
+	@breadcrumb_link[3]  = ""
+
 	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
   end
 
   def new_withdraw
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการเบิกจ่าย'
+	@breadcrumb_link[2]  = "/ic_oil/menu_withdraw"
+	@breadcrumb_title[3] = 'เพิ่มรายการใหม่'
+	@breadcrumb_link[3]  = ""
+	
 	@icoilbalance = IcOilBalance.new
 	#m=@icoilbalance[:Date].to_s.split('-')
 	#@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
   end
 
   def new_buy
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการสั่งซื้อ/รับน้ำมัน'
+	@breadcrumb_link[2]  = "/ic_oil/oil_buy"
+	@breadcrumb_title[3] = 'เพิ่มรายการสั่งซื้อน้ำมัน'
+	@breadcrumb_link[3]  = ""
+
+
 	@icoilbalance = IcOilBalance.new
 	#m=@icoilbalance[:Date].to_s.split('-')
 	#@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
@@ -290,10 +396,11 @@ end
 	 params[:ic_oil_init][:Date]=m[2]+"-"+m[1]+"-"+m[0]
 	 @icoilinit.update_attributes(params[:ic_oil_init])
   	end
-	redirect_to("/ic_oil/oil_store")
+	redirect_to("/ic_oil/menu_store#option2")
   end
   
   def update_withdraw
+
 	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
 	m=params[:Date].split('/')
 	@icoilbalance[:Date]=m[2]+"-"+m[1]+"-"+m[0]
