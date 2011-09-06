@@ -14,8 +14,9 @@
 $(document).ready(function(){
   var line_1=[['<%=@icoilinit.Date%>',<%=@icoilinit.InitQuantity%>]
 	     <%if @num1!=0%>
-		,
 		<%for i in @countnum..@num1-1 do%>
+		 <%if @HistoricalData[i].Date>=@icoilinit.Date%>
+			,
 		  <%if @HistoricalData[i].Quantity<0%>
 			<%@NumberOfCylinders+=@HistoricalData[i].Quantity%>
 			['<%=@HistoricalData[i].Date%>',<%=@NumberOfCylinders%>]
@@ -25,9 +26,7 @@ $(document).ready(function(){
 				['<%=@HistoricalData[i].Recv_date%>',<%=@NumberOfCylinders%>]
 			<%end%>
 		  <%end%>
-		  <%if i!=@num1-1%>
-			,
-		  <%end%>
+		<%end%>
 	      <%end%>
 	    <%end%>];
   plot6 = $.jqplot('chart6',[line_1], {
