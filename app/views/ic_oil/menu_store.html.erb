@@ -1,0 +1,14 @@
+<script>
+$(function() {
+  $("#tabs").tabs();
+});
+</script>
+<p><h2> คลังรายการน้ำมัน</h2></p>
+<div id="tabs">
+  <ul>
+    <li><a href="#option1">คลังน้ำมัน</a></li>
+    <li><a href="#option2">ปริมาณน้ำมันเริ่มต้น</a></li>
+  </ul>
+    <div id="option1"><p><%= render :partial => 'oil_store'%></p></div>
+    <div id="option2"><p><%= render :partial => 'oil_start'%></p></div>
+</div>
