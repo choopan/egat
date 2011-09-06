@@ -1,4 +1,8 @@
 class IcOilController < ApplicationController
+@@bc_ic = "Inventory Control"
+@@bc_ic_link = "/ic_oil/index"
+@@bc_oil = 'น้ำมันหม้อแปลง'
+@@bc_oil_link = "/ic_oil/oil_chart"
 
 def payment_list
 	@payment_cost = IcAllcost.get_payment_list()
@@ -80,6 +84,12 @@ def menu_withdraw
 end
  
  def oil_chart
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = ""
 	icoilbalance=IcOilBalance.get_icoilbalance()
 	if icoilbalance.nil?
 	 icoilbalance = IcOilBalance.new
@@ -158,6 +168,14 @@ end
  end
   
  def oil_store
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'คลังรายการน้ำมัน'
+	@breadcrumb_link[2]  = ""
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
 	 @icoilinit = IcOilInit.new
@@ -170,6 +188,15 @@ end
   end
 
   def oil_withdraw
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'คลังรายการน้ำมัน'
+	@breadcrumb_link[2]  = ""
+	
 	@icoilbalance = IcOilBalance.get_icoilbalance()
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new

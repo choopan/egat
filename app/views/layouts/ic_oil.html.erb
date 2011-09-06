@@ -32,7 +32,18 @@
     <% end %>
 
     <div id="breadcrumb">
-      <a href="/">Home</a> >> <%= link_to 'Economic Analysis', economic_analysis_path %> >> ข้อมูลที่จำเป็นในการพิจารณา
+      <a href="/">Home</a> 
+	<% for i in 0..(@breadcrumb_title.size - 1)
+              if @breadcrumb_link[i] == ""
+        %>
+                >> <%= @breadcrumb_title[i] %> 		
+	<%    else %>
+		>> <a href="<%= @breadcrumb_link[i] %>"><%= @breadcrumb_title[i] %></a>
+       <% 
+              end
+           end
+       %>
+
     </div>
     <div id="content" class="container_16 clearfix">
     <% if notice %>

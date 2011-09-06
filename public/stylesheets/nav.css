@@ -32,7 +32,7 @@ ul.nav li ul {
 	height:auto;
 	top:2.5em;
 	background-position:0 0 !important;
-	left:-9000px;
+	left:-20000px;
 }
 ul.nav li ul li {
 	padding:0;
@@ -40,6 +40,8 @@ ul.nav li ul li {
 	width:auto;
 	max-width:none;
 }
+
+
 ul.nav li a {
 	color:#fff;
 	background:#666;

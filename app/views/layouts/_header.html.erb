@@ -29,15 +29,16 @@
      </ul> 
    </li>       
    <li>
-     <%= link_to 'Inventory Control', ic_oil_index_path %>
-      <ul> 
-       <li><%= link_to 'น้ำมันหม้อแปลง', oil_chart_ic_oil_index_path %></li>
-       <li><%= link_to 'คลังรายการน้ำมัน', oil_store_ic_oil_index_path %></li>
-       <li><%= link_to 'รายการเบิกจ่าย', menu_withdraw_ic_oil_index_path %></li> 
-       <li><%= link_to 'รายการสั่งซื้อ', oil_buy_ic_oil_index_path %></li> 
-       <li><%= link_to 'รายการค่าใช้จ่าย', payment_list_ic_oil_index_path %></li> 
-       <li><%= link_to 'ผลการคำนวณ',  oil_calresult_ic_oil_index_path %></li> 
-       <li><%= link_to 'ระยะเวลาได้รับน้ำมัน', oil_period_ic_oil_index_path  %></li> 
+     <%= link_to 'Inventory Control', '#' %>
+      <ul>  
+        <li><%= link_to 'น้ำมันหม้อแปลง', oil_chart_ic_oil_index_path %></li>
+			<li><a href="/ic_oil/oil_store">&nbsp;&nbsp;&nbsp; - คลังรายการน้ำมัน</a></li>
+       			<li><a href="/ic_oil/menu_withdraw">&nbsp;&nbsp;&nbsp; - รายการเบิกจ่าย</a></li> 
+       			<li><a href="/ic_oil/oil_buy">&nbsp;&nbsp;&nbsp; - รายการสั่งซื้อ</a></li> 
+       			<li><a href="/ic_oil/payment_list">&nbsp;&nbsp;&nbsp; - รายการค่าใช้จ่าย</a></li> 
+       			<li><a href="/ic_oil/oil_calresult">&nbsp;&nbsp;&nbsp; - ผลการคำนวณ</a></li> 
+       			<li><a href="/ic_oil/oil_period">&nbsp;&nbsp;&nbsp; - ระยะเวลาได้รับน้ำมัน</a></li> 
+	<li><%= link_to 'Bushing, Arrester, OLTC', '#' %></li>
      </ul> 
    </li>
  </ul> 
