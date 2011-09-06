@@ -74,11 +74,16 @@ end
 def index
 end
 
+def menu_store
+	oil_start
+	oil_store
+end
+
 def menu_withdraw
 	oil_withdraw
 	oil_annually
 end
- 
+
  def oil_chart
 	icoilbalance=IcOilBalance.get_icoilbalance()
 	if icoilbalance.nil?
@@ -92,12 +97,14 @@ end
 	@Quantity_1=icoilinit.InitQuantity
 	if num!=0
 	 for i in 0..num-1 do
+	   if icoilbalance[i].Date>=icoilinit.Date
 	    if icoilbalance[i].Quantity>=0&&icoilbalance[i].Recv_date!=nil&&icoilbalance[i].Quantitypass!=nil
 		@Quantity_1+=icoilbalance[i].Quantitypass
 	    end
 	    if icoilbalance[i].Quantity<0
 		@Quantity_1+=icoilbalance[i].Quantity
 	    end
+	  end
 	 end
 	end
 
@@ -118,6 +125,7 @@ end
 			if @HistoricalData[i].Date.year.to_i>=Date.today.year.to_i-2
 				break
 			end
+		     if @HistoricalData[i].Date>=@icoilinit.Date
 			if @HistoricalData[i].Quantity<0
 				@NumberOfCylinders+=@HistoricalData[i].Quantity
 			else
@@ -125,6 +133,7 @@ end
 					@NumberOfCylinders+=@HistoricalData[i].Quantitypass
 				end
 			end
+		     end
 			@countnum+=1
 		end
 	end
@@ -156,12 +165,15 @@ end
 		 @quantity_withdraw*=-1
 	end
  end
-  
- def oil_store
+
+def oil_start
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
 	 @icoilinit = IcOilInit.new
 	end
+end
+  
+ def oil_store
 	@icoilbalance = IcOilBalance.get_icoilbalance()
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
@@ -263,7 +275,7 @@ end
 	 params[:ic_oil_init][:Date]=m[2]+"-"+m[1]+"-"+m[0]
 	 @icoilinit.update_attributes(params[:ic_oil_init])
   	end
-	redirect_to("/ic_oil/oil_store")
+	redirect_to("/ic_oil/menu_store#option2")
   end
   
   def update_withdraw
