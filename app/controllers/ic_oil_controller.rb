@@ -36,14 +36,14 @@ def update_payment_cost
 		x3 = params[:ic_allcost][:x3].to_f
 	end
 	
-	x5 = x2 + x3
+	x5 = ( x3 *12 )/ x2
 	params[:ic_allcost][:x5] = x5
 
 	################Calculate x6####################
 	if params[:ic_allcost][:x4].nil?
 		x4 = 0;
 	else
-		x4 = params[:ic_allcost][:x2].to_f
+		x4 = params[:ic_allcost][:x4].to_f
 	end
 
 
@@ -75,9 +75,9 @@ def update_payment_cost
 
 	avgD = UpdatePrice.get_avgD()
 
-	@calresult[:Y1] = (((@calresult[:W] * avgD)/365) + UpdatePrice.get_y3()).to_i
-	@calresult[:Y2] = (Math.sqrt((2 * avgD * x1) / x7)).to_i
-	@calresult[:Y3] = UpdatePrice.get_y3().to_i
+	@calresult[:Y1] = (((@calresult[:W] * avgD)/365) + UpdatePrice.get_y3()).round()
+	@calresult[:Y2] = (Math.sqrt((2 * avgD * x1) / x7)).round()
+	@calresult[:Y3] = UpdatePrice.get_y3().round()
 	@calresult[:Y4] = (avgD/@calresult[:Y2]).to_i
 	@calresult[:Y5] = ((avgD * UpdatePrice.get_sumDC200())/UpdatePrice.get_sumD()) + (x1 * @calresult[:Y4]) + ((x7 + @calresult[:Y2])/2)
 	@calresult.update_attributes(@calresult)
@@ -182,6 +182,16 @@ end
  end
 
  def fill_price
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'ราคาน้ำมันเบิกจ่ายของปีที่ผ่านมา'
+	@breadcrumb_link[2]  = ""
+
+
 	@updateprice_1=UpdatePrice.new
 
 	icoilbalance=IcOilBalance.get_oilwithdraw(Date.today.year.to_i-1)
