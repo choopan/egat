@@ -20,6 +20,7 @@ Egat::Application.routes.draw do
 	get "new_buy"
 	get "payment_list"
 	post "update_payment_cost"
+	get "menu_store"
      end
    end
 

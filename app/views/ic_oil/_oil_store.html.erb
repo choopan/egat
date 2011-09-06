@@ -1,12 +1,9 @@
-<p><h2>  คลังรายการน้ำมัน</h2></p>
 <%initquatity=@icoilinit.InitQuantity%>
 <p><table border=1>
 		<tr><th><center>Date</center></th><th><center>ปริมาณน้ำมันในคลัง [ถัง]</center></th><th><center>เบิกจ่าย [ถัง]</center></th><th><center>ซื้อเพิ่ม [ถัง]</center></th></tr>
-		<%icoildate=@icoilinit.Date.to_s%>
-		<%n=icoildate.split('-')%>
-		<tr><td><center><%=n[2]+"/"+n[1]+"/"+n[0]%></center></td><td><center><%=initquatity%></center></td><td colspan=2><center><%= button_to "แก้ไข", :action => "modify_icoilinit" %></center></td></tr>
 	<%if @num!=0%>
 		<% for i in 0..@num-1 do%>
+                  <%if @icoilbalance[i].Date>=@icoilinit.Date%>
 		    <%if @icoilbalance[i].Quantity >=0%>
 			<%if @icoilbalance[i].Quantitypass !=nil%>
 				<%m=icoildate=@icoilbalance[i].Recv_date.to_s.split('-')%>
@@ -19,8 +16,9 @@
 			<%initquatity+=@icoilbalance[i].Quantity%>
 			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center><%= -1*@icoilbalance[i].Quantity%></center></td><td><center> </center></td></tr>
 		    <%end%>
-	<%end%>
-		<%end%>
+	          <%end%>
+                 <%end%>
+          <%end%>
 
 		<tr><td></td><td></td><td></td><td></td></tr>
 </table></p>
