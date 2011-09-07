@@ -29,6 +29,19 @@ $(document).ready(function(){
 		<%end%>
 	      <%end%>
 	    <%end%>];
+
+   <%if @NumberOfCylinders > @oilcalculate.Y1.to_i%>
+	<%messages="เบิกใช้ได้ตามปกติ"%>
+   <%end%>
+  <%if @NumberOfCylinders == @oilcalculate.Y1.to_i%>
+	<%messages="ถึงกำหนดเวลาสั่งซื้อรอบใหม่ อย่างน้อย"+" "+@oilcalculate.Y2.to_i.to_s+" "+"ถัง"%>
+  <%end%>
+  <%if @oilcalculate.Y3.to_i < @NumberOfCylinders && @NumberOfCylinders < @oilcalculate.Y1.to_i%>
+	<%messages="เลยกำหนดเวลาสั่งซื้อ ให้จัดซื้อโดยด่วน"%>
+  <%end%>
+  <%if @NumberOfCylinders <= @oilcalculate.Y3.to_i%>
+	<%messages="ระดับน้ำมันต่ำกว่า Safety Stock"%>
+  <%end%>
   plot6 = $.jqplot('chart6',[line_1], {
     axes: {
 	  xaxis: {
@@ -80,7 +93,7 @@ $(document).ready(function(){
 	<%for i in 0..13 do%>
 	&nbsp;
 	<%end%>
-เบิกใช้ได้ตามปกติ
+<%=messages%>
 </label>
 
 <div id="chart6" style="height:400px; width:800px;margin: 30px;"></div>
