@@ -17,7 +17,7 @@ after_initialize :init
 
 	def self.get_icoilinit()
 		first
-	    rescue:
+	    rescue Exception
 		return nil
          end
 end

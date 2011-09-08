@@ -10,7 +10,7 @@ class OilCalculate < ActiveRecord::Base
 	end
 	def self.get_period()
 		first
-	    rescue:
+	    rescue Exception
 		return nil
          end
 

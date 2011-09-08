@@ -1,3 +1,4 @@
+#encoding : utf-8
 class IcOilController < ApplicationController
 @@bc_ic = "Inventory Control"
 @@bc_ic_link = "/ic_oil/index"

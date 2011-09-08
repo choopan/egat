@@ -7,19 +7,19 @@ class UpdatePrice < ActiveRecord::Base
 
 	def self.get_updateprice(year)
 		where("Year = '#{year}'").first
-	    rescue:
+	    rescue Exception
 		return nil
          end
 
 	 def self.get_updatepriceid(id)
 		where("id= '#{id}'").first
-	    rescue:
+	    rescue Exception
 		return nil
 	 end
 
 	 def self.get_updatepriceall()
 		order("Year")
-	    rescue:
+	    rescue Exception
 		return nil
 	 end
 
@@ -32,7 +32,7 @@ class UpdatePrice < ActiveRecord::Base
                   sum = sum + (i.quantity * i.Price * 200)
                 end
                 return sum
-	    rescue:
+	    rescue Exception
 		return nil
 	end
 
@@ -40,7 +40,7 @@ class UpdatePrice < ActiveRecord::Base
 		min = order("quantity").first.quantity
 		max = order("quantity").last.quantity
 		where("quantity != '#{min}' and quantity != '#{max}'").sum("quantity").to_f
-	    rescue:
+	    rescue Exception
 		return nil
 	end
 
@@ -48,7 +48,7 @@ class UpdatePrice < ActiveRecord::Base
 		min = order("quantity").first.quantity
 		max = order("quantity").last.quantity
 		where("quantity != '#{min}' and quantity != '#{max}'").average("quantity").to_f
-	    rescue:
+	    rescue Exception
 		return nil
 	end
 
