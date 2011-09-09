@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -17,7 +17,7 @@ group :test, :development do
   gem 'hpricot'
   gem 'ruby_parser'
   # ------------------------
-  gem "rspec-rails", "~> 2.0.1"
+  gem "rspec-rails"
   gem 'test-unit'
   gem 'factory_girl_rails'
   gem 'spreadsheet'
@@ -56,4 +56,4 @@ gem 'ruby-debug19'
 #   gem 'webrat'
 # end
 gem "pdfkit", :git => "https://huerlisi@github.com/huerlisi/PDFKit.git"
-#gem "mongrel"
+gem "mongrel", '>= 1.2.0.pre2'

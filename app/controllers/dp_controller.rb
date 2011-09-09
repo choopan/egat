@@ -1,7 +1,8 @@
+#encoding: utf-8
 class DpController < ApplicationController
   def edit
     @dp = Dp.find(1)
-    rescue :
+    rescue Exception
       @dp = Dp.new
       @dp.save
   end

@@ -1,23 +1,41 @@
-<% content_for :javascript do %>
-  <%= javascript_include_tag 'jquery.flot.min.js',
-                             'jquery.flot.selection.min.js',
-                             'jquery.flot.axislabels.js',
-                             'jquery.multirowcheckboxmenu',
-                             'controllers/transformer_informations.js'
-  %>
-                           
-  
-<% end %>
-
+<h1>หม้อแปลงไฟฟ้า</h1>
 <%= form_for :station do |f| -%>
-<div class="grid_3">
+<div class='grid_6 prefix_5 suffix_7'>
+<p>
   <%= f.label(:station, "เขต")%>
-</div>
-<div class="grid_3">
-  <%= 
+  <%=
       @stations = Station.group("region").all
       f.collection_select(:station, @stations, :region, :region, 
                           {:prompt => 'All', :selected => params[:region]})
   %>
+</p>
+</div>
 <% end %>
+
+<%= @xx %>
+<%= debug params %>
+<div id="transformers" class="grid_16">
+  <table id="transformers_table">
+    <thead>
+      <tr>
+      <th>หม้อแปลงไฟฟ้า</th>
+      <th>Equipment No.</th>
+      <th>บริษัทผู้ผลิต</th>
+      <th>พิกัดกำลังไฟฟ้าสูงสุด (MVA)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if !@txinfos.blank? %>
+        <% for txinfo in @txinfos %>
+	<tr>
+            <td><%= txinfo.transformer_name %></td>
+            <td><%= txinfo.egatsn %></td>
+            <td><%= txinfo.manufacturing %></td>
+            <td><%= txinfo.maxcapacity %> </td>
+	</tr>
+	<%end%>
+      <%end%>
+    </tbody>
+   </table>
+
 </div>
