@@ -1,2 +1,19 @@
-<h1>TransformerInfo#txadd</h1>
-<p>Find me in app/views/transformer_info/txadd.html.erb</p>
+<h1>เพิ่มหม้อแปลงไฟฟ้า</h1>
+<%= form_tag @txinfo ,:url => {:action => "txadd"}, :html => {:method => "post", :name => 'txadd'} do |f| %>
+<div class='grid_8 prefix_2 chemicals' >
+      <p>
+        <%= label_tag :egatsn, "Equipement No.", :class => 'inline' %>
+        <%= text_field_tag :egatsn%>
+      </p>
+      <p>
+        <%= label_tag :contract, "สัญญาเลขที่", :class => 'inline' %>
+        <%= text_field_tag :contract%>
+      </p>
+      <p>
+        <%= label_tag :station, "สถานีไฟฟ้า", :class => 'inline' %>
+        <%= select_tag "station", options_from_collection_for_select(@stations, "name", "name") %>
+      </p>
+</div>
+
+
+<%end%>

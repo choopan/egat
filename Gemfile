@@ -57,3 +57,4 @@ gem 'ruby-debug19'
 # end
 gem "pdfkit", :git => "https://huerlisi@github.com/huerlisi/PDFKit.git"
 gem "mongrel", '>= 1.2.0.pre2'
+gem "will_paginate"

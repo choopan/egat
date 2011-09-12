@@ -170,6 +170,7 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
     watchr (0.7)
+    will_paginate (3.0.0)
 
 PLATFORMS
   ruby
@@ -198,3 +199,4 @@ DEPENDENCIES
   spreadsheet
   test-unit
   watchr
+  will_paginate

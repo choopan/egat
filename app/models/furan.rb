@@ -30,7 +30,7 @@ class Furan < ActiveRecord::Base
 
   def self.get_fal(transformer_id)
     where("transformer_id = '#{transformer_id}'").order("test_date DESC").first.fal
-    rescue:
+    rescue Exception 
       return nil
   end
 

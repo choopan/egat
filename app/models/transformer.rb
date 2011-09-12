@@ -42,6 +42,7 @@ class Transformer < ActiveRecord::Base
   has_many :visual_inspection
   has_many :insulating_oil
   has_many :winding_type
+  has_one :manufacturer
   
   def self.find_all_by_transformer_name_initials(names)
     conditions = "transformer_name like ?"

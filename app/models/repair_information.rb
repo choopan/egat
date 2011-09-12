@@ -65,7 +65,7 @@ class RepairInformation < ActiveRecord::Base
 
   def self.get_repair_information(user_id, transformer_id)
     where("user_id = '#{user_id}' AND transformer_id = '#{transformer_id}'").first
-    rescue:
+    rescue Exception
       return nil
   end
 

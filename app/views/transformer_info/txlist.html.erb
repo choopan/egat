@@ -1,8 +1,8 @@
 <h1>หม้อแปลงไฟฟ้า</h1>
 <%= form_for :station do |f| -%>
-<div class='grid_6 prefix_5 suffix_7'>
+<div class='grid_4 prefix_5'>
 <p>
-  <%= f.label(:station, "เขต")%>
+  <%= f.label :station, "เขต" , :class => 'inlinetitle' %>
   <%=
       @stations = Station.group("region").all
       f.collection_select(:station, @stations, :region, :region, 
@@ -10,11 +10,15 @@
   %>
 </p>
 </div>
+<div class='prefix_2 grid_3'>
+<p>
+  <%= link_to("เพิ่มหม้อแปลงไฟฟ้า", "/transformer_info/txadd", :class => 'add') %> 
+</p>
+</div>
 <% end %>
-
-<%= @xx %>
-<%= debug params %>
-<div id="transformers" class="grid_16">
+<p><div class='grid_16'>&nbsp;</div></p>
+<p>
+<div id="transformers" class="grid_14 prefix_1">
   <table id="transformers_table">
     <thead>
       <tr>
@@ -22,20 +26,24 @@
       <th>Equipment No.</th>
       <th>บริษัทผู้ผลิต</th>
       <th>พิกัดกำลังไฟฟ้าสูงสุด (MVA)</th>
+      <th width=160></th>
       </tr>
     </thead>
     <tbody>
       <% if !@txinfos.blank? %>
         <% for txinfo in @txinfos %>
 	<tr>
-            <td><%= txinfo.transformer_name %></td>
+            <td><%= link_to(txinfo.transformer_name, '#') %></td>
             <td><%= txinfo.egatsn %></td>
-            <td><%= txinfo.manufacturing %></td>
+            <td><%= txinfo.brand.name %></td>
             <td><%= txinfo.maxcapacity %> </td>
+            <td><%= link_to("Edit", '#', :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to("Delete", "#", :class => 'delete') %> </td>
 	</tr>
 	<%end%>
       <%end%>
     </tbody>
    </table>
-
+  <%= will_paginate @txinfos %>
 </div>
+</p>
