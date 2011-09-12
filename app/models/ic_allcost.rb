@@ -10,7 +10,7 @@ class IcAllcost < ActiveRecord::Base
 
          def self.get_payment_list()
                 first
-            rescue:
+            rescue Exception
                 return nil
          end
 

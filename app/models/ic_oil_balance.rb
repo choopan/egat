@@ -10,27 +10,27 @@ class IcOilBalance < ActiveRecord::Base
 
 	 def self.get_icoilbalance()
 		order("Date")
-	    rescue:
+	    rescue Exception
 		return nil
          end
 
 	def self.get_icoilbalance_id(id)
 		where("id = '#{id}'").first
-    	     rescue:
+    	     rescue Exception
       		return nil
   	end
 
 	def self.get_oilwithdraw(year)
                 endyear = year + 1
 		where("Date BETWEEN '#{year}-01-01' AND '#{endyear}-01-01'")
-	      rescue:
+	      rescue Exception
 		return nil
 	end
 
 	def self.historical_data(year)
 		startyear=year-2
 		where("Date BETWEEN '#{startyear}-01-01' AND '#{year}-01-01'")
-	    rescue:
+	    rescue Exception
 		return nil
 	end
 end

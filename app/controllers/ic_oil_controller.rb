@@ -1,3 +1,4 @@
+#encoding : utf-8
 class IcOilController < ApplicationController
 @@bc_ic = "Inventory Control"
 @@bc_ic_link = "/ic_oil/index"
@@ -182,6 +183,12 @@ end
  end
 
  def fill_price
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+
+
+
 	@updateprice_1=UpdatePrice.new
 
 	icoilbalance=IcOilBalance.get_oilwithdraw(Date.today.year.to_i-1)
