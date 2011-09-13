@@ -6,7 +6,9 @@
 		<%if @icoilbalance[i].Quantity < 0%>
 			<%icoildate=@icoilbalance[i].Date.to_s%>
 			<%m=icoildate.split('-')%>
-			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*@icoilbalance[i].Quantity%></center></td><td><center><%=link_to "แก้ไข",:controller => "ic_oil",:action => "modify_withdraw",:id =>@icoilbalance[i].id%></center></td><td><center><%=link_to "ลบ",:controller => "ic_oil",:action => "delete_withdraw",:id =>@icoilbalance[i].id%></center></td></tr>
+			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*@icoilbalance[i].Quantity%></center></td>
+                            <td><center><%=link_to "แก้ไข",:class => 'edit', :controller => "ic_oil",:action => "modify_withdraw",:id =>@icoilbalance[i].id %></center></td>
+                            <td><center><%=link_to "ลบ",:controller => "ic_oil",:action => "delete_withdraw",:id =>@icoilbalance[i].id, :class => 'delete'%></center></td></tr>
 		<%end%>
 	<%end%>
 <%end%>
