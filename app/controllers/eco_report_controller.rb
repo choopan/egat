@@ -1,3 +1,4 @@
+#encoding : utf-8
 class EcoReportController < ApplicationController
   def report
     @transformer = Transformer.find(params[:transformer_id])

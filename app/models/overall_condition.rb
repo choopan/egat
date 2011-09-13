@@ -138,7 +138,7 @@ class OverallCondition < ActiveRecord::Base
     return nil if percent_hi_others == nil && percent_hi_oltc == nil
     (percent_hi_others * OverallConditionWeight.where(:name => "others").first.weight.to_f / 100) +
       (percent_hi_oltc * OverallConditionWeight.where(:name => "oltc").first.weight.to_f / 100)
-    rescue:
+    rescue Exception
       return nil
   end
 end

@@ -1,14 +1,14 @@
 Egat::Application.routes.draw do
 
-  get "transformer_info/txlist"
-
-  get "transformer_info/txadd"
-
-  get "transformer_info/txlistmove"
-
-  get "transformer_info/txaddmove"
-
-  get "transformer_info/failurereport"
+  resources :transformer_info do
+	collection do
+		get "txlist"
+		get "txadd"
+		get "txlistmove"
+		get "txaddmove"
+		get "failurereport"
+	end
+  end
 
   resource :oil_calculate do
   end

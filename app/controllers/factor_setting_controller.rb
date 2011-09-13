@@ -1,3 +1,4 @@
+#encoding : utf-8
 class FactorSettingController < ApplicationController
   def edit
     @factor = FactorSetting.find_by_user_id(1)
