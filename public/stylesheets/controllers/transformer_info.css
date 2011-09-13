@@ -20,11 +20,11 @@ select, .chemicals input[type="text"] {
         display: inline !important;
 }
 
-input[type="file"] {
+select, .chemicals input[type="file"] {
         width: 200px;
 }
 
-input[type="file"] {
+select, .chemicals input[type="file"] {
         display: inline !important;
 }
 

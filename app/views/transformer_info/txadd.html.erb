@@ -62,10 +62,6 @@
         <%= text_field_tag :first_energize%>
       </p>
       <p>
-        <%= label_tag :first_energize, "วันที่นำเข้าใช้งาน", :class => 'inline' %>
-        <%= text_field_tag :first_energize%>
-      </p>
-      <p>
         <%= label_tag :winding_type, "ชนิด Winding Insulation", :class => 'inline' %>
         <%= select_tag "winding_type", options_from_collection_for_select(@winding_types, "id", "description") %>
       </p>
@@ -83,7 +79,7 @@
       </p>
        <p>
         <%= label_tag :image, "ชื่อไฟล์รูปภาพที่ต้องการเก็บ", :class => 'inline' %>
-        <%= file_field_tag 'image', :accept => 'image/png,image/jpef,image/gif' ,:class => 'upload' %>
+        <%= file_field_tag 'image', :accept => 'image/png,image/jpef,image/gif' ,:class => 'x-form-file' %>
       </p>
  
 </div>

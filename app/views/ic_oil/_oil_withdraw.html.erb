@@ -16,17 +16,15 @@ function popup(){
 			<%icoildate=@icoilbalance[i].Date.to_s%>
 			<%m=icoildate.split('-')%>
 			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*@icoilbalance[i].Quantity%></center></td>
-			<td><center><%=link_to (image_tag("/images/icons/page_edit.png", :border=>0)+" แก้ไข"),:controller => "ic_oil",:action => "modify_withdraw",:id =>@icoilbalance[i].id%></center></td>
-			<td><center><%=link_to (image_tag("/images/icons/delete.png", :border=>0)+" ลบ"), {:confirm => 'are u sure?'}, :controller => "ic_oil",:action => "delete_withdraw",:id =>@icoilbalance[i].id %></center></td></tr>
+			<td><center>
+                        <%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_withdraw",:id =>@icoilbalance[i].id}, :class => 'edit'%>
+                        </center></td>
+			<td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_withdraw", :id =>@icoilbalance[i].id}, :confirm => '??', :class => 'delete' %></center></td></tr>
 		<%end%>
 	<%end%>
 <%end%>
 <tr><td></td><td></td><td></td><td></td></tr>
 </table>
 </center>
-<p>
-<b><%= link_to (image_tag("/images/icons/add.png", :border=>0)+" เพิ่มรายการใหม่"), :action => "new_withdraw", :controller => "ic_oil"%><a onclick="javascript:popup();" href="#">google</a> <%=link_to_function "Greeting", "popup();", :class => "http://www.google.com"%>
-</b>
+<%= link_to "เพิ่มรายการใหม่", {:action => "new_withdraw", :controller => "ic_oil"}, :class => 'add'%>
 <hr>
-</p>
-</p>
