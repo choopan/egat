@@ -21,6 +21,7 @@ class TransformerInfoController < ApplicationController
   def txadd
     @txinfo = Transformer.new
     @stations = Station.order("name").all
+    @brand_ids = Brand.order("name").all
   end
 
   def txlistmove

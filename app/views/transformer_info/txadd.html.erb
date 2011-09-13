@@ -13,6 +13,47 @@
         <%= label_tag :station, "สถานีไฟฟ้า", :class => 'inline' %>
         <%= select_tag "station", options_from_collection_for_select(@stations, "name", "name") %>
       </p>
+      <p>
+        <%= label_tag :tx_name, "ชื่อหม้อแปลงไฟฟ้า", :class => 'inline' %>
+        <%= text_field_tag :tx_name%>
+      </p>
+      <p>
+        <%= label_tag :brand_id, "ชื่อบริษัทผู้ผลิต", :class => 'inline' %>
+        <%= select_tag "brand_id", options_from_collection_for_select(@brand_ids, "id", "name") %>
+      </p>
+      <p>
+        <%= label_tag :manufacturingserial, "หมายเลขผู้ผลิต", :class => 'inline' %>
+        <%= text_field_tag :manufacturingserial%>
+      </p>
+
+      <p>
+        <%= label_tag :phase, "จำนวนเฟส", :class => 'inline' %>
+        <select id='phase' name='phase'>
+            <option value='1'>1</option>
+            <option value='3'>3</option>
+        </select>
+      </p>
+      <p>
+        <%= label_tag :phase_position, "ตำแหน่งเฟส", :class => 'inline' %>
+        <select id='phase_position' name='phase_position'>
+            <option value='A'>A</option>
+            <option value='B'>B</option>
+            <option value='C'>C</option>
+        </select>
+      </p>
+      <p>
+        <%= label_tag :maxcapacity, "พิกัดกำลังไฟฟ้าสูงสุด (MVA)", :class => 'inline' %>
+        <%= text_field_tag :maxcapacity%>
+      </p>
+      <p>
+        <%= label_tag :hv, "พิกัดแรงดันไฟฟ้า Primary, HV (kV)", :class => 'inline' %>
+        <%= text_field_tag :hv%>
+      </p>
+      <p>
+        <%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Secondary, LV (kV)", :class => 'inline' %>
+        <%= text_field_tag :hv%>
+      </p>
+
 </div>
 
 
