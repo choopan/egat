@@ -62,5 +62,7 @@ $(function() {
   Cbox.setupComboxBox('brand_id');
   Cbox.setupComboxBox('phase');
   Cbox.setupComboxBox('phase_position');
+  Cbox.setupComboxBox('winding_type');
+  Cbox.setupComboxBox('status');
 });
 

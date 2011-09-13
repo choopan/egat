@@ -22,6 +22,7 @@ class TransformerInfoController < ApplicationController
     @txinfo = Transformer.new
     @stations = Station.order("name").all
     @brand_ids = Brand.order("name").all
+    @winding_types = WindingType.order("id").all
   end
 
   def txlistmove

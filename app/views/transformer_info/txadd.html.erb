@@ -1,6 +1,6 @@
 <h1>เพิ่มหม้อแปลงไฟฟ้า</h1>
 <%= form_tag @txinfo ,:url => {:action => "txadd"}, :html => {:method => "post", :name => 'txadd'} do |f| %>
-<div class='grid_8 prefix_2 chemicals' >
+<div class='grid_10 prefix_2 chemicals' >
       <p>
         <%= label_tag :egatsn, "Equipement No.", :class => 'inline' %>
         <%= text_field_tag :egatsn%>
@@ -53,7 +53,39 @@
         <%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Secondary, LV (kV)", :class => 'inline' %>
         <%= text_field_tag :hv%>
       </p>
-
+      <p>
+        <%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Tertiary, TV (kV)", :class => 'inline' %>
+        <%= text_field_tag :tv%>
+      </p>
+      <p>
+        <%= label_tag :first_energize, "วันที่นำเข้าใช้งาน", :class => 'inline' %>
+        <%= text_field_tag :first_energize%>
+      </p>
+      <p>
+        <%= label_tag :first_energize, "วันที่นำเข้าใช้งาน", :class => 'inline' %>
+        <%= text_field_tag :first_energize%>
+      </p>
+      <p>
+        <%= label_tag :winding_type, "ชนิด Winding Insulation", :class => 'inline' %>
+        <%= select_tag "winding_type", options_from_collection_for_select(@winding_types, "id", "description") %>
+      </p>
+      <p>
+        <%= label_tag :vector_group, "Vector Group", :class => 'inline' %>
+        <%= text_field_tag :vector_group%>
+      </p>
+       <p>
+        <%= label_tag :status, "ลักษณะการใช้งานหม้อแปลงไฟฟ้า", :class => 'inline' %>
+        <%= select_tag "status", options_from_collection_for_select(@winding_types, "id", "description") %>
+      </p>
+       <p>
+        <%= label_tag :remark, "รายละเอียดเพิ่มเติม (Remark)", :class => 'inline' %>
+        <%= text_field_tag :remark %>
+      </p>
+       <p>
+        <%= label_tag :image, "ชื่อไฟล์รูปภาพที่ต้องการเก็บ", :class => 'inline' %>
+        <%= file_field_tag 'image', :accept => 'image/png,image/jpef,image/gif' ,:class => 'upload' %>
+      </p>
+ 
 </div>
 
 

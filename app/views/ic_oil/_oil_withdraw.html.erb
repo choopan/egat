@@ -17,7 +17,7 @@ function popup(){
 			<%m=icoildate.split('-')%>
 			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*@icoilbalance[i].Quantity%></center></td>
 			<td><center><%=link_to (image_tag("/images/icons/page_edit.png", :border=>0)+" แก้ไข"),:controller => "ic_oil",:action => "modify_withdraw",:id =>@icoilbalance[i].id%></center></td>
-			<td><center><%=link_to_function (image_tag("/images/icons/delete.png", :border=>0)+" ลบ"),"popup();",:controller => "ic_oil",:action => "delete_withdraw",:id =>@icoilbalance[i].id%></center></td></tr>
+			<td><center><%=link_to (image_tag("/images/icons/delete.png", :border=>0)+" ลบ"), {:confirm => 'are u sure?'}, :controller => "ic_oil",:action => "delete_withdraw",:id =>@icoilbalance[i].id %></center></td></tr>
 		<%end%>
 	<%end%>
 <%end%>
