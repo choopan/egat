@@ -429,8 +429,8 @@ end
 	@icoilbalance[:Quantity] = params[:Quantity].to_i
 	@icoilbalance[:Price] = params[:Price].to_i
 	@icoilbalance[:Quantitypass] = params[:Quantitypass].to_i
- 	@icoilbalance.update_attributes(@icoilbalance)
-	redirect_to("/ic_oil/oil_buy")
+ 	#@icoilbalance.update_attributes(@icoilbalance)
+	#redirect_to("/ic_oil/oil_buy")
   end
 
   def update_oilperiod

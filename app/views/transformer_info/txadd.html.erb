@@ -79,10 +79,152 @@
       </p>
        <p>
         <%= label_tag :image, "ชื่อไฟล์รูปภาพที่ต้องการเก็บ", :class => 'inline' %>
-        <%= file_field_tag 'image', :accept => 'image/png,image/jpef,image/gif' ,:class => 'x-form-file' %>
+        <%= file_field_tag 'image', :accept => 'image/png,image/jpef,image/gif' %>
       </p>
- 
+
+</div>
+<div class='grid_16' >&nbsp;</div>
+<div class='grid_16' >&nbsp;</div>
+<div class='grid_16 chemicals' >
+<h3>Accessories</h3>
+</div>
+<div class='grid_15 prefix_1 accessories' >
+<label>Bushing</label>
+<table>
+<tr>
+   <td><p align=left>HV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>H0 <input type="text"></td>
+   <td>H1 <input type="text"></td>
+   <td>H2 <input type="text"></td>
+   <td>H3 <input type="text"></td>
+</tr>
+<tr>
+   <td><p align=left>LV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>X0 <input type="text"></td>
+   <td>X1 <input type="text"></td>
+   <td>X2 <input type="text"></td>
+   <td>X3 <input type="text"></td>
+</tr>
+<tr>
+   <td><p align=left>TV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>Y1 <input type="text"></td>
+   <td>Y2 <input type="text"></td>
+   <td>Y3 <input type="text"></td>
+   <td></td>
+</tr>
+</table>
 </div>
 
+<div class='grid_16' >&nbsp;</div>
+
+<div class='grid_15 prefix_1 accessories' >
+<label>Arrester</label>
+<table>
+<tr>
+   <td><p align=left>HV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td rowspan=2><table>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'hv_gap', '1', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'hv_gap', '0' %></td></tr>
+		</table>
+   </td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>H0 <input type="text"></td>
+   <td>H1 <input type="text"></td>
+   <td>H2 <input type="text"></td>
+   <td>H3 <input type="text"></td>
+</tr>
+<tr>
+   <td><p align=left>LV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td rowspan=2><table>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'lv_gap', '1', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'lv_gap', '0' %></td></tr>
+		</table>
+   </td>
+
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>X0 <input type="text"></td>
+   <td>X1 <input type="text"></td>
+   <td>X2 <input type="text"></td>
+   <td>X3 <input type="text"></td>
+</tr>
+<tr>
+   <td><p align=left>TV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td rowspan=2><table>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'tv_gap', '1', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'tv_gap', '0' %></td></tr>
+		</table>
+   </td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>Y1 <input type="text"></td>
+   <td>Y2 <input type="text"></td>
+   <td>Y3 <input type="text"></td>
+   <td></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_16' >&nbsp;</div>
+
+<div class='grid_15 prefix_1 accessories' >
+<label>OLTC</label>
+<table>
+<tr>
+   <td></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_10 prefix_5'>
+<%= submit_tag "Save", :class => "cupid-green" %>
+</div>
 
 <%end%>

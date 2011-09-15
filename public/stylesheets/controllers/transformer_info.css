@@ -12,6 +12,15 @@ label.inline {
   font-size: 14px
 }
 
+select, .accessories input[type="text"] {
+        width: 80px;
+}
+
+select, .accessories input[type="text"] {
+        display: inline !important;
+}
+
+
 select, .chemicals input[type="text"] {
         width: 200px;
 }
@@ -47,5 +56,9 @@ a.edit {
 }
 a.delete {
         background-image:url(/images/icons/delete.png)
+}
+
+input[type="submit"].cupid-green, button.cupid-green {
+  width: 370px;
 }
 
