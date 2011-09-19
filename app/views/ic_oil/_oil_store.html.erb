@@ -1,24 +1,25 @@
 <%initquatity=@icoilinit.InitQuantity%>
 <p><table border=1>
 		<tr><th><center>Date</center></th><th><center>ปริมาณน้ำมันในคลัง [ถัง]</center></th><th><center>เบิกจ่าย [ถัง]</center></th><th><center>ซื้อเพิ่ม [ถัง]</center></th></tr>
-	<%if @num!=0%>
-		<% for i in 0..@num-1 do%>
-                  <%if @icoilbalance[i].Date>=@icoilinit.Date%>
-		    <%if @icoilbalance[i].Quantity >=0%>
-			<%if @icoilbalance[i].Quantitypass !=nil%>
-				<%m=icoildate=@icoilbalance[i].Recv_date.to_s.split('-')%>
-				<%initquatity+=@icoilbalance[i].Quantitypass%>
-				<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center>-</center></td><td><center><%=@icoilbalance[i].Quantitypass%></center></td></tr>
+	
+             <% if !@icoilbalance.blank? %>
+        	<% for ic in @icoilbalance %>
+		    <%if ic.Quantity >=0%>
+			<%if ic.Quantitypass !=nil%>
+				<%m=icoildate=ic.Recv_date.to_s.split('-')%>
+				<%initquatity+=ic.Quantitypass%>
+				<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center>-</center></td><td><center><%=ic.Quantitypass%></center></td></tr>
 			<%end%>
 		    <%else%>
-			<%icoildate=@icoilbalance[i].Date.to_s%>
+			<%icoildate=ic.Date.to_s%>
 		    	<%m=icoildate.split('-')%>
-			<%initquatity+=@icoilbalance[i].Quantity%>
-			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center><%= -1*@icoilbalance[i].Quantity%></center></td><td><center>-</center></td></tr>
+			<%initquatity+=ic.Quantity%>
+			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center><%= -1*ic.Quantity%></center></td><td><center>-</center></td></tr>
 		    <%end%>
 	          <%end%>
-                 <%end%>
-          <%end%>
+               <%end%>
+         
+</table>
+<%= will_paginate @icoilbalance %>
 
-		<tr><td></td><td></td><td></td><td></td></tr>
-</table></p>
+</p>

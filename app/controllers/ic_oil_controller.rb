@@ -221,20 +221,21 @@ def oil_start
 end
   
  def oil_store
-	@icoilbalance = IcOilBalance.get_icoilbalance()
+	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 2)
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
+	 #@num=0
+	else
+ 	 #@num = @icoilbalance.count
+	 #@icoilbalance = IcOilBalance.order("Date").paginate(:page => params[:page], :per_page => 5)
 	end
- 	@num = @icoilbalance.count
   end
 
   def oil_withdraw
-	@icoilbalance = IcOilBalance.get_icoilbalance()
+	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 2)
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
-	 @num1=0
-	else
- 	 @num1 = @icoilbalance.count
+
 	end
   end
   
@@ -242,9 +243,9 @@ end
 	@updateprice=UpdatePrice.get_updatepriceall()
 	if @updateprice.nil?
 		@updateprice=UpdatePrice.new
-		@num2=0
+		@num=0
 	else
-		@num2=@updateprice.count
+		@num=@updateprice.count
 	end
   end 
 
@@ -342,6 +343,14 @@ end
   end
 
   def modify_annually
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = @@bc_oil
+	@breadcrumb_link[1]  = @@bc_oil_link
+	@breadcrumb_title[2] = 'รายการเบิกจ่าย'
+	@breadcrumb_link[2]  = ""
 	@updateprice = UpdatePrice.get_updatepriceid(params[:id])
   end
 
@@ -405,31 +414,32 @@ end
 	else
 	 m=params[:Date].split('/')
 	 params[:ic_oil_init][:Date]=m[2]+"-"+m[1]+"-"+m[0]
-	 @icoilinit.update_attributes(params[:ic_oil_init])
+	 @icoilinit.update_attributes(@icoilinit.attributes)
   	end
 	redirect_to("/ic_oil/menu_store#option2")
   end
   
   def update_withdraw
 
-	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
+	icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
 	m=params[:Date].split('/')
-	@icoilbalance[:Date]=m[2]+"-"+m[1]+"-"+m[0]
-	@icoilbalance[:Quantity] = -1*(params[:Quantity]).to_i
- 	@icoilbalance.update_attributes(@icoilbalance)
+	icoilbalance[:Date]=m[2]+"-"+m[1]+"-"+m[0]
+	icoilbalance[:Quantity] = -1*(params[:Quantity]).to_i
+ 	icoilbalance.update_attributes(icoilbalance.attributes)
 	redirect_to("/ic_oil/menu_withdraw#option1")
   end
 
   def update_buy
-	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
+	
+	icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
 	m=params[:Date].split('/')
 	n=params[:Recv_date].split('/')
-	@icoilbalance[:Date]=m[2]+"-"+m[1]+"-"+m[0]
-	@icoilbalance[:Recv_date]=n[2]+"-"+n[1]+"-"+n[0]
-	@icoilbalance[:Quantity] = params[:Quantity].to_i
-	@icoilbalance[:Price] = params[:Price].to_i
-	@icoilbalance[:Quantitypass] = params[:Quantitypass].to_i
- 	@icoilbalance.update_attributes(@icoilbalance)
+	icoilbalance[:Date]=m[2]+"-"+m[1]+"-"+m[0]
+	icoilbalance[:Recv_date]=n[2]+"-"+n[1]+"-"+n[0]
+	icoilbalance[:Quantity] = params[:Quantity].to_i
+	icoilbalance[:Price] = params[:Price].to_i
+	icoilbalance[:Quantitypass] = params[:Quantitypass].to_i
+ 	icoilbalance.update_attributes(icoilbalance.attributes)
 	redirect_to("/ic_oil/oil_buy")
   end
 
@@ -440,7 +450,7 @@ end
 		OilCalculate.create(params[:oil_calculate])
 	else 
 		oilperiod[:W]=params[:oil_calculate][:W]
-		oilperiod.update_attributes(oilperiod)
+		oilperiod.update_attributes(oilperiod.attributes)
 	end
 	redirect_to("/ic_oil/oil_period")
   end
@@ -450,7 +460,7 @@ end
 	updateprice[:Year]=params[:Year].to_i
 	updateprice[:quantity]=params[:Quantity].to_i
 	updateprice[:Price]=params[:update_price][:Price].to_f
-	updateprice.update_attributes(updateprice)
+	updateprice.update_attributes(updateprice.attributes)
 	redirect_to("/ic_oil/menu_withdraw#option2")
   end
 

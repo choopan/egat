@@ -6,7 +6,7 @@ label.inlinetitle {
 }
 
 label.inline {
-  width: 200px;
+  width: 300px;
   display: inline !important;
   float: left;
   font-size: 14px
@@ -17,6 +17,14 @@ select, .chemicals input[type="text"] {
 }
 
 select, .chemicals input[type="text"] {
+        display: inline !important;
+}
+
+select, .chemicals input[type="file"] {
+        width: 200px;
+}
+
+select, .chemicals input[type="file"] {
         display: inline !important;
 }
 

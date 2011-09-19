@@ -1,22 +1,22 @@
 <p><center>
 <table border=1>
 <tr><th><center>วันที่เบิกน้ำมันไปใช้งาน</center></th><th><center>ปริมาณการเบิก [ถัง]</center></th><th><center>แก้ไข</center></th><th><center>ลบ</center></th></tr>
-<%if @num1!=0%>
-	<% for i in 0..@num1-1 do%>
-		<%if @icoilbalance[i].Quantity < 0%>
-			<%icoildate=@icoilbalance[i].Date.to_s%>
+<% if !@icoilbalance.blank? %>
+	<% for ic in @icoilbalance %>
+		<%if ic.Quantity < 0%>
+			<%icoildate=ic.Date.to_s%>
 			<%m=icoildate.split('-')%>
-			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*@icoilbalance[i].Quantity%></center></td>
-			<td><center><%=link_to (image_tag("/images/icons/page_edit.png", :border=>0)+" แก้ไข"),:controller => "ic_oil",:action => "modify_withdraw",:id =>@icoilbalance[i].id%></center></td>
-			<td><center><%=link_to_function (image_tag("/images/icons/delete.png", :border=>0)+" ลบ"),"confirm('กรุณายืนยันการลบข้อมูล');",:controller => "ic_oil",:action => "delete_withdraw",:id =>@icoilbalance[i].id%></center></td></tr>
+			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*ic.Quantity%></center></td>
+			<td><center>
+                        <%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_withdraw",:id =>ic.id}, :class => 'edit'%>
+                        </center></td>
+			<td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_withdraw", :id =>ic.id}, :confirm => 'ยืนยันการลบข้อมูล
+', :class => 'delete' %></center></td></tr>
 		<%end%>
 	<%end%>
 <%end%>
 <tr><td></td><td></td><td></td><td></td></tr>
 </table>
 </center>
-<p>
-<b><%= link_to (image_tag("/images/icons/add.png", :border=>0)+" เพิ่มรายการใหม่"), :action => "new_withdraw", :controller => "ic_oil"%></b>
-<hr>
-</p>
-</p>
+<%= will_paginate @icoilbalance %>
+<%= link_to "เพิ่มรายการใหม่", {:action => "new_withdraw", :controller => "ic_oil"}, :class => 'add'%>
