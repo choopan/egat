@@ -19,7 +19,7 @@
 
 class AgingProduct < ActiveRecord::Base
   belongs_to :color
-  
+
   def self.find_all_by_name_and_transformer(name, transformer)
     u = transformer.hv
     aging_products = AgingProduct.where(:name => name)
@@ -31,9 +31,9 @@ class AgingProduct < ActiveRecord::Base
         ids << aging_product.id
       end
     end
-    aging_products.where(:id => ids) 
+    aging_products.where(:id => ids)
   end
-  
+
   def hi_factor(oil_contamination)
     return nil if oil_contamination.blank?
     AgingProductFactor.all.each do |aging_product_factor|
@@ -45,7 +45,7 @@ class AgingProduct < ActiveRecord::Base
       end
     end
   end
-  
+
   def hi_factor_color(oil_contamination)
     return nil if oil_contamination.blank?
     AgingProductFactor.where('hi_factor = ?', hi_factor(oil_contamination)).first.color.value
@@ -55,7 +55,7 @@ class AgingProduct < ActiveRecord::Base
     return nil if oil_contamination.blank?
     return "#{oil_contamination.thai_test_date}"
   end
-  
+
 
   def percent_aging_product_factor(oil_contamination)
     return nil if oil_contamination.blank?
@@ -84,3 +84,22 @@ class AgingProduct < ActiveRecord::Base
     max_score * weight
   end
 end
+
+# == Schema Information
+#
+# Table name: aging_products
+#
+#  id            :integer(4)      not null, primary key
+#  u_start       :integer(4)
+#  u_end         :integer(4)
+#  start         :integer(4)
+#  end           :integer(4)
+#  score         :integer(4)
+#  score_message :integer(4)
+#  weight        :integer(4)
+#  name          :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  color_id      :integer(4)
+#
+

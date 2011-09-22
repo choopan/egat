@@ -58,12 +58,11 @@ class TransformerInformation < ActiveRecord::Base
   before_create :update_recent
 
   def self.find_all_by_transformers(transformers)
-    self.most_recent.
-      where("transformer_id in (?)", transformers.collect { |t| t.id }).all
+    self.most_recent.where("transformer_id in (?)", transformers.collect { |t| t.id }).all
   end
 
   def self.get_data_points
-    self.get_points(self.most_recent.order("id").all)
+    self.get_points(self.most_recent.order("id").includes(:transformer).all)
   end
 
   def self.get_data_points_by_transformers(transformers)
@@ -147,7 +146,8 @@ class TransformerInformation < ActiveRecord::Base
     return score_message    
   end
   
-  def importance_index    
+  def importance_index 
+    return Rails.cache.fetch("importance_index.#{self.transformer_id}") unless Rails.cache.fetch("importance_index.#{self.transformer_id}").nil?
     ii = (((load_pattern_per_year.load_pattern_factor.score * 4) + 
       (system_location.score * 4) + 
       (n1_criteria.score * 5) + 
@@ -161,21 +161,27 @@ class TransformerInformation < ActiveRecord::Base
       (pollution.score * 1) + 
       (transformer.brand.score * 2)).to_f / 
            (denominator).to_f * 100.to_f )
-      ii.round(2)
+      ii = ii.round(2)
+      Rails.cache.write("importance_index.#{self.transformer_id}", ii)
+      return ii
     end
 
     def denominator
-      (5 * 4) + (6 * 4) + (5 * 5) + (5 * 4) + (4 * 3) + (5 * 4) + (5 * 4) + (5 * 3) + (5 * 3) + (5 * 1) + (5 * 1) +
-        (5 * 2)
+      (5 * 4) + (6 * 4) + (5 * 5) + (5 * 4) + (4 * 3) + (5 * 4) + (5 * 4) + 
+      (5 * 3) + (5 * 3) + (5 * 1) + (5 * 1) + (5 * 2)
     end
 
     def percent_hi
-      percent_overall_health_index = OverallCondition.new(self.transformer_id).percent_overall_health_index
-      if percent_overall_health_index.nil?
-        return 100 - overall_condition
-      else
-        percent_overall_health_index
+      transformer = self.transformer
+      unless Rails.cache.fetch("overall_condition.#{transformer.id}").nil?
+        return Rails.cache.fetch("overall_condition.#{transformer.id}")
       end
+      percent_overall_health_index = (OverallCondition.percent_overall_health_index(Transformer.find(transformer_id)))
+      if percent_overall_health_index.nil?
+       percent_overall_health_index = 100 - overall_condition
+      end
+      Rails.cache.write("overall_condition.#{transformer.id}", percent_overall_health_index)
+      return percent_overall_health_index
     end
 
     def importance
@@ -216,8 +222,10 @@ class TransformerInformation < ActiveRecord::Base
         self.recent = true
         id = self.transformer_id
         transformer_information = TransformerInformation.find_by_transformer_id_and_recent(id, true)
-        transformer_information.recent = false
-        transformer_information.save
+        unless transformer_information.nil?
+          transformer_information.recent = false
+          transformer_information.save
+        end
       end
 
       def system_fault_level_hv_mva

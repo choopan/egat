@@ -8,17 +8,104 @@ module OverallConditionsHelper
     end
   end
 
+  def bushing_test(type, phase)
+    min = [@bushing_test.health_index_factor(phase + "1"), @bushing_test.health_index_factor(phase + "2"), 
+           @bushing_test.health_index_factor(phase + "3")].min
+    case type
+    when :hi_factor
+      return min
+    when :color
+      link_to(color_span(BushingTestFactor.where(:hi_factor => min).first.color.value).html_safe, 
+              transformer_bushing_tests_path)
+    end
+  end  
+  def arrester(type, phase)
+    min = [@arrester.health_index_factor(phase + "1"), @arrester.health_index_factor(phase + "2"), 
+           @arrester.health_index_factor(phase + "3")].min
+    case type
+    when :hi_factor
+      return min
+    when :color
+      link_to(color_span(ArresterFactor.where(:hi_factor => min).first.color.value).html_safe, transformer_arresters_path)
+    end
+  end
+
+  def insulating_oil(type)
+    unless @insulating_oil.blank? && @oltc_oil_contamination.blank?
+      case type
+      when :color
+        return color_span(InsulatingOilFactor.color(@insulating_oil, @oil_contamination)).html_safe
+      when :percent_hi
+        return number_with_precision(InsulatingOilFactor.percent_hi(@insulating_oil, @oil_contamination), :precision => 2)
+      end
+    else
+      " - "
+    end
+  end
+
   def oltc_oil_quality(type)
     unless @insulating_oil.blank? && @oltc_oil_contamination.blank?
       oltc_oil_quality = OltcOilQuality.new
       case type
       when :hi_factor
-        return oltc_oil_quality.hi_factor(@insulating_oil, @oltc_oil_contamination)
+        return oltc_oil_quality.hi_factor(@insulating_oil, @oltc_oil_contamination, :oltc_oil_quality)
       when :color
-        return link_to(color_span(oltc_oil_quality.hi_factor_color(@insulating_oil, @oltc_oil_contamination)).html_safe,
+        return link_to(color_span(oltc_oil_quality.hi_factor_color(@insulating_oil, @oltc_oil_contamination, :oltc_oil_quality)).html_safe,
                        transformer_oltc_oil_qualities_path(@transformer))
       when :test_date
         return oltc_oil_quality.test_date(@insulating_oil, @oltc_oil_contamination)
+      end
+    else
+      " - "
+    end
+  end
+
+  def oltc_oil_contamination(type)
+    unless @insulating_oil.blank? && @oltc_oil_contamination.blank?
+      oltc_oil_quality = OltcOilQuality.new
+      case type
+      when :hi_factor
+        return oltc_oil_quality.hi_factor(@insulating_oil, @oltc_oil_contamination, :oltc_oil_contamination)
+      when :color
+        return link_to(color_span(oltc_oil_quality.hi_factor_color(@insulating_oil, @oltc_oil_contamination, :oltc_oil_contamination)).html_safe,
+                       :controller => 'oltc_oil_qualities', :action => 'oltc_oil_contaminations', :transformer_id => @transformer.id)
+      when :test_date
+        return oltc_oil_quality.test_date(@insulating_oil, @oltc_oil_contamination)
+      end
+    else
+      " - "
+    end
+  end
+
+  def oltc_dielectric_property(type)
+    unless @insulating_oil.blank? && @oltc_oil_contamination.blank?
+      oltc_oil_quality = OltcOilQuality.new
+      case type
+      when :hi_factor
+        return oltc_oil_quality.hi_factor(@insulating_oil, @oltc_oil_contamination, :oltc_dielectric_property)
+      when :color
+        return link_to(color_span(oltc_oil_quality.hi_factor_color(@insulating_oil, @oltc_oil_contamination, :oltc_dielectric_property)).html_safe,
+                       :controller => 'oltc_oil_qualities', :action => 'oltc_dielectric_properties',
+                       :transformer_id => @transformer.id)
+      when :test_date
+        return oltc_oil_quality.test_date(@insulating_oil, @oltc_oil_contamination)
+      end
+    else
+      " - "
+    end
+  end
+
+  def oil_contamination(type)
+    unless @insulating_oil.blank? && @oil_contamination.blank?
+      oil_quality = OilQuality.new
+      case type
+      when :hi_factor
+        return oil_quality.hi_factor(@insulating_oil, @oil_contamination, :contamination)
+      when :color
+        return link_to(color_span(oil_quality.hi_factor_color(@insulating_oil, @oil_contamination, :contamination)).html_safe,
+                       :controller => "oil_qualities", :action => "oil_contaminations", :transformer_id => @transformer.id)
+      when :test_date
+        return oil_quality.test_date(@insulating_oil, @oil_contamination)
       end
     else
       " - "
@@ -30,9 +117,10 @@ module OverallConditionsHelper
       oil_quality = OilQuality.new
       case type
       when :hi_factor
-        return oil_quality.hi_factor(@insulating_oil, @oil_contamination)
+        return oil_quality.hi_factor(@insulating_oil, @oil_contamination, :oil_quality)
       when :color
-        return link_to(color_span(oil_quality.hi_factor_color(@insulating_oil, @oil_contamination)).html_safe,
+        return link_to(color_span(oil_quality.hi_factor_color(@insulating_oil,
+                                                              @oil_contamination, :oil_quality)).html_safe,
                        transformer_oil_qualities_path(@transformer))
       when :test_date
         return oil_quality.test_date(@insulating_oil, @oil_contamination)
@@ -50,7 +138,7 @@ module OverallConditionsHelper
         return aging_product.hi_factor(@oil_contamination)
       when :color
         return link_to(color_span(aging_product.hi_factor_color(@oil_contamination)).html_safe,
-                                  transformer_aging_products_path(@transformer))
+                       transformer_aging_products_path(@transformer))
       when :test_date
         return aging_product.test_date(@oil_contamination)
       end
@@ -84,31 +172,29 @@ module OverallConditionsHelper
     end
   end
 
-  def oltc_dga_hi_factor
-    unless OltcDgaFactor.hi_factor(@transformer.id).blank?
-      OltcDgaFactor.hi_factor(@transformer.id)
-    else
-      " - "
+  def oltc_dga(type)
+    case type
+    when :hi_factor
+      unless OltcDgaFactor.hi_factor(@transformer.id).blank?
+        OltcDgaFactor.hi_factor(@transformer.id)
+      else
+        " - "
+      end
+    when :color
+      unless OltcDgaFactor.hi_factor(@transformer.id).blank?
+        link = transformer_oltc_dgas_path(@transformer)
+        return link_to(color_span(OltcDgaFactor.color(@transformer.id)).html_safe, link)
+      else
+        " - "
+      end
+    when :test_date
+      unless OltcDgaFactor.test_date(@transformer.id).blank?
+        OltcDgaFactor.test_date(@transformer.id)
+      else
+        " - "
+      end
     end
   end
-
-  def oltc_dga_color
-    unless OltcDgaFactor.hi_factor(@transformer.id).blank?
-      link = transformer_oltc_dgas_path(@transformer)
-      return link_to(color_span(OltcDgaFactor.color(@transformer.id)).html_safe, link)
-    else
-      " - "
-    end
-  end
-
-  def oltc_dga_test_date
-    unless OltcDgaFactor.test_date(@transformer.id).blank?
-      OltcDgaFactor.test_date(@transformer.id)
-    else
-      " - "
-    end
-  end
-
 
   def power_factor_hi_factor
     unless PowerFactor.hi_factor(@transformer.id).blank?
@@ -299,7 +385,7 @@ module OverallConditionsHelper
   end
 
   def color_span(value)
-    "<span style=\"padding:0px 40px 0px 40px; background:rgb(" + "#{value});\">" + "</span>"
+    "<span style=\"padding:0px 40px 0px 40px; background:rgb(" + "#{value});\">&nbsp;</span>"
   end
 
 end

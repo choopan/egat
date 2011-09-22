@@ -14,7 +14,7 @@
   %table
     %thead
       %tr
-        %th OLTC Oil Quality
+        %th Oil Quality
         %th= hi_factor_color
     %tbody 
       %tr
@@ -40,3 +40,12 @@
 %h4 กราฟแสดงความสัมพันธ์ระหว่าง Color กับวันทดสอบ
 #color_graph{:style => "width:900px;height:400px"}
 %button{:id => "reset_color"} Reset
+%br
+%h4 กราฟแสดงความสัมพันธ์ระหว่าง %Power Factor @ 20C กับวันทดสอบ
+#pf_20c_graph{:style => "width:900px;height:400px"}
+%button{:id => "reset_pf_20c"} Reset
+%br
+%h4 กราฟแสดงความสัมพันธ์ระหว่าง %Power Factor @ 100C กับวันทดสอบ
+#pf_100c_graph{:style => "width:900px;height:400px"}
+%button{:id => "reset_pf_100c"} Reset
+

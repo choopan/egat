@@ -82,11 +82,11 @@ Egat::Application.routes.draw do
   end
 
   resources :transformer_informations do
-    member do 
+    member do
       get 'importance_and_risk_table'
-      
+
     end
-    collection do      
+    collection do
       get 'search'
     end
   end
@@ -107,25 +107,39 @@ Egat::Application.routes.draw do
     collection do
       get 'search'
     end
-  end  
+  end
+
   
   resources :transformers do
+    resources :arresters
+    resources :arrester_conditions
+    resources :bushing_tests
+    resources :bushing_test_conditions
     resources :aging_products
     resources :oil_input
-    resources :oil_dgas do 
+    resources :oil_dgas do
       collection do
         get :graph
       end
     end
-    resources :oil_qualities
-    resources :oltc_oil_qualities
+    resources :oil_qualities do
+      collection do
+        get :oil_contaminations
+      end
+    end
+    resources :oltc_oil_qualities do
+      collection do
+        get :oltc_oil_contaminations
+        get :oltc_dielectric_properties
+      end
+    end
     resources :oltc_dgas
     resources :furans
     resources :oil_contaminations
     resources :oltc_oil_contaminations
     resources :overall_conditions
     resources :insulating_oils
-    resources :visual_inspections do 
+    resources :visual_inspections do
       resources :general_conditions
       resources :bushing_conditions
       resources :load_histories
@@ -140,16 +154,16 @@ Egat::Application.routes.draw do
       resources :oltc_compartments
       resources :oltc_control_cabinets
       resources :thermo_scans
-    end    
+    end
     resources :electrical_tests
     resources :price_loss
     resources :information_decision
     resources :power_factors    
   end
-  
 
 
-  
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -199,7 +213,7 @@ Egat::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "home#index"
+  root :to => "transformer_informations#index"
 
   # See how all your routes lay out with "rake routes"
 
