@@ -1,9 +1,9 @@
 <p><center>
 <table border=1>
 <tr><th><center>รายการที่</center></th><th><center>ปีที่เบิกจ่ายน้ำมัน</center></th><th><center>ปริมาณการเบิก [ถัง/ปี]</center></th><th><center>ราคา[บาท/ลิตร]</center></th><th><center>แก้ไข</center></th></tr>
-<%if @num2!=0%>
-	<% for i in 0..@num2-1 do%>
-			<tr><td><center><%=i+1%></center></td><td><center><%=@updateprice[i].Year%></center></td><td><center><%=@updateprice[i].quantity%></center></td><td><center><%=@updateprice[i].Price%></center></td><td><center><%=link_to (image_tag("/images/icons/page_edit.png", :border=>0)+" แก้ไข"),:controller => "ic_oil",:action => "modify_annually",:id =>@updateprice[i].id%></center></td></tr>
+<% if @num!=0 %>
+	<% for i in 0..@num-1 %>
+			<tr><td><center><%=i+1%></center></td><td><center><%=@updateprice[i].Year%></center></td><td><center><%=@updateprice[i].quantity%></center></td><td><center><%=@updateprice[i].Price%></center></td><td><center><%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_annually",:id =>@updateprice[i].id}, :class => 'edit'%></center></td></tr>
 	<%end%>
 <%end%>
 <tr><td></td><td></td><td></td><td></td><td></td></tr>

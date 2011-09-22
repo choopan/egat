@@ -1,5 +1,13 @@
 Egat::Application.routes.draw do
 
+  get "weibull/weibull_select"
+
+  get "weibull/weibull_calculation"
+
+  get "weibull/weibull_chart"
+
+  get "weibull/weibull_detail"
+
   resources :transformer_info do
 	collection do
 		get "txlist"

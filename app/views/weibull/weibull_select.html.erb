@@ -1,0 +1,72 @@
+<script>
+function displaysub(){
+    var xobj = document.dynamiccombo.korn1;
+    var x  = xobj.options[xobj.selectedIndex].value;
+    var cacheobj=document.dynamiccombo.korn2;
+	cacheobj.options.length = 0;
+	if(x==1){
+		cacheobj.options[0]=new Option("aa1","aa1");
+		cacheobj.options[1]=new Option("aa2","aa2");
+		cacheobj.options[2]=new Option("aa3","aa3");
+		cacheobj.options[3]=new Option("aa4","aa4");
+		cacheobj.options[0].selected=true;
+	}else if(x==2){
+		cacheobj.options[0]=new Option("bb1","bb1");
+		cacheobj.options[1]=new Option("bb2","bb2");
+		cacheobj.options[2]=new Option("bb3","bb3");
+		cacheobj.options[3]=new Option("bb4","bb4");
+		cacheobj.options[4]=new Option("bb5","bb5");
+		cacheobj.options[5]=new Option("bb6","bb6");
+		cacheobj.options[0].selected=true;
+	}else{
+		cacheobj.options[0]=new Option("cc1","cc1");
+		cacheobj.options[1]=new Option("cc2","cc2");
+		cacheobj.options[2]=new Option("cc3","cc3");
+		cacheobj.options[3]=new Option("cc4","cc4");
+		cacheobj.options[0].selected=true;
+	
+	}
+		
+}
+</script>
+<p><h2>&nbsp;Inventory Control / Weibull Calculation</h2></p>
+<p>
+<form name='dynamiccombo'>
+<table><tr><td><b>อุปกรณ์</b></td>
+<td><select  name="korn1" size ="1" onChange="displaysub()">
+	<option value="#" ></option>
+	<option value="1">Bushing</option>
+	<option value="2">Arrester</option>
+	<option value="3">OLTC</option>
+</select></td></tr>
+<tr><td><b>Voltage Rating</b></td>
+<td><select size="1">
+	<option value="11">11</option>
+	<option value="22">22</option>
+	<option value="33">33</option>
+	<option value="69">69</option>
+	<option value="115">115</option>
+	<option value="132">132</option>
+	<option value="230">230</option>
+	<option value="500">500</option>
+</select></td></tr>
+<tr><td><b>Manufacturer</b></td>
+<td><select name = "korn2" size="1">
+<option value="#">&nbsp;&nbsp;&nbsp;</option>
+</select></td></tr>
+<tr><td><b>Type</b></td>
+<td><select size="1">
+<option value="#">&nbsp;&nbsp;&nbsp;</option>
+</select></td></tr>
+<tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td>
+<td><select size="1">
+<option value="#">&nbsp;&nbsp;&nbsp;</option>
+</select></td></tr>
+<tr><td><b>Time Interval for Failure Observation(years)</b></td>
+<td><input type="text" size="10"></td></tr>
+<tr><td><b>Lead Time(years)</b></td>
+<td><input type="text" size="10"></td></tr>
+<tr><td></td><td><input type="submit" value="คำนวณ" size="10"></td></tr>
+</table>
+</form>
+</p>
