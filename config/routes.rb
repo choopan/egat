@@ -1,5 +1,17 @@
 Egat::Application.routes.draw do
 
+  get "manufacturing/station"
+
+  get "manufacturing/usage"
+
+  get "manufacturing/manufacturer_tx"
+
+  get "manufacturing/manufacturer_bushing"
+
+  get "manufacturing/manufacturer_arrester"
+
+  get "manufacturing/manufacturer_lotc"
+
   get "weibull/weibull_select"
 
   get "weibull/weibull_calculation"

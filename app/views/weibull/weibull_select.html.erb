@@ -4,25 +4,70 @@ function displaysub(){
     var x  = xobj.options[xobj.selectedIndex].value;
     var cacheobj=document.dynamiccombo.korn2;
 	cacheobj.options.length = 0;
-	if(x==1){
-		cacheobj.options[0]=new Option("aa1","aa1");
-		cacheobj.options[1]=new Option("aa2","aa2");
-		cacheobj.options[2]=new Option("aa3","aa3");
-		cacheobj.options[3]=new Option("aa4","aa4");
+	if(x=="Bushing"){
+		cacheobj.options[0]=new Option("ABB","ABB");
+		cacheobj.options[1]=new Option("ASEA","ASEA");
+		cacheobj.options[2]=new Option("GENERAL  ELECTRIC  GE","GENERAL  ELECTRIC  GE");
+		cacheobj.options[3]=new Option("HAEFELY","HAEFELY");
+		cacheobj.options[4]=new Option("HAEFELY TRENCH","HAEFELY TRENCH");
+		cacheobj.options[5]=new Option("HEBBURN","HEBBURN");
+		cacheobj.options[6]=new Option("HSP","HSP");
+		cacheobj.options[7]=new Option("HSP F&G","HSP F&G");
+		cacheobj.options[8]=new Option("JAPAN NGK INSULATOR LTD.","JAPAN NGK INSULATOR LTD.");
+		cacheobj.options[9]=new Option("LAPP INS.","LAPP INS.");
+		cacheobj.options[10]=new Option("MGK","MGK");
+		cacheobj.options[11]=new Option("MICAFIL","MICAFIL");
+		cacheobj.options[12]=new Option("MITSUBISHI","MITSUBISHI");
+		cacheobj.options[13]=new Option("NGK","NGK");
+		cacheobj.options[14]=new Option("NGN","NGN");
+		cacheobj.options[15]=new Option("OSAKA","OSAKA");
+		cacheobj.options[16]=new Option("RADE KONCAR","RADE KONCAR");
+		cacheobj.options[17]=new Option("TOSHIBA","TOSHIBA");
+		cacheobj.options[18]=new Option("TRENCH","TRENCH");
 		cacheobj.options[0].selected=true;
-	}else if(x==2){
-		cacheobj.options[0]=new Option("bb1","bb1");
-		cacheobj.options[1]=new Option("bb2","bb2");
-		cacheobj.options[2]=new Option("bb3","bb3");
-		cacheobj.options[3]=new Option("bb4","bb4");
-		cacheobj.options[4]=new Option("bb5","bb5");
-		cacheobj.options[5]=new Option("bb6","bb6");
+	}else if(x=="Arrester"){
+		cacheobj.options[0]=new Option("ABB","ABB");
+		cacheobj.options[1]=new Option("ABB SWITCHEAR","ABB SWITCHEAR");
+		cacheobj.options[2]=new Option("AEG","AEG");
+		cacheobj.options[3]=new Option("ALSTOM","ALSTOM");
+		cacheobj.options[4]=new Option("ASEA","ASEA");
+		cacheobj.options[5]=new Option("BBC","BBC");
+		cacheobj.options[6]=new Option("COOPER","COOPER");
+		cacheobj.options[7]=new Option("DAIHEN","DAIHEN");
+		cacheobj.options[8]=new Option("EMP","EMP");
+		cacheobj.options[9]=new Option("GEC ALSTHOM","GEC ALSTHOM");
+		cacheobj.options[10]=new Option("MAIDEN","MAIDEN");
+		cacheobj.options[11]=new Option("MEIDENSHA","MEIDENSHA");
+		cacheobj.options[12]=new Option("MEIDEN SORESTER","MEIDEN SORESTER");
+		cacheobj.options[13]=new Option("METAL OXIDE SURGE ARRESTER","METAL OXIDE SURGE ARRESTER");
+		cacheobj.options[14]=new Option("MITSUBISHI","MITSUBISHI");
+		cacheobj.options[15]=new Option("NGK","NGK");
+		cacheobj.options[16]=new Option("OHIO BRASS","OHIO BRASS");
+		cacheobj.options[17]=new Option("RADE KONCAR","RADE KONCAR");
+		cacheobj.options[18]=new Option("SEIMEMS","SEIMEMS");
+		cacheobj.options[19]=new Option("SORESTER","SORESTER");
+		cacheobj.options[20]=new Option("SURESTER MEIDENSHA","SURESTER MEIDENSHA");
+		cacheobj.options[21]=new Option("TMT&D","TMT&D");
+		cacheobj.options[22]=new Option("TOSHIBA","TOSHIBA");
 		cacheobj.options[0].selected=true;
 	}else{
-		cacheobj.options[0]=new Option("cc1","cc1");
-		cacheobj.options[1]=new Option("cc2","cc2");
-		cacheobj.options[2]=new Option("cc3","cc3");
-		cacheobj.options[3]=new Option("cc4","cc4");
+		cacheobj.options[0]=new Option("ABB","ABB");
+		cacheobj.options[1]=new Option("ALSTHOM","ALSTHOM");
+		cacheobj.options[2]=new Option("ASEA","ASEA");
+		cacheobj.options[3]=new Option("BORSDL","BORSDL");
+		cacheobj.options[4]=new Option("DAIHEN","DAIHEN");
+		cacheobj.options[5]=new Option("ELIN","ELIN");
+		cacheobj.options[6]=new Option("FERRANTI","FERRANTI");
+		cacheobj.options[7]=new Option("FUJI","FUJI");
+		cacheobj.options[8]=new Option("HUAMING","HUAMING");
+		cacheobj.options[9]=new Option("MASCHINENFABRIK","MASCHINENFABRIK");
+		cacheobj.options[10]=new Option("MEIDEN","MEIDEN");
+		cacheobj.options[11]=new Option("MEIDENSHA","MEIDENSHA");
+		cacheobj.options[12]=new Option("MITSUBISHI","MITSUBISHI");
+		cacheobj.options[13]=new Option("MR","MR");
+		cacheobj.options[14]=new Option("TOSHIBA","TOSHIBA");
+		cacheobj.options[15]=new Option("TRAFO-UNION","TRAFO-UNION");
+		cacheobj.options[16]=new Option("VOLTA-WERKE","VOLTA-WERKE");
 		cacheobj.options[0].selected=true;
 	
 	}
@@ -35,12 +80,13 @@ function displaysub(){
 <table><tr><td><b>อุปกรณ์</b></td>
 <td><select  name="korn1" size ="1" onChange="displaysub()">
 	<option value="#" ></option>
-	<option value="1">Bushing</option>
-	<option value="2">Arrester</option>
-	<option value="3">OLTC</option>
+	<option value="Bushing">Bushing</option>
+	<option value="Arrester">Arrester</option>
+	<option value="OLTC">OLTC</option>
 </select></td></tr>
 <tr><td><b>Voltage Rating</b></td>
 <td><select size="1">
+	<option value="#"></option>
 	<option value="11">11</option>
 	<option value="22">22</option>
 	<option value="33">33</option>
@@ -52,15 +98,30 @@ function displaysub(){
 </select></td></tr>
 <tr><td><b>Manufacturer</b></td>
 <td><select name = "korn2" size="1">
-<option value="#">&nbsp;&nbsp;&nbsp;</option>
+	<option value="#"></option>
 </select></td></tr>
 <tr><td><b>Type</b></td>
 <td><select size="1">
-<option value="#">&nbsp;&nbsp;&nbsp;</option>
+	<option value="#"></option>
 </select></td></tr>
 <tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td>
 <td><select size="1">
-<option value="#">&nbsp;&nbsp;&nbsp;</option>
+	<option value="#"></option>
+	<option value="ปกติ">ปกติ</option>
+	<option value="รั่วซึม">รั่วซึม</option>
+	<option value="แตก/ขาด">แตก/ขาด</option>
+	<option value="ฝืด/ขัดตัว">ฝืด/ขัดตัว</option>
+	<option value="หลุด/หลวม">หลุด/หลวม</option>
+	<option value="สนิม/สกปรก">สนิม/สกปรก</option>
+	<option value="ลัดวงจร">ลัดวงจร</option>
+	<option value="Flashover">Flashover</option>
+	<option value="Hot Spot">Hot Spot</option>
+	<option value="อุปกรณ์ชำรุด">อุปกรณ์ชำรุด</option>
+	<option value="ไม่ทำงาน">ไม่ทำงาน</option>
+	<option value="ทำงานไม่ถูกต้อง">ทำงานไม่ถูกต้อง</option>
+	<option value="คุณสมบัติเปลี่ยนไป">คุณสมบัติเปลี่ยนไป</option>
+	<option value="ทดสอบไม่ผ่าน">ทดสอบไม่ผ่าน</option>
+	<option value="อื่นๆ ให้ระบุ">อื่นๆ ให้ระบุ</option>	
 </select></td></tr>
 <tr><td><b>Time Interval for Failure Observation(years)</b></td>
 <td><input type="text" size="10"></td></tr>

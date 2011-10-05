@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110831220513) do
+ActiveRecord::Schema.define(:version => 20111003215425) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1104,6 +1104,30 @@ ActiveRecord::Schema.define(:version => 20110831220513) do
     t.string  "tel_no"
   end
 
+  create_table "manufacturer_arresters", :force => true do |t|
+    t.string   "manufacturer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufacturer_bushings", :force => true do |t|
+    t.string   "manufacturer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufacturer_oltcs", :force => true do |t|
+    t.string   "manufacturer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufacturer_txes", :force => true do |t|
+    t.string   "manufacturer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "manufacturers", :force => true do |t|
     t.string   "address"
     t.integer  "version"
@@ -1664,6 +1688,21 @@ ActiveRecord::Schema.define(:version => 20110831220513) do
     t.float    "start"
     t.float    "end"
     t.string   "color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "power_stations", :force => true do |t|
+    t.string   "name"
+    t.string   "fullName"
+    t.string   "region"
+    t.integer  "kv"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "power_usages", :force => true do |t|
+    t.string   "usage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
