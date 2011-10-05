@@ -150,7 +150,7 @@ class TransformerInformation < ActiveRecord::Base
     return Rails.cache.fetch("importance_index.#{self.transformer_id}") unless Rails.cache.fetch("importance_index.#{self.transformer_id}").nil?
     ii = (((load_pattern_per_year.load_pattern_factor.score * 4) + 
       (system_location.score * 4) + 
-      (n1_criteria.score * 5) + 
+      #choopan (n1_criteria.score * 5) + 
       (system_stability.score * 4) + 
       (application_use.score * 3)  + 
       (system_fault_level_score * 4) + 

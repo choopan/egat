@@ -71,7 +71,7 @@
       </p>
        <p>
         <%= label_tag :status, "ลักษณะการใช้งานหม้อแปลงไฟฟ้า", :class => 'inline' %>
-        <%= select_tag "status", options_from_collection_for_select(@winding_types, "id", "description") %>
+        <%= select_tag "status", options_from_collection_for_select(@power_usages, "id", "usage") %>
       </p>
        <p>
         <%= label_tag :remark, "รายละเอียดเพิ่มเติม (Remark)", :class => 'inline' %>

@@ -2,11 +2,12 @@
 class EcoReportController < ApplicationController
   def report
     @transformer = Transformer.find(params[:transformer_id])
-    o = OverallCondition.new(params[:transformer_id])
-    @overallcondition = o.percent_overall_health_index
-    if @overallcondition.nil?
+#choopan
+    #o = OverallCondition.new(params[:transformer_id])
+    #@overallcondition = o.percent_overall_health_index
+    #if @overallcondition.nil?
       @overallcondition = "-"
-    end
+    #end
 
     manu = Manufacturer.find(@transformer[:manufacturing])
     @manufacturer = manu[:name] 

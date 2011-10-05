@@ -1,3 +1,5 @@
+#encoding : utf-8
+
 class PriceLossController < ApplicationController
   def index
     @transformer = Transformer.find(params[:transformer_id])

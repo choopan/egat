@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111003215425) do
+ActiveRecord::Schema.define(:version => 20111005084723) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1406,6 +1406,12 @@ ActiveRecord::Schema.define(:version => 20111003215425) do
     t.datetime "updated_at"
   end
 
+  create_table "n1_criteria", :force => true do |t|
+    t.string  "value",         :null => false
+    t.integer "score",         :null => false
+    t.string  "score_message", :null => false
+  end
+
   create_table "n1_criterias", :force => true do |t|
     t.string   "value"
     t.integer  "score"
@@ -2480,6 +2486,54 @@ ActiveRecord::Schema.define(:version => 20111003215425) do
 
   add_index "transformer", ["transformer_name"], :name => "transformer_name"
 
+  create_table "transformer_accessories", :force => true do |t|
+    t.integer  "bushing_hv_manu"
+    t.string   "bushing_hv_type"
+    t.integer  "bushing_hv_year"
+    t.string   "bushing_hv_h0"
+    t.string   "bushing_hv_h1"
+    t.string   "bushing_hv_h2"
+    t.string   "bushing_hv_h3"
+    t.integer  "bushing_lv_manu"
+    t.string   "bushing_lv_type"
+    t.integer  "bushing_lv_year"
+    t.string   "bushing_lv_x0"
+    t.string   "bushing_lv_x1"
+    t.string   "bushing_lv_x2"
+    t.string   "bushing_lv_x3"
+    t.integer  "bushing_tv_manu"
+    t.string   "bushing_tv_type"
+    t.string   "bushing_tv_y1"
+    t.string   "bushing_tv_y2"
+    t.string   "bushing_tv_y3"
+    t.integer  "arrester_hv_manu"
+    t.string   "arrester_hv_type"
+    t.integer  "arrester_hv_year"
+    t.string   "arrester_hv_h1"
+    t.string   "arrester_hv_h2"
+    t.string   "arrester_hv_h3"
+    t.integer  "arrester_hv_isgap"
+    t.integer  "arrester_lv_manu"
+    t.string   "arrester_lv_type"
+    t.integer  "arrester_lv_year"
+    t.string   "arrester_lv_x1"
+    t.string   "arrester_lv_x2"
+    t.string   "arrester_lv_x3"
+    t.integer  "arrester_lv_isgap"
+    t.integer  "arrester_tv_manu"
+    t.string   "arrester_tv_type"
+    t.integer  "arrester_tv_year"
+    t.string   "arrester_tv_y1"
+    t.string   "arrester_tv_y2"
+    t.string   "arrester_tv_y3"
+    t.integer  "arrester_tv_isgap"
+    t.integer  "oltc_manu"
+    t.string   "oltc_type"
+    t.integer  "oltc_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "transformer_control_cabinet_factors", :force => true do |t|
     t.integer  "hi_factor"
     t.string   "condition"
@@ -2542,6 +2596,17 @@ ActiveRecord::Schema.define(:version => 20111003215425) do
     t.datetime "updated_at"
     t.integer  "transformer_id"
     t.integer  "user_id"
+  end
+
+  create_table "transformer_transfers", :force => true do |t|
+    t.string   "txname"
+    t.string   "egatsn"
+    t.integer  "station_id"
+    t.integer  "new_station_id"
+    t.datetime "action_date"
+    t.string   "user_op"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "update_prices", :force => true do |t|

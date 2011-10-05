@@ -5,11 +5,11 @@ class InformationDecisionController < ApplicationController
   def index
 
     @transformer = Transformer.find(params[:transformer_id])
-    o = OverallCondition.new(params[:transformer_id])
-    @overallcondition = o.percent_overall_health_index
-    if @overallcondition.nil?
+    #choopan o = OverallCondition.new(params[:transformer_id])
+    #@overallcondition = o.percent_overall_health_index
+    #if @overallcondition.nil?
       @overallcondition = "-"
-    end
+    #end
 
     dp = Dp.find(1)
     @endlife = 52.076425 - ( 36.842943 * Math.exp(-2609690.4 * (dp.dp ** (-2.493992))))

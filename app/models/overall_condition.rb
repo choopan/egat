@@ -177,5 +177,8 @@ class OverallCondition < ActiveRecord::Base
     end
     overall_condition = others_times_weight + oltc_times_weight
     return overall_condition
+
+    rescue Exception
+	return 0
   end
 end

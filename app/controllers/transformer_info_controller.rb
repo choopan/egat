@@ -23,6 +23,7 @@ class TransformerInfoController < ApplicationController
     @stations = Station.order("name").all
     @brand_ids = Brand.order("name").all
     @winding_types = WindingType.order("id").all
+    @power_usages = PowerUsage.order("id").all
   end
 
   def txlistmove
