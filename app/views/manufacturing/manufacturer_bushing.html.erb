@@ -1,3 +1,22 @@
-<h1>Manufacturing#manufacturer_bushing</h1>
-<p>Find me in app/views/manufacturing/manufacturer_bushing.html.erb</p>
-<p>Find me in app/views/manufacturing/manufacturer_bushing.html.erb1</p>
+<h2>บริษัทผู้ผลิต Bushing</h2>
+<p>
+<center>
+	<table border=1>
+		<tr><th><center>Sequence</center></th><th><center>Manufacturer</center></th><th><center>Edit</center></th><th><center>Delete</center></th></tr>
+	<%if @num3!=0%>
+		<%for i in 0..@num3-1 do%>
+			<tr><td><center><%=i+1%></center></td><td><center><%=@bushing[i].manufacturer%></center></td>
+			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_bushing",:id =>@bushing[i].id}, :class => 'edit'%></center></td>
+			<td><center><%=link_to "Deleta", {:controller => "manufacturing",:action => "delete_bushing",:id =>@bushing[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></rt>
+		<%end%>
+	<%end%>
+		<tr><td></td><td></td><td></td><td></td></tr>
+	</table>
+</center>
+</p>
+
+<p>
+	<%= form_for @bushing1 ,:url => {:action => "create_bushing"}, :html => {:method => "post", :name => 'Bushing'} do |f| %>
+		<b>Manufacturer:</b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green1" %>
+	<%end%>
+</p>

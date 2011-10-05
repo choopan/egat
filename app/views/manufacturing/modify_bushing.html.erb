@@ -1,0 +1,9 @@
+<h2>แก้ไขข้อมูลของบริษัทผู้ผลิต Bushing</h2>
+<p>
+<center>
+	<%= form_for @bushing ,:url => {:action => "updat_bushing"}, :html => {:method => "post", :name => 'bushing'} do |f| %>
+		<input type=hidden name="id" value=<%= @bushing.id %>>
+		<b>Manufacture:</b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green1" %>
+	<%end%>
+</center>
+</p>

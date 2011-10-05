@@ -1,0 +1,9 @@
+<h2>แก้ไขข้อมูลของบริษัทผู้ผลิต OLTC</h2>
+<p>
+<center>
+	<%= form_for @oltc ,:url => {:action => "updat_oltc"}, :html => {:method => "post", :name => 'oltc'} do |f| %>
+		<input type=hidden name="id" value=<%= @oltc.id %>>
+		<b>Manufacture:</b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green1" %>
+	<%end%>
+</center>
+</p>
