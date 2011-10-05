@@ -1,0 +1,31 @@
+<h2>สถานีไฟฟ้า</h2>
+<p>
+<center>
+<table border=1>
+	<tr><th><center>Sequence</center></th><th><center>Name</center></th><th><center>Fullname</center></th><th><center>Region</center></th><th><center>Kv</center></th><th><center>Edit</center></th><th><center>Deletee</center></ht></tr>
+	<%if @num!=0%>
+		<%for i in 0..@num-1 do%>
+			<tr><td><center><%=i+1%></center></td><td><center><%=@station[i].name%></center></td><td><center><%=@station[i].fullName%></center></td>
+			<td><center><%=@station[i].region%></center></td><td><center><%=@station[i].kv%></center></td>
+			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_station",:id =>@station[i].id}, :class => 'edit'%></center></td>
+			<td><center><%=link_to "Deleta", {:controller => "manufacturing",:action => "delete_station",:id =>@station[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></rt>
+		<%end%>
+	<%end%>
+	<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</center>
+</p>
+
+<p>
+<div class="grid_3 prefix_5">
+<%= form_for @station1 ,:url => {:action => "create_station"}, :html => {:method => "post", :name => 'station'} do |f| %>
+	<table>
+			<tr><td><b>Name:</b></td><td><%= f.text_field :name, :size => 15%></td><td></td></tr>
+			<tr><td><b>Fullname:</b></td><td><%= f.text_field :fullName, :size => 15%></td><td></td></tr>
+			<tr><td><b>Region:</b></td><td><%= f.text_field :region, :size => 15%></td><td></td></tr>
+			<tr><td><b>Kv:</b></td><td><%= f.text_field :kv, :size => 15%></td><td></td></tr>
+			<tr><td colspan=2><%= f.submit "Save", :class => "cupid-green2" %></td><td></td></tr>
+	</table>
+<%end%>
+</div>
+</p>

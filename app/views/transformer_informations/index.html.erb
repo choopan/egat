@@ -69,23 +69,23 @@
             </td>
             <td>
 							<% 
-							  link_to transformer_overall_conditions_path(transformer_information.transformer), 
-							          {:rel => 'facebox'} do 
+							  #link_to transformer_overall_conditions_path(transformer_information.transformer), 
+							  #        {:rel => 'facebox'} do 
 							%>
-                <%= number_with_precision(transformer_information.percent_hi, :precision => 2) %>
-              <% end %>              							
+                <%#= number_with_precision(transformer_information.percent_hi, :precision => 2) %>
+              <% #end %>              							
 						</td>
             <td>
-              <% link_to transformer_information, {:rel => 'facebox'} do %>
-                <%= transformer_information.importance_index %>
-              <% end %>
+              <%# link_to transformer_information, {:rel => 'facebox'} do %>
+                <%#= transformer_information.importance_index %>
+              <%# end %>
             </td>
             <td>
-              <% link_to importance_and_risk_table_transformer_information_url(transformer_information.id), {:rel => 'facebox'} do %>
-                <%= transformer_information.risk.risk %>
-              <% end %>
+              <%# link_to importance_and_risk_table_transformer_information_url(transformer_information.id), {:rel => 'facebox'} do %>
+                <%#= transformer_information.risk.risk %>
+              <%# end %>
             </td>
-            <td><%= transformer_information.risk.action %></td>
+            <td><%#= transformer_information.risk.action %></td>
             <td>
               <input type="checkbox" name="name[]" 
                     id = "<%= 'transformer_' + transformer_information.transformer.id.to_s -%>"
