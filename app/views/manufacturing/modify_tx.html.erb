@@ -1,0 +1,9 @@
+<h2>แก้ไขข้อมูลบริษัทผู้ผลิตหม้อแปลง</h2>
+<p>
+<center>
+	<%= form_for @tx ,:url => {:action => "update_tx"}, :html => {:method => "post", :name => 'tx'} do |f| %>
+		<input type=hidden name="id" value=<%= @tx.id %>>
+		<b>Manufacture:</b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green1" %>
+	<%end%>
+</center>
+</p>

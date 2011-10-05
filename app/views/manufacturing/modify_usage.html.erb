@@ -1,0 +1,9 @@
+<h2>แก้ไขข้อมูลลักษณะการใช้งาน</h2>
+<p>
+<center>
+	<%= form_for @usage ,:url => {:action => "update_usage"}, :html => {:method => "post", :name => 'Usage'} do |f| %>
+		<input type=hidden name="id" value=<%= @usage.id %>>
+		<b>Usage:</b>&nbsp;&nbsp;<%= f.text_field :usage, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green1" %>
+	<%end%>
+</center>
+</p>
