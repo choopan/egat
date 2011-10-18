@@ -1,2 +1,41 @@
-<h1>TransformerInfo#txaddmove</h1>
-<p>Find me in app/views/transformer_info/txaddmove.html.erb</p>
+<h1>การย้ายหม้อแปลง</h1>
+<%= form_for @txmove ,:url => {:action => "update_txaddmove"}, :html => {:method => "post", :name => 'transformer_info'} do |f| -%>
+<div class='grid_10 prefix_2 chemicals' >
+  <p>
+  	<%= f.label :txname, "หม้อแปลงไฟฟ้า" , :class => 'inline' %>
+  	<%=
+      	f.collection_select(:txname, @txnames, :transformer_name, :transformer_name,
+                          {:selected => params[:transformer_name]})
+  	%>
+  </p>
+  <p>
+        <%= f.label :egatsn, "Equipement No.", :class => 'inline' %>
+        <%= f.text_field :egatsn, :value => @egatsn, :readonly => true %>
+  </p>
+  <p>
+        <%= f.label :station, "สถานีเก่า", :class => 'inline' %>
+        <%= f.text_field :station, :value => @station, :readonly => true %>
+  </p>
+  <p>
+        <%= f.label :station, "ย้ายไปสถานีใหม่", :class => 'inline' %>
+  	<%=
+      		f.collection_select(:new_station, @stations, :name, :full_name)
+  	%>
+  </p>
+  <p>
+        <%= f.label :new_txname, "ชื่อหม้อแปลงใหม่ (ใส่ KT1A,..)", :class => 'inline' %>
+        <%= f.text_field :new_txname %>
+  </p>
+  <p>
+        <%= f.label :date, "วันที่ย้าย", :class => 'inline' %>
+        <%= f.text_field :date %>
+  </p>
+  <p>
+        <%= f.label :user, "ผู้บันทึก", :class => 'inline' %>
+        <%= f.text_field :user %>
+  </p>
+</div>
+<div class='grid_10 prefix_4 chemicals' >
+  <p><%= f.submit "Save", :class => "cupid-green" %></p>
+</div>
+<% end %>
