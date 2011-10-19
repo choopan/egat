@@ -3,23 +3,21 @@
 <div class='grid_10 prefix_2 chemicals' >
   <p>
   	<%= f.label :txname, "หม้อแปลงไฟฟ้า" , :class => 'inline' %>
-  	<%=
-      	f.collection_select(:old_txname, @txnames, :transformer_name, :transformer_name,
-                          {:selected => params[:transformer_name]})
-  	%>
+        <%= f.text_field :old_txname, :readonly => true %>
+	<%= f.hidden_field :id %>
   </p>
   <p>
         <%= f.label :egatsn, "Equipement No.", :class => 'inline' %>
-        <%= f.text_field :egatsn, :value => @egatsn, :readonly => true %>
+        <%= f.text_field :egatsn, :readonly => true %>
   </p>
   <p>
         <%= f.label :station, "สถานีเก่า", :class => 'inline' %>
-        <%= f.text_field :station, :value => @station, :readonly => true %>
+        <%= f.text_field :station, :readonly => true %>
   </p>
   <p>
         <%= f.label :station, "ย้ายไปสถานีใหม่", :class => 'inline' %>
   	<%=
-      		f.collection_select(:new_station, @stations, :name, :full_name)
+      		f.collection_select(:new_station, @stations, :name, :full_name, {:selected => @new_station})
   	%>
   </p>
   <p>
