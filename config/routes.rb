@@ -26,6 +26,9 @@ Egat::Application.routes.draw do
 		get "txadd"
 		get "txlistmove"
 		get "txaddmove"
+		get "txeditmove"
+		get "txshowmove"
+		get "txdeletemove"
 		get "failurereport"
 	end
   end

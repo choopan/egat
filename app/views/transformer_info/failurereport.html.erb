@@ -1,2 +1,20 @@
-<h1>TransformerInfo#failurereport</h1>
-<p>Find me in app/views/transformer_info/failurereport.html.erb</p>
+<h1>หม้อแปลงไฟฟ้า</h1>
+<%= form_for :failure do |f| -%>
+<div class='grid_4 prefix_5'>
+<p>
+  <%= f.label :station, "เขต" , :class => 'inlinetitle' %>
+  <%=
+      @stations = Station.group("region").all
+      f.collection_select(:station, @stations, :region, :region, 
+                          {:prompt => 'All', :selected => params[:region]})
+  %>
+</p>
+<p>
+  <%= f.label :transformer, "หม้อแปลงไฟฟ้า" , :class => 'inlinetitle' %>
+  <%=
+      f.collection_select(:transformer, @txnames, "id", "transformer_name", 
+                          {:selected => params[:tid]})
+  %>
+</p>
+</div>
+<% end %>

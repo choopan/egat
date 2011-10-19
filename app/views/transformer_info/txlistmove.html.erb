@@ -17,15 +17,16 @@
       </tr>
     </thead>
     <tbody>
-      <% if !@txtransfer.blank? %>
+      <% if !@txtransfers.blank? %>
         <% for txtransfer in @txtransfers %>
 	<tr>
             <td><%= txtransfer.id %></td>
-            <td><%= link_to(txinfo.egatsn, '#') %></td>
-            <td><%= txinfo.station.full_name %></td>
-            <td><%= txinfo.new_station.full_name %> </td>
-            <td><%= link_to("Edit", '#', :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to("Delete", "#", :class => 'delete') %> </td>
+            <td><%= link_to(txtransfer.old_txname, "/transformer_info/txshowmove?id=#{txtransfer.id}") %></td>
+            <td><%= txtransfer.egatsn %></td>
+            <td><%= txtransfer.station %></td>
+            <td><%= txtransfer.new_station %> </td>
+            <td><%= link_to("Edit", "/transformer_info/txeditmove?id=#{txtransfer.id}", :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to("Delete", "/transformer_info/txdeletemove?id=#{txtransfer.id}", :class => 'delete') %> </td>
 	</tr>
 	<%end%>
       <%end%>

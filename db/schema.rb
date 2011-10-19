@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019013530) do
+ActiveRecord::Schema.define(:version => 20111019023502) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -2602,7 +2602,6 @@ ActiveRecord::Schema.define(:version => 20111019013530) do
   end
 
   create_table "transformer_transfers", :force => true do |t|
-    t.string   "txname"
     t.string   "egatsn"
     t.datetime "action_date"
     t.string   "user_op"
@@ -2610,6 +2609,8 @@ ActiveRecord::Schema.define(:version => 20111019013530) do
     t.datetime "updated_at"
     t.string   "station"
     t.string   "new_station"
+    t.string   "old_txname"
+    t.string   "new_txname"
   end
 
   create_table "update_prices", :force => true do |t|
