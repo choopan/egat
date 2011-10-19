@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018090958) do
+ActiveRecord::Schema.define(:version => 20111019013530) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -2474,16 +2474,17 @@ ActiveRecord::Schema.define(:version => 20111018090958) do
     t.string   "transformer_name"
     t.float    "tv"
     t.string   "vector_group"
-    t.decimal  "first_substation",    :precision => 10, :scale => 0
-    t.decimal  "manufacturing",       :precision => 10, :scale => 0
-    t.decimal  "status",              :precision => 10, :scale => 0
-    t.decimal  "winding_type_id",     :precision => 10, :scale => 0
+    t.decimal  "first_substation",           :precision => 10, :scale => 0
+    t.decimal  "manufacturing",              :precision => 10, :scale => 0
+    t.decimal  "status",                     :precision => 10, :scale => 0
+    t.decimal  "winding_type_id",            :precision => 10, :scale => 0
     t.integer  "brand_id"
     t.string   "position"
     t.string   "oltc_manufacturer"
     t.string   "oltc_type"
     t.string   "station"
     t.string   "txname"
+    t.integer  "transformer_accessories_id"
   end
 
   add_index "transformer", ["transformer_name"], :name => "transformer_name"
