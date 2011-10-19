@@ -1406,12 +1406,6 @@ ActiveRecord::Schema.define(:version => 20111005084723) do
     t.datetime "updated_at"
   end
 
-  create_table "n1_criteria", :force => true do |t|
-    t.string  "value",         :null => false
-    t.integer "score",         :null => false
-    t.string  "score_message", :null => false
-  end
-
   create_table "n1_criterias", :force => true do |t|
     t.string   "value"
     t.integer  "score"

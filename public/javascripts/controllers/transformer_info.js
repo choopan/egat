@@ -64,5 +64,12 @@ $(function() {
   Cbox.setupComboxBox('phase_position');
   Cbox.setupComboxBox('winding_type');
   Cbox.setupComboxBox('status');
+  Cbox.setupComboxBox('bushing_hv');
+  Cbox.setupComboxBox('bushing_lv');
+  Cbox.setupComboxBox('bushing_tv');
+  Cbox.setupComboxBox('arrester_hv');
+  Cbox.setupComboxBox('arrester_lv');
+  Cbox.setupComboxBox('arrester_tv');
+  Cbox.setupComboxBox('oltc');
 });
 

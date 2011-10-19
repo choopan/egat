@@ -5,69 +5,25 @@ function displaysub(){
     var cacheobj=document.dynamiccombo.korn2;
 	cacheobj.options.length = 0;
 	if(x=="Bushing"){
-		cacheobj.options[0]=new Option("ABB","ABB");
-		cacheobj.options[1]=new Option("ASEA","ASEA");
-		cacheobj.options[2]=new Option("GENERAL  ELECTRIC  GE","GENERAL  ELECTRIC  GE");
-		cacheobj.options[3]=new Option("HAEFELY","HAEFELY");
-		cacheobj.options[4]=new Option("HAEFELY TRENCH","HAEFELY TRENCH");
-		cacheobj.options[5]=new Option("HEBBURN","HEBBURN");
-		cacheobj.options[6]=new Option("HSP","HSP");
-		cacheobj.options[7]=new Option("HSP F&G","HSP F&G");
-		cacheobj.options[8]=new Option("JAPAN NGK INSULATOR LTD.","JAPAN NGK INSULATOR LTD.");
-		cacheobj.options[9]=new Option("LAPP INS.","LAPP INS.");
-		cacheobj.options[10]=new Option("MGK","MGK");
-		cacheobj.options[11]=new Option("MICAFIL","MICAFIL");
-		cacheobj.options[12]=new Option("MITSUBISHI","MITSUBISHI");
-		cacheobj.options[13]=new Option("NGK","NGK");
-		cacheobj.options[14]=new Option("NGN","NGN");
-		cacheobj.options[15]=new Option("OSAKA","OSAKA");
-		cacheobj.options[16]=new Option("RADE KONCAR","RADE KONCAR");
-		cacheobj.options[17]=new Option("TOSHIBA","TOSHIBA");
-		cacheobj.options[18]=new Option("TRENCH","TRENCH");
+		<%if @numBushing!=0%>
+			<%for i in 0..@numBushing-1 do%>
+				cacheobj.options[<%=i%>]=new Option('<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>');
+			<%end%>
+		<%end%>
 		cacheobj.options[0].selected=true;
 	}else if(x=="Arrester"){
-		cacheobj.options[0]=new Option("ABB","ABB");
-		cacheobj.options[1]=new Option("ABB SWITCHEAR","ABB SWITCHEAR");
-		cacheobj.options[2]=new Option("AEG","AEG");
-		cacheobj.options[3]=new Option("ALSTOM","ALSTOM");
-		cacheobj.options[4]=new Option("ASEA","ASEA");
-		cacheobj.options[5]=new Option("BBC","BBC");
-		cacheobj.options[6]=new Option("COOPER","COOPER");
-		cacheobj.options[7]=new Option("DAIHEN","DAIHEN");
-		cacheobj.options[8]=new Option("EMP","EMP");
-		cacheobj.options[9]=new Option("GEC ALSTHOM","GEC ALSTHOM");
-		cacheobj.options[10]=new Option("MAIDEN","MAIDEN");
-		cacheobj.options[11]=new Option("MEIDENSHA","MEIDENSHA");
-		cacheobj.options[12]=new Option("MEIDEN SORESTER","MEIDEN SORESTER");
-		cacheobj.options[13]=new Option("METAL OXIDE SURGE ARRESTER","METAL OXIDE SURGE ARRESTER");
-		cacheobj.options[14]=new Option("MITSUBISHI","MITSUBISHI");
-		cacheobj.options[15]=new Option("NGK","NGK");
-		cacheobj.options[16]=new Option("OHIO BRASS","OHIO BRASS");
-		cacheobj.options[17]=new Option("RADE KONCAR","RADE KONCAR");
-		cacheobj.options[18]=new Option("SEIMEMS","SEIMEMS");
-		cacheobj.options[19]=new Option("SORESTER","SORESTER");
-		cacheobj.options[20]=new Option("SURESTER MEIDENSHA","SURESTER MEIDENSHA");
-		cacheobj.options[21]=new Option("TMT&D","TMT&D");
-		cacheobj.options[22]=new Option("TOSHIBA","TOSHIBA");
+		<%if @numArrester!=0%>
+			<%for i in 0..@numArrester-1 do%>
+				cacheobj.options[<%=i%>]=new Option('<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>');
+			<%end%>
+		<%end%>
 		cacheobj.options[0].selected=true;
 	}else{
-		cacheobj.options[0]=new Option("ABB","ABB");
-		cacheobj.options[1]=new Option("ALSTHOM","ALSTHOM");
-		cacheobj.options[2]=new Option("ASEA","ASEA");
-		cacheobj.options[3]=new Option("BORSDL","BORSDL");
-		cacheobj.options[4]=new Option("DAIHEN","DAIHEN");
-		cacheobj.options[5]=new Option("ELIN","ELIN");
-		cacheobj.options[6]=new Option("FERRANTI","FERRANTI");
-		cacheobj.options[7]=new Option("FUJI","FUJI");
-		cacheobj.options[8]=new Option("HUAMING","HUAMING");
-		cacheobj.options[9]=new Option("MASCHINENFABRIK","MASCHINENFABRIK");
-		cacheobj.options[10]=new Option("MEIDEN","MEIDEN");
-		cacheobj.options[11]=new Option("MEIDENSHA","MEIDENSHA");
-		cacheobj.options[12]=new Option("MITSUBISHI","MITSUBISHI");
-		cacheobj.options[13]=new Option("MR","MR");
-		cacheobj.options[14]=new Option("TOSHIBA","TOSHIBA");
-		cacheobj.options[15]=new Option("TRAFO-UNION","TRAFO-UNION");
-		cacheobj.options[16]=new Option("VOLTA-WERKE","VOLTA-WERKE");
+		<%if @numOltc!=0%>
+			<%for i in 0..@numOltc-1 do%>
+				cacheobj.options[<%=i%>]=new Option('<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>');
+			<%end%>
+		<%end%>
 		cacheobj.options[0].selected=true;
 	
 	}

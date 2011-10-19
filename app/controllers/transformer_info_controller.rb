@@ -24,6 +24,22 @@ class TransformerInfoController < ApplicationController
     @brand_ids = Brand.order("name").all
     @winding_types = WindingType.order("id").all
     @power_usages = PowerUsage.order("id").all
+    @manufacturer_bushing = ManufacturerBushing.get_bushing()
+    @num_bushing = @manufacturer_bushing.count
+    if @num_bushing==0
+	@manufacturer_bushing = ManufacturerBushing.new
+    end
+    @manufacturer_arrester = ManufacturerArrester.get_arrester()
+    @num_arrester = @manufacturer_arrester.count
+    if @num_arrester==0
+	@manufacturer_arrester = ManufacturerArrester.new
+    end
+    @manufacturer_oltc = ManufacturerOltc.get_oltc()
+    @num_oltc = @manufacturer_oltc.count
+    if @num_oltc==0
+	@manufacturer_oltc = ManufacturerOltc.new
+    end
+	
   end
 
   def txlistmove
