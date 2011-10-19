@@ -1,2 +1,36 @@
-<h1>TransformerInfo#txlistmove</h1>
-<p>Find me in app/views/transformer_info/txlistmove.html.erb</p>
+<h1>การย้ายหม้อแปลง</h1>
+<p align=center>
+  <%= link_to("เพิ่มข้อมูลการย้ายหม้อแปลงไฟฟ้า", "/transformer_info/txaddmove", :class => 'add') %> 
+</p>
+<p><div class='grid_16'>&nbsp;</div></p>
+<p>
+<div id="transformers" class="grid_14 prefix_1">
+  <table id="transformers_table">
+    <thead>
+      <tr>
+      <th>ID</th>
+      <th>หม้อแปลงไฟฟ้า</th>
+      <th>Equipment No.</th>
+      <th>สถานีเก่า</th>
+      <th>สถานีใหม่</th>
+      <th width=160></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if !@txtransfer.blank? %>
+        <% for txtransfer in @txtransfers %>
+	<tr>
+            <td><%= txtransfer.id %></td>
+            <td><%= link_to(txinfo.egatsn, '#') %></td>
+            <td><%= txinfo.station.full_name %></td>
+            <td><%= txinfo.new_station.full_name %> </td>
+            <td><%= link_to("Edit", '#', :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to("Delete", "#", :class => 'delete') %> </td>
+	</tr>
+	<%end%>
+      <%end%>
+    </tbody>
+   </table>
+  <%= will_paginate @txtransfers %>
+</div>
+</p>

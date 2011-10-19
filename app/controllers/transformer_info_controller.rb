@@ -43,9 +43,23 @@ class TransformerInfoController < ApplicationController
   end
 
   def txlistmove
+	@txtransfers = TransformerTransfer.order("id").paginate(:page => params[:page], :per_page => 25)
   end
 
   def txaddmove
+	@txnames = Transformer.order("transformer_name")
+	selectedTx = params[:transformer_name]
+	if(!selectedTx.nil?) 
+		txinfo = Transformer.where("transformer_name = '#{selectedTx}'").first
+		@egatsn   = txinfo.egatsn
+		station_name  = txinfo.station
+	else
+		@egatsn   = @txnames.first.egatsn
+		station_name  = @txnames.first.station
+	end
+	@station = Station.where("name = '#{station_name}'").first.full_name
+	@stations = Station.order("name")
+
   end
 
   def failurereport

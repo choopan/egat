@@ -14,4 +14,5 @@
 #
 
 class Station < ActiveRecord::Base
+	belongs_to :transformer
 end
