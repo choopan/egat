@@ -61,11 +61,7 @@ Region.onTransformerNamChange = function(transformerId) {
 
 
 var TxFailure = { };
-TxFailure.setupTransformerNameComboxBox = function(txregion, id) {
-  alert("Fuck u ");
-  var xx = $('#failure_station').text();
-  alert(xx);
-
+TxFailure.setupTransformerNameComboxBox = function(id) {
   if ($('#' + id).length > 0) {
     var region = $('#'+id+' : selected').text();
     var transformerId;
@@ -87,16 +83,16 @@ TxFailure.setupTransformerNameComboxBox = function(txregion, id) {
 
 
     converted.on('select', function() {
-      TxFailure.onTransformerNamChange(txregion, converted.getValue());
+      TxFailure.onTransformerNamChange(converted.getValue());
     });
   }
 };
 
-TxFailure.onTransformerNamChange = function(txregion, transformerId) {
+TxFailure.onTransformerNamChange = function(transformerId) {
   if ($('body').attr('name') == "new") {
-    window.location.href = "/transformer_info/failurereport?region=&tid=" + transformerId;
+    window.location.href = window.location.href + "&tid=" + transformerId;
   } else {
-    window.location.href = "/transformer_info/failurereport?region=&tid=" + transformerId;
+    window.location.href = window.location.href + "&tid=" + transformerId;
   }
 };
 
@@ -195,6 +191,6 @@ $(function() {
   PriceLoss.setupTransformerNameComboxBox('station_station');
   Region.setupTransformerNameComboxBox('failure_station');
   TxName.setupTransformerNameComboxBox('transformer_transfer_old_txname');
-  TxFailure.setupTransformerNameComboxBox('failure_station', 'failure_transformer');
+  TxFailure.setupTransformerNameComboxBox('failure_transformer');
 });
 
