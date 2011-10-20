@@ -63,7 +63,7 @@ Region.onTransformerNamChange = function(transformerId) {
 var TxFailure = { };
 TxFailure.setupTransformerNameComboxBox = function(txregion, id) {
   alert("Fuck u ");
-  var xx = $('#failure_station').text();
+  var xx = $('#failure_station').val();
   alert(xx);
 
   if ($('#' + id).length > 0) {
