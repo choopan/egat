@@ -134,4 +134,9 @@ class TransformerInfoController < ApplicationController
         end
   end
 
+  def addfailurereport
+     @station = params[:station]
+     @transformer = params[:transformer]
+  end
+
 end

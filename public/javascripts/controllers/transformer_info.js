@@ -53,9 +53,9 @@ Region.setupTransformerNameComboxBox = function(id) {
 
 Region.onTransformerNamChange = function(transformerId) {
   if ($('body').attr('name') == "new") {
-    window.location.href = "/transformer_info/failurereport?region=" + transformerId;
+    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
   } else {
-    window.location.href = "/transformer_info/failurereport?region=" + transformerId;
+    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
   }
 };
 
@@ -66,7 +66,6 @@ TxFailure.setupTransformerNameComboxBox = function(id) {
     var region = $('#'+id+' : selected').text();
     var transformerId;
     var selected;
-
 
     selected = $("#" + id + " " + "option:selected");
     if (selected.val().length > 0) {
@@ -89,11 +88,9 @@ TxFailure.setupTransformerNameComboxBox = function(id) {
 };
 
 TxFailure.onTransformerNamChange = function(transformerId) {
-  if ($('body').attr('name') == "new") {
-    window.location.href = window.location.href + "&tid=" + transformerId;
-  } else {
-    window.location.href = window.location.href + "&tid=" + transformerId;
-  }
+    var region = jQuery.url.param("region");
+    if(region == ""_
+    window.location.href = "/transformer_info/failurereport?region=" + jQuery.url.param("region") + "&tid=" + transformerId;
 };
 
 

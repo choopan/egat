@@ -1,7 +1,7 @@
 <h1>หม้อแปลงไฟฟ้า</h1>
 <%= form_for :failure do |f| %>
-<table width=60%>
-<tr><td><label class='inline'>เขต</label></td>
+<table width>
+<tr><td><p align='right'><label>เขต</label></p></td>
     <td><%=
       @stations = Station.group("region").all
       f.collection_select(:station, @stations, :region, :region, 
@@ -9,22 +9,25 @@
   %></td>
 </tr>
 <tr>
-   <td>หม้อแปลงไฟฟ้า</td>
+   <td><p align='right'><label>หม้อแปลงไฟฟ้า</label></td>
    <td><%=
       f.collection_select(:transformer, @txnames, "id", "transformer_name", 
-                          {:selected => params[:tid]})
+                          {:prompt => '', :selected => params[:tid]})
   %></td>
 </tr>
-<tr>
-    <td>Test</td>
-    <td><%= f.text_field :egatsn, :value => 'xxx', :readonly => true %></td>
-</tr>
+	<% if !@txinfo.blank? %>
+  	<tr>
+		<td><p align='right'><label>Equipment No.</label></p></td>
+  		<td><%= f.text_field :egatsn, :value => @txinfo.egatsn, :readonly => true %></td>
+ 	</tr>
+	</table>
+	<BR>
+	<center><%= link_to('เพิ่ม', '/transformer_info/addfailurereport', :station => :station, :transformer => :transformer, :class => 'add') %></center>
+	<BR>
+	<table>
+		<tr><th>ID</th><th>วันที่เกิดเหตุการณ์</th><th>วันที่ปลดออกจากระบบ</th><th>วันที่นำเข้าระบบ</th><th>อุปกรณ์ที่เสียหาย</th><th></th></tr>
+
+	<%end%>
 </table>
-<% if !@txinfo.blank? %>
-  <p>
-  <%= f.label :egatsn, "Equipment No." , :class => 'inline' %>
-  <%= f.text_field :egatsn, :value => @txinfo.egatsn, :readonly => true %>
- </p>
-<%end%>
-</div>
+
 <% end %>

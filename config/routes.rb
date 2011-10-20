@@ -30,6 +30,7 @@ Egat::Application.routes.draw do
 		get "txshowmove"
 		get "txdeletemove"
 		get "failurereport"
+		get "addfailurereport"
 	end
   end
 
