@@ -129,7 +129,9 @@ class TransformerInfoController < ApplicationController
 		@txnames = Transformer.where(whereclause).order("transformer_name")
 	end
 
-
+        if params[:tid] != "" and !params[:tid].nil?
+              @txinfo = Transformer.find(params[:tid])
+        end
   end
 
 end

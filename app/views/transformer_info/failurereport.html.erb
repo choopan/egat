@@ -1,20 +1,30 @@
 <h1>หม้อแปลงไฟฟ้า</h1>
-<%= form_for :failure do |f| -%>
-<div class='grid_4 prefix_5'>
-<p>
-  <%= f.label :station, "เขต" , :class => 'inlinetitle' %>
-  <%=
+<%= form_for :failure do |f| %>
+<table width=60%>
+<tr><td><label class='inline'>เขต</label></td>
+    <td><%=
       @stations = Station.group("region").all
       f.collection_select(:station, @stations, :region, :region, 
                           {:prompt => 'All', :selected => params[:region]})
-  %>
-</p>
-<p>
-  <%= f.label :transformer, "หม้อแปลงไฟฟ้า" , :class => 'inlinetitle' %>
-  <%=
+  %></td>
+</tr>
+<tr>
+   <td>หม้อแปลงไฟฟ้า</td>
+   <td><%=
       f.collection_select(:transformer, @txnames, "id", "transformer_name", 
                           {:selected => params[:tid]})
-  %>
-</p>
+  %></td>
+</tr>
+<tr>
+    <td>Test</td>
+    <td><%= f.text_field :egatsn, :value => 'xxx', :readonly => true %></td>
+</tr>
+</table>
+<% if !@txinfo.blank? %>
+  <p>
+  <%= f.label :egatsn, "Equipment No." , :class => 'inline' %>
+  <%= f.text_field :egatsn, :value => @txinfo.egatsn, :readonly => true %>
+ </p>
+<%end%>
 </div>
 <% end %>
