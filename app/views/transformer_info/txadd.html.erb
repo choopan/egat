@@ -1,5 +1,21 @@
+<script>
+	$(function(){
+		setValueText1(); 
+	});
+	
+	function setValueText1(){
+		$("#first_energize").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+	}
+
+</script>
+
 <h1>เพิ่มหม้อแปลงไฟฟ้า</h1>
-<%= form_tag @txinfo ,:url => {:action => "txadd"}, :html => {:method => "post", :name => 'txadd'} do |f| %>
+<%= form_tag('/transformer_info/txcreate', :method=>'post', :multipart => true, :name => 'transfor_name1') do %>
 <div class='grid_10 prefix_2 chemicals' >
       <p>
         <%= label_tag :egatsn, "Equipement No.", :class => 'inline' %>
@@ -36,9 +52,9 @@
       <p>
         <%= label_tag :phase_position, "ตำแหน่งเฟส", :class => 'inline' %>
         <select id='phase_position' name='phase_position'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
+	<option value='A'>A</option>
+	<option value='B'>B</option>
+	<option value='C'>C</option>
         </select>
       </p>
       <p>
@@ -51,7 +67,7 @@
       </p>
       <p>
         <%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Secondary, LV (kV)", :class => 'inline' %>
-        <%= text_field_tag :hv%>
+        <%= text_field_tag :lv%>
       </p>
       <p>
         <%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Tertiary, TV (kV)", :class => 'inline' %>
@@ -75,11 +91,11 @@
       </p>
        <p>
         <%= label_tag :remark, "รายละเอียดเพิ่มเติม (Remark)", :class => 'inline' %>
-        <%= text_field_tag :remark %>
+        <%= text_field_tag :detail %>
       </p>
        <p>
         <%= label_tag :image, "ชื่อไฟล์รูปภาพที่ต้องการเก็บ", :class => 'inline' %>
-        <%= file_field_tag 'image', :accept => 'image/png,image/jpef,image/gif' %>
+        <%= file_field_tag 'image', :accept => 'image/png,image/jpeg,image/gif' %>
       </p>
 
 </div>
@@ -96,56 +112,48 @@
    <td><p align=right>Maufacturer</p></td>
 
 	
-   <td><p><%= select_tag "bushing_hv", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
+   <td><p><%= select_tag "bushing_hv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
 
 
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_hv_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_hv_year"></td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>H0 <input type="text"></td>
-   <td>H1 <input type="text"></td>
-   <td>H2 <input type="text"></td>
-   <td>H3 <input type="text"></td>
+   <td>H0 <input type="text" name="bushing_hv_h0"></td>
+   <td>H1 <input type="text" name="bushing_hv_h1"></td>
+   <td>H2 <input type="text" name="bushing_hv_h2"></td>
+   <td>H3 <input type="text" name="bushing_hv_h3"></td>
 </tr>
 <tr>
    <td><p align=left>LV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><select id='bushing_lv' name='bushing_lv'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-       </select></p></td>
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td><p><%= select_tag "bushing_lv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_lv_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_lv_year"></td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>X0 <input type="text"></td>
-   <td>X1 <input type="text"></td>
-   <td>X2 <input type="text"></td>
-   <td>X3 <input type="text"></td>
+   <td>X0 <input type="text" name="bushing_lv_x0"></td>
+   <td>X1 <input type="text" name="bushing_lv_x1"></td>
+   <td>X2 <input type="text" name="bushing_lv_x2"></td>
+   <td>X3 <input type="text" name="bushing_lv_x3"></td>
 </tr>
 <tr>
    <td><p align=left>TV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><select id='bushing_tv' name='bushing_tv'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-       </select></p></td>
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td><p><%= select_tag "bushing_tv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_tv_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_tv_year"></td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>Y1 <input type="text"></td>
-   <td>Y2 <input type="text"></td>
-   <td>Y3 <input type="text"></td>
+   <td>Y1 <input type="text" name="bushing_tv_y1"></td>
+   <td>Y2 <input type="text" name="bushing_tv_y2"></td>
+   <td>Y3 <input type="text" name="bushing_tv_y3"></td>
    <td></td>
 </tr>
 </table>
@@ -159,40 +167,31 @@
 <tr>
    <td><p align=left>HV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><select id='arrester_hv' name='arrester_hv'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-       </select></p></td>
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td><p><%= select_tag "arrester_hv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %></p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_hv_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year"></td>
    <td rowspan=2><table>
-		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'hv_gap', '1', true %></td></tr>
-       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'hv_gap', '0' %></td></tr>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '1', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '0' %></td></tr>
 		</table>
    </td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>H0 <input type="text"></td>
-   <td>H1 <input type="text"></td>
-   <td>H2 <input type="text"></td>
-   <td>H3 <input type="text"></td>
+   <td>H1 <input type="text" name="arrester_hv_h1"></td>
+   <td>H2 <input type="text" name="arrester_hv_h2"></td>
+   <td>H3 <input type="text" name="arrester_hv_h3"></td>
 </tr>
 <tr>
    <td><p align=left>LV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><select id='arrester_lv' name='arrester_lv'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-       </select></p></td>
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td><p><%= select_tag "arrester_lv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %></p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_lv_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year"></td>
    <td rowspan=2><table>
-		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'lv_gap', '1', true %></td></tr>
-       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'lv_gap', '0' %></td></tr>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '1', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '0' %></td></tr>
 		</table>
    </td>
 
@@ -200,33 +199,28 @@
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>X0 <input type="text"></td>
-   <td>X1 <input type="text"></td>
-   <td>X2 <input type="text"></td>
-   <td>X3 <input type="text"></td>
+   <td>X1 <input type="text" name="arrester_lv_x1"></td>
+   <td>X2 <input type="text" name="arrester_lv_x2"></td>
+   <td>X3 <input type="text" name="arrester_lv_x3"></td>
 </tr>
 <tr>
    <td><p align=left>TV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><select id='arrester_tv' name='arrester_tv'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-       </select></p></td>
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td><p><%= select_tag "arrester_tv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %></p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_tv_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year"></td>
    <td rowspan=2><table>
-		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'tv_gap', '1', true %></td></tr>
-       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'tv_gap', '0' %></td></tr>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '1', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '0' %></td></tr>
 		</table>
    </td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>Y1 <input type="text"></td>
-   <td>Y2 <input type="text"></td>
-   <td>Y3 <input type="text"></td>
+   <td>Y1 <input type="text" name="arrester_tv_y1"></td>
+   <td>Y2 <input type="text" name="arrester_tv_y2"></td>
+   <td>Y3 <input type="text" name="arrester_tv_y3"></td>
    <td></td>
 </tr>
 </table>
@@ -240,13 +234,9 @@
 <tr>
    <td></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><select id='oltc' name='oltc'>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-       </select></p></td>
-   <td>Type &nbsp;&nbsp;<input type="text"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text"></td>
+   <td><p><%= select_tag "oltc_manu", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %></p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="oltc_type"></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year"></td>
 </tr>
 </table>
 </div>

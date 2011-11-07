@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019013530) do
+ActiveRecord::Schema.define(:version => 20111019231001) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -2529,6 +2529,7 @@ ActiveRecord::Schema.define(:version => 20111019013530) do
     t.integer  "oltc_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bushing_tv_year"
   end
 
   create_table "transformer_control_cabinet_factors", :force => true do |t|

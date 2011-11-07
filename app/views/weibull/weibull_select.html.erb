@@ -1,8 +1,8 @@
 <script>
 function displaysub(){
-    var xobj = document.dynamiccombo.korn1;
+    var xobj = document.dynamiccombo.select_manufacturer;
     var x  = xobj.options[xobj.selectedIndex].value;
-    var cacheobj=document.dynamiccombo.korn2;
+    var cacheobj=document.dynamiccombo.manufacturer_1;
 	cacheobj.options.length = 0;
 	if(x=="Bushing"){
 		<%if @numBushing!=0%>
@@ -29,19 +29,28 @@ function displaysub(){
 	}
 		
 }
+
+
+/*$(function() {
+  PriceLoss.setupTransformerNameComboxBox('station_station');
+  Cbox.setupComboxBox('select_manufacturer');
+  Cbox.setupComboxBox('voltage');
+  Cbox.setupComboxBox('manufacturer_1');
+});*/
+
 </script>
 <p><h2>&nbsp;Inventory Control / Weibull Calculation</h2></p>
 <p>
 <form name='dynamiccombo'>
 <table><tr><td><b>อุปกรณ์</b></td>
-<td><select  name="korn1" size ="1" onChange="displaysub()">
+<td><select  id="select_manufacturer" name="select_manufacturer" size ="1" onChange="displaysub()">
 	<option value="#" ></option>
 	<option value="Bushing">Bushing</option>
 	<option value="Arrester">Arrester</option>
 	<option value="OLTC">OLTC</option>
 </select></td></tr>
 <tr><td><b>Voltage Rating</b></td>
-<td><select size="1">
+<td><select id="voltage" name="voltage" size="1">
 	<option value="#"></option>
 	<option value="11">11</option>
 	<option value="22">22</option>
@@ -53,7 +62,7 @@ function displaysub(){
 	<option value="500">500</option>
 </select></td></tr>
 <tr><td><b>Manufacturer</b></td>
-<td><select name = "korn2" size="1">
+<td><select id="manufacturer_1" name = "manufacturer_1" size="1">
 	<option value="#"></option>
 </select></td></tr>
 <tr><td><b>Type</b></td>
