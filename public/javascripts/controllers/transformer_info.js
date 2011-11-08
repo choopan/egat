@@ -49,6 +49,13 @@ Region.setupTransformerNameComboxBox = function(id) {
     });
   }
 };
+Region.onTransformerNamChange = function(transformerId) {
+  if ($('body').attr('name') == "new") {
+    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
+  } else {
+    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
+  }
+};
 
 
 var Phase = { };
@@ -92,15 +99,6 @@ Phase.onTransformerNamChange = function(transformerId) {
 };
 
 
-Region.onTransformerNamChange = function(transformerId) {
-  if ($('body').attr('name') == "new") {
-    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
-  } else {
-    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
-  }
-};
-
-
 var TxFailure = { };
 TxFailure.setupTransformerNameComboxBox = function(id) {
   if ($('#' + id).length > 0) {
@@ -130,7 +128,7 @@ TxFailure.setupTransformerNameComboxBox = function(id) {
 
 TxFailure.onTransformerNamChange = function(transformerId) {
     var region = jQuery.url.param("region");
-    if(region == ""_
+    //if(region != "")
     window.location.href = "/transformer_info/failurereport?region=" + jQuery.url.param("region") + "&tid=" + transformerId;
 };
 
@@ -171,7 +169,6 @@ PriceLoss.onTransformerNamChange = function(transformerId) {
     window.location.href = "/transformer_info/txlist?region=" + transformerId;
   }
 };
-
 
 var TxName = { };
 TxName.setupTransformerNameComboxBox = function(id) {
@@ -233,10 +230,14 @@ $(function() {
   TxName.setupTransformerNameComboxBox('txmove_txname');
   setCalendar();
   Phase.setupTransformerNameComboxBox('phase');
-
   PriceLoss.setupTransformerNameComboxBox('station_station');
   Region.setupTransformerNameComboxBox('failure_station');
   TxName.setupTransformerNameComboxBox('transformer_transfer_old_txname');
   TxFailure.setupTransformerNameComboxBox('failure_transformer');
+  //failure_report
+
+  Cbox.setupComboxBox('environment');
+  Cbox.setupComboxBox('failurestatus');
+  Cbox.setupComboxBox('failuredetail');
 });
 

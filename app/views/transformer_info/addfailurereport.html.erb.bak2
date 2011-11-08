@@ -33,19 +33,19 @@
 </tr>
 <tr>
 	<td>สภาพแวดล้อม</td>
-        <td><%= select_tag "environment", options_from_collection_for_select(@environments, "name", "name") %></td>
+        <td><%= select_tag "environment", "<option>xxx</option><option>yyy</option>" %></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :environment_etc%></td>
 </tr>
 <tr>
 	<td>สภาวะการใช้งานขณะพบความผิดปกติ</td>
-        <td><%= select_tag "failurestatus", options_from_collection_for_select(@failurestatuses, "name", "name") %></td>
+        <td><%= select_tag "failurestatus", "<option>xxx</option><option>yyy</option>"%></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :failurestatus_etc%></td>
 </tr>
 <tr>
         <td>รายละเอียดความผิดปกติ</td>
-        <td><%= select_tag "failuredetail", options_from_collection_for_select(@failuredetails, "name", "name") %></td>
+        <td><%= select_tag "failuredetail", "<option>xxx</option><option>yyy</option>"%></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :failuredetail_etc%></td>
 </tr>
@@ -57,7 +57,7 @@
 </tr>
 <tr>
         <td>เวลาที่ปลดออกจากระบบ</td>
-        <td><%= select_tag "downtimehour", options_from_collection_for_select(@hours, "name", "name") %> : <%= select_tag "downtimeminute", options_from_collection_for_select(@minutes, "name", "name") %></td>
+        <td><%= select_tag "downtimehour", "<option>xxx</option><option>yyy</option>"%> : <%= select_tag "downtimeminute", "<option>33</option><option>44</option>" %></td>
 	<td></td>
 	<td></td>
 </tr>
@@ -69,7 +69,7 @@
 </tr>
 <tr>
 	<td>เวลาที่นำเข้าระบบ</td>
-        <td><%= select_tag "uptimehour", options_from_collection_for_select(@hours, "name", "name") %> : <%= select_tag "uptimeminute", options_from_collection_for_select(@minutes, "name", "name") %></td>
+        <td><%= select_tag "uptimehour", "<option>xxx</option><option>yyy</option>"%> : <%= select_tag "uptimeminute", "<option>33</option><option>44</option>" %></td>
 	<td></td>
 	<td></td>
 </tr>
@@ -81,7 +81,7 @@
 </tr>
 <tr>
         <td>กลุ่มชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
-        <td><%= select_tag "failuregroup", options_from_collection_for_select(@failuregroups, "name", "name") %></td>
+        <td><%= select_tag "failuregroup","<option>xxx</option><option>yyy</option>" %></td>
 	<td></td>
 	<td></td>
 </tr>
@@ -93,19 +93,19 @@
 </tr>
 <tr>
 	<td>ระดับความเสียหาย</td>
-        <td><%= select_tag :failuremode, options_from_collection_for_select(@failuremodes, "name", "name") %></td>
+        <td><%= select_tag :failuremode, "<option>xxx</option><option>yyy</option>" %></td>
 	<td></td>
 	<td></td>
 </tr>
 <tr>
         <td>สาเหตุที่แท้จริง</td>
-        <td><%= select_tag "failurereason", options_from_collection_for_select(@failuredetails, "name", "name") %></td>
+        <td><%= select_tag "failurereason", "<option>xxx</option><option>yyy</option>" %></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :failurereason_etc%></td>
 </tr>
 <tr>
         <td>การจัดการ</td>
-        <td><%= select_tag "manage", options_from_collection_for_select(@manages, "name", "name") %></td>
+        <td><%= select_tag "manage", "<option>xxx</option><option>yyy</option>" %></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :manage_etc%></td>
 </tr>

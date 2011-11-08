@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019023502) do
+ActiveRecord::Schema.define(:version => 20111108044323) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1047,6 +1047,27 @@ ActiveRecord::Schema.define(:version => 20111019023502) do
     t.decimal "failure_condition", :precision => 10, :scale => 0
   end
 
+  create_table "failure_databases", :force => true do |t|
+    t.string   "egatsn"
+    t.datetime "eventdate"
+    t.integer  "counterOLTC"
+    t.string   "environment"
+    t.string   "failurestatus"
+    t.string   "failuredetail"
+    t.datetime "downdate"
+    t.datetime "update"
+    t.string   "workorder"
+    t.string   "failuregroup"
+    t.string   "failurepart"
+    t.string   "failuremode"
+    t.string   "failurereason"
+    t.string   "manage"
+    t.string   "remark"
+    t.string   "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fruits", :force => true do |t|
     t.integer "version"
   end
@@ -1404,6 +1425,12 @@ ActiveRecord::Schema.define(:version => 20111019023502) do
     t.string   "tel_no"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "n1_criteria", :force => true do |t|
+    t.string  "value",         :null => false
+    t.integer "score",         :null => false
+    t.string  "score_message", :null => false
   end
 
   create_table "n1_criterias", :force => true do |t|
@@ -2598,7 +2625,7 @@ ActiveRecord::Schema.define(:version => 20111019023502) do
 
   create_table "transformer_transfers", :force => true do |t|
     t.string   "egatsn"
-    t.datetime "action_date"
+    t.date     "action_date"
     t.string   "user_op"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2606,6 +2633,11 @@ ActiveRecord::Schema.define(:version => 20111019023502) do
     t.string   "new_station"
     t.string   "old_txname"
     t.string   "new_txname"
+  end
+
+  create_table "tx_images", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "update_prices", :force => true do |t|
@@ -2684,6 +2716,12 @@ ActiveRecord::Schema.define(:version => 20111019023502) do
 
   create_table "winding_types", :force => true do |t|
     t.string "description"
+  end
+
+  create_table "xxes", :force => true do |t|
+    t.string   "a"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

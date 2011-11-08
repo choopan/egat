@@ -153,6 +153,8 @@ class TransformerInfoController < ApplicationController
   def addfailurereport
      @station = params[:station]
      @transformer = params[:transformer]
+     @environments = ["xxx", "yyy", "zzzz"]
+     @hours = [1, 2]
   end
   
   def txcreate
