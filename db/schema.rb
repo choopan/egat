@@ -1471,12 +1471,6 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
     t.datetime "updated_at"
   end
 
-  create_table "n1_criteria", :force => true do |t|
-    t.string  "value",         :null => false
-    t.integer "score",         :null => false
-    t.string  "score_message", :null => false
-  end
-
   create_table "n1_criterias", :force => true do |t|
     t.string   "value"
     t.integer  "score"
@@ -2669,7 +2663,7 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "transformer_transfers", :force => true do |t|
     t.string   "egatsn"
-    t.date     "action_date"
+    t.datetime "action_date"
     t.string   "user_op"
     t.datetime "created_at"
     t.datetime "updated_at"
