@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019231001) do
+ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1045,6 +1045,50 @@ ActiveRecord::Schema.define(:version => 20111019231001) do
     t.string  "detail"
     t.integer "is_other"
     t.decimal "failure_condition", :precision => 10, :scale => 0
+  end
+
+  create_table "fd_details", :force => true do |t|
+    t.string   "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_environmnts", :force => true do |t|
+    t.string   "environmnt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_functions", :force => true do |t|
+    t.string   "function"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_manages", :force => true do |t|
+    t.string   "manage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_modes", :force => true do |t|
+    t.string   "mode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_parts", :force => true do |t|
+    t.integer  "mainid"
+    t.integer  "subid"
+    t.string   "part"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_reasons", :force => true do |t|
+    t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fruits", :force => true do |t|
@@ -2605,6 +2649,11 @@ ActiveRecord::Schema.define(:version => 20111019231001) do
     t.datetime "updated_at"
     t.string   "station"
     t.string   "new_station"
+  end
+
+  create_table "tx_images", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "update_prices", :force => true do |t|
