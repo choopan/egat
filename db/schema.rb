@@ -2529,6 +2529,7 @@ ActiveRecord::Schema.define(:version => 20111019023502) do
     t.integer  "oltc_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bushing_tv_year"
   end
 
   create_table "transformer_control_cabinet_factors", :force => true do |t|

@@ -1,0 +1,30 @@
+<h1>รูปหม้อแปลง</h1>
+<p>
+<%m="/data/"+@transformer.picture.to_s%>
+<center><img src= '<%=m%>' width="300"></center>
+</p>
+<p><div class='grid_16'>&nbsp;</div></p>
+<p>
+<div id="transformers" class="grid_14 prefix_1">
+  <table id="transformers_table">
+    <thead>
+      <tr>
+      <th><center>หม้อแปลงไฟฟ้า</center></th>
+      <th><center>Equipment No.</center></th>
+      <th><center>บริษัทผู้ผลิต</center></th>
+      <th><center>พิกัดกำลังไฟฟ้าสูงสุด (MVA)</center></th>
+      <th width=100></th>
+      </tr>
+    </thead>
+    <tbody>
+	<tr>
+            <td><center><%=@transformer.transformer_name%></center></td>
+            <td><center><%= @transformer.egatsn %></center></td>
+            <td><center><%= @transformer.brand.name %></center></td>
+            <td><center><%= @transformer.maxcapacity %></center></td>
+	    <td><center><%=link_to "<< ย้อนกลับ", :controller => "transformer_info", :action => "txlist"%></center></td>
+	</tr>
+    </tbody>
+   </table>
+</div>
+</p>

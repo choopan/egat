@@ -33,12 +33,12 @@
       <% if !@txinfos.blank? %>
         <% for txinfo in @txinfos %>
 	<tr>
-            <td><%= link_to(txinfo.transformer_name, '#') %></td>
+            <td><%=link_to txinfo.transformer_name, {:controller => "transformer_info", :action => "show_image",:id =>txinfo.id}%></td>
             <td><%= txinfo.egatsn %></td>
             <td><%= txinfo.brand.name %></td>
             <td><%= txinfo.maxcapacity %> </td>
-            <td><%= link_to("Edit", '#', :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to("Delete", "#", :class => 'delete') %> </td>
+            <td><%=link_to "Edit", {:controller => "transformer_info", :action => "modify_transformer",:id =>txinfo.id}, :class => 'edit'%> &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to("Delete", {:controller => "transformer_info", :action => "delete_transformer",:id =>txinfo.id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete') %> </td>
 	</tr>
 	<%end%>
       <%end%>

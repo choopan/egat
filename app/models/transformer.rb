@@ -65,4 +65,15 @@ class Transformer < ActiveRecord::Base
     end
   end
 
+  def self.get_transformer_id(id)
+	where("id = '#{id}'").first
+    	rescue Exception
+      	return nil
+  end
+
+  def self.transformer_getid()
+	order("id DESC").first
+    	     rescue Exception
+      	return nil
+  end
 end

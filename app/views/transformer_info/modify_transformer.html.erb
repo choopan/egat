@@ -1,0 +1,449 @@
+<script>
+	$(function(){
+		setValueText1(); 
+	});
+	
+	function setValueText1(){
+		$("#first_energize").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+	}
+
+</script>
+
+<h1>เพิ่มหม้อแปลงไฟฟ้า</h1>
+<%= form_tag('/transformer_info/updat_transformer', :method=>'post', :multipart => true, :name => 'transformer') do %>
+	<input type=hidden name="transformer_id" value=<%= @transformer.id %>>
+	<input type=hidden name="accessories_id" value=<%= @transformer_accessory.id %>>
+<div class='grid_10 prefix_2 chemicals' >
+      <p>
+	<%= label_tag :egatsn, "Equipement No.", :class => 'inline' %>
+	<input type="text" name="egatsn" size="15" value= '<%=@transformer.egatsn%>' />
+      </p>
+      <p>
+	<%= label_tag :contract, "สัญญาเลขที่", :class => 'inline' %>
+	<input type="text" name="contract" size="15" value= '<%=@transformer.contract%>' />
+      </p>
+      <p>
+	<%= label_tag :station, "สถานีไฟฟ้า", :class => 'inline' %>
+	<select id='station' name='station'>
+		<option value=''></option>
+		<%if @num_station!=0%>
+		  <%for i in 0..@num_station-1 do%>
+			<%if @stations[i].name==@transformer.station%>
+				<option value='<%=@stations[i].name%>' selected="true"><%=@stations[i].name%></option>
+			<%else%>
+				<option value='<%=@stations[i].name%>'><%=@stations[i].name%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select>
+      </p>
+      <p>
+	<%= label_tag :txname, "ชื่อหม้อแปลงไฟฟ้า", :class => 'inline' %>
+	<input type="text" name="tx_name" size="15" value= '<%=@transformer.txname%>' />
+      </p>
+      <p>
+	<%= label_tag :brand_id, "ชื่อบริษัทผู้ผลิต", :class => 'inline' %>
+	<select id='brand_id' name='brand_id'>
+		<option value=''></option>
+		<%if @num_brand_ids!=0%>
+		  <%for i in 0..@num_brand_ids-1 do%>
+			<%if @brand_ids[i].id==@transformer.brand_id%>
+				<option value='<%=@brand_ids[i].id%>' selected="true"><%=@brand_ids[i].name%></option>
+			<%else%>
+				<option value='<%=@brand_ids[i].id%>'><%=@brand_ids[i].name%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select>
+      </p>
+      <p>
+	<%= label_tag :manufacturingserial, "หมายเลขผู้ผลิต", :class => 'inline' %>
+	<input type="text" name="manufacturingserial" size="15" value= '<%=@transformer.manufacturingserial%>' />
+      </p>
+
+      <p>
+	<%= label_tag :phase, "จำนวนเฟส", :class => 'inline' %>
+        <select id='phase' name='phase'>
+	  <%if @transformer.phase==1%>
+            <option value='1' selected="true">1</option>
+            <option value='3'>3</option>
+	  <%end%>
+	  <%if @transformer.phase==3%>
+            <option value='1'>1</option>
+            <option value='3' selected="true">3</option>
+	  <%end%>
+        </select>
+      </p>
+      <p>
+	<%= label_tag :phase_position, "ตำแหน่งเฟส", :class => 'inline' %>
+        <select id='phase_position' name='phase_position'>
+	  <%if @transformer.position=="A"%>
+		<option value='A' selected="true">A</option>
+		<option value='B'>B</option>
+		<option value='C'>C</option>
+	  <%end%>
+	  <%if @transformer.position=="B"%>
+		<option value='A'>A</option>
+		<option value='B' selected="true">B</option>
+		<option value='C'>C</option>
+	  <%end%>
+	  <%if @transformer.position=="C"%>
+		<option value='A'>A</option>
+		<option value='B'>B</option>
+		<option value='C' selected="true">C</option>
+	  <%end%>
+	  <%if @transformer.position.nil?%>
+		<option value='A'>A</option>
+		<option value='B'>B</option>
+		<option value='C'>C</option>
+	  <%end%>
+        </select>
+      </p>
+      <p>
+	<%= label_tag :maxcapacity, "พิกัดกำลังไฟฟ้าสูงสุด (MVA)", :class => 'inline' %>
+	<input type="text" name="maxcapacity" size="15" value= '<%=@transformer.maxcapacity%>' />
+      </p>
+      <p>
+	<%= label_tag :hv, "พิกัดแรงดันไฟฟ้า Primary, HV (kV)", :class => 'inline' %>
+	<input type="text" name="hv" size="15" value= '<%=@transformer.hv%>' />
+      </p>
+      <p>
+	<%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Secondary, LV (kV)", :class => 'inline' %>
+	<input type="text" name="lv" size="15" value= '<%=@transformer.lv%>' />
+      </p>
+      <p>
+	<%= label_tag :tv, "พิกัดแรงดันไฟฟ้า Tertiary, TV (kV)", :class => 'inline' %>
+	<input type="text" name="tv" size="15" value= '<%=@transformer.tv%>' />
+      </p>
+      <p>
+	<%= label_tag :first_energize, "วันที่นำเข้าใช้งาน", :class => 'inline' %>
+	<input type="text" id="first_energize" name="first_energize" size="15" value= '<%=@date_1%>' />
+      </p>
+      <p>
+	<%= label_tag :winding_type_id, "ชนิด Winding Insulation", :class => 'inline' %>
+	<select id='winding_type' name='winding_type'>
+		<option value=''></option>
+		<%if @num_winding_types!=0%>
+		  <%for i in 0..@num_winding_types-1 do%>
+			<%if @winding_types[i].id==@transformer.winding_type_id%>
+				<option value='<%=@winding_types[i].id%>' selected="true"><%=@winding_types[i].description%></option>
+			<%else%>
+				<option value='<%=@winding_types[i].id%>'><%=@winding_types[i].description%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select>
+      </p>
+      <p>
+	<%= label_tag :vector_group, "Vector Group", :class => 'inline' %>
+	<input type="text" name="vector_group" value='<%=@transformer.vector_group%>'/>
+      </p>
+       <p>
+	<%= label_tag :status, "ลักษณะการใช้งานหม้อแปลงไฟฟ้า", :class => 'inline' %>
+	<select id='status' name='status'>
+		<option value=''></option>
+		<%if @num_powerusages!=0%>
+		  <%for i in 0..@num_powerusages-1 do%>
+			<%if @power_usages[i].id==@transformer.status%>
+				<option value='<%=@power_usages[i].id%>' selected="true"><%=@power_usages[i].usage%></option>
+			<%else%>
+				<option value='<%=@power_usages[i].id%>'><%=@power_usages[i].usage%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select>
+      </p>
+       <p>
+	<%= label_tag :remark, "รายละเอียดเพิ่มเติม (Remark)", :class => 'inline' %>
+	<input type="text" name="detail" value='<%=@transformer.detail%>'>
+      </p>
+       <p>
+	<%= label_tag :image, "ชื่อไฟล์รูปภาพที่ต้องการเก็บ", :class => 'inline' %>
+	<%= file_field_tag 'image', :accept => 'image/png,image/jpeg,image/gif' %>
+      </p>
+
+</div>
+
+
+
+<!--transformer accessories-->
+<div class='grid_16' >&nbsp;</div>
+<div class='grid_16' >&nbsp;</div>
+<div class='grid_16 chemicals' >
+<h3>Accessories</h3>
+</div>
+<div class='grid_15 prefix_1 accessories' >
+<label>Bushing</label>
+<table>
+<tr>
+   <td><p align=left>HV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+
+	
+   <td><p>
+	<%if @num_accessory==0%>
+		<%= select_tag "bushing_hv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %>
+	<%else%>
+	  <select id='bushing_hv_manu' name='bushing_hv_manu'>
+		<option value=''></option>
+		<%if @num_bushing!=0%>
+		  <%for i in 0..@num_bushing-1 do%>
+			<%if @manufacturer_bushing[i].id==@transformer_accessory.bushing_hv_manu%>
+				<option value='<%=@manufacturer_bushing[i].id%>' selected="true"><%=@manufacturer_bushing[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+
+
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_hv_type" value='<%=@transformer_accessory.bushing_hv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_hv_year" value='<%=@transformer_accessory.bushing_hv_year%>'></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>H0 <input type="text" name="bushing_hv_h0" value='<%=@transformer_accessory.bushing_hv_h0%>'></td>
+   <td>H1 <input type="text" name="bushing_hv_h1" value='<%=@transformer_accessory.bushing_hv_h1%>'></td>
+   <td>H2 <input type="text" name="bushing_hv_h2" value='<%=@transformer_accessory.bushing_hv_h2%>'></td>
+   <td>H3 <input type="text" name="bushing_hv_h3" value='<%=@transformer_accessory.bushing_hv_h3%>'></td>
+</tr>
+<tr>
+   <td><p align=left>LV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p><%if @num_accessory==0%>
+		<%= select_tag "bushing_lv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %>
+	<%else%>
+	  <select id='bushing_lv_manu' name='bushing_lv_manu'>
+		<option value=''></option>
+		<%if @num_bushing!=0%>
+		  <%for i in 0..@num_bushing-1 do%>
+			<%if @manufacturer_bushing[i].id==@transformer_accessory.bushing_lv_manu%>
+				<option value='<%=@manufacturer_bushing[i].id%>' selected="true"><%=@manufacturer_bushing[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_lv_type" value='<%=@transformer_accessory.bushing_lv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_lv_year" value='<%=@transformer_accessory.bushing_lv_year%>'></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>X0 <input type="text" name="bushing_lv_x0" value='<%=@transformer_accessory.bushing_lv_x0%>'></td>
+   <td>X1 <input type="text" name="bushing_lv_x1" value='<%=@transformer_accessory.bushing_lv_x1%>'></td>
+   <td>X2 <input type="text" name="bushing_lv_x2" value='<%=@transformer_accessory.bushing_lv_x2%>'></td>
+   <td>X3 <input type="text" name="bushing_lv_x3" value='<%=@transformer_accessory.bushing_lv_x3%>'></td>
+</tr>
+<tr>
+   <td><p align=left>TV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p><%if @num_accessory==0%>
+		<%= select_tag "bushing_tv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %>
+	<%else%>
+	  <select id='bushing_tv_manu' name='bushing_tv_manu'>
+		<option value=''></option>
+		<%if @num_bushing!=0%>
+		  <%for i in 0..@num_bushing-1 do%>
+			<%if @manufacturer_bushing[i].id==@transformer_accessory.bushing_tv_manu%>
+				<option value='<%=@manufacturer_bushing[i].id%>' selected="true"><%=@manufacturer_bushing[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_tv_type" value='<%=@transformer_accessory.bushing_tv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_tv_year" value='<%=@transformer_accessory.bushing_tv_year%>'></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>Y1 <input type="text" name="bushing_tv_y1" value='<%=@transformer_accessory.bushing_tv_y1%>'></td>
+   <td>Y2 <input type="text" name="bushing_tv_y2" value='<%=@transformer_accessory.bushing_tv_y2%>'></td>
+   <td>Y3 <input type="text" name="bushing_tv_y3" value='<%=@transformer_accessory.bushing_tv_y3%>'></td>
+   <td></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_16' >&nbsp;</div>
+
+<div class='grid_15 prefix_1 accessories' >
+<label>Arrester</label>
+<table>
+<tr>
+   <td><p align=left>HV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p><%if @num_accessory==0%>
+		<%= select_tag "arrester_hv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %>
+	<%else%>
+	  <select id='arrester_hv_manu' name='arrester_hv_manu'>
+		<option value=''></option>
+		<%if @num_arrester!=0%>
+		  <%for i in 0..@num_arrester-1 do%>
+			<%if @manufacturer_arrester[i].id==@transformer_accessory.arrester_hv_manu%>
+				<option value='<%=@manufacturer_arrester[i].id%>' selected="true"><%=@manufacturer_arrester[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_hv_type" value='<%=@transformer_accessory.arrester_hv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year" value='<%=@transformer_accessory.arrester_hv_year%>'></td>
+   <td rowspan=2><table>
+		<%if @transformer_accessory.arrester_hv_isgap==1%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '1', true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '0' %></td></tr>
+		<%else%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '1' %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '0', true %></td></tr>
+		<%end%>
+		</table>
+   </td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>H1 <input type="text" name="arrester_hv_h1" value='<%=@transformer_accessory.arrester_hv_h1%>'></td>
+   <td>H2 <input type="text" name="arrester_hv_h2" value='<%=@transformer_accessory.arrester_hv_h2%>'></td>
+   <td>H3 <input type="text" name="arrester_hv_h3" value='<%=@transformer_accessory.arrester_hv_h3%>'></td>
+</tr>
+<tr>
+   <td><p align=left>LV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p><%if @num_accessory==0%>
+		<%= select_tag "arrester_lv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %>
+	<%else%>
+	  <select id='arrester_lv_manu' name='arrester_lv_manu'>
+		<option value=''></option>
+		<%if @num_arrester!=0%>
+		  <%for i in 0..@num_arrester-1 do%>
+			<%if @manufacturer_arrester[i].id==@transformer_accessory.arrester_lv_manu%>
+				<option value='<%=@manufacturer_arrester[i].id%>' selected="true"><%=@manufacturer_arrester[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_lv_type" value='<%=@transformer_accessory.arrester_lv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year" value='<%=@transformer_accessory.arrester_lv_year%>'></td>
+   <td rowspan=2><table>
+		<%if @transformer_accessory.arrester_lv_isgap==1%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '1', true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '0' %></td></tr>
+		<%else%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '1' %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '0', true %></td></tr>
+		<%end%>
+		</table>
+   </td>
+
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>X1 <input type="text" name="arrester_lv_x1" value='<%=@transformer_accessory.arrester_lv_x1%>'></td>
+   <td>X2 <input type="text" name="arrester_lv_x2" value='<%=@transformer_accessory.arrester_lv_x2%>'></td>
+   <td>X3 <input type="text" name="arrester_lv_x3" value='<%=@transformer_accessory.arrester_lv_x3%>'></td>
+</tr>
+<tr>
+   <td><p align=left>TV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p><%if @num_accessory==0%>
+		<%= select_tag "arrester_tv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %>
+	<%else%>
+	  <select id='arrester_tv_manu' name='arrester_tv_manu'>
+		<option value=''></option>
+		<%if @num_arrester!=0%>
+		  <%for i in 0..@num_arrester-1 do%>
+			<%if @manufacturer_arrester[i].id==@transformer_accessory.arrester_tv_manu%>
+				<option value='<%=@manufacturer_arrester[i].id%>' selected="true"><%=@manufacturer_arrester[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_tv_type" value='<%=@transformer_accessory.arrester_tv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year" value='<%=@transformer_accessory.arrester_tv_year%>'></td>
+   <td rowspan=2><table>
+		<%if @transformer_accessory.arrester_tv_isgap==1%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '1', true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '0' %></td></tr>
+		<%else%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '1' %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '0', true %></td></tr>
+		<%end%>
+		</table>
+   </td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>Y1 <input type="text" name="arrester_tv_y1" value='<%=@transformer_accessory.arrester_tv_y1%>'></td>
+   <td>Y2 <input type="text" name="arrester_tv_y2" value='<%=@transformer_accessory.arrester_tv_y2%>'></td>
+   <td>Y3 <input type="text" name="arrester_tv_y3" value='<%=@transformer_accessory.arrester_tv_y3%>'></td>
+   <td></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_16' >&nbsp;</div>
+
+<div class='grid_15 prefix_1 accessories' >
+<label>OLTC</label>
+<table>
+<tr>
+   <td></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p><%if @num_accessory==0%>
+		<%= select_tag "oltc_manu", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %>
+	<%else%>
+	  <select id='oltc_manu' name='oltc_manu'>
+		<option value=''></option>
+		<%if @num_oltc!=0%>
+		  <%for i in 0..@num_oltc-1 do%>
+			<%if @manufacturer_oltc[i].id==@transformer_accessory.oltc_manu%>
+				<option value='<%=@manufacturer_oltc[i].id%>' selected="true"><%=@manufacturer_oltc[i].manufacturer%></option>
+			<%else%>
+				<option value='<%=@manufacturer_oltc[i].id%>'><%=@manufacturer_oltc[i].manufacturer%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	  </select>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="oltc_type" value='<%=@transformer_accessory.oltc_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year" value='<%=@transformer_accessory.oltc_year%>'></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_10 prefix_5'>
+<%= submit_tag "Save", :class => "cupid-green" %>
+</div>
+
+<%end%>

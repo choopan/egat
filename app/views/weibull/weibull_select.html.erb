@@ -1,91 +1,56 @@
 <script>
 function displaysub(){
-    var xobj = document.dynamiccombo.korn1;
+    var xobj = document.dynamiccombo.select_manufacturer;
     var x  = xobj.options[xobj.selectedIndex].value;
-    var cacheobj=document.dynamiccombo.korn2;
+    var cacheobj=document.dynamiccombo.manufacturer_1;
 	cacheobj.options.length = 0;
 	if(x=="Bushing"){
-		cacheobj.options[0]=new Option("ABB","ABB");
-		cacheobj.options[1]=new Option("ASEA","ASEA");
-		cacheobj.options[2]=new Option("GENERAL  ELECTRIC  GE","GENERAL  ELECTRIC  GE");
-		cacheobj.options[3]=new Option("HAEFELY","HAEFELY");
-		cacheobj.options[4]=new Option("HAEFELY TRENCH","HAEFELY TRENCH");
-		cacheobj.options[5]=new Option("HEBBURN","HEBBURN");
-		cacheobj.options[6]=new Option("HSP","HSP");
-		cacheobj.options[7]=new Option("HSP F&G","HSP F&G");
-		cacheobj.options[8]=new Option("JAPAN NGK INSULATOR LTD.","JAPAN NGK INSULATOR LTD.");
-		cacheobj.options[9]=new Option("LAPP INS.","LAPP INS.");
-		cacheobj.options[10]=new Option("MGK","MGK");
-		cacheobj.options[11]=new Option("MICAFIL","MICAFIL");
-		cacheobj.options[12]=new Option("MITSUBISHI","MITSUBISHI");
-		cacheobj.options[13]=new Option("NGK","NGK");
-		cacheobj.options[14]=new Option("NGN","NGN");
-		cacheobj.options[15]=new Option("OSAKA","OSAKA");
-		cacheobj.options[16]=new Option("RADE KONCAR","RADE KONCAR");
-		cacheobj.options[17]=new Option("TOSHIBA","TOSHIBA");
-		cacheobj.options[18]=new Option("TRENCH","TRENCH");
+		<%if @numBushing!=0%>
+			<%for i in 0..@numBushing-1 do%>
+				cacheobj.options[<%=i%>]=new Option('<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>');
+			<%end%>
+		<%end%>
 		cacheobj.options[0].selected=true;
 	}else if(x=="Arrester"){
-		cacheobj.options[0]=new Option("ABB","ABB");
-		cacheobj.options[1]=new Option("ABB SWITCHEAR","ABB SWITCHEAR");
-		cacheobj.options[2]=new Option("AEG","AEG");
-		cacheobj.options[3]=new Option("ALSTOM","ALSTOM");
-		cacheobj.options[4]=new Option("ASEA","ASEA");
-		cacheobj.options[5]=new Option("BBC","BBC");
-		cacheobj.options[6]=new Option("COOPER","COOPER");
-		cacheobj.options[7]=new Option("DAIHEN","DAIHEN");
-		cacheobj.options[8]=new Option("EMP","EMP");
-		cacheobj.options[9]=new Option("GEC ALSTHOM","GEC ALSTHOM");
-		cacheobj.options[10]=new Option("MAIDEN","MAIDEN");
-		cacheobj.options[11]=new Option("MEIDENSHA","MEIDENSHA");
-		cacheobj.options[12]=new Option("MEIDEN SORESTER","MEIDEN SORESTER");
-		cacheobj.options[13]=new Option("METAL OXIDE SURGE ARRESTER","METAL OXIDE SURGE ARRESTER");
-		cacheobj.options[14]=new Option("MITSUBISHI","MITSUBISHI");
-		cacheobj.options[15]=new Option("NGK","NGK");
-		cacheobj.options[16]=new Option("OHIO BRASS","OHIO BRASS");
-		cacheobj.options[17]=new Option("RADE KONCAR","RADE KONCAR");
-		cacheobj.options[18]=new Option("SEIMEMS","SEIMEMS");
-		cacheobj.options[19]=new Option("SORESTER","SORESTER");
-		cacheobj.options[20]=new Option("SURESTER MEIDENSHA","SURESTER MEIDENSHA");
-		cacheobj.options[21]=new Option("TMT&D","TMT&D");
-		cacheobj.options[22]=new Option("TOSHIBA","TOSHIBA");
+		<%if @numArrester!=0%>
+			<%for i in 0..@numArrester-1 do%>
+				cacheobj.options[<%=i%>]=new Option('<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>');
+			<%end%>
+		<%end%>
 		cacheobj.options[0].selected=true;
 	}else{
-		cacheobj.options[0]=new Option("ABB","ABB");
-		cacheobj.options[1]=new Option("ALSTHOM","ALSTHOM");
-		cacheobj.options[2]=new Option("ASEA","ASEA");
-		cacheobj.options[3]=new Option("BORSDL","BORSDL");
-		cacheobj.options[4]=new Option("DAIHEN","DAIHEN");
-		cacheobj.options[5]=new Option("ELIN","ELIN");
-		cacheobj.options[6]=new Option("FERRANTI","FERRANTI");
-		cacheobj.options[7]=new Option("FUJI","FUJI");
-		cacheobj.options[8]=new Option("HUAMING","HUAMING");
-		cacheobj.options[9]=new Option("MASCHINENFABRIK","MASCHINENFABRIK");
-		cacheobj.options[10]=new Option("MEIDEN","MEIDEN");
-		cacheobj.options[11]=new Option("MEIDENSHA","MEIDENSHA");
-		cacheobj.options[12]=new Option("MITSUBISHI","MITSUBISHI");
-		cacheobj.options[13]=new Option("MR","MR");
-		cacheobj.options[14]=new Option("TOSHIBA","TOSHIBA");
-		cacheobj.options[15]=new Option("TRAFO-UNION","TRAFO-UNION");
-		cacheobj.options[16]=new Option("VOLTA-WERKE","VOLTA-WERKE");
+		<%if @numOltc!=0%>
+			<%for i in 0..@numOltc-1 do%>
+				cacheobj.options[<%=i%>]=new Option('<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>');
+			<%end%>
+		<%end%>
 		cacheobj.options[0].selected=true;
 	
 	}
 		
 }
+
+
+/*$(function() {
+  PriceLoss.setupTransformerNameComboxBox('station_station');
+  Cbox.setupComboxBox('select_manufacturer');
+  Cbox.setupComboxBox('voltage');
+  Cbox.setupComboxBox('manufacturer_1');
+});*/
+
 </script>
 <p><h2>&nbsp;Inventory Control / Weibull Calculation</h2></p>
 <p>
 <form name='dynamiccombo'>
 <table><tr><td><b>อุปกรณ์</b></td>
-<td><select  name="korn1" size ="1" onChange="displaysub()">
+<td><select  id="select_manufacturer" name="select_manufacturer" size ="1" onChange="displaysub()">
 	<option value="#" ></option>
 	<option value="Bushing">Bushing</option>
 	<option value="Arrester">Arrester</option>
 	<option value="OLTC">OLTC</option>
 </select></td></tr>
 <tr><td><b>Voltage Rating</b></td>
-<td><select size="1">
+<td><select id="voltage" name="voltage" size="1">
 	<option value="#"></option>
 	<option value="11">11</option>
 	<option value="22">22</option>
@@ -97,7 +62,7 @@ function displaysub(){
 	<option value="500">500</option>
 </select></td></tr>
 <tr><td><b>Manufacturer</b></td>
-<td><select name = "korn2" size="1">
+<td><select id="manufacturer_1" name = "manufacturer_1" size="1">
 	<option value="#"></option>
 </select></td></tr>
 <tr><td><b>Type</b></td>
