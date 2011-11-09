@@ -1,7 +1,7 @@
 #encoding : utf-8
 class IcOilController < ApplicationController
 @@bc_ic = "Inventory Control"
-@@bc_ic_link = "/ic_oil/index"
+@@bc_ic_link = "/ic_oil"
 @@bc_oil = 'น้ำมันหม้อแปลง'
 @@bc_oil_link = "/ic_oil/oil_chart"
 
@@ -86,6 +86,10 @@ def update_payment_cost
 end
 
 def index
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = ""
 end
 
 def menu_store

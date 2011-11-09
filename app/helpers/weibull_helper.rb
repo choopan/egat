@@ -1,7 +1,6 @@
 module WeibullHelper
 def javascript_includes
-    javascript_include_tag('jquery-ui-1.8.4.custom.min','ext-jquery-adapter',
-                           'ext-all', 'jquery.url', 'controllers/ic_oil')
+    javascript_include_tag('controllers/weibull')
   end
 
   def transformer_names_drop_down_list(form, id)
