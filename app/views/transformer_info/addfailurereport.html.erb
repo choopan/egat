@@ -39,13 +39,13 @@
 </tr>
 <tr>
 	<td>สภาวะการใช้งานขณะพบความผิดปกติ</td>
-        <td><%= select_tag "failurestatus", options_from_collection_for_select(@failurestatuses, "name", "name") %></td>
+        <td><%= select_tag "failurestatus", options_from_collection_for_select(@function, "name", "name") %></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :failurestatus_etc%></td>
 </tr>
 <tr>
         <td>รายละเอียดความผิดปกติ</td>
-        <td><%= select_tag "failuredetail", options_from_collection_for_select(@failuredetails, "name", "name") %></td>
+        <td><%= select_tag "failuredetail", options_from_collection_for_select(@detail, "name", "name") %></td>
         <td>อื่นๆ ระบุ</td>
         <td><%= text_field_tag :failuredetail_etc%></td>
 </tr>

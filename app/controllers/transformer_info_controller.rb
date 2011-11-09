@@ -151,10 +151,47 @@ class TransformerInfoController < ApplicationController
   end
 
   def addfailurereport
-     @station = params[:station]
-     @transformer = params[:transformer]
-     @environments = ["xxx", "yyy", "zzzz"]
-     @hours = [1, 2]
+	@environments = FdEnvironmnt.get_environment()
+	@num_environments = @environments.count
+
+	@function = FdFunction.get_function()
+	@num_function = @function.count
+	
+	@detail = FdDetail.get_detail()
+	@num_detail = @detail.count
+#-------------------------------------------------------------
+	@part1 = FdPart.get_part(1)
+	@num_part1 = @part1.count
+	
+	@part2 = FdPart.get_part(2)
+	@num_part2 = @part2.count
+
+	@part3 = FdPart.get_part(3)
+	@num_part3 = @part3.count
+
+	@part4 = FdPart.get_part(4)
+	@num_part4 = @part4.count
+
+	@part5 = FdPart.get_part(5)
+	@num_part5 = @part5.count
+
+	@part6 = FdPart.get_part(6)
+	@num_part6 = @part6.count
+
+	@part7 = FdPart.get_part(7)
+	@num_part7 = @part7.count
+
+	@part8 = FdPart.get_part(8)
+	@num_part8 = @part8.count
+#----------------------------------------------------------------
+	@mode = FdMode.get_mode()
+	@num_mode = @mode.count
+
+	@reason = FdReason.get_reason()
+	@num_reason = @reason.count
+	
+	@manage = FdManage.get_manage()
+	@num_manage = @manage.count
   end
   
   def txcreate
