@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108200433) do
+ActiveRecord::Schema.define(:version => 20111108044323) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1047,6 +1047,7 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
     t.decimal "failure_condition", :precision => 10, :scale => 0
   end
 
+<<<<<<< HEAD
   create_table "fd_details", :force => true do |t|
     t.string   "detail"
     t.datetime "created_at"
@@ -1087,6 +1088,25 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "fd_reasons", :force => true do |t|
     t.string   "reason"
+=======
+  create_table "failure_databases", :force => true do |t|
+    t.string   "egatsn"
+    t.datetime "eventdate"
+    t.integer  "counterOLTC"
+    t.string   "environment"
+    t.string   "failurestatus"
+    t.string   "failuredetail"
+    t.datetime "downdate"
+    t.datetime "update"
+    t.string   "workorder"
+    t.string   "failuregroup"
+    t.string   "failurepart"
+    t.string   "failuremode"
+    t.string   "failurereason"
+    t.string   "manage"
+    t.string   "remark"
+    t.string   "user"
+>>>>>>> choopan/master
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -1448,6 +1468,12 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
     t.string   "tel_no"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "n1_criteria", :force => true do |t|
+    t.string  "value",         :null => false
+    t.integer "score",         :null => false
+    t.string  "score_message", :null => false
   end
 
   create_table "n1_criterias", :force => true do |t|
@@ -2641,14 +2667,20 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
   end
 
   create_table "transformer_transfers", :force => true do |t|
-    t.string   "txname"
     t.string   "egatsn"
-    t.datetime "action_date"
+    t.date     "action_date"
     t.string   "user_op"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "station"
     t.string   "new_station"
+    t.string   "old_txname"
+    t.string   "new_txname"
+  end
+
+  create_table "tx_images", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tx_images", :force => true do |t|
@@ -2732,6 +2764,12 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "winding_types", :force => true do |t|
     t.string "description"
+  end
+
+  create_table "xxes", :force => true do |t|
+    t.string   "a"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

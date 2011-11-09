@@ -1,2 +1,33 @@
-<h1>TransformerInfo#failurereport</h1>
-<p>Find me in app/views/transformer_info/failurereport.html.erb</p>
+<h1>หม้อแปลงไฟฟ้า</h1>
+<%= form_for :failure do |f| %>
+<table width>
+<tr><td><p align='right'><label>เขต</label></p></td>
+    <td><%=
+      @stations = Station.group("region").all
+      f.collection_select(:station, @stations, :region, :region, 
+                          {:prompt => 'All', :selected => params[:region]})
+  %></td>
+</tr>
+<tr>
+   <td><p align='right'><label>หม้อแปลงไฟฟ้า</label></td>
+   <td><%=
+      f.collection_select(:transformer, @txnames, "id", "transformer_name", 
+                          {:prompt => '', :selected => params[:tid]})
+  %></td>
+</tr>
+	<% if !@txinfo.blank? %>
+  	<tr>
+		<td><p align='right'><label>Equipment No.</label></p></td>
+  		<td><%= f.text_field :egatsn, :value => @txinfo.egatsn, :readonly => true %></td>
+ 	</tr>
+	</table>
+	<BR>
+	<center><%= link_to('เพิ่ม', '/transformer_info/addfailurereport', :station => :station, :transformer => :transformer, :class => 'add') %></center>
+	<BR>
+	<table>
+		<tr><th>ID</th><th>วันที่เกิดเหตุการณ์</th><th>วันที่ปลดออกจากระบบ</th><th>วันที่นำเข้าระบบ</th><th>อุปกรณ์ที่เสียหาย</th><th></th></tr>
+
+	<%end%>
+</table>
+
+<% end %>

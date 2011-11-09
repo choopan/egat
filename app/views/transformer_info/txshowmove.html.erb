@@ -1,0 +1,33 @@
+<h1>การย้ายหม้อแปลง</h1>
+<div class='grid_8 prefix_2 chemicals' >
+<table>
+<tr>
+	<td><b>หม้อแปลงไฟฟ้า</b></td>
+	<td><%= @txmove.old_txname %></td>
+</tr>
+<tr>
+	<td><b>Equipement No.</b></td>
+        <td><%= @txmove.egatsn %></td>
+</tr>
+<tr>
+	<td><b>สถานีเก่า</b></td>
+        <td><%= @txmove.station %></td>
+</tr>
+<tr>
+	<td><b>ย้ายไปสถานีใหม่</b></td>
+        <td><%= @txmove.new_station %></td>
+</tr>
+<tr>
+	<td><b>ชื่อหม้อแปลงใหม่</b></td>
+        <td><%= @txmove.new_txname %></td>
+</tr>
+<tr>
+	<td><b>วันที่ย้าย</b></td>
+        <td><%= @txmove.action_date %></td>
+</tr>
+<tr>
+	<td><b>ผู้บันทึก</b></td>
+        <td><%= @txmove.user_op %></td>
+</tr>
+</table>
+</div>
