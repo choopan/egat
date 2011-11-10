@@ -25,6 +25,26 @@ function displaysub(x){
 
 }
 
+$(function(){
+		setValueText1(); 
+	});
+	
+	function setValueText1(){
+		$("#downdate").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+		$("#update").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+	}
+
+
 
 /*$(function() {
   PriceLoss.setupTransformerNameComboxBox('station_station');
@@ -36,10 +56,6 @@ function displaysub(x){
 </script>
 
 <h1>เพิ่มรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
-<%= @region %>
-<BR>
-<%= @txnams.transformer_name %>
-<BR>
 <%= form_tag('/transformer_info/create_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
 <table>
 <tr>
@@ -49,7 +65,7 @@ function displaysub(x){
 </tr>
 <tr>
     <td>หม้อแปลงไฟฟ้า</td>
-    <td><%= text_field_tag :txname%></td>
+    <td><%= text_field_tag 'txname',@txnams.transformer_name%></td>
 
 </tr>
 <tr>
