@@ -22,7 +22,7 @@
  	</tr>
 	</table>
 	<BR>
-	<center><%= link_to('เพิ่ม', '/transformer_info/addfailurereport', :station => :station, :transformer => :transformer, :class => 'add') %></center>
+	<center><%=link_to "เพิ่ม", {:controller => "transformer_info", :action => "addfailurereport",:region =>params[:region],:tid=>params[:tid]}, :class => 'add'%></center>
 	<BR>
 	<table>
 		<tr><th>ID</th><th>วันที่เกิดเหตุการณ์</th><th>วันที่ปลดออกจากระบบ</th><th>วันที่นำเข้าระบบ</th><th>อุปกรณ์ที่เสียหาย</th><th></th></tr>

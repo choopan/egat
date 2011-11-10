@@ -1,11 +1,28 @@
 <script>
-function displaysub(){
-    var xobj = document.dynamiccombo.failuregroup;
-    var x  = xobj.options[xobj.selectedIndex].value;
-    var cacheobj=document.dynamiccombo.failurepart;
-	cacheobj.options.length = 0;
-	
+function displaysub(x){
+//alert(x);
+  var manu = Ext.getCmp('failurepart');
+    option = new Array();
+    <%if @num_group!=0%>
+        <%for i in 0..@num_group-1 do%>
+	       <%if @num_part[i]!=0%>
+			if(x==<%=@part[i].first.mainid%>){
+				<%for j in 0..@num_part[i]-1 do%>
+					option[<%=j%>]= ['<%=@part[i][j].id%>','<%=@part[i][j].part%>'];
+				<%end%>
 		
+		}else
+              <%end%>
+	<%end%>
+		{
+			option[0]= ['','---โปรดระบุ---'];
+		}
+    <%end%>
+    
+    manu.store.removeAll();
+    manu.store.loadData(option, true);
+    manu.setValue(option[0][1]);
+
 }
 
 
@@ -19,11 +36,15 @@ function displaysub(){
 </script>
 
 <h1>เพิ่มรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
+<%= @region %>
+<BR>
+<%= @txnams.transformer_name %>
+<BR>
 <%= form_tag('/transformer_info/create_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
 <table>
 <tr>
     <td>เขต</td>
-    <td><%= text_field_tag :region%></td>
+    <td><%= text_field_tag 'region',@region%></td>
     <td></td>
 </tr>
 <tr>
@@ -98,7 +119,23 @@ function displaysub(){
 </tr>
 <tr>
         <td>เวลาที่ปลดออกจากระบบ</td>
-        <td><%= select_tag "downtimehour", "<option>xxx</option><option>yyy</option>"%></td><td>: <%= select_tag "downtimeminute", "<option>33</option><option>44</option>" %></td>
+        <td><select id='downtimehour' name='downtimehour'>
+			<%for i in 0..23 do%>
+			    <%if i<10%>
+				<option value='<%='0'+i.to_s%>'><%='0'+i.to_s%></option>
+			    <%else%>
+				<option value='<%=i%>'><%=i%></option>
+			    <%end%>
+			<%end%>
+		</select></td><td><select id='downtimeminute' name='downtimeminute'>
+			<%for i in 0..59 do%>
+			    <%if i<10%>
+				<option value='<%='0'+i.to_s%>'><%='0'+i.to_s%></option>
+			    <%else%>
+				<option value='<%=i%>'><%=i%></option>
+			    <%end%>
+			<%end%>
+		</select></td>
 </tr>
 <tr>
 	<td>วันที่นำเข้าระบบ</td>
@@ -107,7 +144,23 @@ function displaysub(){
 </tr>
 <tr>
 	<td>เวลาที่นำเข้าระบบ</td>
-        <td><%= select_tag "uptimehour", "<option>xxx</option><option>yyy</option>"%></td><td>: <%= select_tag "uptimeminute", "<option>33</option><option>44</option>" %></td>
+        <td><select id='uptimehour' name='uptimehour'>
+			<%for i in 0..23 do%>
+			    <%if i<10%>
+				<option value='<%='0'+i.to_s%>'><%='0'+i.to_s%></option>
+			    <%else%>
+				<option value='<%=i%>'><%=i%></option>
+			    <%end%>
+			<%end%>
+		</select></td><td><select id='uptimeminute' name='uptimeminute'>
+			<%for i in 0..59 do%>
+			    <%if i<10%>
+				<option value='<%='0'+i.to_s%>'><%='0'+i.to_s%></option>
+			    <%else%>
+				<option value='<%=i%>'><%=i%></option>
+			    <%end%>
+			<%end%>
+		</select></td>
 </tr>
 <tr>
 	<td>เลขคำสั่งปฏิบัติงาน</td>
@@ -116,7 +169,7 @@ function displaysub(){
 </tr>
 <tr>
         <td>กลุ่มชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
-        <td><sele<select id='failuregroup' name='failuregroup' onChange="displaysub()">
+        <td><sele<select id='failuregroup' name='failuregroup'>
 		<option value=''></option>
 		<%if @num_group!=0%>
 		  <%for i in 0..@num_group-1 do%>
@@ -133,6 +186,15 @@ function displaysub(){
         <td>ชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
         <td><select id='failurepart' name = 'failurepart'>
 		<option value="#"></option>
+		<%if @num_part[0] != 0%>
+		  <%for i in 0..@num_part[0]-1 do%>
+			<%if i==0%>
+				<option value='<%=@part[0][i].part%>' selected="true"><%=@part[0][i].part%></option>
+			<%else%>
+				<option value='<%=@part[0][i].part%>'><%=@part[0][i].part%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
 	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :failuredetail_etc%></td>
 </tr>
 <tr>

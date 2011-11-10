@@ -170,6 +170,8 @@ class TransformerInfoController < ApplicationController
   end
 
   def addfailurereport
+	@region = params[:region]
+	@txnams = Transformer.get_transformer_id(params[:tid])
 	@environments = FdEnvironmnt.get_environment()
 	@num_environments = @environments.count
 
@@ -181,12 +183,14 @@ class TransformerInfoController < ApplicationController
 #-------------------------------------------------------------
 	@group = FdGroupPart.get_group()
 	@num_group = @group.count
-	#if @num_group!=0
-	#	for i in 0..@num_group-1 do
-	#		@part[i] = FdPart.get_part(@group[i].id)
-	#		@num_part[i] = @part[i].count
-	#	end
-	#end
+	if @num_group!=0
+		@part = Array.new()
+		@num_part = Array.new()
+		for i in 0..@num_group-1 do
+			@part[i] = FdPart.get_part(@group[i].id)
+			@num_part[i] = @part[i].count
+		end
+	end
 #----------------------------------------------------------------
 	@mode = FdMode.get_mode()
 	@num_mode = @mode.count
@@ -196,6 +200,10 @@ class TransformerInfoController < ApplicationController
 	
 	@manage = FdManage.get_manage()
 	@num_manage = @manage.count
+  end
+
+  def create_failurereport
+	
   end
   
   def txcreate

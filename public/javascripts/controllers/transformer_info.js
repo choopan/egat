@@ -203,6 +203,37 @@ TxName.onTransformerNameChange = function(transformerId) {
     window.location.href = "/transformer_info/txaddmove?transformer_name=" + transformerId;
 };
 
+var FGroup = { };
+FGroup.setupTransformerNameComboxBox = function(id) {
+  if ($('#' + id).length > 0) {
+    var region = $('#'+id+' : selected').text();
+    var transformerId;
+    var selected;
+
+
+    selected = $("#" + id + " " + "option:selected");
+    if (selected.val().length > 0) {
+      transformerId = selected.val();
+    }
+    var converted = new Ext.form.ComboBox({
+      typeAhead: true,
+      triggerAction: 'all',
+      transform: id,
+      width: '200',
+      forceSelection:true,
+      value: transformerId
+    });
+
+
+    converted.on('select', function() {
+      FGroup.onTransformerNamChange(converted.getValue());
+    });
+  }
+};
+
+FGroup.onTransformerNamChange = function(transformerId) {
+  displaysub(transformerId);
+};
 function setCalendar(){
                 $("#transformer_transfer_action_date").datepicker({
                      dateFormat: 'dd/mm/yy',
@@ -243,7 +274,7 @@ $(function() {
   Cbox.setupComboxBox('downtimeminute');
   Cbox.setupComboxBox('uptimehour');
   Cbox.setupComboxBox('uptimeminute');
-  Cbox.setupComboxBox('failuregroup');
+  FGroup.setupTransformerNameComboxBox('failuregroup');
   Cbox.setupComboxBox('failurepart');
   Cbox.setupComboxBox('failuremode');
   Cbox.setupComboxBox('failurereason');
