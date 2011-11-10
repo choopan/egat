@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109090045) do
+ActiveRecord::Schema.define(:version => 20111110073005) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1106,7 +1106,6 @@ ActiveRecord::Schema.define(:version => 20111109090045) do
 
   create_table "fd_parts", :force => true do |t|
     t.integer  "mainid"
-    t.integer  "subid"
     t.string   "part"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2539,17 +2538,58 @@ ActiveRecord::Schema.define(:version => 20111109090045) do
     t.string   "transformer_name"
     t.float    "tv"
     t.string   "vector_group"
-    t.decimal  "first_substation",           :precision => 10, :scale => 0
-    t.decimal  "manufacturing",              :precision => 10, :scale => 0
-    t.decimal  "status",                     :precision => 10, :scale => 0
-    t.decimal  "winding_type_id",            :precision => 10, :scale => 0
+    t.decimal  "first_substation",    :precision => 10, :scale => 0
+    t.decimal  "manufacturing",       :precision => 10, :scale => 0
+    t.decimal  "status",              :precision => 10, :scale => 0
+    t.decimal  "winding_type_id",     :precision => 10, :scale => 0
     t.integer  "brand_id"
     t.string   "position"
-    t.string   "oltc_manufacturer"
     t.string   "oltc_type"
     t.string   "station"
     t.string   "txname"
-    t.integer  "transformer_accessories_id"
+    t.integer  "bushing_hv_manu"
+    t.string   "bushing_hv_type"
+    t.integer  "bushing_hv_year"
+    t.string   "bushing_hv_h0"
+    t.string   "bushing_hv_h1"
+    t.string   "bushing_hv_h2"
+    t.string   "bushing_hv_h3"
+    t.integer  "bushing_lv_manu"
+    t.string   "bushing_lv_type"
+    t.integer  "bushing_lv_year"
+    t.string   "bushing_lv_x0"
+    t.string   "bushing_lv_x1"
+    t.string   "bushing_lv_x2"
+    t.string   "bushing_lv_x3"
+    t.integer  "bushing_tv_manu"
+    t.string   "bushing_tv_type"
+    t.integer  "bushing_tv_year"
+    t.string   "bushing_tv_y1"
+    t.string   "bushing_tv_y2"
+    t.string   "bushing_tv_y3"
+    t.integer  "arrester_hv_manu"
+    t.string   "arrester_hv_type"
+    t.integer  "arrester_hv_year"
+    t.string   "arrester_hv_h1"
+    t.string   "arrester_hv_h2"
+    t.string   "arrester_hv_h3"
+    t.integer  "arrester_hv_gapless"
+    t.integer  "arrester_lv_manu"
+    t.string   "arrester_lv_type"
+    t.integer  "arrester_lv_year"
+    t.string   "arrester_lv_x1"
+    t.string   "arrester_lv_x2"
+    t.string   "arrester_lv_x3"
+    t.integer  "arrester_lv_gapless"
+    t.integer  "arrester_tv_manu"
+    t.string   "arrester_tv_type"
+    t.integer  "arrester_tv_year"
+    t.string   "arrester_tv_y1"
+    t.string   "arrester_tv_y2"
+    t.string   "arrester_tv_y3"
+    t.integer  "arrester_tv_gapless"
+    t.integer  "oltc_year"
+    t.integer  "oltc_manufacturer"
   end
 
   add_index "transformer", ["transformer_name"], :name => "transformer_name"
@@ -2601,6 +2641,7 @@ ActiveRecord::Schema.define(:version => 20111109090045) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bushing_tv_year"
+    t.string   "egatsn"
   end
 
   create_table "transformer_control_cabinet_factors", :force => true do |t|
@@ -2760,12 +2801,6 @@ ActiveRecord::Schema.define(:version => 20111109090045) do
 
   create_table "winding_types", :force => true do |t|
     t.string "description"
-  end
-
-  create_table "xxes", :force => true do |t|
-    t.string   "a"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end
