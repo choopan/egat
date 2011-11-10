@@ -239,5 +239,14 @@ $(function() {
   Cbox.setupComboxBox('environment');
   Cbox.setupComboxBox('failurestatus');
   Cbox.setupComboxBox('failuredetail');
+  Cbox.setupComboxBox('downtimehour');
+  Cbox.setupComboxBox('downtimeminute');
+  Cbox.setupComboxBox('uptimehour');
+  Cbox.setupComboxBox('uptimeminute');
+  Cbox.setupComboxBox('failuregroup');
+  Cbox.setupComboxBox('failurepart');
+  Cbox.setupComboxBox('failuremode');
+  Cbox.setupComboxBox('failurereason');
+  Cbox.setupComboxBox('manage');
 });
 

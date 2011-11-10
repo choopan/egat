@@ -1,128 +1,195 @@
+<script>
+function displaysub(){
+    var xobj = document.dynamiccombo.failuregroup;
+    var x  = xobj.options[xobj.selectedIndex].value;
+    var cacheobj=document.dynamiccombo.failurepart;
+	cacheobj.options.length = 0;
+	
+		
+}
+
+
+/*$(function() {
+  PriceLoss.setupTransformerNameComboxBox('station_station');
+  Cbox.setupComboxBox('select_manufacturer');
+  Cbox.setupComboxBox('voltage');
+  Cbox.setupComboxBox('manufacturer_1');
+});*/
+
+</script>
+
 <h1>เพิ่มรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
-<%= form_tag('/transformer_info/create_failurereport', :method=>'post') do %>
+<%= form_tag('/transformer_info/create_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
 <table>
 <tr>
     <td>เขต</td>
     <td><%= text_field_tag :region%></td>
-    <td></td> 
-    <td></td> 
+    <td></td>
 </tr>
 <tr>
     <td>หม้อแปลงไฟฟ้า</td>
     <td><%= text_field_tag :txname%></td>
-    <td></td> 
-    <td></td> 
+
 </tr>
 <tr>
     <td>Equipement No.</td>
     <td><%= text_field_tag :egatsn%></td>
-    <td></td> 
-    <td></td> 
+    <td></td>
 </tr>
 <tr>
     <td>วันที่เกิดเหตุการณ์</td>
     <td><%= text_field_tag :eventdate%></td>
-    <td></td> 
-    <td></td> 
+    <td></td>
 </tr>
 <tr>
     <td>จำนวนครั้งในการทำงานของ OLTC</td>
     <td><%= text_field_tag :counterOLTC%></td>
-    <td></td> 
-    <td></td> 
+    <td></td>
 </tr>
 <tr>
 	<td>สภาพแวดล้อม</td>
-        <td><%= select_tag "environment", options_from_collection_for_select(@environments, "name", "name") %></td>
-        <td>อื่นๆ ระบุ</td>
-        <td><%= text_field_tag :environment_etc%></td>
+        <td><select id='environment' name='environment'>
+		<option value=''></option>
+		<%if @num_environments!=0%>
+		  <%for i in 0..@num_environments-1 do%>
+			<%if i==0%>
+				<option value='<%=@environments[i].id%>' selected="true"><%=@environments[i].environmnt%></option>
+			<%else%>
+				<option value='<%=@environments[i].id%>'><%=@environments[i].environmnt%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :environment_etc%></td>
 </tr>
 <tr>
 	<td>สภาวะการใช้งานขณะพบความผิดปกติ</td>
-        <td><%= select_tag "failurestatus", options_from_collection_for_select(@function, "name", "name") %></td>
-        <td>อื่นๆ ระบุ</td>
-        <td><%= text_field_tag :failurestatus_etc%></td>
+        <td><select id='failurestatus' name='failurestatus'>
+		<option value=''></option>
+		<%if @num_function!=0%>
+		  <%for i in 0..@num_function-1 do%>
+			<%if i==0%>
+				<option value='<%=@function[i].id%>' selected="true"><%=@function[i].function%></option>
+			<%else%>
+				<option value='<%=@function[i].id%>'><%=@function[i].function%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :failurestatus_etc%></td>
 </tr>
 <tr>
         <td>รายละเอียดความผิดปกติ</td>
-        <td><%= select_tag "failuredetail", options_from_collection_for_select(@detail, "name", "name") %></td>
-        <td>อื่นๆ ระบุ</td>
-        <td><%= text_field_tag :failuredetail_etc%></td>
+        <td><select id='failuredetail' name='failuredetail'>
+		<option value=''></option>
+		<%if @num_detail!=0%>
+		  <%for i in 0..@num_detail-1 do%>
+			<%if i==0%>
+				<option value='<%=@detail[i].id%>' selected="true"><%=@detail[i].detail%></option>
+			<%else%>
+				<option value='<%=@detail[i].id%>'><%=@detail[i].detail%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :failuredetail_etc%></td>
 </tr>
 <tr>
 	<td>วันที่ปลดออกจากระบบ</td>
         <td><%= text_field_tag :downdate%></td>
 	<td></td>
-	<td></td>
 </tr>
 <tr>
         <td>เวลาที่ปลดออกจากระบบ</td>
-        <td><%= select_tag "downtimehour", options_from_collection_for_select(@hours, "name", "name") %> : <%= select_tag "downtimeminute", options_from_collection_for_select(@minutes, "name", "name") %></td>
-	<td></td>
-	<td></td>
+        <td><%= select_tag "downtimehour", "<option>xxx</option><option>yyy</option>"%></td><td>: <%= select_tag "downtimeminute", "<option>33</option><option>44</option>" %></td>
 </tr>
 <tr>
 	<td>วันที่นำเข้าระบบ</td>
         <td><%= text_field_tag :update%></td>
 	<td></td>
-	<td></td>
 </tr>
 <tr>
 	<td>เวลาที่นำเข้าระบบ</td>
-        <td><%= select_tag "uptimehour", options_from_collection_for_select(@hours, "name", "name") %> : <%= select_tag "uptimeminute", options_from_collection_for_select(@minutes, "name", "name") %></td>
-	<td></td>
-	<td></td>
+        <td><%= select_tag "uptimehour", "<option>xxx</option><option>yyy</option>"%></td><td>: <%= select_tag "uptimeminute", "<option>33</option><option>44</option>" %></td>
 </tr>
 <tr>
 	<td>เลขคำสั่งปฏิบัติงาน</td>
         <td><%= text_field_tag :workorder%></td>
 	<td></td>
-	<td></td>
 </tr>
 <tr>
         <td>กลุ่มชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
-        <td><%= select_tag "failuregroup", options_from_collection_for_select(@failuregroups, "name", "name") %></td>
-	<td></td>
-	<td></td>
+        <td><sele<select id='failuregroup' name='failuregroup' onChange="displaysub()">
+		<option value=''></option>
+		<%if @num_group!=0%>
+		  <%for i in 0..@num_group-1 do%>
+			<%if i==0%>
+				<option value='<%=@group[i].id%>' selected="true"><%=@group[i].group%></option>
+			<%else%>
+				<option value='<%=@group[i].id%>'><%=@group[i].group%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	    </select></td><td></td>
 </tr>
 <tr>
         <td>ชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
-        <td><%= select_tag :failurepart%></td>
-	<td></td>
-	<td></td>
+        <td><select id='failurepart' name = 'failurepart'>
+		<option value="#"></option>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :failuredetail_etc%></td>
 </tr>
 <tr>
 	<td>ระดับความเสียหาย</td>
-        <td><%= select_tag :failuremode, options_from_collection_for_select(@failuremodes, "name", "name") %></td>
-	<td></td>
-	<td></td>
+        <td><select id='failuremode' name='failuremode'>
+		<option value=''></option>
+		<%if @num_mode!=0%>
+		  <%for i in 0..@num_mode-1 do%>
+			<%if i==0%>
+				<option value='<%=@mode[i].id%>' selected="true"><%=@mode[i].mode%></option>
+			<%else%>
+				<option value='<%=@mode[i].id%>'><%=@mode[i].mode%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select></td><td></td>
 </tr>
 <tr>
         <td>สาเหตุที่แท้จริง</td>
-        <td><%= select_tag "failurereason", options_from_collection_for_select(@failuredetails, "name", "name") %></td>
-        <td>อื่นๆ ระบุ</td>
-        <td><%= text_field_tag :failurereason_etc%></td>
+        <td><select id='failurereason' name='failurereason'>
+		<option value=''></option>
+		<%if @num_reason!=0%>
+		  <%for i in 0..@num_reason-1 do%>
+			<%if i==0%>
+				<option value='<%=@reason[i].id%>' selected="true"><%=@reason[i].reason%></option>
+			<%else%>
+				<option value='<%=@reason[i].id%>'><%=@reason[i].reason%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :failurereason_etc%></td>
 </tr>
 <tr>
         <td>การจัดการ</td>
-        <td><%= select_tag "manage", options_from_collection_for_select(@manages, "name", "name") %></td>
-        <td>อื่นๆ ระบุ</td>
-        <td><%= text_field_tag :manage_etc%></td>
+        <td><select id='manage' name='manage'>
+		<option value=''></option>
+		<%if @num_manage!=0%>
+		  <%for i in 0..@num_manage-1 do%>
+			<%if i==0%>
+				<option value='<%=@manage[i].id%>' selected="true"><%=@manage[i].reason%></option>
+			<%else%>
+				<option value='<%=@manage[i].id%>'><%=@manage[i].reason%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :manage_etc%></td>
 </tr>
 <tr>
         <td>รายละเอียดเพิ่มเติม (Remark)</td>
-        <td><%= text_field_tag :remark%></td>
-	<td></td>
-	<td></td>
+        <td><%= text_field_tag :remark%></td><td></td>
 </tr>
 <tr>
         <td>ผู้รายงาน</td>
-        <td><%= text_field_tag :user%></td>
-	<td></td>
-	<td></td>
+        <td><%= text_field_tag :user%></td><td></td>
 </tr>
 <tr>
-	<td colspan=4><center><%= submit_tag "Save", :class => "cupid-green" %></center></td>
+	<td colspan=3><center><%= submit_tag "Save", :class => "cupid-green" %></center></td>
 </tr>
 </table>
 <%end%>

@@ -160,29 +160,14 @@ class TransformerInfoController < ApplicationController
 	@detail = FdDetail.get_detail()
 	@num_detail = @detail.count
 #-------------------------------------------------------------
-	@part1 = FdPart.get_part(1)
-	@num_part1 = @part1.count
-	
-	@part2 = FdPart.get_part(2)
-	@num_part2 = @part2.count
-
-	@part3 = FdPart.get_part(3)
-	@num_part3 = @part3.count
-
-	@part4 = FdPart.get_part(4)
-	@num_part4 = @part4.count
-
-	@part5 = FdPart.get_part(5)
-	@num_part5 = @part5.count
-
-	@part6 = FdPart.get_part(6)
-	@num_part6 = @part6.count
-
-	@part7 = FdPart.get_part(7)
-	@num_part7 = @part7.count
-
-	@part8 = FdPart.get_part(8)
-	@num_part8 = @part8.count
+	@group = FdGroupPart.get_group()
+	@num_group = @group.count
+	#if @num_group!=0
+	#	for i in 0..@num_group-1 do
+	#		@part[i] = FdPart.get_part(@group[i].id)
+	#		@num_part[i] = @part[i].count
+	#	end
+	#end
 #----------------------------------------------------------------
 	@mode = FdMode.get_mode()
 	@num_mode = @mode.count

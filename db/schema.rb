@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108200433) do
+ActiveRecord::Schema.define(:version => 20111109090045) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1082,6 +1082,12 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "fd_functions", :force => true do |t|
     t.string   "function"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_group_parts", :force => true do |t|
+    t.string   "group"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

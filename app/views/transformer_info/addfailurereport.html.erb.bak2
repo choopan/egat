@@ -4,67 +4,21 @@ function displaysub(){
     var x  = xobj.options[xobj.selectedIndex].value;
     var cacheobj=document.dynamiccombo.failurepart;
 	cacheobj.options.length = 0;
-	if(x==1){
-		<%if @num_part1!=0%>
-			<%for i in 0..@num_part1-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part1[i].id%>','<%=@part1[i].part%>');
-			<%end%>
+	/*<%if @num_group!=0%>
+		<%for i in 0..@num_group-1 do%>
+			if(x==@part[i].mainid){
+				<%if @num_part[i]!=0%>
+					<%for j in 0..@num_part[i]-1 do%>
+						cacheobj.options[<%=i%>]=new Option('<%=@part[i][j].id%>','<%=@part1[i][j].part%>');
+					<%end%>
+				<%end%>
+				cacheobj.options[0].selected=true;
+			}else
 		<%end%>
-		cacheobj.options[0].selected=true;
-	}else if(x==2){
-		<%if @num_part2!=0%>
-			<%for i in 0..@num_part2-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part2[i].id%>','<%=@part2[i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;
-	}else if(x==3){
-		<%if @num_part3!=0%>
-			<%for i in 0..@num_part3-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part3[i].id%>','<%=@part3[i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;
-	}else if(x==4){
-		<%if @num_part4!=0%>
-			<%for i in 0..@num_part4-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part4[i].id%>','<%=@part4[i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;	
-	}else if(x==5){
-		<%if @num_part5!=0%>
-			<%for i in 0..@num_part5-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part5[i].id%>','<%=@part5[i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;	
-	}else if(x==6){
-		<%if @num_part6!=0%>
-			<%for i in 0..@num_part6-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part6[i].id%>','<%=@part6i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;
-	}else if(x==7){
-		<%if @num_part7!=0%>
-			<%for i in 0..@num_part7-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part7[i].id%>','<%=@part7[i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;	
-	}else if(x==8){
-		<%if @num_part8!=0%>
-			<%for i in 0..@num_part8-1 do%>
-				cacheobj.options[<%=i%>]=new Option('<%=@part8[i].id%>','<%=@part8[i].part%>');
-			<%end%>
-		<%end%>
-		cacheobj.options[0].selected=true;
-	}else{
-		cacheobj.options[0]=new Option('200','---โปรดระบุ---');
-		cacheobj.options[0].selected=true;
-	}
-		
+			{
+				cacheobj.options[0]=new Option('200','---โปรดระบุ---');
+				cacheobj.options[0].selected=true;
+			}*/		
 }
 
 
@@ -194,16 +148,16 @@ function displaysub(){
 <tr>
         <td>กลุ่มชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
         <td><select id='failuregroup' name='failuregroup' onChange="displaysub()">
-		<option value=#></option>
-	    	<option value=1>Active Part</option>
-		<option value=2>Tank</option>
-		<option value=3>ระบบระบายความร้อน</option>
-		<option value=4>อุปกรณ์ป้องกัน</option>
-		<option value=5>น้ำมันหม้อแปลง</option>
-		<option value=6>On – load Tap Changer</option>
-		<option value=7>Bushing</option>
-		<option value=8>Surge Arrester</option>
-		<option value=9>อื่นๆ</option>
+		<option value=''></option>
+		<%if @num_group!=0%>
+		  <%for i in 0..@num_group-1 do%>
+			<%if i==0%>
+				<option value='<%=@group[i].id%>' selected="true"><%=@group[i].group%></option>
+			<%else%>
+				<option value='<%=@group[i].id%>'><%=@group[i].group%></option>
+			<%end%>
+		  <%end%>
+		<%end%>
 	    </select></td>
 	<td></td>
 	<td></td>
