@@ -76,4 +76,140 @@ class Transformer < ActiveRecord::Base
     	     rescue Exception
       	return nil
   end
+
+  def self.get_bushing_type(id)
+        result = Transformer.find_by_sql("(SELECT DISTINCT bushing_hv_type FROM transformer WHERE bushing_hv_manu='#{id}') UNION (SELECT DISTINCT bushing_lv_type FROM transformer WHERE bushing_lv_manu='#{id}') UNION (SELECT DISTINCT bushing_tv_type FROM transformer WHERE bushing_tv_manu='#{id}')");
+        return result
+  end
+
+
+  def self.get_arrester_type(id)
+        result = Transformer.find_by_sql("(SELECT DISTINCT arrester_hv_type FROM transformer WHERE arrester_hv_manu='#{id}') UNION (SELECT DISTINCT arrester_lv_type FROM transformer WHERE arrester_lv_manu='#{id}') UNION (SELECT DISTINCT arrester_tv_type FROM transformer WHERE arrester_tv_manu='#{id}')");
+        return result
+  end
+
+  def self.get_oltc_type(id)
+        where("oltc_manufacturer='#{id}'").group(:oltc_type)
+  end
+
+  def self.calculate_f_normal_weibull(equipe, voltage, manufacturer, type, failuredetail)
+      f = 0
+      minvol = voltage.to_f * 0.9
+      maxvol = voltage.to_f * 1.1
+
+      if equipe == "Bushing"
+        #count hv bushing failure
+        hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing'")
+        if !hv_bushing_failure.nil?
+           for i in 0..hv_bushing_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and egatsn='#{hv_bushing_failure[i].egatsn}'")
+              else
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and egatsn='#{hv_bushing_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+        end
+
+        lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing'")
+        if !lv_bushing_failure.nil?
+           for i in 0..lv_bushing_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and egatsn='#{lv_bushing_failure[i].egatsn}'")
+              else
+                result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and bushing_lv_type='#{type}' and egatsn='#{lv_bushing_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+       end
+
+
+        tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing'")
+        if !tv_bushing_failure.nil?
+           for i in 0..tv_bushing_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and egatsn='#{tv_bushing_failure[i].egatsn}'")
+              else
+                result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and bushing_tv_type='#{type}' and egatsn='#{tv_bushing_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+        end
+     
+    elsif equipe == "Arrester"
+        #count hv arrester failure
+        hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester'")
+        if !hv_ar_failure.nil?
+           for i in 0..hv_ar_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and egatsn='#{hv_ar_failure[i].egatsn}'")
+              else
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and arrester_hv_type='#{type}' and egatsn='#{hv_ar_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+        end
+
+        lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester'")
+        if !lv_ar_failure.nil?
+           for i in 0..lv_ar_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and egatsn='#{lv_ar_failure[i].egatsn}'")
+              else
+                result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and arrester_lv_type='#{type}' and egatsn='#{lv_ar_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+       end
+
+
+        tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester'")
+        if !tv_ar_failure.nil?
+           for i in 0..tv_ar_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and egatsn='#{tv_ar_failure[i].egatsn}'")
+              else
+                result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and arrester_tv_type='#{type}' and egatsn='#{tv_ar_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+        end
+      
+      else 
+        hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}'")
+        if !hv_oltc_failure.nil?
+           for i in 0..hv_oltc_failure.size-1 do
+              if type == '0'
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and egatsn='#{hv_oltc_failure[i].egatsn}'")
+              else
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and oltc_type='#{type}' and egatsn='#{hv_oltc_failure[i].egatsn}'")
+              end
+
+              if !result.nil? and result.size != 0
+                f = f + 1
+              end
+          end
+        end
+      end
+
+      return f
+  end
 end

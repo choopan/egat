@@ -34,6 +34,8 @@ Phase.setupTransformerNameComboxBox = function(id) {
       transformerId = selected.val();
     }
     var converted = new Ext.form.ComboBox({
+      id: id,
+      hiddenname: id,
       typeAhead: true,
       triggerAction: 'all',
       transform: id,
@@ -51,48 +53,55 @@ Phase.setupTransformerNameComboxBox = function(id) {
 
 Phase.onTransformerNamChange = function(transformerId) {
   displaysub(transformerId);
+  displaytype(1);
 };
 
-/*
-function displaysub() {
-    var xobj = document.dynamiccombo.select_manufacturer;
-    var x  = xobj.options[xobj.selectedIndex].value;
-    var cacheobj=document.dynamiccombo.manufacturer_1;
-        cacheobj.options.length = 0;
-        if(x=="Bushing"){
-                <%if @numBushing!=0%>
-                        <%for i in 0..@numBushing-1 do%>
-                                cacheobj.options[<%=i%>]=new Option('<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>');
-                        <%end%>
-                <%end%>
-                cacheobj.options[0].selected=true;
-        }else if(x=="Arrester"){
-                <%if @numArrester!=0%>
-                        <%for i in 0..@numArrester-1 do%>
-                                cacheobj.options[<%=i%>]=new Option('<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>');
-                        <%end%>
-                <%end%>
-                cacheobj.options[0].selected=true;
-        }else{
-                <%if @numOltc!=0%>
-                        <%for i in 0..@numOltc-1 do%>
-                                cacheobj.options[<%=i%>]=new Option('<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>');
-                        <%end%>
-                <%end%>
-                cacheobj.options[0].selected=true;
-        
-        }
-                
-}
-*/
+
+var Manu = { };
+Manu.setupTransformerNameComboxBox = function(id) {
+  if ($('#' + id).length > 0) {
+    var region = $('#'+id+' : selected').text();
+    var transformerId;
+    var selected;
+
+
+    selected = $("#" + id + " " + "option:selected");
+    if (selected.val().length > 0) {
+      transformerId = selected.val();
+    }
+    var converted = new Ext.form.ComboBox({
+      id: id,
+      hiddenname: id,
+      typeAhead: true,
+      triggerAction: 'all',
+      transform: id,
+      width: '200',
+      forceSelection:true,
+      value: transformerId
+    });
+
+
+    converted.on('select', function() {
+      Manu.onTransformerNamChange(converted.getValue());
+    });
+  }
+};
+
+Manu.onTransformerNamChange = function(transformerId) {
+  displaytype(transformerId);
+};
+
 
 $(function() {
   //Cbox.setupComboxBox('select_manufacturer');
   Cbox.setupComboxBox('voltage');
-  Cbox.setupComboxBox('manufacturer');
   Cbox.setupComboxBox('type');
   Cbox.setupComboxBox('failuredetail');
+  //Cbox.setupComboxBox('manufacturer');
 
+  Manu.setupTransformerNameComboxBox('manufacturer');
   Phase.setupTransformerNameComboxBox('select_manufacturer');
+  displaysub(1);
+  displaytype(1);
 });
 

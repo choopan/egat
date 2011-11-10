@@ -1,26 +1,25 @@
 <script>
 function displaysub(x) {
-
     var manu = Ext.getCmp('manufacturer');
     option = new Array();
 
     if(x=="Bushing"){
         <%if @numBushing!=0%>
           <%for i in 0..@numBushing-1 do%>
-            option[<%=i%>] = ['<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>'];
+            option[<%=i%>] = ['<%=@bushing[i].id%>','<%=@bushing[i].manufacturer%>'];
           <%end%>
         <%end%>
 
     } else if (x=="Arrester"){
         <%if @numArrester!=0%>
             <%for i in 0..@numArrester-1 do%>
-                option[<%=i%>] = ['<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>'];
+                option[<%=i%>] = ['<%=@arrester[i].id%>','<%=@arrester[i].manufacturer%>'];
             <%end%>
         <%end%>
     } else {
         <%if @numOltc!=0%>
             <%for i in 0..@numOltc-1 do%>
-                    option[<%=i%>]= ['<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>'];
+                    option[<%=i%>]= ['<%=@oltc[i].id%>','<%=@oltc[i].manufacturer%>'];
             <%end%>
         <%end%>
     }
@@ -31,35 +30,49 @@ function displaysub(x) {
 }
 
 
-function displaytype(x){
+function displaytype(y){
+    var equipe = Ext.getCmp('select_manufacturer');
+    var x = equipe.getValue();
     var type = Ext.getCmp('type');
+
     option = new Array();
+    option[0] = ['0', '--All--'];
 
     if(x=="Bushing"){
         <%if @numBushing!=0%>
           <%for i in 0..@numBushing-1 do%>
-		<%if @busingtype[i].
-            option[<%=i%>] = ['<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>'];
-          <%end%>
+              if(y == <%= @bushing[i].id %>) {
+                <% for j in 0..@bushingtype[i].size-1 do%>
+                    option[<%=j+1%>] = ['<%=@bushingtype[i][j].bushing_hv_type%>','<%=@bushingtype[i][j].bushing_hv_type%>'];
+                <%end%>
+              }
         <%end%>
-
+      <%end%>
     } else if (x=="Arrester"){
-        <%if @numArrester!=0%>
-            <%for i in 0..@numArrester-1 do%>
-                option[<%=i%>] = ['<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>'];
-            <%end%>
+       <%if @numArrester!=0%>
+         <%for i in 0..@numArrester-1 do%>
+             if(y == <%= @arrester[i].id %>) {
+                <% for j in 0..@arrestertype[i].size-1 do%>
+                    option[<%=j+1%>] = ['<%=@arrestertype[i][j].arrester_hv_type%>','<%=@arrestertype[i][j].arrester_hv_type%>'];
+                <%end%>
+             }
         <%end%>
+      <%end%>
     } else {
         <%if @numOltc!=0%>
             <%for i in 0..@numOltc-1 do%>
-                    option[<%=i%>]= ['<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>'];
+               if(y == <%= @oltc[i].id %>) {
+                <% for j in 0..(@oltctype[i].length)-1 do %>
+                    option[<%=j+1%>] = ['<%=@oltctype[i][j].oltc_type%>','<%=@oltctype[i][j].oltc_type%>'];
+                <%end%>
+             }
             <%end%>
-        <%end%>
+      <%end%>
     }
 
-    manu.store.removeAll();
-    manu.store.loadData(option, true);
-    manu.setValue(option[0][1]);
+    type.store.removeAll();
+    type.store.loadData(option, true);
+    type.setValue(option[0][1]);
 }
 </script>
 
@@ -68,14 +81,12 @@ function displaytype(x){
 <%= form_tag('/weibull/weibull_calculation', :method=>'post') do %>
 <table><tr><td><b>อุปกรณ์</b></td>
 <td><select  id="select_manufacturer" name="select_manufacturer" size ="1" onChange="displaysub()">
-	<option value="#" ></option>
 	<option value="Bushing">Bushing</option>
 	<option value="Arrester">Arrester</option>
 	<option value="OLTC">OLTC</option>
 </select></td></tr>
 <tr><td><b>Voltage Rating</b></td>
 <td><select id="voltage" name="voltage" size="1">
-	<option value="0">All</option>
 	<option value="11">11</option>
 	<option value="22">22</option>
 	<option value="33">33</option>
@@ -109,12 +120,12 @@ function displaytype(x){
 	<option value="ทำงานไม่ถูกต้อง">ทำงานไม่ถูกต้อง</option>
 	<option value="คุณสมบัติเปลี่ยนไป">คุณสมบัติเปลี่ยนไป</option>
 	<option value="ทดสอบไม่ผ่าน">ทดสอบไม่ผ่าน</option>
-	<option value="อื่นๆ ให้ระบุ">อื่นๆ ให้ระบุ</option>
+	<option value="อื่นๆ">อื่นๆ</option>
 </select></td></tr>
 <tr><td><b>Time Interval for Failure Observation(years)</b></td>
-<td><input type="text" size="10"></td></tr>
+<td><input id="time_interval" name="time_interval" type="text" size="10"></td></tr>
 <tr><td><b>Lead Time(years)</b></td>
-<td><input type="text" size="10"></td></tr>
+<td><input id="lead_time" name="lead_time" type="text" size="10"></td></tr>
 <tr><td></td><td><input type="submit" value="คำนวณ" size="10"></td></tr>
 </table>
 <% end %>
