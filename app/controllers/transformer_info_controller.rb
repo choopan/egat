@@ -1,6 +1,15 @@
 #encoding : UTF-8
+@@bc_ic = "ข้อมูลหม้อแปลง"
+@@bc_ic_link = "/transformer_info"
+
 class TransformerInfoController < ApplicationController
   def txlist
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_ic
+        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
+        @breadcrumb_link[1]  = ''
 
 	if params[:region] == "" or params[:region].nil?
 		@txinfos = Transformer.order("id").paginate(:page => params[:page], :per_page => 5)
@@ -20,6 +29,16 @@ class TransformerInfoController < ApplicationController
   end
 
   def txadd
+    @breadcrumb_title = Array.new()
+    @breadcrumb_link  = Array.new()
+    @breadcrumb_title[0] = @@bc_ic
+    @breadcrumb_link[0]  = @@bc_ic_link
+    @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
+    @breadcrumb_link[1]  = '/transformer_info/txlist'
+    @breadcrumb_title[2] = 'เพิ่มหม้อแปลงไฟฟ้า'
+    @breadcrumb_link[2]  = ''
+
+
     @txinfo = Transformer.new
     @stations = Station.order("name").all
     @brand_ids = Brand.order("name").all

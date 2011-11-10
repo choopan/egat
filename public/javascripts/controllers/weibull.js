@@ -50,15 +50,7 @@ Phase.setupTransformerNameComboxBox = function(id) {
 };
 
 Phase.onTransformerNamChange = function(transformerId) {
-	displaysub(transformerId);
-/*
-   var phase_position = Ext.getCmp('phase_position');
-        if(transformerId=='1'){
-                phase_position.enable();
-        }else{
-                phase_position.disable();
-        }
-*/
+  displaysub(transformerId);
 };
 
 /*
