@@ -1,41 +1,37 @@
 <script>
-/*
 function displaysub(x) {
-   alert("test" + x);
 
-    //var xobj = Ext.getCmp('select_manufacturer');
-    //var x  = xobj.val();
-    var cacheobj= Ext.getCmp('manufacturer');
-   alert(cacheobj);
-        cacheobj.options.length = 0;
-    alert("xxx");
-        if(x=="Bushing"){
-                <%if @numBushing!=0%>
-                        <%for i in 0..@numBushing-1 do%>
-                                cacheobj.options[<%=i%>]=new Option('<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>');
-                        <%end%>
-                <%end%>
-                cacheobj.options[0].selected=true;
-        }else if(x=="Arrester"){
-                <%if @numArrester!=0%>
-                        <%for i in 0..@numArrester-1 do%>
-                                cacheobj.options[<%=i%>]=new Option('<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>');
-                        <%end%>
-                <%end%>
-                cacheobj.options[0].selected=true;
-        }else{
-                <%if @numOltc!=0%>
-                        <%for i in 0..@numOltc-1 do%>
-                                cacheobj.options[<%=i%>]=new Option('<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>');
-                        <%end%>
-                <%end%>
-                cacheobj.options[0].selected=true;
-        
-        }
-                
+    var manu = Ext.getCmp('manufacturer');
+    option = new Array();
+
+    if(x=="Bushing"){
+        <%if @numBushing!=0%>
+          <%for i in 0..@numBushing-1 do%>
+            option[<%=i%>] = ['<%=@bushing[i].manufacturer%>','<%=@bushing[i].manufacturer%>'];
+          <%end%>
+        <%end%>
+
+    } else if (x=="Arrester"){
+        <%if @numArrester!=0%>
+            <%for i in 0..@numArrester-1 do%>
+                option[<%=i%>] = ['<%=@arrester[i].manufacturer%>','<%=@arrester[i].manufacturer%>'];
+            <%end%>
+        <%end%>
+    } else {
+        <%if @numOltc!=0%>
+            <%for i in 0..@numOltc-1 do%>
+                    option[<%=i%>]= ['<%=@oltc[i].manufacturer%>','<%=@oltc[i].manufacturer%>'];
+            <%end%>
+        <%end%>
+    }
+
+    manu.store.removeAll();
+    manu.store.loadData(option, true);
+    manu.setValue(option[0][1]);
 }
-*/
+
 </script>
+
 <p><h2>&nbsp;Inventory Control / Weibull Calculation</h2></p>
 <p>
 <form name='dynamiccombo'>

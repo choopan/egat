@@ -50,31 +50,7 @@ Phase.setupTransformerNameComboxBox = function(id) {
 };
 
 Phase.onTransformerNamChange = function(transformerId) {
-	alert("ok");
-	var ee = Ext.getCmp('select_manufacturer');
-	var store = ee.getStore();
-	alert(store);
-/*
-        var manu = Ext.getCmp('manufacturer');
-        manu.options[0]=new Option('xx','xxx');
-	alert(manu.options[0].value());*/
-/*
-	var myArray = new Array();
-	    myArray['id'] = 'X';
-            myArray['value'] = 'XXX';
-        var rec = new Ext.data.Record(myArray);
-	alert(manu);
-        manu.getStore().add(rec);
-*/
-	//displaysub(transformerId);
-/*
-   var phase_position = Ext.getCmp('phase_position');
-        if(transformerId=='1'){
-                phase_position.enable();
-        }else{
-                phase_position.disable();
-        }
-*/
+  displaysub(transformerId);
 };
 
 /*
