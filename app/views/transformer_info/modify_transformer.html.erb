@@ -14,10 +14,9 @@
 
 </script>
 
-<h1>เพิ่มหม้อแปลงไฟฟ้า</h1>
+<h1>แก้ไขข้อมูลหม้อแปลงไฟฟ้า</h1>
 <%= form_tag('/transformer_info/updat_transformer', :method=>'post', :multipart => true, :name => 'transformer') do %>
 	<input type=hidden name="transformer_id" value=<%= @transformer.id %>>
-	<input type=hidden name="accessories_id" value=<%= @transformer_accessory.id %>>
 <div class='grid_10 prefix_2 chemicals' >
       <p>
 	<%= label_tag :egatsn, "Equipement No.", :class => 'inline' %>
@@ -193,7 +192,7 @@
 		<option value=''></option>
 		<%if @num_bushing!=0%>
 		  <%for i in 0..@num_bushing-1 do%>
-			<%if @manufacturer_bushing[i].id==@transformer_accessory.bushing_hv_manu%>
+			<%if @manufacturer_bushing[i].id==@transformer.bushing_hv_manu%>
 				<option value='<%=@manufacturer_bushing[i].id%>' selected="true"><%=@manufacturer_bushing[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option>
@@ -205,16 +204,16 @@
 	</p></td>
 
 
-   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_hv_type" value='<%=@transformer_accessory.bushing_hv_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_hv_year" value='<%=@transformer_accessory.bushing_hv_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_hv_type" value='<%=@transformer.bushing_hv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_hv_year" value='<%=@transformer.bushing_hv_year%>'></td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>H0 <input type="text" name="bushing_hv_h0" value='<%=@transformer_accessory.bushing_hv_h0%>'></td>
-   <td>H1 <input type="text" name="bushing_hv_h1" value='<%=@transformer_accessory.bushing_hv_h1%>'></td>
-   <td>H2 <input type="text" name="bushing_hv_h2" value='<%=@transformer_accessory.bushing_hv_h2%>'></td>
-   <td>H3 <input type="text" name="bushing_hv_h3" value='<%=@transformer_accessory.bushing_hv_h3%>'></td>
+   <td>H0 <input type="text" name="bushing_hv_h0" value='<%=@transformer.bushing_hv_h0%>'></td>
+   <td>H1 <input type="text" name="bushing_hv_h1" value='<%=@transformer.bushing_hv_h1%>'></td>
+   <td>H2 <input type="text" name="bushing_hv_h2" value='<%=@transformer.bushing_hv_h2%>'></td>
+   <td>H3 <input type="text" name="bushing_hv_h3" value='<%=@transformer.bushing_hv_h3%>'></td>
 </tr>
 <tr>
    <td><p align=left>LV</p></td>
@@ -226,7 +225,7 @@
 		<option value=''></option>
 		<%if @num_bushing!=0%>
 		  <%for i in 0..@num_bushing-1 do%>
-			<%if @manufacturer_bushing[i].id==@transformer_accessory.bushing_lv_manu%>
+			<%if @manufacturer_bushing[i].id==@transformer.bushing_lv_manu%>
 				<option value='<%=@manufacturer_bushing[i].id%>' selected="true"><%=@manufacturer_bushing[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option>
@@ -236,16 +235,16 @@
 	  </select>
 	<%end%>
 	</p></td>
-   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_lv_type" value='<%=@transformer_accessory.bushing_lv_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_lv_year" value='<%=@transformer_accessory.bushing_lv_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_lv_type" value='<%=@transformer.bushing_lv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_lv_year" value='<%=@transformer.bushing_lv_year%>'></td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>X0 <input type="text" name="bushing_lv_x0" value='<%=@transformer_accessory.bushing_lv_x0%>'></td>
-   <td>X1 <input type="text" name="bushing_lv_x1" value='<%=@transformer_accessory.bushing_lv_x1%>'></td>
-   <td>X2 <input type="text" name="bushing_lv_x2" value='<%=@transformer_accessory.bushing_lv_x2%>'></td>
-   <td>X3 <input type="text" name="bushing_lv_x3" value='<%=@transformer_accessory.bushing_lv_x3%>'></td>
+   <td>X0 <input type="text" name="bushing_lv_x0" value='<%=@transformer.bushing_lv_x0%>'></td>
+   <td>X1 <input type="text" name="bushing_lv_x1" value='<%=@transformer.bushing_lv_x1%>'></td>
+   <td>X2 <input type="text" name="bushing_lv_x2" value='<%=@transformer.bushing_lv_x2%>'></td>
+   <td>X3 <input type="text" name="bushing_lv_x3" value='<%=@transformer.bushing_lv_x3%>'></td>
 </tr>
 <tr>
    <td><p align=left>TV</p></td>
@@ -257,7 +256,7 @@
 		<option value=''></option>
 		<%if @num_bushing!=0%>
 		  <%for i in 0..@num_bushing-1 do%>
-			<%if @manufacturer_bushing[i].id==@transformer_accessory.bushing_tv_manu%>
+			<%if @manufacturer_bushing[i].id==@transformer.bushing_tv_manu%>
 				<option value='<%=@manufacturer_bushing[i].id%>' selected="true"><%=@manufacturer_bushing[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option>
@@ -267,15 +266,15 @@
 	  </select>
 	<%end%>
 	</p></td>
-   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_tv_type" value='<%=@transformer_accessory.bushing_tv_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_tv_year" value='<%=@transformer_accessory.bushing_tv_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="bushing_tv_type" value='<%=@transformer.bushing_tv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_tv_year" value='<%=@transformer.bushing_tv_year%>'></td>
 </tr>
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>Y1 <input type="text" name="bushing_tv_y1" value='<%=@transformer_accessory.bushing_tv_y1%>'></td>
-   <td>Y2 <input type="text" name="bushing_tv_y2" value='<%=@transformer_accessory.bushing_tv_y2%>'></td>
-   <td>Y3 <input type="text" name="bushing_tv_y3" value='<%=@transformer_accessory.bushing_tv_y3%>'></td>
+   <td>Y1 <input type="text" name="bushing_tv_y1" value='<%=@transformer.bushing_tv_y1%>'></td>
+   <td>Y2 <input type="text" name="bushing_tv_y2" value='<%=@transformer.bushing_tv_y2%>'></td>
+   <td>Y3 <input type="text" name="bushing_tv_y3" value='<%=@transformer.bushing_tv_y3%>'></td>
    <td></td>
 </tr>
 </table>
@@ -296,7 +295,7 @@
 		<option value=''></option>
 		<%if @num_arrester!=0%>
 		  <%for i in 0..@num_arrester-1 do%>
-			<%if @manufacturer_arrester[i].id==@transformer_accessory.arrester_hv_manu%>
+			<%if @manufacturer_arrester[i].id==@transformer.arrester_hv_manu%>
 				<option value='<%=@manufacturer_arrester[i].id%>' selected="true"><%=@manufacturer_arrester[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option>
@@ -306,15 +305,15 @@
 	  </select>
 	<%end%>
 	</p></td>
-   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_hv_type" value='<%=@transformer_accessory.arrester_hv_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year" value='<%=@transformer_accessory.arrester_hv_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_hv_type" value='<%=@transformer.arrester_hv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year" value='<%=@transformer.arrester_hv_year%>'></td>
    <td rowspan=2><table>
-		<%if @transformer_accessory.arrester_hv_isgap==1%>
-			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '1', true %></td></tr>
-       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '0' %></td></tr>
+		<%if @transformer.arrester_hv_gapless==0%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '0', true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '1' %></td></tr>
 		<%else%>
-			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '1' %></td></tr>
-       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '0', true %></td></tr>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '0' %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '1', true %></td></tr>
 		<%end%>
 		</table>
    </td>
@@ -322,9 +321,9 @@
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>H1 <input type="text" name="arrester_hv_h1" value='<%=@transformer_accessory.arrester_hv_h1%>'></td>
-   <td>H2 <input type="text" name="arrester_hv_h2" value='<%=@transformer_accessory.arrester_hv_h2%>'></td>
-   <td>H3 <input type="text" name="arrester_hv_h3" value='<%=@transformer_accessory.arrester_hv_h3%>'></td>
+   <td>H1 <input type="text" name="arrester_hv_h1" value='<%=@transformer.arrester_hv_h1%>'></td>
+   <td>H2 <input type="text" name="arrester_hv_h2" value='<%=@transformer.arrester_hv_h2%>'></td>
+   <td>H3 <input type="text" name="arrester_hv_h3" value='<%=@transformer.arrester_hv_h3%>'></td>
 </tr>
 <tr>
    <td><p align=left>LV</p></td>
@@ -336,7 +335,7 @@
 		<option value=''></option>
 		<%if @num_arrester!=0%>
 		  <%for i in 0..@num_arrester-1 do%>
-			<%if @manufacturer_arrester[i].id==@transformer_accessory.arrester_lv_manu%>
+			<%if @manufacturer_arrester[i].id==@transformer.arrester_lv_manu%>
 				<option value='<%=@manufacturer_arrester[i].id%>' selected="true"><%=@manufacturer_arrester[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option>
@@ -346,15 +345,15 @@
 	  </select>
 	<%end%>
 	</p></td>
-   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_lv_type" value='<%=@transformer_accessory.arrester_lv_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year" value='<%=@transformer_accessory.arrester_lv_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_lv_type" value='<%=@transformer.arrester_lv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year" value='<%=@transformer.arrester_lv_year%>'></td>
    <td rowspan=2><table>
-		<%if @transformer_accessory.arrester_lv_isgap==1%>
-			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '1', true %></td></tr>
-       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '0' %></td></tr>
+		<%if @transformer.arrester_lv_gapless==0%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '0', true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '1' %></td></tr>
 		<%else%>
-			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '1' %></td></tr>
-       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '0', true %></td></tr>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '0' %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '1', true %></td></tr>
 		<%end%>
 		</table>
    </td>
@@ -363,9 +362,9 @@
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>X1 <input type="text" name="arrester_lv_x1" value='<%=@transformer_accessory.arrester_lv_x1%>'></td>
-   <td>X2 <input type="text" name="arrester_lv_x2" value='<%=@transformer_accessory.arrester_lv_x2%>'></td>
-   <td>X3 <input type="text" name="arrester_lv_x3" value='<%=@transformer_accessory.arrester_lv_x3%>'></td>
+   <td>X1 <input type="text" name="arrester_lv_x1" value='<%=@transformer.arrester_lv_x1%>'></td>
+   <td>X2 <input type="text" name="arrester_lv_x2" value='<%=@transformer.arrester_lv_x2%>'></td>
+   <td>X3 <input type="text" name="arrester_lv_x3" value='<%=@transformer.arrester_lv_x3%>'></td>
 </tr>
 <tr>
    <td><p align=left>TV</p></td>
@@ -377,7 +376,7 @@
 		<option value=''></option>
 		<%if @num_arrester!=0%>
 		  <%for i in 0..@num_arrester-1 do%>
-			<%if @manufacturer_arrester[i].id==@transformer_accessory.arrester_tv_manu%>
+			<%if @manufacturer_arrester[i].id==@transformer.arrester_tv_manu%>
 				<option value='<%=@manufacturer_arrester[i].id%>' selected="true"><%=@manufacturer_arrester[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option>
@@ -387,15 +386,15 @@
 	  </select>
 	<%end%>
 	</p></td>
-   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_tv_type" value='<%=@transformer_accessory.arrester_tv_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year" value='<%=@transformer_accessory.arrester_tv_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="arrester_tv_type" value='<%=@transformer.arrester_tv_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year" value='<%=@transformer.arrester_tv_year%>'></td>
    <td rowspan=2><table>
-		<%if @transformer_accessory.arrester_tv_isgap==1%>
-			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '1', true %></td></tr>
-       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '0' %></td></tr>
+		<%if @transformer.arrester_tv_gapless==0%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '0', true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '1' %></td></tr>
 		<%else%>
-			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '1' %></td></tr>
-       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '0', true %></td></tr>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '0' %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '1', true %></td></tr>
 		<%end%>
 		</table>
    </td>
@@ -403,9 +402,9 @@
 <tr>
    <td></td>
    <td><p align=right>Serial No.</p></td>
-   <td>Y1 <input type="text" name="arrester_tv_y1" value='<%=@transformer_accessory.arrester_tv_y1%>'></td>
-   <td>Y2 <input type="text" name="arrester_tv_y2" value='<%=@transformer_accessory.arrester_tv_y2%>'></td>
-   <td>Y3 <input type="text" name="arrester_tv_y3" value='<%=@transformer_accessory.arrester_tv_y3%>'></td>
+   <td>Y1 <input type="text" name="arrester_tv_y1" value='<%=@transformer.arrester_tv_y1%>'></td>
+   <td>Y2 <input type="text" name="arrester_tv_y2" value='<%=@transformer.arrester_tv_y2%>'></td>
+   <td>Y3 <input type="text" name="arrester_tv_y3" value='<%=@transformer.arrester_tv_y3%>'></td>
    <td></td>
 </tr>
 </table>
@@ -420,13 +419,13 @@
    <td></td>
    <td><p align=right>Maufacturer</p></td>
    <td><p><%if @num_accessory==0%>
-		<%= select_tag "oltc_manu", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %>
+		<%= select_tag "oltc_manufacturer", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %>
 	<%else%>
-	  <select id='oltc_manu' name='oltc_manu'>
+	  <select id='oltc_manufacturer' name='oltc_manufacturer'>
 		<option value=''></option>
 		<%if @num_oltc!=0%>
 		  <%for i in 0..@num_oltc-1 do%>
-			<%if @manufacturer_oltc[i].id==@transformer_accessory.oltc_manu%>
+			<%if @manufacturer_oltc[i].id==@transformer.oltc_manufacturer.to_i%>
 				<option value='<%=@manufacturer_oltc[i].id%>' selected="true"><%=@manufacturer_oltc[i].manufacturer%></option>
 			<%else%>
 				<option value='<%=@manufacturer_oltc[i].id%>'><%=@manufacturer_oltc[i].manufacturer%></option>
@@ -436,8 +435,8 @@
 	  </select>
 	<%end%>
 	</p></td>
-   <td>Type &nbsp;&nbsp;<input type="text" name="oltc_type" value='<%=@transformer_accessory.oltc_type%>'></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year" value='<%=@transformer_accessory.oltc_year%>'></td>
+   <td>Type &nbsp;&nbsp;<input type="text" name="oltc_type" value='<%=@transformer.oltc_type%>'></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year" value='<%=@transformer.oltc_year%>'></td>
 </tr>
 </table>
 </div>

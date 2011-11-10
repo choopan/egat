@@ -171,8 +171,8 @@
    <td>Type &nbsp;&nbsp;<input type="text" name="arrester_hv_type"></td>
    <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year"></td>
    <td rowspan=2><table>
-		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '1', true %></td></tr>
-       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_isgap', '0' %></td></tr>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '0', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '1' %></td></tr>
 		</table>
    </td>
 </tr>
@@ -190,8 +190,8 @@
    <td>Type &nbsp;&nbsp;<input type="text" name="arrester_lv_type"></td>
    <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year"></td>
    <td rowspan=2><table>
-		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '1', true %></td></tr>
-       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_isgap', '0' %></td></tr>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '0', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '1' %></td></tr>
 		</table>
    </td>
 
@@ -210,8 +210,8 @@
    <td>Type &nbsp;&nbsp;<input type="text" name="arrester_tv_type"></td>
    <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year"></td>
    <td rowspan=2><table>
-		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '1', true %></td></tr>
-       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_isgap', '0' %></td></tr>
+		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '0', true %></td></tr>
+       		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '1' %></td></tr>
 		</table>
    </td>
 </tr>
@@ -234,7 +234,7 @@
 <tr>
    <td></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%= select_tag "oltc_manu", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %></p></td>
+   <td><p><%= select_tag "oltc_manufacturer", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="oltc_type"></td>
    <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year"></td>
 </tr>

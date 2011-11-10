@@ -18,6 +18,13 @@ class WeibullController < ApplicationController
   end
 
   def weibull_calculation
+	equipement = params[:select_manufacturer]
+	voltage = params[:voltage]
+	manufacturer = params[:manufacturer]
+	type = params[:type]
+	failuredetail = params[:type]
+
+
   end
 
   def weibull_chart

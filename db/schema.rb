@@ -11,7 +11,118 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108200433) do
+ActiveRecord::Schema.define(:version => 20111110073005) do
+
+  create_table "New_Format", :id => false, :force => true do |t|
+    t.string "A",  :limit => 4
+    t.string "B",  :limit => 41
+    t.string "C",  :limit => 9
+    t.string "D",  :limit => 8
+    t.string "E",  :limit => 14
+    t.string "F",  :limit => 10
+    t.string "G",  :limit => 5
+    t.string "H",  :limit => 19
+    t.string "I",  :limit => 3
+    t.string "J",  :limit => 5
+    t.string "K",  :limit => 5
+    t.string "L",  :limit => 10
+    t.string "M",  :limit => 17
+    t.string "N",  :limit => 17
+    t.string "O",  :limit => 47
+    t.string "P",  :limit => 9
+    t.string "Q",  :limit => 13
+    t.string "R",  :limit => 48
+    t.string "S",  :limit => 9
+    t.string "T",  :limit => 13
+    t.string "U",  :limit => 13
+    t.string "V",  :limit => 13
+    t.string "W",  :limit => 13
+    t.string "X",  :limit => 13
+    t.string "Y",  :limit => 13
+    t.string "Z",  :limit => 13
+    t.string "AA", :limit => 13
+    t.string "AB", :limit => 13
+    t.string "AC", :limit => 13
+    t.string "AD", :limit => 13
+    t.string "AE", :limit => 13
+    t.string "AF", :limit => 23
+    t.string "AG", :limit => 15
+    t.string "AH", :limit => 15
+    t.string "AI", :limit => 23
+    t.string "AJ", :limit => 15
+    t.string "AK", :limit => 15
+    t.string "AL", :limit => 23
+    t.string "AM", :limit => 15
+    t.string "AN", :limit => 15
+    t.string "AO", :limit => 10
+    t.string "AP", :limit => 15
+    t.string "AQ", :limit => 7
+    t.string "AR", :limit => 7
+    t.string "AS", :limit => 12
+    t.string "AT", :limit => 12
+    t.string "AU", :limit => 12
+    t.string "AV", :limit => 10
+    t.string "AW", :limit => 15
+    t.string "AX", :limit => 7
+    t.string "AY", :limit => 7
+    t.string "AZ", :limit => 12
+    t.string "BA", :limit => 12
+    t.string "BB", :limit => 12
+    t.string "BC", :limit => 10
+    t.string "BD", :limit => 15
+    t.string "BE", :limit => 7
+    t.string "BF", :limit => 7
+    t.string "BG", :limit => 12
+    t.string "BH", :limit => 12
+    t.string "BI", :limit => 12
+  end
+
+  create_table "Old_Format", :id => false, :force => true do |t|
+    t.string "A", :limit => 4
+    t.string "B", :limit => 41
+    t.string "C", :limit => 9
+    t.string "D", :limit => 8
+    t.string "E", :limit => 14
+    t.string "F", :limit => 10
+    t.string "G", :limit => 5
+    t.string "H", :limit => 19
+    t.string "I", :limit => 3
+    t.string "J", :limit => 5
+    t.string "K", :limit => 5
+    t.string "L", :limit => 10
+    t.string "M", :limit => 17
+    t.string "N", :limit => 17
+    t.string "O", :limit => 47
+    t.string "P", :limit => 9
+    t.string "Q", :limit => 13
+    t.string "R", :limit => 48
+  end
+
+  create_table "Sheet1", :id => false, :force => true do |t|
+    t.string "A", :limit => 13
+    t.string "B", :limit => 16
+    t.string "C", :limit => 10
+    t.string "D", :limit => 26
+    t.string "E", :limit => 19
+    t.string "F", :limit => 7
+    t.string "G", :limit => 12
+    t.string "H", :limit => 12
+    t.string "I", :limit => 12
+    t.string "J", :limit => 10
+    t.string "K", :limit => 26
+    t.string "L", :limit => 18
+    t.string "M", :limit => 7
+    t.string "N", :limit => 12
+    t.string "O", :limit => 12
+    t.string "P", :limit => 12
+    t.string "Q", :limit => 10
+    t.string "R", :limit => 29
+    t.string "S", :limit => 28
+    t.string "T", :limit => 7
+    t.string "U", :limit => 12
+    t.string "V", :limit => 12
+    t.string "W", :limit => 12
+  end
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1100,7 +1211,6 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "fd_parts", :force => true do |t|
     t.integer  "mainid"
-    t.integer  "subid"
     t.string   "part"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2533,17 +2643,58 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
     t.string   "transformer_name"
     t.float    "tv"
     t.string   "vector_group"
-    t.decimal  "first_substation",           :precision => 10, :scale => 0
-    t.decimal  "manufacturing",              :precision => 10, :scale => 0
-    t.decimal  "status",                     :precision => 10, :scale => 0
-    t.decimal  "winding_type_id",            :precision => 10, :scale => 0
+    t.decimal  "first_substation",    :precision => 10, :scale => 0
+    t.decimal  "manufacturing",       :precision => 10, :scale => 0
+    t.decimal  "status",              :precision => 10, :scale => 0
+    t.decimal  "winding_type_id",     :precision => 10, :scale => 0
     t.integer  "brand_id"
     t.string   "position"
-    t.string   "oltc_manufacturer"
     t.string   "oltc_type"
     t.string   "station"
     t.string   "txname"
-    t.integer  "transformer_accessories_id"
+    t.integer  "bushing_hv_manu"
+    t.string   "bushing_hv_type"
+    t.integer  "bushing_hv_year"
+    t.string   "bushing_hv_h0"
+    t.string   "bushing_hv_h1"
+    t.string   "bushing_hv_h2"
+    t.string   "bushing_hv_h3"
+    t.integer  "bushing_lv_manu"
+    t.string   "bushing_lv_type"
+    t.integer  "bushing_lv_year"
+    t.string   "bushing_lv_x0"
+    t.string   "bushing_lv_x1"
+    t.string   "bushing_lv_x2"
+    t.string   "bushing_lv_x3"
+    t.integer  "bushing_tv_manu"
+    t.string   "bushing_tv_type"
+    t.integer  "bushing_tv_year"
+    t.string   "bushing_tv_y1"
+    t.string   "bushing_tv_y2"
+    t.string   "bushing_tv_y3"
+    t.integer  "arrester_hv_manu"
+    t.string   "arrester_hv_type"
+    t.integer  "arrester_hv_year"
+    t.string   "arrester_hv_h1"
+    t.string   "arrester_hv_h2"
+    t.string   "arrester_hv_h3"
+    t.integer  "arrester_hv_gapless"
+    t.integer  "arrester_lv_manu"
+    t.string   "arrester_lv_type"
+    t.integer  "arrester_lv_year"
+    t.string   "arrester_lv_x1"
+    t.string   "arrester_lv_x2"
+    t.string   "arrester_lv_x3"
+    t.integer  "arrester_lv_gapless"
+    t.integer  "arrester_tv_manu"
+    t.string   "arrester_tv_type"
+    t.integer  "arrester_tv_year"
+    t.string   "arrester_tv_y1"
+    t.string   "arrester_tv_y2"
+    t.string   "arrester_tv_y3"
+    t.integer  "arrester_tv_gapless"
+    t.integer  "oltc_year"
+    t.integer  "oltc_manufacturer"
   end
 
   add_index "transformer", ["transformer_name"], :name => "transformer_name"
@@ -2595,6 +2746,7 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bushing_tv_year"
+    t.string   "egatsn"
   end
 
   create_table "transformer_control_cabinet_factors", :force => true do |t|
@@ -2754,12 +2906,6 @@ ActiveRecord::Schema.define(:version => 20111108200433) do
 
   create_table "winding_types", :force => true do |t|
     t.string "description"
-  end
-
-  create_table "xxes", :force => true do |t|
-    t.string   "a"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end

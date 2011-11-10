@@ -34,7 +34,7 @@ function displaysub(x) {
 
 <p><h2>&nbsp;Inventory Control / Weibull Calculation</h2></p>
 <p>
-<form name='dynamiccombo'>
+<%= form_tag('/weibull/weibull_calculation', :method=>'post') do %>
 <table><tr><td><b>อุปกรณ์</b></td>
 <td><select  id="select_manufacturer" name="select_manufacturer" size ="1" onChange="displaysub()">
 	<option value="#" ></option>
@@ -86,5 +86,5 @@ function displaysub(x) {
 <td><input type="text" size="10"></td></tr>
 <tr><td></td><td><input type="submit" value="คำนวณ" size="10"></td></tr>
 </table>
-</form>
+<% end %>
 </p>

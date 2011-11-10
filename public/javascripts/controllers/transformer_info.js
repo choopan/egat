@@ -225,7 +225,7 @@ $(function() {
   Cbox.setupComboxBox('arrester_hv_manu');
   Cbox.setupComboxBox('arrester_lv_manu');
   Cbox.setupComboxBox('arrester_tv_manu');
-  Cbox.setupComboxBox('oltc_manu');
+  Cbox.setupComboxBox('oltc_manufacturer');
   Cbox.setupComboxBox('txmove_new_station');
   TxName.setupTransformerNameComboxBox('txmove_txname');
   setCalendar();
