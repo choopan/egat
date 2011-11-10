@@ -196,10 +196,40 @@ class TransformerInfoController < ApplicationController
   end
 
   def addfailurereport
-     @station = params[:station]
-     @transformer = params[:transformer]
-     @environments = ["xxx", "yyy", "zzzz"]
-     @hours = [1, 2]
+	@region = params[:region]
+	@txnams = Transformer.get_transformer_id(params[:tid])
+	@environments = FdEnvironmnt.get_environment()
+	@num_environments = @environments.count
+
+	@function = FdFunction.get_function()
+	@num_function = @function.count
+	
+	@detail = FdDetail.get_detail()
+	@num_detail = @detail.count
+#-------------------------------------------------------------
+	@group = FdGroupPart.get_group()
+	@num_group = @group.count
+	if @num_group!=0
+		@part = Array.new()
+		@num_part = Array.new()
+		for i in 0..@num_group-1 do
+			@part[i] = FdPart.get_part(@group[i].id)
+			@num_part[i] = @part[i].count
+		end
+	end
+#----------------------------------------------------------------
+	@mode = FdMode.get_mode()
+	@num_mode = @mode.count
+
+	@reason = FdReason.get_reason()
+	@num_reason = @reason.count
+	
+	@manage = FdManage.get_manage()
+	@num_manage = @manage.count
+  end
+
+  def create_failurereport
+	
   end
   
   def txcreate

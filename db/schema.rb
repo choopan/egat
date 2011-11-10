@@ -11,118 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110073005) do
-
-  create_table "New_Format", :id => false, :force => true do |t|
-    t.string "A",  :limit => 4
-    t.string "B",  :limit => 41
-    t.string "C",  :limit => 9
-    t.string "D",  :limit => 8
-    t.string "E",  :limit => 14
-    t.string "F",  :limit => 10
-    t.string "G",  :limit => 5
-    t.string "H",  :limit => 19
-    t.string "I",  :limit => 3
-    t.string "J",  :limit => 5
-    t.string "K",  :limit => 5
-    t.string "L",  :limit => 10
-    t.string "M",  :limit => 17
-    t.string "N",  :limit => 17
-    t.string "O",  :limit => 47
-    t.string "P",  :limit => 9
-    t.string "Q",  :limit => 13
-    t.string "R",  :limit => 48
-    t.string "S",  :limit => 9
-    t.string "T",  :limit => 13
-    t.string "U",  :limit => 13
-    t.string "V",  :limit => 13
-    t.string "W",  :limit => 13
-    t.string "X",  :limit => 13
-    t.string "Y",  :limit => 13
-    t.string "Z",  :limit => 13
-    t.string "AA", :limit => 13
-    t.string "AB", :limit => 13
-    t.string "AC", :limit => 13
-    t.string "AD", :limit => 13
-    t.string "AE", :limit => 13
-    t.string "AF", :limit => 23
-    t.string "AG", :limit => 15
-    t.string "AH", :limit => 15
-    t.string "AI", :limit => 23
-    t.string "AJ", :limit => 15
-    t.string "AK", :limit => 15
-    t.string "AL", :limit => 23
-    t.string "AM", :limit => 15
-    t.string "AN", :limit => 15
-    t.string "AO", :limit => 10
-    t.string "AP", :limit => 15
-    t.string "AQ", :limit => 7
-    t.string "AR", :limit => 7
-    t.string "AS", :limit => 12
-    t.string "AT", :limit => 12
-    t.string "AU", :limit => 12
-    t.string "AV", :limit => 10
-    t.string "AW", :limit => 15
-    t.string "AX", :limit => 7
-    t.string "AY", :limit => 7
-    t.string "AZ", :limit => 12
-    t.string "BA", :limit => 12
-    t.string "BB", :limit => 12
-    t.string "BC", :limit => 10
-    t.string "BD", :limit => 15
-    t.string "BE", :limit => 7
-    t.string "BF", :limit => 7
-    t.string "BG", :limit => 12
-    t.string "BH", :limit => 12
-    t.string "BI", :limit => 12
-  end
-
-  create_table "Old_Format", :id => false, :force => true do |t|
-    t.string "A", :limit => 4
-    t.string "B", :limit => 41
-    t.string "C", :limit => 9
-    t.string "D", :limit => 8
-    t.string "E", :limit => 14
-    t.string "F", :limit => 10
-    t.string "G", :limit => 5
-    t.string "H", :limit => 19
-    t.string "I", :limit => 3
-    t.string "J", :limit => 5
-    t.string "K", :limit => 5
-    t.string "L", :limit => 10
-    t.string "M", :limit => 17
-    t.string "N", :limit => 17
-    t.string "O", :limit => 47
-    t.string "P", :limit => 9
-    t.string "Q", :limit => 13
-    t.string "R", :limit => 48
-  end
-
-  create_table "Sheet1", :id => false, :force => true do |t|
-    t.string "A", :limit => 13
-    t.string "B", :limit => 16
-    t.string "C", :limit => 10
-    t.string "D", :limit => 26
-    t.string "E", :limit => 19
-    t.string "F", :limit => 7
-    t.string "G", :limit => 12
-    t.string "H", :limit => 12
-    t.string "I", :limit => 12
-    t.string "J", :limit => 10
-    t.string "K", :limit => 26
-    t.string "L", :limit => 18
-    t.string "M", :limit => 7
-    t.string "N", :limit => 12
-    t.string "O", :limit => 12
-    t.string "P", :limit => 12
-    t.string "Q", :limit => 10
-    t.string "R", :limit => 29
-    t.string "S", :limit => 28
-    t.string "T", :limit => 7
-    t.string "U", :limit => 12
-    t.string "V", :limit => 12
-    t.string "W", :limit => 12
-  end
+ActiveRecord::Schema.define(:version => 20111109090045) do
 
   create_table "aging_product_factors", :force => true do |t|
     t.integer  "hi_factor"
@@ -1193,6 +1082,12 @@ ActiveRecord::Schema.define(:version => 20111110073005) do
 
   create_table "fd_functions", :force => true do |t|
     t.string   "function"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fd_group_parts", :force => true do |t|
+    t.string   "group"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
