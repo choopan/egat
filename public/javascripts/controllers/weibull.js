@@ -101,7 +101,7 @@ $(function() {
 
   Manu.setupTransformerNameComboxBox('manufacturer');
   Phase.setupTransformerNameComboxBox('select_manufacturer');
-  displaysub(1);
+  displaysub("Bushing");
   displaytype(1);
 });
 

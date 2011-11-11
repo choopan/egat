@@ -26,7 +26,7 @@ function displaysub(x) {
 
     manu.store.removeAll();
     manu.store.loadData(option, true);
-    manu.setValue(option[0][1]);
+    manu.setValue(option[0][0]);
 }
 
 
@@ -72,7 +72,7 @@ function displaytype(y){
 
     type.store.removeAll();
     type.store.loadData(option, true);
-    type.setValue(option[0][1]);
+    type.setValue(option[0][0]);
 }
 </script>
 
@@ -98,11 +98,11 @@ function displaytype(y){
 </select></td></tr>
 <tr><td><b>Manufacturer</b></td>
 <td><select id="manufacturer" name = "manufacturer" size="1">
-	<option value="#"></option>
+	<option value="0">โปรดระบุ</option>
 </select></td></tr>
 <tr><td><b>Type</b></td>
 <td><select id="type" name="type" size="1">
-	<option value="#"></option>
+	<option value="0">--All--</option>
 </select></td></tr>
 <tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td>
 <td><select id="failuredetail" name="failuredetail" size="1">

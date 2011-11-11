@@ -9,14 +9,18 @@
 
 <script class="code" type="text/javascript">$(document).ready(function(){    
 
-     var line1 = [[1,0.3],[2,0.4],[3,0.5],[4,0.6],[5,0.65], [6, 0.6], [7, 0.5], [8, 0.45], [9, 0.3], [10, 0.2], [11, 0.15], [12, 0.1], [13, 0.05]];
-
+     var line1 = [
+	<% for i in 1..40 do %>
+	[<%= i %>, <%= Math.exp(-(i/@eta)**@beta) %>],
+	<% end %>
+    ];
     plo1t = $.jqplot('chart1',[line1],{
         //title: '  Reliability Weibull Distribution',
 	axes: {
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
                     min: 0,
+		    max: 40,
 		    //ticks: ticks,
 		    label: 'Time (t)',
 		    tickInterval: '5'
@@ -34,7 +38,11 @@
 
 <script class="code" type="text/javascript">$(document).ready(function(){     
     
-    var line1 = [[1,0.3],[2,0.4],[3,0.5],[4,0.6],[5,0.65], [6, 0.6], [7, 0.5], [8, 0.45], [9, 0.3], [10, 0.2], [11, 0.15], [12, 0.1], [13, 0.05]];
+    var line1 = [
+	<% for i in 1..40 do %>
+	[<%= i %>, <%= (@beta/@eta)*((i/@eta) ** (@beta - 1)) %>],
+	<% end %>
+    ];
 
     plo1t = $.jqplot('chart2',[line1],{
         //title: '  Failure Rate Weibull Distribution',
@@ -42,6 +50,7 @@
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
                     min: 0,
+		    max: 40,
 		    //ticks: ticks,
 		    label: 'Time (t)',
 		    tickInterval: '5'
@@ -49,7 +58,6 @@
 		yaxis: {
         	    rendererOptions: { forceTickAt0: true, forceTickAt100: true },
 		    min: 0,
-		    max: 1,
 		    label: 'Failure Rate'
                 }
            }
@@ -58,34 +66,52 @@
 });</script>
 
 <p><h2>ผลการคำนวณ Weibull</h2></p>
-
-<p><center><b>Weibull Data Table</b><br><br>
+<p><center><h2>Weibull Data Table</h2><br><br>
 <table border="1">
-	<tr><th><center>Rank Order,i</center></th><th><center>T</center></th><th><center>Median Rank,F(T)</center></th><th><center>x=ln(T)</center></th><th><center>y=ln(ln(1/(1-F(T))))</center></th><th><center>x^2</center></th><th><center>y^2</center></th><th><center>xy</center></th></tr>
-
-	<tr><td><center>1</center></td><td><center>6</center></td><td><center>0.1296</center></td><td><center>1.7918</center></td><td><center>-1.9745</center></td><td><center>3.2104</center></td><td><center>3.8985</center></td><td><center>-3.5378</center></td></tr>
-
-	<tr><td><center>2</center></td><td><center>16</center></td><td><center>0.3148</center></td><td><center>2.7726</center></td><td><center>-0.9727</center></td><td><center>7.6872</center></td><td><center>0.9461</center></td><td><center>-2.6969</center></td></tr>
-
-	<tr><td><center>3</center></td><td><center>16</center></td><td><center>0.5000</center></td><td><center>2.7726</center></td><td><center>-0.3665</center></td><td><center>7.6872</center></td><td><center>0.1343</center></td><td><center>-1.0162</center></td></tr>
-
-	<tr><td><center>4</center></td><td><center>21</center></td><td><center>0.6852</center></td><td><center>3.0445</center></td><td><center>-0.1448</center></td><td><center>9.2691</center></td><td><center>0.0210</center></td><td><center>0.4407</center></td></tr>
-
-	<tr><td><center>5</center></td><td><center>21</center></td><td><center>0.8704</center></td><td><center>3.0445</center></td><td><center>-0.7145</center></td><td><center>9.2691</center></td><td><center>0.5104</center></td><td><center>2.1752</center></td></tr>
-
-	<tr><td><center>Sum</center></td><td><center></center></td><td><center></center></td><td><center>13.4260</center></td><td><center>-2.4544</center></td><td><center>37.1231</center></td><td><center>5.5103</center></td><td><center>-4.6349</center></td></tr>
-
-	<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	<tr>
+		<th><center>Rank Order,i</center></th>
+		<th><center>T</center></th>
+		<th><center>Median Rank,F(T)</center></th>
+		<th><center>x=ln(T)</center></th>
+		<th><center>y=ln(ln(1/(1-F(T))))</center></th>
+		<th><center>x^2</center></th>
+		<th><center>y^2</center></th>
+		<th><center>xy</center></th>
+	</tr>
+	<% for i in 1..@age_weibull.length do %>
+	<tr>
+		<td><center><%=@weibull_table[i]["rank_order"]%></center></td>
+		<td><center><%=@weibull_table[i]["T"]%></center></td>
+		<td><center><%=number_with_precision(@weibull_table[i]["median"], :precision => 5)%></center></td>
+		<td><center><%=number_with_precision(@weibull_table[i]["x"], :precision => 5)%></center></td>
+		<td><center><%=number_with_precision(@weibull_table[i]["y"], :precision => 5)%></center></td>
+		<td><center><%=number_with_precision(@weibull_table[i]["x2"], :precision => 5)%></center></td>
+		<td><center><%=number_with_precision(@weibull_table[i]["y2"], :precision => 5)%></center></td>
+		<td><center><%=number_with_precision(@weibull_table[i]["xy"], :precision => 5)%></center></td>
+	</tr>
+	<% end %>
+	<% if @age_weibull.length > 0 %>
+	<tr>
+		<td><center><b>Sum</b></center></td>
+		<td><center></center></td>
+		<td><center></center></td>
+		<td><center><b><%=number_with_precision(@summation["x"], :precision => 5)%></b></center></td>
+		<td><center><b><%=number_with_precision(@summation["y"], :precision => 5)%></b></center></td>
+		<td><center><b><%=number_with_precision(@summation["x2"], :precision => 5)%></b></center></td>
+		<td><center><b><%=number_with_precision(@summation["y2"], :precision => 5)%></b></center></td>
+		<td><center><b><%=number_with_precision(@summation["xy"], :precision => 5)%></b></center></td>
+	</tr>	
+	<%end%>
 </table></center></p>
 
 <p><div class="grid_5 prefix_6">
 <table>
 	<tr><th colspan=2><center>Weibull Parameters</center></th><tr>
-	<tr><td>Beta (β)</td><td><center>1.8249</center></td></tr>
-	<tr><td>C</td><td><center>-5.3910</center></td></tr>
-	<tr><td>Eta (ƞ)</td><td><center>19.1863</center></td></tr>
-	<tr><td>Gamma Function (Γ)</td><td><center>0.8887</center></td></tr>
-	<tr><td>MTBF</td><td><center>17.0514</center></td></tr>
+	<tr><td>Beta (β)</td><td><center><%=number_with_precision(@beta, :precision => 5) %></center></td></tr>
+	<tr><td>C</td><td><center><%=number_with_precision(@c, :precision => 5) %></center></td></tr>
+	<tr><td>Eta (ƞ)</td><td><center><%=number_with_precision(@eta, :precision => 5) %></center></td></tr>
+	<tr><td>Gamma Function (Γ)</td><td><center><%=number_with_precision(@grammar, :precision => 5) %></center></td></tr>
+	<tr><td>MTBF</td><td><center><%=number_with_precision(@mtbf, :precision => 5)%></center></td></tr>
 </table>
 </div></p>
 <p><div class="grid_16 prefix_0"><center>
@@ -98,7 +124,7 @@
 		<%for i in 0..10 do%>
 			&nbsp;
 		<%end%>
-		Weibull Distribution</b><br><div id="chart1" style="height:200px; width:400px;"></div></center></td>
+		Weibull Distribution</b><br><div id="chart1" style="height:320px; width:400px;"></div></center></td>
 		<td><center><b>
 		<%for i in 0..12 do%>
 			&nbsp;
@@ -107,6 +133,6 @@
 		<%for i in 0..12 do%>
 			&nbsp;
 		<%end%>
-		Weibull Distribution</b><br><div id="chart2" style="height:200px; width:400px;"></div></center></td></tr>
+		Weibull Distribution</b><br><div id="chart2" style="height:320px; width:400px;"></div></center></td></tr>
 	</table></div>
 </center></p>

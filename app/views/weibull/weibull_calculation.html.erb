@@ -8,10 +8,12 @@
 <script language="javascript" type="text/javascript" src="/javascripts/jqplot.highlighter.js"></script>
 <script language="javascript" type="text/javascript" src="/javascripts/jqplot.pointLabels.js"></script>
 
- 
-  
   <script class="code" type="text/javascript">$(document).ready(function(){
-        var s1 = [90,100,100,100,100,100,100,100,100,100,100,100,100,100,100,];
+        var s1 = [
+	<% for i in 0..15 do%>
+	   <%= @poisson_reliability[i] %>,
+	<%end%> 
+	];
         var ticks = ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15'];
         
         plot1 = $.jqplot('chart1', [s1], {
@@ -44,42 +46,68 @@
 
 
 <p><h2>&nbsp;Inventory Control / Weibull Calculation</h2></p>
-<%= debug(params) %><BR>
-<%= @f_normal_weibull %>
-<form name='dynamiccombo'>
+<%= form_tag('/weibull/weibull_chart', :method=>'post') do %>
 <p>
-<table><tr><td><b>อุปกรณ์</b></td><td><input type="text" size="15"></td></tr>
-<tr><td><b>Voltage Rating</b></td><td><input type="text" size="15"></td></tr>
-<tr><td><b>Manufacturer</b></td><td><input type="text" size="15"></td></tr>
-<tr><td><b>Type</b></td><td><input type="text" size="15"></td></tr>
-<tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td><td><input type="text" size="15"></td></tr>
-<tr><td><b>Time Interval for Failure Observation(years)</b></td><td><input type="text" size="15"></td></tr>
-<tr><td><b>Lead Time(years)</b></td><td><input type="text" size="15"></td></tr>
+<table><tr><td><b>อุปกรณ์</b></td><td><input id="equipement" name="equipement" value="<%=@equipement%>" type="text" size="15" readonly></td></tr>
+<tr><td><b>Voltage Rating</b></td><td><input id="voltage" name="voltage" value="<%=@voltage%>" type="text" size="15" readonly></td></tr>
+<tr><td><b>Manufacturer</b></td><td><input id="manu" name="manu" value="<%=@manu_name%>" type="text" size="15" readonly></td></tr>
+<tr><td><b>Type</b></td><td><input id="etype" name="etype" value="<%=@type%>" type="text" size="15" readonly></td></tr>
+<tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td><td><input id="failuredetail" name="failuredetail" value="<%=@failuredetail%>" type="text" size="15" readonly></td></tr>
+<tr><td><b>Time Interval for Failure Observation(years)</b></td><td><input id="time_interval" name="time_interval" value="<%=@time_interval%>" type="text" size="15"></td></tr>
+<tr><td><b>Lead Time(years)</b></td><td><input id="lead_time" name="lead_time" value="<%=@lead_time%>" type="text" size="15" readonly></td></tr>
 </table>
 </p>
+
+<p>
+<center><h3>Weibull Distribution</h3></center>
+<table>
+<tr><td>จำนวนครั้งที่เสียหาย</td><td><%= @f_normal_weibull %></td></tr>
+<tr><td>β</td><td><% if @age_weibull.size < 2 %>
+			-
+		  <% else %>
+			<%= number_with_precision(@beta, :precision => 5) %>
+		  <%end%></td></tr>
+<tr><td>MTBF</td><td><% if @age_weibull.size < 2 %>
+			-
+		     <% else %>
+			<%= number_with_precision(@beta, :precision => 5) %>
+		  <%end%></td></tr>
+</table>
+</p>
+
+
 <p><table border="1">
-<tr><th><center>อุปกรณ์</center></th><th><center>จำนวนครั้งที่เสียหาย</center></th><th><center>β</center></th><th><center>MTBF</center></th><th><center>λ</center></th><th><center>Spare<br>(Poisson Distribution at 99% stock reliability)</center></th><th><center>Spare<br>(Normal Distribution at 99% stock reliability)</center></th></tr>
-<tr><td><center>Bushing</center></td><td><center>6</center></td><td><center>3.08</center></td><td><center>11.10</center></td><td><center>0.000812</center></td><td><center>5</center></td><td><center>6.96</center></td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</table></p>
-<p><center><b>
-<%for i in 0..18 do%>
-	&nbsp;
+<tr>
+    <th></th><th><center>จำนวนครั้งที่เสียหาย</center></th><th><center>Service Years</center></th><th><center>λ</center></th><th><center>Spare<br>(Poisson Distribution at 99% stock reliability)</center></th>
+</tr>
+<tr>
+    <td>Poisson Distribution</td>
+    <td><center><%= @f_poisson %></center></td>
+    <td><center><%= @service_year_poisson%></center></td>
+    <td><center><%= @lambda_poisson_dist %></center></td>
+    <td><center><%= @spare_poisson %>
+</tr>
+<tr>
+    <td>Normal Distribution</td>
+    <td><center><%= @f_normal_weibull %></center></td>
+    <td><center><%= @service_year_normal_weibull%></center></td>
+    <td><center><%= @lambda_normal_dist %></center></td>
+    <td><center><%= @spare_normal_dist %>
+</tr>
+</table>
+
+<BR><BR>
+
+<center>
+	INTERVAL RELIABILTY STOCK<br>
+	(Poisson Distribution)
+<BR>
+<div id="chart1" style="margin-top:2px; margin-left:20px; width:640px; height:300px;"></div>
+<BR><BR>
+<% if @age_weibull.size > 2 %>
+<%= submit_tag 'ดูผลคำนวณ Weibull', :name => 'chart' %><BR>
 <%end%>
-INTERVAL RELIABILTY STOCK<br>
-<%for i in 0..18 do%>
-	&nbsp;
+<%#= submit_tag 'แสดงรายละเอียดอุปกรณ์ที่พิจารณา', :name => 'detail' %>
+</center>
 <%end%>
-(Poisson Distribution)</b>
-<div id="chart1" style="margin-top:2px; margin-left:20px; width:600px; height:150px;"></div>
-<%for i in 0..20 do%>
-	&nbsp;
-<%end%>
-<input type="submit" value="ดูผลคำนวณ Weibull" size="100"><br>
-<%for i in 0..20 do%>
-	&nbsp;
-<%end%>
-<input type="submit" value="แสดงรายละเอียดอุปกรณ์ที่พิจารณา" size="200">
-</center></p>
-</form>
 
