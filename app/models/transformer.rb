@@ -104,7 +104,7 @@ class Transformer < ActiveRecord::Base
         hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing'")
         if !hv_bushing_failure.nil?
            for i in 0..hv_bushing_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and egatsn='#{hv_bushing_failure[i].egatsn}'")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and egatsn='#{hv_bushing_failure[i].egatsn}'")
@@ -120,7 +120,7 @@ class Transformer < ActiveRecord::Base
         lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing'")
         if !lv_bushing_failure.nil?
            for i in 0..lv_bushing_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and egatsn='#{lv_bushing_failure[i].egatsn}'")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and bushing_lv_type='#{type}' and egatsn='#{lv_bushing_failure[i].egatsn}'")
@@ -137,7 +137,7 @@ class Transformer < ActiveRecord::Base
         tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing'")
         if !tv_bushing_failure.nil?
            for i in 0..tv_bushing_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and egatsn='#{tv_bushing_failure[i].egatsn}'")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and bushing_tv_type='#{type}' and egatsn='#{tv_bushing_failure[i].egatsn}'")
@@ -155,7 +155,7 @@ class Transformer < ActiveRecord::Base
         hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester'")
         if !hv_ar_failure.nil?
            for i in 0..hv_ar_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and egatsn='#{hv_ar_failure[i].egatsn}'")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and arrester_hv_type='#{type}' and egatsn='#{hv_ar_failure[i].egatsn}'")
@@ -171,7 +171,7 @@ class Transformer < ActiveRecord::Base
         lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester'")
         if !lv_ar_failure.nil?
            for i in 0..lv_ar_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and egatsn='#{lv_ar_failure[i].egatsn}'")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and arrester_lv_type='#{type}' and egatsn='#{lv_ar_failure[i].egatsn}'")
@@ -188,7 +188,7 @@ class Transformer < ActiveRecord::Base
         tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester'")
         if !tv_ar_failure.nil?
            for i in 0..tv_ar_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and egatsn='#{tv_ar_failure[i].egatsn}'")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and arrester_tv_type='#{type}' and egatsn='#{tv_ar_failure[i].egatsn}'")
@@ -205,7 +205,7 @@ class Transformer < ActiveRecord::Base
         hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}'")
         if !hv_oltc_failure.nil?
            for i in 0..hv_oltc_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and egatsn='#{hv_oltc_failure[i].egatsn}'")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and oltc_type='#{type}' and egatsn='#{hv_oltc_failure[i].egatsn}'")
@@ -233,7 +233,7 @@ class Transformer < ActiveRecord::Base
         hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !hv_bushing_failure.nil?
            for i in 0..hv_bushing_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and egatsn='#{hv_bushing_failure[i].egatsn}'")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and egatsn='#{hv_bushing_failure[i].egatsn}'")
@@ -248,7 +248,7 @@ class Transformer < ActiveRecord::Base
         lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !lv_bushing_failure.nil?
            for i in 0..lv_bushing_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and egatsn='#{lv_bushing_failure[i].egatsn}'")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and bushing_lv_type='#{type}' and egatsn='#{lv_bushing_failure[i].egatsn}'")
@@ -264,7 +264,7 @@ class Transformer < ActiveRecord::Base
         tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !tv_bushing_failure.nil?
            for i in 0..tv_bushing_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and egatsn='#{tv_bushing_failure[i].egatsn}'")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and bushing_tv_type='#{type}' and egatsn='#{tv_bushing_failure[i].egatsn}'")
@@ -281,7 +281,7 @@ class Transformer < ActiveRecord::Base
         hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !hv_ar_failure.nil?
            for i in 0..hv_ar_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and egatsn='#{hv_ar_failure[i].egatsn}'")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and arrester_hv_type='#{type}' and egatsn='#{hv_ar_failure[i].egatsn}'")
@@ -296,7 +296,7 @@ class Transformer < ActiveRecord::Base
         lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !lv_ar_failure.nil?
            for i in 0..lv_ar_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and egatsn='#{lv_ar_failure[i].egatsn}'")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and arrester_lv_type='#{type}' and egatsn='#{lv_ar_failure[i].egatsn}'")
@@ -312,7 +312,7 @@ class Transformer < ActiveRecord::Base
         tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !tv_ar_failure.nil?
            for i in 0..tv_ar_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and egatsn='#{tv_ar_failure[i].egatsn}'")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and arrester_tv_type='#{type}' and egatsn='#{tv_ar_failure[i].egatsn}'")
@@ -328,7 +328,7 @@ class Transformer < ActiveRecord::Base
         hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
         if !hv_oltc_failure.nil?
            for i in 0..hv_oltc_failure.size-1 do
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and egatsn='#{hv_oltc_failure[i].egatsn}'")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and oltc_type='#{type}' and egatsn='#{hv_oltc_failure[i].egatsn}'")
@@ -355,7 +355,7 @@ class Transformer < ActiveRecord::Base
       time = Time.new
       if equipe == "Bushing"
 	      #hv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and status=1")
@@ -382,7 +382,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #lv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and bushing_lv_type='#{type}' and status=1")
@@ -409,7 +409,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #tv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and bushing_tv_type='#{type}' and status=1")
@@ -434,7 +434,7 @@ class Transformer < ActiveRecord::Base
 
       elsif equipe == "Arrester"
 	      #hv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and status=1")
@@ -458,7 +458,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #lv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and arrester_lv_type='#{type}' and status=1")
@@ -482,7 +482,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #tv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and arrester_tv_type='#{type}' and status=1")
@@ -506,7 +506,20 @@ class Transformer < ActiveRecord::Base
 	      end
 
       else
- 
+	#Oltc
+	      if type == '-- All --'
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and status=1")
+              else
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and oltc_type='#{type}' and status=1")
+              end
+
+	      for i in 0..result.size-1 do
+	          if  !result[i].oltc_year.nil? and result[i].oltc_year != 0
+		  	service_year = time.year - result[i].oltc_year
+		  	m = m + 1
+		  	total_service_year = total_service_year + service_year
+		  end
+	      end
       end
 
       service_year_m = Array.new
@@ -526,7 +539,7 @@ class Transformer < ActiveRecord::Base
       time = Time.new
       if equipe == "Bushing"
 	      #hv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and bushing_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and status=1")
@@ -557,7 +570,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #lv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and bushing_lv_manu='#{manufacturer}' and bushing_lv_type='#{type}' and status=1")
@@ -588,7 +601,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #tv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and bushing_tv_manu='#{manufacturer}' and bushing_tv_type='#{type}' and status=1")
@@ -617,7 +630,7 @@ class Transformer < ActiveRecord::Base
 
       elsif equipe == "Arrester"
 	      #hv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and arrester_hv_manu='#{manufacturer}' and bushing_hv_type='#{type}' and status=1")
@@ -645,7 +658,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #lv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("lv >= #{minvol} and lv <= #{maxvol} and arrester_lv_manu='#{manufacturer}' and arrester_lv_type='#{type}' and status=1")
@@ -673,7 +686,7 @@ class Transformer < ActiveRecord::Base
 	      end
 
 	      #tv calculation
-              if type == '0'
+              if type == '-- All --'
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and status=1")
               else
                 result = Transformer.where("tv >= #{minvol} and tv <= #{maxvol} and arrester_tv_manu='#{manufacturer}' and arrester_tv_type='#{type}' and status=1")
@@ -702,7 +715,22 @@ class Transformer < ActiveRecord::Base
 	      end
 
       else
- 
+	      if type == '-- All --'
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and status=1")
+              else
+                result = Transformer.where("hv >= #{minvol} and hv <= #{maxvol} and oltc_manufacturer='#{manufacturer}' and oltc_type='#{type}' and status=1")
+              end
+
+	      for i in 0..result.size-1 do
+	          if  !result[i].oltc_year.nil? and result[i].oltc_year != 0
+		  	service_year = time.year - result[i].oltc_year
+		  	if service_year >= time_interval
+				service_year = time_interval
+		  	end
+		  	m = m + 1
+		  	total_service_year = total_service_year + service_year
+		  end
+	      end
       end
 
       service_year_m = Array.new

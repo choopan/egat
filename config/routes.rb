@@ -1,24 +1,19 @@
 Egat::Application.routes.draw do
 
-  get "manufacturing/station"
+   resources :manufacturing do
+	collection do
+		get "index"
+	end
+   end
 
-  get "manufacturing/usage"
-
-  get "manufacturing/manufacturer_tx"
-
-  get "manufacturing/manufacturer_bushing"
-
-  get "manufacturing/manufacturer_arrester"
-
-  get "manufacturing/manufacturer_lotc"
-
-  get "weibull/weibull_select"
-
-  get "weibull/weibull_calculation"
-
-  get "weibull/weibull_chart"
-
-  get "weibull/weibull_detail"
+  resources :weibull do
+	collection do
+		get "weibull_select"
+		post "weilbull_calculation"
+		post "weibull_chart"
+		post "weibull_detail"
+	end
+  end
 
   resources :transformer_info do
 	collection do

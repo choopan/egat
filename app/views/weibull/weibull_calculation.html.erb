@@ -70,7 +70,7 @@
 <tr><td>MTBF</td><td><% if @age_weibull.size < 2 %>
 			-
 		     <% else %>
-			<%= number_with_precision(@beta, :precision => 5) %>
+			<%= number_with_precision(@mtbf, :precision => 5) %>
 		  <%end%></td></tr>
 </table>
 </p>
@@ -78,36 +78,48 @@
 
 <p><table border="1">
 <tr>
-    <th></th><th><center>จำนวนครั้งที่เสียหาย</center></th><th><center>Service Years</center></th><th><center>λ</center></th><th><center>Spare<br>(Poisson Distribution at 99% stock reliability)</center></th>
+    <th></th><th><center>จำนวนครั้งที่เสียหาย</center></th><th><center>Service Years</center></th><th><center>λ</center></th><th><center>Spare (Reliability 99%)</center></th>
 </tr>
 <tr>
     <td>Poisson Distribution</td>
     <td><center><%= @f_poisson %></center></td>
     <td><center><%= @service_year_poisson%></center></td>
-    <td><center><%= @lambda_poisson_dist %></center></td>
-    <td><center><%= @spare_poisson %>
+    <% if @f_poisson == 0 %>
+    	<td><center>-</center></td>
+    	<td><center>-</center></td>
+    <%else%>
+    	<td><center><%= number_with_precision(@lambda_poisson_dist, :precision => 5) %></center></td>
+    	<td><center><%= number_with_precision(@spare_poisson, :precision => 5) %>
+   <%end%>
 </tr>
 <tr>
     <td>Normal Distribution</td>
     <td><center><%= @f_normal_weibull %></center></td>
     <td><center><%= @service_year_normal_weibull%></center></td>
-    <td><center><%= @lambda_normal_dist %></center></td>
-    <td><center><%= @spare_normal_dist %>
+    <% if @f_normal_weibull == 0 %>
+    	<td><center>-</center></td>
+    	<td><center>-</center></td>
+    <% else %>
+    	<td><center><%= number_with_precision(@lambda_normal_dist, :precision => 5) %></center></td>
+    	<td><center><%= number_with_precision(@spare_normal_dist, :precision => 5) %>
+    <%end %>
 </tr>
 </table>
 
 <BR><BR>
 
 <center>
+<% if @f_poisson != 0 %>
 	INTERVAL RELIABILTY STOCK<br>
 	(Poisson Distribution)
 <BR>
 <div id="chart1" style="margin-top:2px; margin-left:20px; width:640px; height:300px;"></div>
+<%end%>
 <BR><BR>
-<% if @age_weibull.size > 2 %>
-<%= submit_tag 'ดูผลคำนวณ Weibull', :name => 'chart' %><BR>
-<%end%>
+	<% if @age_weibull.size >= 2 %>
+	<%= submit_tag 'ดูผลคำนวณ Weibull', :name => 'chart' %><BR>
+	<%end%>
 <%#= submit_tag 'แสดงรายละเอียดอุปกรณ์ที่พิจารณา', :name => 'detail' %>
-</center>
 <%end%>
+</center>
 

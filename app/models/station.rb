@@ -15,4 +15,17 @@
 
 class Station < ActiveRecord::Base
 	belongs_to :transformer
+
+        def self.get_station()
+                order("id")
+             rescue Exception
+                return nil
+        end
+
+        def self.get_station_id(id)
+                where("id = '#{id}'").first
+             rescue Exception
+                return nil
+        end
+
 end

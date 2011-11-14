@@ -1,0 +1,22 @@
+<script>
+$(function() {
+  $("#tabs").tabs();
+});
+</script>
+<p><h2>กำหนดค่าข้อมูล</h2></p>
+<div id="tabs">
+  <ul>
+    <li><a href="#station">สถานีไฟฟ้า</a></li>
+    <li><a href="#usage">ลักษณะการใช้งานหม้อแปลง</a></li>
+    <li><a href="#tx">บริษัทผู้ผลิตหม้อแปลง</a></li>
+    <li><a href="#bushing">บริษัทผู้ผลิต Bushing</a></li>
+    <li><a href="#arrester">บริษัทผู้ผลิต Arrester</a></li>
+    <li><a href="#oltc">บริษัทผู้ผลิต OLTC</a></li>
+  </ul>
+    <div id="station"><p><%= render :partial => 'station'%></p></div>
+    <div id="usage"><p><%= render :partial => 'usage'%></p></div>
+    <div id="tx"><p><%= render :partial => 'manufacturer_tx'%></p></div>
+    <div id="bushing"><p><%= render :partial => 'manufacturer_bushing'%></p></div>
+    <div id="arrester"><p><%= render :partial => 'manufacturer_arrester'%></p></div>
+    <div id="oltc"><p><%= render :partial => 'manufacturer_oltc'%></p></div>
+</div>

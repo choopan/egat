@@ -10,9 +10,15 @@
 <script class="code" type="text/javascript">$(document).ready(function(){    
 
      var line1 = [
-	<% for i in 1..40 do %>
-	[<%= i %>, <%= Math.exp(-(i/@eta)**@beta) %>],
-	<% end %>
+	<% if @beta > 6  %>
+	       <% for i in 1..@rt.size do %>
+		   [<%= i %>, <%= @rt[i] %> ],
+	       <% end %>
+	<%else%>
+		<% for i in 1..40 do %>
+			[<%= i %>, <%= Math.exp(-(i/@eta)**@beta) %>],
+		<% end %>
+	<%end%>
     ];
     plo1t = $.jqplot('chart1',[line1],{
         //title: '  Reliability Weibull Distribution',
@@ -20,7 +26,6 @@
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
                     min: 0,
-		    max: 40,
 		    //ticks: ticks,
 		    label: 'Time (t)',
 		    tickInterval: '5'
@@ -39,9 +44,15 @@
 <script class="code" type="text/javascript">$(document).ready(function(){     
     
     var line1 = [
-	<% for i in 1..40 do %>
-	[<%= i %>, <%= (@beta/@eta)*((i/@eta) ** (@beta - 1)) %>],
-	<% end %>
+	<% if @beta > 6  %>
+	       <% for i in 1..@rt.size do %>
+		   [<%= i %>, <%= @lambda[i] %> ],
+	       <% end %>
+	<%else%>
+		<% for i in 1..40 do %>
+		[<%= i %>, <%= (@beta/@eta)*((i/@eta) ** (@beta - 1)) %>],
+		<% end %>
+	<%end%>
     ];
 
     plo1t = $.jqplot('chart2',[line1],{
@@ -50,7 +61,6 @@
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
                     min: 0,
-		    max: 40,
 		    //ticks: ticks,
 		    label: 'Time (t)',
 		    tickInterval: '5'
@@ -108,10 +118,18 @@
 <table>
 	<tr><th colspan=2><center>Weibull Parameters</center></th><tr>
 	<tr><td>Beta (β)</td><td><center><%=number_with_precision(@beta, :precision => 5) %></center></td></tr>
+<%if @beta > 6 %>
+</table><BR>
+<table>
+	<tr><th colspan=2><center>Normal Distribution Parameters</center></th><tr>
+	<tr><td>MTBF</td><td><center><%=number_with_precision(@mtbf, :precision => 5)%></center></td></tr>
+	<tr><td>Standard Deviation (σ)</td><td><center><%=number_with_precision(@delta, :precision => 5)%></center></td></tr>
+<%else%>
 	<tr><td>C</td><td><center><%=number_with_precision(@c, :precision => 5) %></center></td></tr>
 	<tr><td>Eta (ƞ)</td><td><center><%=number_with_precision(@eta, :precision => 5) %></center></td></tr>
 	<tr><td>Gamma Function (Γ)</td><td><center><%=number_with_precision(@grammar, :precision => 5) %></center></td></tr>
 	<tr><td>MTBF</td><td><center><%=number_with_precision(@mtbf, :precision => 5)%></center></td></tr>
+<%end%>
 </table>
 </div></p>
 <p><div class="grid_16 prefix_0"><center>
