@@ -1,11 +1,33 @@
 <p><h2>แสดงรายละเอียดอุปกรณ์ที่พิจารณา</h2></p>
 <p><center>
 <table border="1">
-	<tr><th><center>Item</center></th><th><center>ชื่อหม้อแปลงไฟฟ้า</center></th><th><center>Equipment No.</center></th><th><center>Terminal</center></th><th><center>Serial No</center></th><th><center>Service Years</center></th></tr>
-	<tr><td><center>1</center></td><td><center>KLM-KT1A</center></td><td><center>700xxxxxx</center></td><td><center>H1</center></td><td><center></center></td><td><center></center></td></tr>
-	<tr><td><center>2</center></td><td><center></center></td><td><center></center></td><td><center>H2</center></td><td><center></center></td><td><center></center></td></tr>
-	<tr><td><center>3</center></td><td><center></center></td><td><center></center></td><td><center>H3</center></td><td><center></center></td><td><center></center></td></tr>
-	<tr><td><center>4</center></td><td><center></center></td><td><center></center></td><td><center></center></td><td><center></center></td><td><center></center></td></tr>
-	<tr><td><center></center></td><td><center></center></td><td><center></center></td><td><center></center></td><td><center></center></td><td><center></center></td></tr>
+	<tr>
+		<th><center>Item</center></th>
+		<th><center>ชื่อหม้อแปลงไฟฟ้า</center></th>
+		<th><center>Equipment No.</center>
+		</th><th><center>Terminal</center>
+		</th><th><center>Serial No</center></th>
+		<th><center>Service Years</center></th>
+	</tr>
+	<% if !@txinfos.nil? or @txinfos.length > 0
+		for i in 0..@txinfos.length-1 do
+			numterminal = @txinfos[i]["terminal"].size
+		     	for j in 0..numterminal-1 do 
+	%>
+			<tr>
+			<%	if j == 0 %>
+					<td rowspan=<%=numterminal%>><center><%=i+1%></center></td>
+					<td rowspan=<%=numterminal%>><center><%= @txinfos[i]["name"] %></center></td> 
+					<td rowspan=<%=numterminal%>><center><%= @txinfos[i]["egatsn"] %></center></td>
+				<%end %>
+				<td><center><%=@txinfos[i]["terminal"][j] %></center></td>
+				<td><center><%=@txinfos[i]["serial"][j] %></center></td>
+				<td><center><%=@txinfos[i]["service_year"] %></center></td>
+				</tr>
+			<%
+			end
+		end
+	   end
+        %>
 </table>
 </center>

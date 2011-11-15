@@ -3,23 +3,24 @@ function displaysub(x) {
     var manu = Ext.getCmp('manufacturer');
     option = new Array();
 
+    option[0] = ['-- All --', '-- All --'];
     if(x=="Bushing"){
         <%if @numBushing!=0%>
           <%for i in 0..@numBushing-1 do%>
-            option[<%=i%>] = ['<%=@bushing[i].id%>','<%=@bushing[i].manufacturer%>'];
+            option[<%=i+1%>] = ['<%=@bushing[i].id%>','<%=@bushing[i].manufacturer%>'];
           <%end%>
         <%end%>
 
     } else if (x=="Arrester"){
         <%if @numArrester!=0%>
             <%for i in 0..@numArrester-1 do%>
-                option[<%=i%>] = ['<%=@arrester[i].id%>','<%=@arrester[i].manufacturer%>'];
+                option[<%=i+1%>] = ['<%=@arrester[i].id%>','<%=@arrester[i].manufacturer%>'];
             <%end%>
         <%end%>
     } else {
         <%if @numOltc!=0%>
             <%for i in 0..@numOltc-1 do%>
-                    option[<%=i%>]= ['<%=@oltc[i].id%>','<%=@oltc[i].manufacturer%>'];
+                    option[<%=i+1%>]= ['<%=@oltc[i].id%>','<%=@oltc[i].manufacturer%>'];
             <%end%>
         <%end%>
     }
@@ -40,16 +41,26 @@ function displaytype(y){
 
     if(x=="Bushing"){
         <%if @numBushing!=0%>
+          if(y == "-- All --") {
+                <% for i in 0..@allbushingtype.size-1 do%>
+                    option[<%=i+1%>] = ['<%=@allbushingtype[i].bushing_hv_type%>','<%=@allbushingtype[i].bushing_hv_type%>'];
+                <%end%>
+	  }
           <%for i in 0..@numBushing-1 do%>
               if(y == <%= @bushing[i].id %>) {
                 <% for j in 0..@bushingtype[i].size-1 do%>
                     option[<%=j+1%>] = ['<%=@bushingtype[i][j].bushing_hv_type%>','<%=@bushingtype[i][j].bushing_hv_type%>'];
                 <%end%>
-              }
+              } 
         <%end%>
       <%end%>
     } else if (x=="Arrester"){
        <%if @numArrester!=0%>
+         if (y == "-- All --") {
+                <% for i in 0..@allarrestertype.size-1 do%>
+                    option[<%=i+1%>] = ['<%=@allarrestertype[i].arrester_hv_type%>','<%=@allarrestertype[i].arrester_hv_type%>'];
+                <%end%>
+         }
          <%for i in 0..@numArrester-1 do%>
              if(y == <%= @arrester[i].id %>) {
                 <% for j in 0..@arrestertype[i].size-1 do%>
@@ -60,6 +71,11 @@ function displaytype(y){
       <%end%>
     } else {
         <%if @numOltc!=0%>
+         if (y == "-- All --") {
+                <% for i in 0..(@alloltctype.length)-1 do %>
+                    option[<%=i+1%>] = ['<%=@alloltctype[i].oltc_type%>','<%=@alloltctype[i].oltc_type%>'];
+                <%end%>
+         }
             <%for i in 0..@numOltc-1 do%>
                if(y == <%= @oltc[i].id %>) {
                 <% for j in 0..(@oltctype[i].length)-1 do %>
@@ -106,6 +122,7 @@ function displaytype(y){
 </select></td></tr>
 <tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td>
 <td><select id="failuredetail" name="failuredetail" size="1">
+	<option value="-- All --">-- All --</option>
 	<option value="ปกติ">ปกติ</option>
 	<option value="รั่วซึม">รั่วซึม</option>
 	<option value="แตก/ขาด">แตก/ขาด</option>

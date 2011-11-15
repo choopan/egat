@@ -20,16 +20,19 @@ class WeibullController < ApplicationController
         for i in 0..@numBushing-1 do
           @bushingtype[i] = Transformer.get_bushing_type(@bushing[i].id)
         end
+        @allbushingtype = Transformer.get_all_bushing_type()
 
         @arrestertype = Array.new();
         for i in 0..@numArrester-1 do
           @arrestertype[i] = Transformer.get_arrester_type(@arrester[i].id)
         end
+        @allarrestertype = Transformer.get_all_arrester_type()
 
         @oltctype = Array.new();
         for i in 0..@numOltc-1 do
           @oltctype[i] = Transformer.get_oltc_type(@oltc[i].id)
         end
+        @alloltctype = Transformer.get_all_oltc_type()
   end
 
   def factorial(n)
@@ -49,13 +52,20 @@ class WeibullController < ApplicationController
 	@time_interval = params[:time_interval].to_i
 	@lead_time = params[:lead_time].to_i
 
-	if(@equipement == "Bushing") 
-		@manu_name = ManufacturerBushing.get_bushing_id(@manufacturer).manufacturer
-	elsif(@equipement == "Arrester")
-		@manu_name = ManufacturerArrester.get_arrester_id(@manufacturer).manufacturer
+
+
+
+	if @manufacturer == '-- All --'
+		@manu_name = "-- All --"
 	else
-		@manu_name = ManufacturerOltc.get_oltc_id(@manufacturer).manufacturer
-        end
+		if(@equipement == "Bushing") 
+			@manu_name = ManufacturerBushing.get_bushing_id(@manufacturer).manufacturer
+		elsif(@equipement == "Arrester")
+			@manu_name = ManufacturerArrester.get_arrester_id(@manufacturer).manufacturer
+		else
+			@manu_name = ManufacturerOltc.get_oltc_id(@manufacturer).manufacturer
+        	end
+	end
 
 	@age_weibull = Array.new
         @f_normal_weibull, @age_weibull = Transformer.calculate_f_normal_weibull(@equipement, @voltage, @manufacturer, @type, @failuredetail)
@@ -99,7 +109,7 @@ class WeibullController < ApplicationController
 	end	
 	
 	#Weibull Distribution	
-	@age_weibull.sort
+	@age_weibull = @age_weibull.sort
       if @age_weibull.size >= 2
         n = @age_weibull.length
         @summation = Hash.new
@@ -206,12 +216,16 @@ class WeibullController < ApplicationController
 	#end
 	@equipement = params[:equipement]
 	@voltage = params[:voltage]
-	if(@equipement == "Bushing")
-		@manufacturer = ManufacturerBushing.find_by_manufacturer(params[:manu]).id
-	elsif(@equipement == "Arrester")
-		@manufacturer = ManufacturerArrester.find_by_manufacturer(params[:manu]).id
-	else
-		@manufacturer = ManufacturerOltc.find_by_manufacturer(params[:manu]).id
+	if params[:manu] == '-- All --'
+		@manufacturer = "-- All --"
+        else
+		if(@equipement == "Bushing")
+			@manufacturer = ManufacturerBushing.find_by_manufacturer(params[:manu]).id
+		elsif(@equipement == "Arrester")
+			@manufacturer = ManufacturerArrester.find_by_manufacturer(params[:manu]).id
+		else
+			@manufacturer = ManufacturerOltc.find_by_manufacturer(params[:manu]).id
+		end
 	end
 	@type = params[:etype]
 	@failuredetail = params[:failuredetail]
@@ -220,7 +234,7 @@ class WeibullController < ApplicationController
 
 	@age_weibull = Array.new
         @f_normal_weibull, @age_weibull = Transformer.calculate_f_normal_weibull(@equipement, @voltage, @manufacturer, @type, @failuredetail)
-	@age_weibull.sort
+	@age_weibull =	@age_weibull.sort
      if @age_weibull.size >= 2
 	n = @age_weibull.length
 	@summation = Hash.new
@@ -287,6 +301,23 @@ class WeibullController < ApplicationController
   end
 
   def weibull_detail
+	equipement = params[:equipement]
+        voltage = params[:voltage]
+	type = params[:type]
+	manufacturer = params[:manufacturer]
+
+        #if params[:manufacturer] == '-- All --'
+        #        manufacturer = "-- All --"
+        #else
+        #        if(equipement == "Bushing")
+        #                manufacturer = ManufacturerBushing.find_by_manufacturer(params[:manufacturer]).id
+        #        elsif(equipement == "Arrester")
+        #                manufacturer = ManufacturerArrester.find_by_manufacturer(params[:manufacturer]).id
+        #        else
+        #                manufacturer = ManufacturerOltc.find_by_manufacturer(params[:manufacturer]).id
+        #        end
+        #end
+	@txinfos = Transformer.get_weibull_equipement(equipement, voltage, manufacturer, type)
   end
 
 end

@@ -119,7 +119,7 @@
 	<% if @age_weibull.size >= 2 %>
 	<%= submit_tag 'ดูผลคำนวณ Weibull', :name => 'chart' %><BR>
 	<%end%>
-<%#= submit_tag 'แสดงรายละเอียดอุปกรณ์ที่พิจารณา', :name => 'detail' %>
 <%end%>
+<%= button_to 'แสดงรายละเอียดอุปกรณ์ที่พิจารณา', {:action => 'weibull_detail', :equipement => @equipement, :voltage => @voltage, :manufacturer => @manufacturer, :type => @type} %>
 </center>
 
