@@ -3,5 +3,10 @@ class FdEnvironmnt < ActiveRecord::Base
 	order("id")
     	     rescue Exception
       	return nil
-  end
+  	end
+	def self.get_environment_id(id)
+	where("id = '#{id}'").first
+    	rescue Exception
+      	return nil
+  	end
 end

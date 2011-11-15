@@ -8,7 +8,7 @@ function displaysub(x){
 	       <%if @num_part[i]!=0%>
 			if(x==<%=@part[i].first.mainid%>){
 				<%for j in 0..@num_part[i]-1 do%>
-					option[<%=j%>]= ['<%=@part[i][j].id%>','<%=@part[i][j].part%>'];
+					option[<%=j%>]= ['<%=@part[i][j].part%>','<%=@part[i][j].part%>'];
 				<%end%>
 		
 		}else
@@ -21,22 +21,149 @@ function displaysub(x){
     
     manu.store.removeAll();
     manu.store.loadData(option, true);
-    manu.setValue(option[0][1]);
+    manu.setValue(option[0][0]);
 
 }
+
+function displayform(a) {
+//	var userInput = document.getElementById('userInput').value;
+	var manage = Ext.getCmp('manage');
+	var manageId = manage.getValue();
+	var group = Ext.getCmp('failuregroup');
+	var groupId = group.getValue();
+	var part = Ext.getCmp('failurepart');
+	var partVal = part.getValue();
+	if (manageId == <%=@replaces.id%>) {
+		if(groupId == <%=@oltcs.id%>) {
+			document.getElementById('replaceinfo').innerHTML = 
+			"<div class='grid_15 prefix_1 accessories' ><label>OLTC</label> \
+			<table><tr><td></td> \
+   			<td><p align=right>Maufacturer</p></td> \
+   			<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+			<%if @num_oltc!=0%> 
+				<%for i in 0..@num_oltc-1 do%> 
+					<option value='<%=@manufacturer_oltc[i].id%>'><%=@manufacturer_oltc[i].manufacturer%></option> \
+				<%end%> 
+			<%end%> 
+			</select> \
+			</p></td> \
+   			<td>Type &nbsp;&nbsp;<input type='text' name='oltc_type'></td> \
+   			<td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type='text' name='oltc_year'></td> \
+			</tr> \
+			</table> \
+			</div>";
+		}else if(groupId == <%=@bushings.id%>){
+			if(partVal == "HV Bushing"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Bushing</label> \
+				<table> \
+				<tr> \
+   				<td><p align=left>HV</p></td> \
+   				<td><p align=right>Maufacturer</p></td> \
+				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_bushing!=0%>
+					<%for i in 0..@num_bushing-1 do%>
+						<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option> \
+					<%end%>
+				<%end%>
+				</select> \
+				</p></td> \
+				<td>Type &nbsp;&nbsp;<input type='text' name='bushing_hv_type'></td> \
+				<td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type='text' name='bushing_hv_year'></td> \
+				</tr> \
+				<tr> \
+				<td></td> \
+				<td><p align=right>Serial No.</p></td> \
+				<td>H0 <input type='text' name='bushing_hv_h0'></td> \
+				<td>H1 <input type='text' name='bushing_hv_h1'></td> \
+				<td>H2 <input type='text' name='bushing_hv_h2'></td> \
+				<td>H3 <input type='text' name='bushing_hv_h3'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}else if(partVal == "LV Bushing"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Bushing</label> \
+				<table> \
+				<tr> \
+				<td><p align=left>LV</p></td> \
+   				<td><p align=right>Maufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_bushing!=0%>
+					<%for i in 0..@num_bushing-1 do%>
+						<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option> \
+					<%end%>
+				<%end%>
+				</select> \
+				</p></td> \
+				<td>Type &nbsp;&nbsp;<input type='text' name='bushing_lv_type'></td> \
+				<td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type='text' name='bushing_lv_year'></td> \
+				</tr> \
+				<tr> \
+				<td></td> \
+				<td><p align=right>Serial No.</p></td> \
+				<td>X0 <input type='text' name='bushing_lv_x0'></td> \
+				<td>X1 <input type='text' name='bushing_lv_x1'></td> \
+				<td>X2 <input type='text' name='bushing_lv_x2'></td> \
+				<td>X3 <input type='text' name='bushing_lv_x3'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}else if(partVal == "TV Bushing"){
+					document.getElementById('replaceinfo').innerHTML = 
+					"Name : <input type='text'></input><BR> \
+					Surname <input type='text'></input><BR>";
+			}else{
+				document.getElementById('replaceinfo').innerHTML = "";
+			}		
+		}else if(groupId == <%=@arresters.id%>){
+			if(partVal == "HV Arrester"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"Name : <input type='text'></input><BR> \
+				Surname <input type='text'></input><BR>";
+			}else if(partVal == "LV Arrester"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"Name : <input type='text'></input><BR> \
+				Surname <input type='text'></input><BR>";
+			}else{
+				document.getElementById('replaceinfo').innerHTML = 
+				"Name : <input type='text'></input><BR> \
+				Surname <input type='text'></input><BR>";
+			}
+		}else{	
+			document.getElementById('replaceinfo').innerHTML = "";
+		}
+	}else{
+		document.getElementById('replaceinfo').innerHTML = "";
+	}
+		/*document.getElementById('replaceinfo').innerHTML = 
+		"Name : <input type='text'></input><BR> \
+		Surname <input type='text'></input><BR>";*/
+
+	Cbox.setupComboxBox('replace_manufacturer');
+}
+
 
 $(function(){
 		setValueText1(); 
 	});
 	
 	function setValueText1(){
-		$("#downdate").datepicker({
+		$("#downdatetime").datepicker({
                      dateFormat: 'dd/mm/yy',
 		     showOn : "button",
                      buttonImage: "/images/icon_calendar.gif",
 		     buttonImageOnly : true
                 });
-		$("#update").datepicker({
+		$("#updatetime").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+		$("#eventdate").datepicker({
                      dateFormat: 'dd/mm/yy',
 		     showOn : "button",
                      buttonImage: "/images/icon_calendar.gif",
@@ -57,6 +184,7 @@ $(function(){
 
 <h1>เพิ่มรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
 <%= form_tag('/transformer_info/create_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+	<input type=hidden name="tid" value=<%= @tid %>>
 <table>
 <tr>
     <td>เขต</td>
@@ -70,7 +198,7 @@ $(function(){
 </tr>
 <tr>
     <td>Equipement No.</td>
-    <td><%= text_field_tag :egatsn%></td>
+    <td><%= text_field_tag 'egatsn',@txnams.egatsn%></td>
     <td></td>
 </tr>
 <tr>
@@ -130,7 +258,7 @@ $(function(){
 </tr>
 <tr>
 	<td>วันที่ปลดออกจากระบบ</td>
-        <td><%= text_field_tag :downdate%></td>
+        <td><%= text_field_tag :downdatetime%></td>
 	<td></td>
 </tr>
 <tr>
@@ -155,7 +283,7 @@ $(function(){
 </tr>
 <tr>
 	<td>วันที่นำเข้าระบบ</td>
-        <td><%= text_field_tag :update%></td>
+        <td><%= text_field_tag :updatetime%></td>
 	<td></td>
 </tr>
 <tr>
@@ -190,9 +318,9 @@ $(function(){
 		<%if @num_group!=0%>
 		  <%for i in 0..@num_group-1 do%>
 			<%if i==0%>
-				<option value='<%=@group[i].id%>' selected="true"><%=@group[i].group%></option>
+				<option value='<%=@group[i].id%>' selected="true"><%=@group[i].groupname%></option>
 			<%else%>
-				<option value='<%=@group[i].id%>'><%=@group[i].group%></option>
+				<option value='<%=@group[i].id%>'><%=@group[i].groupname%></option>
 			<%end%>
 		  <%end%>
 		<%end%>
@@ -201,7 +329,7 @@ $(function(){
 <tr>
         <td>ชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
         <td><select id='failurepart' name = 'failurepart'>
-		<option value="#"></option>
+		<option value=""></option>
 		<%if @num_part[0] != 0%>
 		  <%for i in 0..@num_part[0]-1 do%>
 			<%if i==0%>
@@ -220,9 +348,9 @@ $(function(){
 		<%if @num_mode!=0%>
 		  <%for i in 0..@num_mode-1 do%>
 			<%if i==0%>
-				<option value='<%=@mode[i].id%>' selected="true"><%=@mode[i].mode%></option>
+				<option value='<%=@mode[i].mode%>' selected="true"><%=@mode[i].mode%></option>
 			<%else%>
-				<option value='<%=@mode[i].id%>'><%=@mode[i].mode%></option>
+				<option value='<%=@mode[i].mode%>'><%=@mode[i].mode%></option>
 			<%end%>
 		  <%end%>
 		<%end%>
@@ -250,14 +378,15 @@ $(function(){
 		<%if @num_manage!=0%>
 		  <%for i in 0..@num_manage-1 do%>
 			<%if i==0%>
-				<option value='<%=@manage[i].id%>' selected="true"><%=@manage[i].reason%></option>
+				<option value='<%=@manage[i].id%>' selected="true"><%=@manage[i].manage%></option>
 			<%else%>
-				<option value='<%=@manage[i].id%>'><%=@manage[i].reason%></option>
+				<option value='<%=@manage[i].id%>'><%=@manage[i].manage%></option>
 			<%end%>
 		  <%end%>
 		<%end%>
 	</select></td><td>อื่นๆ ระบุ <%= text_field_tag :manage_etc%></td>
 </tr>
+<tr><td colspan=3><div id='replaceinfo'></div></td></tr>
 <tr>
         <td>รายละเอียดเพิ่มเติม (Remark)</td>
         <td><%= text_field_tag :remark%></td><td></td>

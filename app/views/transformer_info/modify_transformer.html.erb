@@ -185,7 +185,7 @@
 
 	
    <td><p>
-	<%if @num_accessory==0%>
+	<%if @transformer.bushing_hv_manu.nil?%>
 		<%= select_tag "bushing_hv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %>
 	<%else%>
 	  <select id='bushing_hv_manu' name='bushing_hv_manu'>
@@ -218,7 +218,7 @@
 <tr>
    <td><p align=left>LV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%if @num_accessory==0%>
+   <td><p><%if @transformer.bushing_lv_manu.nil?%>
 		<%= select_tag "bushing_lv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %>
 	<%else%>
 	  <select id='bushing_lv_manu' name='bushing_lv_manu'>
@@ -249,7 +249,7 @@
 <tr>
    <td><p align=left>TV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%if @num_accessory==0%>
+   <td><p><%if @transformer.bushing_tv_manu.nil?%>
 		<%= select_tag "bushing_tv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %>
 	<%else%>
 	  <select id='bushing_tv_manu' name='bushing_tv_manu'>
@@ -288,7 +288,7 @@
 <tr>
    <td><p align=left>HV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%if @num_accessory==0%>
+   <td><p><%if @transformer.arrester_hv_manu.nil?%>
 		<%= select_tag "arrester_hv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %>
 	<%else%>
 	  <select id='arrester_hv_manu' name='arrester_hv_manu'>
@@ -328,7 +328,7 @@
 <tr>
    <td><p align=left>LV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%if @num_accessory==0%>
+   <td><p><%if @transformer.arrester_lv_manu.nil?%>
 		<%= select_tag "arrester_lv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %>
 	<%else%>
 	  <select id='arrester_lv_manu' name='arrester_lv_manu'>
@@ -369,7 +369,7 @@
 <tr>
    <td><p align=left>TV</p></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%if @num_accessory==0%>
+   <td><p><%if @transformer.arrester_tv_manu.nil?%>
 		<%= select_tag "arrester_tv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %>
 	<%else%>
 	  <select id='arrester_tv_manu' name='arrester_tv_manu'>
@@ -418,7 +418,7 @@
 <tr>
    <td></td>
    <td><p align=right>Maufacturer</p></td>
-   <td><p><%if @num_accessory==0%>
+   <td><p><%if @transformer.oltc_manufacturer.nil?%>
 		<%= select_tag "oltc_manufacturer", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %>
 	<%else%>
 	  <select id='oltc_manufacturer' name='oltc_manufacturer'>

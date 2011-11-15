@@ -4,4 +4,16 @@ class FdManage < ActiveRecord::Base
     	     rescue Exception
       	return nil
   	end
+
+	def self.get_manage_id(id)
+	where("id = '#{id}'").first
+    	rescue Exception
+      	return nil
+  	end
+
+	def self.get_manage_part(manage)
+	where("manage = '#{manage}'").first
+    	rescue Exception
+      	return nil
+  	end
 end

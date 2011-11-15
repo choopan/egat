@@ -1,0 +1,449 @@
+<script>
+function displaysub(x){
+//alert(x);
+  var manu = Ext.getCmp('failurepart');
+    option = new Array();
+    <%if @num_groups!=0%>
+        <%for i in 0..@num_groups-1 do%>
+	       <%if @num_parts[i]!=0%>
+			if(x==<%=@parts[i].first.mainid%>){
+				<%for j in 0..@num_parts[i]-1 do%>
+					option[<%=j%>]= ['<%=@parts[i][j].part%>','<%=@parts[i][j].part%>'];
+				<%end%>
+		
+		}else
+              <%end%>
+	<%end%>
+		{
+			option[0]= ['','---โปรดระบุ---'];
+		}
+    <%end%>
+    
+    manu.store.removeAll();
+    manu.store.loadData(option, true);
+    manu.setValue(option[0][0]);
+
+}
+
+$(function(){
+		setValueText1(); 
+	});
+	
+	function setValueText1(){
+		$("#downdatetime").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+		$("#updatetime").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+		$("#eventdate").datepicker({
+                     dateFormat: 'dd/mm/yy',
+		     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+		     buttonImageOnly : true
+                });
+	}
+
+
+
+/*$(function() {
+  PriceLoss.setupTransformerNameComboxBox('station_station');
+  Cbox.setupComboxBox('select_manufacturer');
+  Cbox.setupComboxBox('voltage');
+  Cbox.setupComboxBox('manufacturer_1');
+});*/
+
+</script>
+
+<h1>แก้ไขรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
+<%= form_tag('/transformer_info/update_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+	<input type=hidden name="tid" value=<%= @tid %>>
+	<input type=hidden name="id" value=<%= @failureres.id %>>
+<table>
+<tr>
+    <td>เขต</td>
+    <td><%= text_field_tag 'region',@region%></td>
+    <td></td>
+</tr>
+<tr>
+    <td>หม้อแปลงไฟฟ้า</td>
+    <td><%= text_field_tag 'txname',@txnams.transformer_name%></td>
+
+</tr>
+<tr>
+    <td>Equipement No.</td>
+    <td><%= text_field_tag 'egatsn',@txnams.egatsn%></td>
+    <td></td>
+</tr>
+<tr>
+    <td>วันที่เกิดเหตุการณ์</td>
+	<%if !@failureres.eventdate.nil?%>
+		<%e1=@failureres.eventdate.to_s.split(" ")%>
+		<%e2 =e1[0].split("-")%>
+		<%eventdates=e2[2]+"/"+e2[1]+"/"+e2[0]%>
+	<%end%>
+    <td><%= text_field_tag 'eventdate',eventdates%></td>
+    <td></td>
+</tr>
+<tr>
+    <td>จำนวนครั้งในการทำงานของ OLTC</td>
+    <td><%= text_field_tag 'counterOLTC',@failureres.counterOLTC%></td>
+    <td></td>
+</tr>
+<tr>
+	<td>สภาพแวดล้อม</td>
+	<%m=0%>
+	<%for i in 0..@num_environments-1 do%>
+		<%if @failureres.environment==@environments[i].environmnt%>
+			<%m=1%>
+		<%end%>
+	<%end%>
+        <td><select id='environment' name='environment'>
+	<%if m==1%>
+		 <%for i in 0..@num_environments-1 do%>
+			<%if @failureres.environment==@environments[i].environmnt%>
+				<option value='<%=@environments[i].id%>' selected="true"><%=@environments[i].environmnt%></option>
+			<%else%>
+				<option value='<%=@environments[i].id%>'><%=@environments[i].environmnt%></option>
+			<%end%>
+		  <%end%>
+		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :environment_etc%></td>
+	<%else%>
+		<%for i in 0..@num_environments-1 do%>
+			<%if @environments[i].environmnt=="อื่นๆ ระบุ"%>
+				<option value='<%=@environments[i].id%>' selected="true"><%=@environments[i].environmnt%></option>
+			<%else%>
+				<option value='<%=@environments[i].id%>'><%=@environments[i].environmnt%></option>
+			<%end%>
+		<%end%>
+		</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'environment_etc',@failureres.environment%></td>
+	<%end%>
+</tr>
+<tr>
+	<td>สภาวะการใช้งานขณะพบความผิดปกติ</td>
+	<%m=0%>
+	<%for i in 0..@num_functions-1 do%>
+		<%if @failureres.failurestatus==@functions[i].function%>
+			<%m=1%>
+		<%end%>
+	<%end%>
+        <td><select id='failurestatus' name='failurestatus'>
+	<%if m==1%>
+		 <%for i in 0..@num_functions-1 do%>
+			<%if @failureres.failurestatus==@functions[i].function%>
+				<option value='<%=@functions[i].id%>' selected="true"><%=@functions[i].function%></option>
+			<%else%>
+				<option value='<%=@functions[i].id%>'><%=@functions[i].function%></option>
+			<%end%>
+		  <%end%>
+		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :failurestatus_etc%></td>
+	<%else%>
+		<%for i in 0..@num_functions-1 do%>
+			<%if @functions[i].function=="อื่นๆ ระบุ"%>
+				<option value='<%=@functions[i].id%>' selected="true"><%=@functions[i].function%></option>
+			<%else%>
+				<option value='<%=@functions[i].id%>'><%=@functions[i].function%></option>
+			<%end%>
+		<%end%>
+		</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'failurestatus_etc',@failureres.failurestatus%></td>
+	<%end%>
+</tr>
+<tr>
+        <td>รายละเอียดความผิดปกติ</td>
+	<%m=0%>
+	<%for i in 0..@num_details-1 do%>
+		<%if @failureres.failuredetail==@details[i].detail%>
+			<%m=1%>
+		<%end%>
+	<%end%>
+        <td><select id='failuredetail' name='failuredetail'>
+	<%if m==1%>
+		 <%for i in 0..@num_details-1 do%>
+			<%if @failureres.failuredetail==@details[i].detail%>
+				<option value='<%=@details[i].id%>' selected="true"><%=@details[i].detail%></option>
+			<%else%>
+				<option value='<%=@details[i].id%>'><%=@details[i].detail%></option>
+			<%end%>
+		  <%end%>
+		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :failuredetail_etc%></td>
+	<%else%>
+		<%for i in 0..@num_details-1 do%>
+			<%if @details[i].detail=="อื่นๆ ระบุ"%>
+				<option value='<%=@details[i].id%>' selected="true"><%=@details[i].detail%></option>
+			<%else%>
+				<option value='<%=@details[i].id%>'><%=@details[i].detail%></option>
+			<%end%>
+		<%end%>
+		</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'failuredetail_etc',@failureres.failuredetail%></td>
+	<%end%>
+</tr>
+<tr>
+	<td>วันที่ปลดออกจากระบบ</td>
+	<%if !@failureres.downdatetime.nil?%>
+		<%d1=@failureres.downdatetime.to_s.split(" ")%>
+		<%d2 =d1[0].split("-")%>
+		<%downdatetimes=d2[2]+"/"+d2[1]+"/"+d2[0]%>
+	<%end%>
+        <td><%= text_field_tag 'downdatetime',downdatetimes%></td>
+	<td></td>
+</tr>
+<tr>
+        <td>เวลาที่ปลดออกจากระบบ</td>
+	<%if !@failureres.downdatetime.nil?%>
+		<%d1=@failureres.downdatetime.to_s.split(" ")%>
+		<%d2 =d1[1].split(":")%>
+	<%end%>
+        <td><select id='downtimehour' name='downtimehour'>
+		<%if !@failureres.downdatetime.nil?%>
+			<%for i in 0..23 do%>
+				<%if d2[0].to_i==i%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' selected="true"><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' selected="true"><%=i.to_s%></option>
+					<%end%>
+				<%else%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+					<%end%>
+				<%end%>
+			<%end%>
+		<%else%>
+			<%for i in 0..23 do%>
+				<%if i<10%>
+					<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+				<%else%>
+					<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+				<%end%>
+			<%end%>
+		<%end%>
+	</select></td>
+	<td><select id='downtimeminute' name='downtimeminute'>
+		<%if !@failureres.downdatetime.nil?%>
+			<%for i in 0..59 do%>
+				<%if d2[1].to_i==i%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' selected="true"><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' selected="true"><%=i.to_s%></option>
+					<%end%>
+				<%else%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+					<%end%>
+				<%end%>
+			<%end%>
+		<%else%>
+			<%for i in 0..59 do%>
+				<%if i<10%>
+					<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+				<%else%>
+					<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+				<%end%>
+			<%end%>
+		<%end%>
+	</select></td>
+</tr>
+<tr>
+	<td>วันที่นำเข้าระบบ</td>
+	<%if !@failureres.updatetime.nil?%>
+		<%u1=@failureres.updatetime.to_s.split(" ")%>
+		<%u2 =u1[0].split("-")%>
+		<%updatetimes=u2[2]+"/"+u2[1]+"/"+u2[0]%>
+	<%end%>
+        <td><%= text_field_tag 'updatetime',updatetimes%></td>
+	<td></td>
+</tr>
+<tr>
+	<td>เวลาที่นำเข้าระบบ</td>
+	<%if !@failureres.updatetime.nil?%>
+		<%u1=@failureres.updatetime.to_s.split(" ")%>
+		<%u2 =u1[1].split(":")%>
+	<%end%>
+        <td><select id='uptimehour' name='uptimehour'>
+		<%if !@failureres.updatetime.nil?%>
+			<%for i in 0..23 do%>
+				<%if u2[0].to_i==i%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' selected="true"><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' selected="true"><%=i.to_s%></option>
+					<%end%>
+				<%else%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+					<%end%>
+				<%end%>
+			<%end%>
+		<%else%>
+			<%for i in 0..23 do%>
+				<%if i<10%>
+					<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+				<%else%>
+					<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+				<%end%>
+			<%end%>
+		<%end%>
+	</select></td>
+	<td><select id='uptimeminute' name='uptimeminute'>
+		<%if !@failureres.updatetime.nil?%>
+			<%for i in 0..59 do%>
+				<%if u2[1].to_i==i%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' selected="true"><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' selected="true"><%=i.to_s%></option>
+					<%end%>
+				<%else%>
+					<%if i<10%>
+						<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+					<%else%>
+						<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+					<%end%>
+				<%end%>
+			<%end%>
+		<%else%>
+			<%for i in 0..59 do%>
+				<%if i<10%>
+					<option value='<%='0'+i.to_s%>' ><%='0'+i.to_s%></option>
+				<%else%>
+					<option value='<%=i.to_s%>' ><%=i.to_s%></option>
+				<%end%>
+			<%end%>
+		<%end%>
+	</select></td>
+</tr>
+<tr>
+	<td>เลขคำสั่งปฏิบัติงาน</td>
+        <td><%= text_field_tag 'workorder',@failureres.workorder%></td>
+	<td></td>
+</tr>
+<tr>
+        <td>กลุ่มชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
+        <td><select id='failuregroup' name='failuregroup'>
+		<option value=''></option>
+		  <%for i in 0..@num_groups-1 do%>
+			<%if @failureres.failuregroup==@groups[i].groupname%>
+				<option value='<%=@groups[i].id%>' selected="true"><%=@groups[i].groupname%></option>
+				<%a=i%>
+			<%else%>
+				<option value='<%=@groups[i].id%>'><%=@groups[i].groupname%></option>
+			<%end%>
+		  <%end%>
+	    </select></td><td></td>
+</tr>
+<tr>
+        <td>ชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
+        <td><select id='failurepart' name = 'failurepart'>
+		<option value=""></option>
+	<%if !a.nil?%>
+		<%if @groups[a].groupname!="อื่นๆ ระบุ"%>
+		  <%for i in 0..@num_parts[a]-1 do%>
+			<%if @failureres.failurepart==@parts[a][i].part%>
+				<option value='<%=@parts[a][i].part%>' selected="true"><%=@parts[a][i].part%></option>
+			<%else%>
+				<option value='<%=@parts[a][i].part%>'><%=@parts[a][i].part%></option>
+			<%end%>
+		  <%end%>
+		<%else%>
+			<%str = @failureres.failurepart%>
+		<%end%>
+	<%end%>
+	</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'failuredetail_etc',str%></td>
+</tr>
+<tr>
+	<td>ระดับความเสียหาย</td>
+        <td><select id='failuremode' name='failuremode'>
+		<option value=''></option>
+		  <%for i in 0..@num_mode-1 do%>
+			<%if @failureres.failuremode==@mode[i].mode%>
+				<option value='<%=@mode[i].mode%>' selected="true"><%=@mode[i].mode%></option>
+			<%else%>
+				<option value='<%=@mode[i].mode%>'><%=@mode[i].mode%></option>
+			<%end%>
+		  <%end%>
+	</select></td><td></td>
+</tr>
+<tr>
+        <td>สาเหตุที่แท้จริง</td>
+	<%m=0%>
+	<%for i in 0..@num_reason-1 do%>
+		<%if @failureres.failurereason==@reason[i].reason%>
+			<%m=1%>
+		<%end%>
+	<%end%>
+        <td><select id='failurereason' name='failurereason'>
+	<%if m==1%>
+		 <%for i in 0..@num_reason-1 do%>
+			<%if @failureres.failurereason==@reason[i].reason%>
+				<option value='<%=@reason[i].id%>' selected="true"><%=@reason[i].reason%></option>
+			<%else%>
+				<option value='<%=@reason[i].id%>'><%=@reason[i].reason%></option>
+			<%end%>
+		  <%end%>
+		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :failurereason_etc%></td>
+	<%else%>
+		<%for i in 0..@num_reason-1 do%>
+			<%if @reason[i].reason=="อื่นๆ ระบุ"%>
+				<option value='<%=@reason[i].id%>' selected="true"><%=@reason[i].reason%></option>
+			<%else%>
+				<option value='<%=@reason[i].id%>'><%=@reason[i].reason%></option>
+			<%end%>
+		<%end%>
+		</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'failurereason_etc',@failureres.failurereason%></td>
+	<%end%>
+</tr>
+<tr>
+        <td>การจัดการ</td>
+	<%m=0%>
+	<%for i in 0..@num_manage-1 do%>
+		<%if @failureres.manage==@manage[i].manage%>
+			<%m=1%>
+		<%end%>
+	<%end%>
+        <td><select id='manage' name='manage'>
+	<%if m==1%>
+		 <%for i in 0..@num_manage-1 do%>
+			<%if @failureres.manage==@manage[i].manage%>
+				<option value='<%=@manage[i].id%>' selected="true"><%=@manage[i].manage%></option>
+			<%else%>
+				<option value='<%=@manage[i].id%>'><%=@manage[i].manage%></option>
+			<%end%>
+		  <%end%>
+		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :manage_etc%></td>
+	<%else%>
+		<%for i in 0..@num_manage-1 do%>
+			<%if @manage[i].manage=="อื่นๆ ระบุ"%>
+				<option value='<%=@manage[i].id%>' selected="true"><%=@manage[i].manage%></option>
+			<%else%>
+				<option value='<%=@manage[i].id%>'><%=@manage[i].manage%></option>
+			<%end%>
+		<%end%>
+		</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'manage_etc',@failureres.manage%></td>
+	<%end%>
+</tr>
+<tr>
+        <td>รายละเอียดเพิ่มเติม (Remark)</td>
+        <td><%= text_field_tag 'remark',@failureres.remark%></td><td></td>
+</tr>
+<tr>
+        <td>ผู้รายงาน</td>
+        <td><%= text_field_tag 'user',@failureres.user%></td><td></td>
+</tr>
+<tr>
+	<td colspan=3><center><%= submit_tag "Save", :class => "cupid-green" %></center></td>
+</tr>
+</table>
+<%end%>
