@@ -4,4 +4,5 @@ class FdPart < ActiveRecord::Base
     	rescue Exception
       	return nil
   end
+
 end
