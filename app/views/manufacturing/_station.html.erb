@@ -2,16 +2,17 @@
 <p>
 <center>
 <table border=1>
-	<tr><th><center>No.</center></th><th><center>ชื่อย่อสถานี</center></th><th><center>ชื่อเต็มสถานี</center></th><th><center>เขต</center></th><th><center>Kv</center></th><th><center>Edit</center></th><th><center>Delete</center></ht></tr>
-	<%if @num!=0%>
-		<%for i in 0..@num-1 do%>
-			<tr><td><center><%=i+1%></center></td><td><center><%=@station[i].name%></center></td><td><center><%=@station[i].full_name%></center></td>
-			<td><center><%=@station[i].region%></center></td><td><center><%=@station[i].kv%></center></td>
-			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_station",:id =>@station[i].id}, :class => 'edit'%></center></td>
-			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_station",:id =>@station[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></rt>
+	<tr><th><center>ชื่อย่อสถานี</center></th><th><center>ชื่อเต็มสถานี</center></th><th><center>เขต</center></th><th><center>Kv</center></th><th><center>Edit</center></th><th><center>Delete</center></ht></tr>
+	<%if !@station.blank?%>
+		<%for stations in @station do%>
+			<tr><td><center><%=stations.name%></center></td><td><center><%=stations.full_name%></center></td>
+			<td><center><%=stations.region%></center></td><td><center><%=stations.kv%></center></td>
+			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_station",:id =>stations.id}, :class => 'edit'%></center></td>
+			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_station",:id =>stations.id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></rt>
 		<%end%>
 	<%end%>
 </table>
+<%= will_paginate @station %>
 </p>
 <BR>
 <p>

@@ -284,7 +284,7 @@ end
 	@breadcrumb_link[2]  = ""
 	
 	@calresult = OilCalculate.get_period()
-	if @calresult.nil?
+	if @calresult.blank?
 		@calresult = OilCalculate.new
 	end
   end

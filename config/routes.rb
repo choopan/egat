@@ -29,7 +29,7 @@ Egat::Application.routes.draw do
 	end
   end
 
-  resource :oil_calculate do
+  resource :oil_calculates do
   end
 
 
