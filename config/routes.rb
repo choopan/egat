@@ -1,5 +1,6 @@
 Egat::Application.routes.draw do
 
+
    resources :manufacturing do
 	collection do
 		get "index"
@@ -29,7 +30,9 @@ Egat::Application.routes.draw do
 	end
   end
 
-  resource :oil_calculate do
+  resource :oil_calculates do
+#	colection do
+#	end
   end
 
 

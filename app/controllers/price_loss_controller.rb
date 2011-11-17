@@ -3,7 +3,7 @@
 class PriceLossController < ApplicationController
   def index
     @transformer = Transformer.find(params[:transformer_id])
-
+    #convert oltc manufacturer from id to name
     #fix user_id = 1
     @transformer_price_loss = TransformerPriceLoss.get_transformer_price_loss(1, params[:transformer_id])
     if @transformer_price_loss.nil?
