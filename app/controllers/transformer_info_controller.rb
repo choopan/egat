@@ -244,6 +244,9 @@ class TransformerInfoController < ApplicationController
 
 	@manufacturer_bushing = ManufacturerBushing.get_bushing()
 	@num_bushing = @manufacturer_bushing.count
+
+	@manufacturer_arrester = ManufacturerArrester.get_arrester()
+	@num_arrester = @manufacturer_arrester.count
   end
 
   def modify_failurere
@@ -263,6 +266,9 @@ class TransformerInfoController < ApplicationController
 
 	@groups = FdGroupPart.get_group()
 	@num_groups = @groups.count
+	@oltcs = FdGroupPart.get_group_part("On - load Tap Changer")
+	@bushings = FdGroupPart.get_group_part("Bushing")
+	@arresters = FdGroupPart.get_group_part("Surge Arrester")
 
 	@parts = Array.new()
 	@num_parts = Array.new()
@@ -279,6 +285,16 @@ class TransformerInfoController < ApplicationController
 
 	@manage = FdManage.get_manage()
 	@num_manage = @manage.count
+	@replaces = FdManage.get_manage_part("Replace")
+
+	@manufacturer_oltc = ManufacturerOltc.get_oltc()
+	@num_oltc = @manufacturer_oltc.count
+
+	@manufacturer_bushing = ManufacturerBushing.get_bushing()
+	@num_bushing = @manufacturer_bushing.count
+
+	@manufacturer_arrester = ManufacturerArrester.get_arrester()
+	@num_arrester = @manufacturer_arrester.count
   end
 
   def update_failurereport
@@ -343,6 +359,83 @@ class TransformerInfoController < ApplicationController
 		failure[:manage] = params[:manage_etc]
 	else
 		failure[:manage] = managed.manage
+	end
+        
+	if managed.manage=="Replace"
+			
+		if failuregroup.groupname=="On - load Tap Changer"
+			transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+			transformers[:oltc_manufacturer] = params[:replace_manufacturer].to_i
+			transformers[:oltc_type] = params[:oltc_type]
+			transformers[:oltc_year] = params[:oltc_year].to_i
+			transformers.update_attributes(transformers.attributes)
+		end
+		if failuregroup.groupname=="Bushing"
+			if params[:failurepart]=="HV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_hv_type] = params[:bushing_hv_type]
+				transformers[:bushing_hv_year] = params[:bushing_hv_year].to_i
+				transformers[:bushing_hv_h0] = params[:bushing_hv_h0]
+				transformers[:bushing_hv_h1] = params[:bushing_hv_h1]
+				transformers[:bushing_hv_h2] = params[:bushing_hv_h2]
+				transformers[:bushing_hv_h3] = params[:bushing_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_lv_type] = params[:bushing_lv_type]
+				transformers[:bushing_lv_year] = params[:bushing_lv_year].to_i
+				transformers[:bushing_lv_x0] = params[:bushing_lv_x0]
+				transformers[:bushing_lv_x1] = params[:bushing_lv_x1]
+				transformers[:bushing_lv_x2] = params[:bushing_lv_x2]
+				transformers[:bushing_lv_x3] = params[:bushing_lv_x3]
+				transformers.update_attributes(transformers.attributes)				
+			end
+			if params[:failurepart]=="TV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_tv_type] = params[:bushing_tv_type]
+				transformers[:bushing_tv_year] = params[:bushing_tv_year].to_i
+				transformers[:bushing_tv_y1] = params[:bushing_tv_y1]
+				transformers[:bushing_tv_y2] = params[:bushing_tv_y2]
+				transformers[:bushing_tv_y3] = params[:bushing_tv_y3]
+				transformers.update_attributes(transformers.attributes)		
+			end
+		end
+		if failuregroup.groupname=="Surge Arrester"
+			if params[:failurepart]=="HV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_hv_type] = params[:arrester_hv_type]
+				transformers[:arrester_hv_year] = params[:arrester_hv_year].to_i
+				transformers[:arrester_hv_h1] = params[:arrester_hv_h1]
+				transformers[:arrester_hv_h2] = params[:arrester_hv_h2]
+				transformers[:arrester_hv_h3] = params[:arrester_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_lv_type] = params[:arrester_lv_type]
+				transformers[:arrester_lv_year] = params[:arrester_lv_year].to_i
+				transformers[:arrester_lv_x1] = params[:arrester_lv_x1]
+				transformers[:arrester_lv_x2] = params[:arrester_lv_x2]
+				transformers[:arrester_lv_x3] = params[:arrester_lv_x3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="TV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_tv_type] = params[:arrester_tv_type]
+				transformers[:arrester_tv_year] = params[:arrester_tv_year].to_i
+				transformers[:arrester_tv_y1] = params[:arrester_tv_y1]
+				transformers[:arrester_tv_y2] = params[:arrester_tv_y2]
+				transformers[:arrester_tv_y3] = params[:arrester_tv_y3]
+				transformers.update_attributes(transformers.attributes)
+			end
+		end
 	end
 
 	failure[:remark] = params[:remark]
@@ -421,6 +514,82 @@ class TransformerInfoController < ApplicationController
 		failure[:manage] = managed.manage
 	end
 
+	if managed.manage=="Replace"
+			
+		if failuregroup.groupname=="On - load Tap Changer"
+			transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+			transformers[:oltc_manufacturer] = params[:replace_manufacturer].to_i
+			transformers[:oltc_type] = params[:oltc_type]
+			transformers[:oltc_year] = params[:oltc_year].to_i
+			transformers.update_attributes(transformers.attributes)
+		end
+		if failuregroup.groupname=="Bushing"
+			if params[:failurepart]=="HV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_hv_type] = params[:bushing_hv_type]
+				transformers[:bushing_hv_year] = params[:bushing_hv_year].to_i
+				transformers[:bushing_hv_h0] = params[:bushing_hv_h0]
+				transformers[:bushing_hv_h1] = params[:bushing_hv_h1]
+				transformers[:bushing_hv_h2] = params[:bushing_hv_h2]
+				transformers[:bushing_hv_h3] = params[:bushing_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_lv_type] = params[:bushing_lv_type]
+				transformers[:bushing_lv_year] = params[:bushing_lv_year].to_i
+				transformers[:bushing_lv_x0] = params[:bushing_lv_x0]
+				transformers[:bushing_lv_x1] = params[:bushing_lv_x1]
+				transformers[:bushing_lv_x2] = params[:bushing_lv_x2]
+				transformers[:bushing_lv_x3] = params[:bushing_lv_x3]
+				transformers.update_attributes(transformers.attributes)				
+			end
+			if params[:failurepart]=="TV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_tv_type] = params[:bushing_tv_type]
+				transformers[:bushing_tv_year] = params[:bushing_tv_year].to_i
+				transformers[:bushing_tv_y1] = params[:bushing_tv_y1]
+				transformers[:bushing_tv_y2] = params[:bushing_tv_y2]
+				transformers[:bushing_tv_y3] = params[:bushing_tv_y3]
+				transformers.update_attributes(transformers.attributes)		
+			end
+		end
+		if failuregroup.groupname=="Surge Arrester"
+			if params[:failurepart]=="HV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_hv_type] = params[:arrester_hv_type]
+				transformers[:arrester_hv_year] = params[:arrester_hv_year].to_i
+				transformers[:arrester_hv_h1] = params[:arrester_hv_h1]
+				transformers[:arrester_hv_h2] = params[:arrester_hv_h2]
+				transformers[:arrester_hv_h3] = params[:arrester_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_lv_type] = params[:arrester_lv_type]
+				transformers[:arrester_lv_year] = params[:arrester_lv_year].to_i
+				transformers[:arrester_lv_x1] = params[:arrester_lv_x1]
+				transformers[:arrester_lv_x2] = params[:arrester_lv_x2]
+				transformers[:arrester_lv_x3] = params[:arrester_lv_x3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="TV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_tv_type] = params[:arrester_tv_type]
+				transformers[:arrester_tv_year] = params[:arrester_tv_year].to_i
+				transformers[:arrester_tv_y1] = params[:arrester_tv_y1]
+				transformers[:arrester_tv_y2] = params[:arrester_tv_y2]
+				transformers[:arrester_tv_y3] = params[:arrester_tv_y3]
+				transformers.update_attributes(transformers.attributes)
+			end
+		end
+	end
 	failure[:remark] = params[:remark]
 	failure[:user] = params[:user]
 	failure.save

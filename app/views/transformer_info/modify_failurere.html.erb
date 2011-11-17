@@ -25,6 +25,273 @@ function displaysub(x){
 
 }
 
+function displayform() {
+//	var userInput = document.getElementById('userInput').value;
+	var manage = Ext.getCmp('manage');
+	var manageId = manage.getValue();
+	var group = Ext.getCmp('failuregroup');
+	var groupId = group.getValue();
+	var part = Ext.getCmp('failurepart');
+	var partVal = part.getValue();
+	if (manageId == <%=@replaces.id%>) {
+		if(groupId == <%=@oltcs.id%>) {
+			document.getElementById('replaceinfo').innerHTML = 
+			"<div class='grid_15 prefix_1 accessories' ><label>OLTC</label> \
+			<table><tr><td></td> \
+   			<td><p align=right>Manufacturer</p></td> \
+   			<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+			<%if @num_oltc!=0%> 
+				<%for i in 0..@num_oltc-1 do%>
+					<%if @txnams.oltc_manufacturer==@manufacturer_oltc[i].id%>
+						<option value='<%=@manufacturer_oltc[i].id%>' selected='true'><%=@manufacturer_oltc[i].manufacturer%></option> \
+					<%else%>
+						<option value='<%=@manufacturer_oltc[i].id%>'><%=@manufacturer_oltc[i].manufacturer%></option> \
+					<%end%>
+				<%end%> 
+			<%end%> 
+			</select> \
+			</p></td> \
+   			<td>Type &nbsp;&nbsp;<input type='text' name='oltc_type' value ='<%=@txnams.oltc_type%>'></td> \
+   			<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='oltc_year' value = '<%=@txnams.oltc_type%>'></td> \
+			</tr> \
+			</table> \
+			</div>";
+		}else if(groupId == <%=@bushings.id%>){
+			if(partVal == "HV Bushing"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Bushing</label> \
+				<table> \
+				<tr> \
+   				<td><p align=left>HV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_bushing!=0%>
+					<%for i in 0..@num_bushing-1 do%>
+						<%if @txnams.bushing_hv_manu==@manufacturer_bushing[i].id%>
+							<option value='<%=@manufacturer_bushing[i].id %>' selected='true'><%=@manufacturer_bushing[i].manufacturer%></option> \
+						<%else%>
+							<option value='<%=@manufacturer_bushing[i].id %>'><%=@manufacturer_bushing[i].manufacturer%></option> \
+						<%end%>
+					<%end%>
+				<%end%>
+				</select> \
+				</p></td> \
+				<td>Type &nbsp;&nbsp;<input type='text' name='bushing_hv_type' value='<%=@txnams.bushing_hv_type%>'></td> \
+				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='bushing_hv_year' value='<%=@txnams.bushing_hv_year%>'></td> \
+				</tr> \
+				<tr> \
+				<td></td> \
+				<td><p align=right>Serial No.</p></td> \
+				<td>H0 <input type='text' name='bushing_hv_h0' value='<%=@txnams.bushing_hv_h0%>'></td> \
+				<td>H1 <input type='text' name='bushing_hv_h1' value='<%=@txnams.bushing_hv_h1%>'></td> \
+				<td>H2 <input type='text' name='bushing_hv_h2' value='<%=@txnams.bushing_hv_h2%>'></td> \
+				<td>H3 <input type='text' name='bushing_hv_h3' value='<%=@txnams.bushing_hv_h3%>'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}else if(partVal == "LV Bushing"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Bushing</label> \
+				<table> \
+				<tr> \
+				<td><p align=left>LV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_bushing!=0%>
+					<%for i in 0..@num_bushing-1 do%>
+						<%if @txnams.bushing_lv_manu==@manufacturer_bushing[i].id%>
+							<option value='<%=@manufacturer_bushing[i].id%>' selected='true'><%=@manufacturer_bushing[i].manufacturer%></option> \
+						<%else%>
+							<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option> \
+						<%end%>
+					<%end%>
+				<%end%>
+				</select> \
+				</p></td> \
+				<td>Type &nbsp;&nbsp;<input type='text' name='bushing_lv_type' value='<%=@txnams.bushing_lv_type%>'></td> \
+				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='bushing_lv_year' value='<%=@txnams.bushing_lv_year%>'></td> \
+				</tr> \
+				<tr> \
+				<td></td> \
+				<td><p align=right>Serial No.</p></td> \
+				<td>X0 <input type='text' name='bushing_lv_x0' value='<%=@txnams.bushing_lv_x0%>'></td> \
+				<td>X1 <input type='text' name='bushing_lv_x1' value='<%=@txnams.bushing_lv_x1%>'></td> \
+				<td>X2 <input type='text' name='bushing_lv_x2' value='<%=@txnams.bushing_lv_x2%>'></td> \
+				<td>X3 <input type='text' name='bushing_lv_x3' value='<%=@txnams.bushing_lv_x3%>'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}else if(partVal == "TV Bushing"){
+					document.getElementById('replaceinfo').innerHTML = 
+					"<div class='grid_15 prefix_1 accessories' > \
+					<label>Bushing</label> \
+					<table> \
+					<tr><td><p align=left>TV</p></td> \
+					<td><p align=right>Manufacturer</p></td> \
+					<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+					<%if @num_bushing!=0%>
+						<%for i in 0..@num_bushing-1 do%>
+							<%if @txnams.bushing_tv_manu==@manufacturer_bushing[i].id%>
+								<option value='<%=@manufacturer_bushing[i].id%>' selected='true'><%=@manufacturer_bushing[i].manufacturer%></option> \
+							<%else%>
+								<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option> \
+							<%end%>
+						<%end%>
+					<%end%>
+					</select> \
+					</p></td> \
+   					<td>Type &nbsp;&nbsp;<input type='text' name='bushing_tv_type' value='<%=@txnams.bushing_tv_type%>'></td> \
+   					<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='bushing_tv_year' value='<%=@txnams.bushing_tv_year%>'></td> \
+					</tr> \
+					<tr> \
+   					<td></td> \
+   					<td><p align=right>Serial No.</p></td> \
+   					<td>Y1 <input type='text' name='bushing_tv_y1' value='<%=@txnams.bushing_tv_y1%>'></td> \
+   					<td>Y2 <input type='text' name='bushing_tv_y2' value='<%=@txnams.bushing_tv_y2%>'></td> \
+   					<td>Y3 <input type='text' name='bushing_tv_y3' value='<%=@txnams.bushing_tv_y3%>'></td> \
+   					<td></td> \
+					</tr> \
+					</table> \
+					</div>";
+			}else{
+				document.getElementById('replaceinfo').innerHTML = "";
+			}		
+		}else if(groupId == <%=@arresters.id%>){
+			if(partVal == "HV Arrester"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Arrester</label> \
+				<table> \
+				<tr><td><p align=left>HV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_arrester!=0%>
+					<%for i in 0..@num_arrester-1 do%>
+						<%if @txnams.arrester_hv_manu==@manufacturer_arrester[i].id%>
+							<option value='<%=@manufacturer_arrester[i].id%>' selected='true'><%=@manufacturer_arrester[i].manufacturer%></option> \
+						<%else%>
+							<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option> \
+						<%end%>
+					<%end%>
+				<%end%>
+				</select>  \
+				</p></td>  \
+   				<td>Type &nbsp;&nbsp;<input type='text' name='arrester_hv_type' value='<%=@txnams.arrester_hv_type%>'></td> \
+   				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='arrester_hv_year' value='<%=@txnams.arrester_hv_year%>'></td> \
+   				<td rowspan=2><table> \
+				<%if @txnams.arrester_hv_gapless==0%>
+					<tr><td><p align=right>Gap</p></td><td><input checked='checked' id='arrester_hv_gapless_0' name='arrester_hv_gapless' type='radio' value='0'></td></tr> \
+       					<tr><td><p align=right>Gapless</p></td><td><input id='arrester_hv_gapless_1' name='arrester_hv_gapless' type='radio' value='1'></td></tr> \
+				<%else%>
+					<tr><td><p align=right>Gap</p></td><td><input id='arrester_hv_gapless_0' name='arrester_hv_gapless' type='radio' value='0'></td></tr> \
+       					<tr><td><p align=right>Gapless</p></td><td><input checked='checked' id='arrester_hv_gapless_1' name='arrester_hv_gapless' type='radio' value='1'></td></tr> \
+				<%end%>
+				</table> \
+   				</td> \
+				</tr> \
+				<tr> \
+   				<td></td> \
+   				<td><p align=right>Serial No.</p></td> \
+   				<td>H1 <input type='text' name='arrester_hv_h1' value='<%=@txnams.arrester_hv_h1%>'></td> \
+   				<td>H2 <input type='text' name='arrester_hv_h2' value='<%=@txnams.arrester_hv_h2%>'></td> \
+   				<td>H3 <input type='text' name='arrester_hv_h3' value='<%=@txnams.arrester_hv_h3%>'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}else if(partVal == "LV Arrester"){
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Arrester</label> \
+				<table> \
+				<tr><td><p align=left>LV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_arrester!=0%>
+					<%for i in 0..@num_arrester-1 do%>
+						<%if @txnams.arrester_lv_manu==@manufacturer_arrester[i].id%>
+							<option value='<%=@manufacturer_arrester[i].id%>' selected='true'><%=@manufacturer_arrester[i].manufacturer%></option> \
+						<%else%>
+							<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option> \
+						<%end%>
+					<%end%>
+				<%end%>
+				</select>  \
+				</p></td>  \
+   				<td>Type &nbsp;&nbsp;<input type='text' name='arrester_lv_type' value='<%=@txnams.arrester_lv_type%>'></td> \
+   				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='arrester_lv_year' value='<%=@txnams.arrester_lv_year%>'></td> \
+   				<td rowspan=2><table> \
+				<%if @txnams.arrester_lv_gapless==0%>
+					<tr><td><p align=right>Gap</p></td><td><input checked='checked' id='arrester_lv_gapless_0' name='arrester_lv_gapless' type='radio' value='0'></td></tr> \
+       					<tr><td><p align=right>Gapless</p></td><td><input id='arrester_lv_gapless_1' name='arrester_lv_gapless' type='radio' value='1'></td></tr> \
+				<%else%>
+					<tr><td><p align=right>Gap</p></td><td><input id='arrester_lv_gapless_0' name='arrester_lv_gapless' type='radio' value='0'></td></tr> \
+       					<tr><td><p align=right>Gapless</p></td><td><input checked='checked' id='arrester_lv_gapless_1' name='arrester_lv_gapless' type='radio' value='1'></td></tr> \
+				<%end%>
+				</table> \
+   				</td> \
+				</tr> \
+				<tr> \
+   				<td></td> \
+   				<td><p align=right>Serial No.</p></td> \
+   				<td>X1 <input type='text' name='arrester_lv_x1' value='<%=@txnams.arrester_lv_x1%>'></td> \
+   				<td>X2 <input type='text' name='arrester_lv_x2' value='<%=@txnams.arrester_lv_x2%>'></td> \
+   				<td>X3 <input type='text' name='arrester_lv_x3' value='<%=@txnams.arrester_lv_x3%>'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}else{
+				document.getElementById('replaceinfo').innerHTML = 
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Arrester</label> \
+				<table> \
+				<tr><td><p align=left>TV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_arrester!=0%>
+					<%for i in 0..@num_arrester-1 do%>
+						<%if @txnams.arrester_tv_manu==@manufacturer_arrester[i].id%>
+							<option value='<%=@manufacturer_arrester[i].id%>' selected='true'><%=@manufacturer_arrester[i].manufacturer%></option> \
+						<%else%>
+							<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option> \
+						<%end%>	
+					<%end%>
+				<%end%>
+				</select>  \
+				</p></td>  \
+   				<td>Type &nbsp;&nbsp;<input type='text' name='arrester_tv_type' value='<%=@txnams.arrester_tv_type%>'></td> \
+   				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='arrester_tv_year' value='<%=@txnams.arrester_tv_year%>'></td> \
+   				<td rowspan=2><table> \
+				<%if @txnams.arrester_tv_gapless==0%>
+					<tr><td><p align=right>Gap</p></td><td><input checked='checked' id='arrester_tv_gapless_0' name='arrester_tv_gapless' type='radio' value='0'></td></tr> \
+       					<tr><td><p align=right>Gapless</p></td><td><input id='arrester_tv_gapless_1' name='arrester_tv_gapless' type='radio' value='1'></td></tr> \
+				<%else%>
+					<tr><td><p align=right>Gap</p></td><td><input id='arrester_tv_gapless_0' name='arrester_tv_gapless' type='radio' value='0'></td></tr> \
+       					<tr><td><p align=right>Gapless</p></td><td><input checked='checked' id='arrester_tv_gapless_1' name='arrester_tv_gapless' type='radio' value='1'></td></tr> \
+				<%end%>
+				</table> \
+   				</td> \
+				</tr> \
+				<tr> \
+   				<td></td> \
+   				<td><p align=right>Serial No.</p></td> \
+   				<td>Y1 <input type='text' name='arrester_tv_y1' value='<%=@txnams.arrester_tv_y1%>'></td> \
+   				<td>Y2 <input type='text' name='arrester_tv_y2' value='<%=@txnams.arrester_tv_y2%>'></td> \
+   				<td>Y3 <input type='text' name='arrester_tv_y3' value='<%=@txnams.arrester_tv_y3%>'></td> \
+				</tr> \
+				</table> \
+				</div>";
+			}
+		}else{	
+			document.getElementById('replaceinfo').innerHTML = "";
+		}
+	}else{
+		document.getElementById('replaceinfo').innerHTML = "";
+	}
+	Cbox.setupComboxBox('replace_manufacturer');
+}
+
 $(function(){
 		setValueText1(); 
 	});
@@ -434,6 +701,7 @@ $(function(){
 		</select></td><td>อื่นๆ ระบุ <%= text_field_tag 'manage_etc',@failureres.manage%></td>
 	<%end%>
 </tr>
+<tr><td colspan=3><div id='replaceinfo'></div></td></tr>
 <tr>
         <td>รายละเอียดเพิ่มเติม (Remark)</td>
         <td><%= text_field_tag 'remark',@failureres.remark%></td><td></td>

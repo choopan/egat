@@ -109,14 +109,14 @@
 <table>
 <tr>
    <td><p align=left>HV</p></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
 
 	
    <td><p><%= select_tag "bushing_hv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
 
 
    <td>Type &nbsp;&nbsp;<input type="text" name="bushing_hv_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_hv_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="bushing_hv_year"></td>
 </tr>
 <tr>
    <td></td>
@@ -128,10 +128,10 @@
 </tr>
 <tr>
    <td><p align=left>LV</p></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
    <td><p><%= select_tag "bushing_lv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="bushing_lv_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_lv_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="bushing_lv_year"></td>
 </tr>
 <tr>
    <td></td>
@@ -143,10 +143,10 @@
 </tr>
 <tr>
    <td><p align=left>TV</p></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
    <td><p><%= select_tag "bushing_tv_manu", options_from_collection_for_select(@manufacturer_bushing, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="bushing_tv_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="bushing_tv_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="bushing_tv_year"></td>
 </tr>
 <tr>
    <td></td>
@@ -166,10 +166,10 @@
 <table>
 <tr>
    <td><p align=left>HV</p></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
    <td><p><%= select_tag "arrester_hv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="arrester_hv_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="arrester_hv_year"></td>
    <td rowspan=2><table>
 		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '0', true %></td></tr>
        		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '1' %></td></tr>
@@ -185,10 +185,10 @@
 </tr>
 <tr>
    <td><p align=left>LV</p></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
    <td><p><%= select_tag "arrester_lv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="arrester_lv_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="arrester_lv_year"></td>
    <td rowspan=2><table>
 		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '0', true %></td></tr>
        		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '1' %></td></tr>
@@ -205,10 +205,10 @@
 </tr>
 <tr>
    <td><p align=left>TV</p></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
    <td><p><%= select_tag "arrester_tv_manu", options_from_collection_for_select(@manufacturer_arrester, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="arrester_tv_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="arrester_tv_year"></td>
    <td rowspan=2><table>
 		<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '0', true %></td></tr>
        		<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '1' %></td></tr>
@@ -233,10 +233,10 @@
 <table>
 <tr>
    <td></td>
-   <td><p align=right>Maufacturer</p></td>
+   <td><p align=right>Manufacturer</p></td>
    <td><p><%= select_tag "oltc_manufacturer", options_from_collection_for_select(@manufacturer_oltc, "id", "manufacturer") %></p></td>
    <td>Type &nbsp;&nbsp;<input type="text" name="oltc_type"></td>
-   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year"></td>
+   <td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type="text" name="oltc_year"></td>
 </tr>
 </table>
 </div>
