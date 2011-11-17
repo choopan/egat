@@ -235,7 +235,7 @@ FGroup.setupTransformerNameComboxBox = function(id) {
 
 FGroup.onTransformerNamChange = function(transformerId) {
   displaysub(transformerId);
-  displayform(transformerId);
+  displayform();
 };
 
 var Replace = { };
@@ -269,7 +269,7 @@ Replace.setupTransformerNameComboxBox = function(id) {
 };
 
 Replace.onTransformerNamChange = function(transformerId) {
-  displayform(transformerId);
+  displayform();
 };
 
 var Fpart = { };
@@ -303,7 +303,7 @@ Fpart.setupTransformerNameComboxBox = function(id) {
 };
 
 Fpart.onTransformerNamChange = function(transformerId) {
-  displayform(transformerId);
+  displayform();
 };
 function setCalendar(){
                 $("#transformer_transfer_action_date").datepicker({
@@ -350,7 +350,8 @@ $(function() {
   Cbox.setupComboxBox('failuremode');
   Cbox.setupComboxBox('failurereason');
   Replace.setupTransformerNameComboxBox('manage');
-
+  
+ displayform();
   //Cbox.setupComboxBox('oltc_manufacturer');
 
 });

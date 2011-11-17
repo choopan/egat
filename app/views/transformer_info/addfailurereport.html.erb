@@ -38,7 +38,7 @@ function displayform(a) {
 			document.getElementById('replaceinfo').innerHTML = 
 			"<div class='grid_15 prefix_1 accessories' ><label>OLTC</label> \
 			<table><tr><td></td> \
-   			<td><p align=right>Maufacturer</p></td> \
+   			<td><p align=right>Manufacturer</p></td> \
    			<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
 			<%if @num_oltc!=0%> 
 				<%for i in 0..@num_oltc-1 do%> 
@@ -48,7 +48,7 @@ function displayform(a) {
 			</select> \
 			</p></td> \
    			<td>Type &nbsp;&nbsp;<input type='text' name='oltc_type'></td> \
-   			<td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type='text' name='oltc_year'></td> \
+   			<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='oltc_year'></td> \
 			</tr> \
 			</table> \
 			</div>";
@@ -60,7 +60,7 @@ function displayform(a) {
 				<table> \
 				<tr> \
    				<td><p align=left>HV</p></td> \
-   				<td><p align=right>Maufacturer</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
 				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
 				<%if @num_bushing!=0%>
 					<%for i in 0..@num_bushing-1 do%>
@@ -70,7 +70,7 @@ function displayform(a) {
 				</select> \
 				</p></td> \
 				<td>Type &nbsp;&nbsp;<input type='text' name='bushing_hv_type'></td> \
-				<td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type='text' name='bushing_hv_year'></td> \
+				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='bushing_hv_year'></td> \
 				</tr> \
 				<tr> \
 				<td></td> \
@@ -89,7 +89,7 @@ function displayform(a) {
 				<table> \
 				<tr> \
 				<td><p align=left>LV</p></td> \
-   				<td><p align=right>Maufacturer</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
    				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
 				<%if @num_bushing!=0%>
 					<%for i in 0..@num_bushing-1 do%>
@@ -99,7 +99,7 @@ function displayform(a) {
 				</select> \
 				</p></td> \
 				<td>Type &nbsp;&nbsp;<input type='text' name='bushing_lv_type'></td> \
-				<td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<input type='text' name='bushing_lv_year'></td> \
+				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='bushing_lv_year'></td> \
 				</tr> \
 				<tr> \
 				<td></td> \
@@ -113,24 +113,132 @@ function displayform(a) {
 				</div>";
 			}else if(partVal == "TV Bushing"){
 					document.getElementById('replaceinfo').innerHTML = 
-					"Name : <input type='text'></input><BR> \
-					Surname <input type='text'></input><BR>";
+					"<div class='grid_15 prefix_1 accessories' > \
+					<label>Bushing</label> \
+					<table> \
+					<tr><td><p align=left>TV</p></td> \
+					<td><p align=right>Manufacturer</p></td> \
+					<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+					<%if @num_bushing!=0%>
+						<%for i in 0..@num_bushing-1 do%>
+							<option value='<%=@manufacturer_bushing[i].id%>'><%=@manufacturer_bushing[i].manufacturer%></option> \
+						<%end%>
+					<%end%>
+					</select> \
+					</p></td> \
+   					<td>Type &nbsp;&nbsp;<input type='text' name='bushing_tv_type'></td> \
+   					<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='bushing_tv_year'></td> \
+					</tr> \
+					<tr> \
+   					<td></td> \
+   					<td><p align=right>Serial No.</p></td> \
+   					<td>Y1 <input type='text' name='bushing_tv_y1'></td> \
+   					<td>Y2 <input type='text' name='bushing_tv_y2'></td> \
+   					<td>Y3 <input type='text' name='bushing_tv_y3'></td> \
+   					<td></td> \
+					</tr> \
+					</table> \
+					</div>";
 			}else{
 				document.getElementById('replaceinfo').innerHTML = "";
 			}		
 		}else if(groupId == <%=@arresters.id%>){
 			if(partVal == "HV Arrester"){
 				document.getElementById('replaceinfo').innerHTML = 
-				"Name : <input type='text'></input><BR> \
-				Surname <input type='text'></input><BR>";
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Arrester</label> \
+				<table> \
+				<tr><td><p align=left>HV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_arrester!=0%>
+					<%for i in 0..@num_arrester-1 do%>
+						<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option> \
+					<%end%>
+				<%end%>
+				</select>  \
+				</p></td>  \
+   				<td>Type &nbsp;&nbsp;<input type='text' name='arrester_hv_type'></td> \
+   				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='arrester_hv_year'></td> \
+   				<td rowspan=2><table> \
+				<tr><td><p align=right>Gap</p></td><td><input checked='checked' id='arrester_hv_gapless_0' name='arrester_hv_gapless' type='radio' value='0'></td></tr> \
+       				<tr><td><p align=right>Gapless</p></td><td><input id='arrester_hv_gapless_1' name='arrester_hv_gapless' type='radio' value='1'></td></tr> \
+				</table> \
+   				</td> \
+				</tr> \
+				<tr> \
+   				<td></td> \
+   				<td><p align=right>Serial No.</p></td> \
+   				<td>H1 <input type='text' name='arrester_hv_h1'></td> \
+   				<td>H2 <input type='text' name='arrester_hv_h2'></td> \
+   				<td>H3 <input type='text' name='arrester_hv_h3'></td> \
+				</tr> \
+				</table> \
+				</div>";
 			}else if(partVal == "LV Arrester"){
 				document.getElementById('replaceinfo').innerHTML = 
-				"Name : <input type='text'></input><BR> \
-				Surname <input type='text'></input><BR>";
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Arrester</label> \
+				<table> \
+				<tr><td><p align=left>LV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_arrester!=0%>
+					<%for i in 0..@num_arrester-1 do%>
+						<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option> \
+					<%end%>
+				<%end%>
+				</select>  \
+				</p></td>  \
+   				<td>Type &nbsp;&nbsp;<input type='text' name='arrester_lv_type'></td> \
+   				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='arrester_lv_year'></td> \
+   				<td rowspan=2><table> \
+				<tr><td><p align=right>Gap</p></td><td><input checked='checked' id='arrester_lv_gapless_0' name='arrester_lv_gapless' type='radio' value='0'></td></tr> \
+       				<tr><td><p align=right>Gapless</p></td><td><input id='arrester_lv_gapless_1' name='arrester_lv_gapless' type='radio' value='1'></td></tr> \
+				</table> \
+   				</td> \
+				</tr> \
+				<tr> \
+   				<td></td> \
+   				<td><p align=right>Serial No.</p></td> \
+   				<td>X1 <input type='text' name='arrester_lv_x1'></td> \
+   				<td>X2 <input type='text' name='arrester_lv_x2'></td> \
+   				<td>X3 <input type='text' name='arrester_lv_x3'></td> \
+				</tr> \
+				</table> \
+				</div>";
 			}else{
 				document.getElementById('replaceinfo').innerHTML = 
-				"Name : <input type='text'></input><BR> \
-				Surname <input type='text'></input><BR>";
+				"<div class='grid_15 prefix_1 accessories' > \
+				<label>Arrester</label> \
+				<table> \
+				<tr><td><p align=left>TV</p></td> \
+   				<td><p align=right>Manufacturer</p></td> \
+   				<td><p><select id='replace_manufacturer' name='replace_manufacturer'> \
+				<%if @num_arrester!=0%>
+					<%for i in 0..@num_arrester-1 do%>
+						<option value='<%=@manufacturer_arrester[i].id%>'><%=@manufacturer_arrester[i].manufacturer%></option> \
+					<%end%>
+				<%end%>
+				</select>  \
+				</p></td>  \
+   				<td>Type &nbsp;&nbsp;<input type='text' name='arrester_tv_type'></td> \
+   				<td colspan=2>ในปี Nameplate &nbsp;&nbsp;<input type='text' name='arrester_tv_year'></td> \
+   				<td rowspan=2><table> \
+				<tr><td><p align=right>Gap</p></td><td><input checked='checked' id='arrester_tv_gapless_0' name='arrester_tv_gapless' type='radio' value='0'></td></tr> \
+       				<tr><td><p align=right>Gapless</p></td><td><input id='arrester_tv_gapless_1' name='arrester_tv_gapless' type='radio' value='1'></td></tr> \
+				</table> \
+   				</td> \
+				</tr> \
+				<tr> \
+   				<td></td> \
+   				<td><p align=right>Serial No.</p></td> \
+   				<td>Y1 <input type='text' name='arrester_tv_y1'></td> \
+   				<td>Y2 <input type='text' name='arrester_tv_y2'></td> \
+   				<td>Y3 <input type='text' name='arrester_tv_y3'></td> \
+				</tr> \
+				</table> \
+				</div>";
 			}
 		}else{	
 			document.getElementById('replaceinfo').innerHTML = "";
@@ -138,9 +246,6 @@ function displayform(a) {
 	}else{
 		document.getElementById('replaceinfo').innerHTML = "";
 	}
-		/*document.getElementById('replaceinfo').innerHTML = 
-		"Name : <input type='text'></input><BR> \
-		Surname <input type='text'></input><BR>";*/
 
 	Cbox.setupComboxBox('replace_manufacturer');
 }

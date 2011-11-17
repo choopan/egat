@@ -1432,5 +1432,9 @@ class Transformer < ActiveRecord::Base
   end
 
 
-
+  def self.get_transformer_egatsn(egatsn)
+	where("egatsn = '#{egatsn}'").first
+    	rescue Exception
+      	return nil
+  end
 end
