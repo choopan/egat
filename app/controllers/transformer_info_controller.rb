@@ -1,13 +1,13 @@
 #encoding : UTF-8
-@@bc_ic = "ข้อมูลหม้อแปลง"
-@@bc_ic_link = "/transformer_info"
+@@bc_tx = "ข้อมูลหม้อแปลง"
+@@bc_tx_link = "/transformer_info/txlist"
 
 class TransformerInfoController < ApplicationController
   def txlist
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
         @breadcrumb_link[1]  = ''
 
@@ -31,8 +31,8 @@ class TransformerInfoController < ApplicationController
   def txadd
     @breadcrumb_title = Array.new()
     @breadcrumb_link  = Array.new()
-    @breadcrumb_title[0] = @@bc_ic
-    @breadcrumb_link[0]  = @@bc_ic_link
+    @breadcrumb_title[0] = @@bc_tx
+    @breadcrumb_link[0]  = @@bc_tx_link
     @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
     @breadcrumb_link[1]  = '/transformer_info/txlist'
     @breadcrumb_title[2] = 'เพิ่มหม้อแปลงไฟฟ้า'
@@ -65,8 +65,8 @@ class TransformerInfoController < ApplicationController
   def txlistmove
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = ''
 
@@ -74,18 +74,28 @@ class TransformerInfoController < ApplicationController
   end
 
   def txshowmove
+
+	@breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
+        @breadcrumb_link[1]  = '/transformer_info/txlistmove'
+        @breadcrumb_title[2] = 'รายละเอียดการย้ายหม้อแปลง'
+        @breadcrumb_link[2]  = ''
+
 	@txmove = TransformerTransfer.find(params[:id])
   end
 
   def txaddmove
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = '/transformer_info/txlistmove'
-        @breadcrumb_title[1] = 'เพิ่มการย้ายหม้อแปลง'
-        @breadcrumb_link[1]  = ''
+        @breadcrumb_title[2] = 'เพิ่มการย้ายหม้อแปลง'
+        @breadcrumb_link[2]  = ''
 
 	@txmove = TransformerTransfer.new
 	@txnames = Transformer.order("transformer_name")
@@ -111,8 +121,8 @@ class TransformerInfoController < ApplicationController
   def txeditmove
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = '/transformer_info/txlistmove'
         @breadcrumb_title[2] = 'แก้ไขการย้ายหม้อแปลง'
@@ -178,6 +188,14 @@ class TransformerInfoController < ApplicationController
   end
 
   def failurereport
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'รายงานความผิดปกติ'
+        @breadcrumb_link[1]  = ''
+
+
 	if params[:region] == "" or params[:region].nil?
 		@txnames = Transformer.order("transformer_name")
 	else
@@ -192,12 +210,35 @@ class TransformerInfoController < ApplicationController
 
         if params[:tid] != "" and !params[:tid].nil?
               @txinfo = Transformer.find(params[:tid])
-        end
+	      xxx = FailureDatabase.get_failure_egatsn(@txinfo.egatsn)
+		if !xxx.nil? and !xxx.blank?
+		      @failures = FailureDatabase.get_failure_egatsn(@txinfo.egatsn).paginate(:page => params[:page], :per_page => 2)
+		else
+			@failures = nil
+		end
+	end
+	
   end
 
   def addfailurereport
-	@region = params[:region]
+
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'รายงานความผิดปกติ'
+        @breadcrumb_link[1]  = '/transformer_info/failurereport?region='
+        @breadcrumb_title[2] = 'เพิ่มรายงานความผิดปกติ'
+        @breadcrumb_link[2]  = ''
+
+
+
+	@tid = params[:tid]
 	@txnams = Transformer.get_transformer_id(params[:tid])
+
+	@region = Station.get_region(@txnams.station)
+
+
 	@environments = FdEnvironmnt.get_environment()
 	@num_environments = @environments.count
 
@@ -209,6 +250,9 @@ class TransformerInfoController < ApplicationController
 #-------------------------------------------------------------
 	@group = FdGroupPart.get_group()
 	@num_group = @group.count
+	@oltcs = FdGroupPart.get_group_part("On - load Tap Changer")
+	@bushings = FdGroupPart.get_group_part("Bushing")
+	@arresters = FdGroupPart.get_group_part("Surge Arrester")
 	if @num_group!=0
 		@part = Array.new()
 		@num_part = Array.new()
@@ -226,10 +270,363 @@ class TransformerInfoController < ApplicationController
 	
 	@manage = FdManage.get_manage()
 	@num_manage = @manage.count
+	@replaces = FdManage.get_manage_part("Replace")
+
+	@manufacturer_oltc = ManufacturerOltc.get_oltc()
+	@num_oltc = @manufacturer_oltc.count
+
+	@manufacturer_bushing = ManufacturerBushing.get_bushing()
+	@num_bushing = @manufacturer_bushing.count
+
+	@manufacturer_arrester = ManufacturerArrester.get_arrester()
+	@num_arrester = @manufacturer_arrester.count
+  end
+
+  def modify_failurere
+	@region = params[:region]
+	@tid = params[:tid]
+	@txnams = Transformer.get_transformer_id(params[:tid])
+	@failureres = FailureDatabase.get_failure_id(params[:id])
+
+	@environments = FdEnvironmnt.get_environment()
+	@num_environments = @environments.count
+ 
+	@functions = FdFunction.get_function()
+	@num_functions = @functions.count
+	
+	@details = FdDetail.get_detail()
+	@num_details = @details.count
+
+	@groups = FdGroupPart.get_group()
+	@num_groups = @groups.count
+	@oltcs = FdGroupPart.get_group_part("On - load Tap Changer")
+	@bushings = FdGroupPart.get_group_part("Bushing")
+	@arresters = FdGroupPart.get_group_part("Surge Arrester")
+
+	@parts = Array.new()
+	@num_parts = Array.new()
+	for i in 0..@num_groups-1 do
+		@parts[i] = FdPart.get_part(@groups[i].id)
+		@num_parts[i] = @parts[i].count
+	end
+
+	@mode = FdMode.get_mode()
+	@num_mode = @mode.count
+
+	@reason = FdReason.get_reason()
+	@num_reason = @reason.count
+
+	@manage = FdManage.get_manage()
+	@num_manage = @manage.count
+	@replaces = FdManage.get_manage_part("Replace")
+
+	@manufacturer_oltc = ManufacturerOltc.get_oltc()
+	@num_oltc = @manufacturer_oltc.count
+
+	@manufacturer_bushing = ManufacturerBushing.get_bushing()
+	@num_bushing = @manufacturer_bushing.count
+
+	@manufacturer_arrester = ManufacturerArrester.get_arrester()
+	@num_arrester = @manufacturer_arrester.count
+  end
+
+  def update_failurereport
+	failure = FailureDatabase.get_failure_id(params[:id])
+	failure[:egatsn] = params[:egatsn]
+	if params[:eventdate]!=""
+		m1 = params[:eventdate].to_s.split("/")
+		failure[:eventdate] = m1[2]+"-"+m1[1]+"-"+m1[0]
+	end
+	failure[:counterOLTC] = params[:counterOLTC].to_i
+	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
+	if environment.environmnt=="อื่นๆ ระบุ"
+		failure[:environment] = params[:environment_etc]
+	else
+		failure[:environment] = environment.environmnt
+	end
+	failurestatus = FdFunction.get_function_id(params[:failurestatus].to_i)
+	if failurestatus.function=="อื่นๆ ระบุ"
+		failure[:failurestatus] = params[:failurestatus_etc]
+	else
+		failure[:failurestatus] = failurestatus.function
+	end
+	failuredetail = FdDetail.get_detail_id(params[:failuredetail].to_i)
+	if failuredetail.detail=="อื่นๆ ระบุ"
+		failure[:failuredetail] = params[:failuredetail_etc]
+	else
+		failure[:failuredetail] = failuredetail.detail
+	end
+
+	if params[:downdatetime]!=""
+		m2 = params[:downdatetime].to_s.split("/")
+		failure[:downdatetime] = m2[2]+"-"+m2[1]+"-"+m2[0]+" "+params[:downtimehour].to_s+":"+params[:downtimeminute].to_s+":"+"00"
+	end
+	
+	if params[:updatetime]!=""
+		m3 = params[:updatetime].to_s.split("/")
+		failure[:updatetime] = m3[2]+"-"+m3[1]+"-"+m3[0]+" "+params[:uptimehour].to_s+":"+params[:uptimeminute].to_s+":"+"00"
+	end
+
+	failure[:workorder] = params[:workorder]
+	
+	failuregroup = FdGroupPart.get_group_id(params[:failuregroup].to_i)
+	failure[:failuregroup] = failuregroup.groupname
+	
+	if params[:failurepart]!=""
+		failure[:failurepart] = params[:failurepart]
+	else
+		failure[:failurepart] = params[:failuredetail_etc]
+	end
+
+	failure[:failuremode] = params[:failuremode]
+	
+	failurereason = FdReason.get_reason_id(params[:failurereason].to_i)
+	if failurereason.reason=="อื่นๆ ระบุ"
+		failure[:failurereason] = params[:failurereason_etc]
+	else
+		failure[:failurereason] = failurereason.reason
+	end
+
+	managed = FdManage.get_manage_id(params[:manage].to_i)
+	if managed.manage=="อื่นๆ ระบุ"
+		failure[:manage] = params[:manage_etc]
+	else
+		failure[:manage] = managed.manage
+	end
+        
+	if managed.manage=="Replace"
+			
+		if failuregroup.groupname=="On - load Tap Changer"
+			transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+			transformers[:oltc_manufacturer] = params[:replace_manufacturer].to_i
+			transformers[:oltc_type] = params[:oltc_type]
+			transformers[:oltc_year] = params[:oltc_year].to_i
+			transformers.update_attributes(transformers.attributes)
+		end
+		if failuregroup.groupname=="Bushing"
+			if params[:failurepart]=="HV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_hv_type] = params[:bushing_hv_type]
+				transformers[:bushing_hv_year] = params[:bushing_hv_year].to_i
+				transformers[:bushing_hv_h0] = params[:bushing_hv_h0]
+				transformers[:bushing_hv_h1] = params[:bushing_hv_h1]
+				transformers[:bushing_hv_h2] = params[:bushing_hv_h2]
+				transformers[:bushing_hv_h3] = params[:bushing_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_lv_type] = params[:bushing_lv_type]
+				transformers[:bushing_lv_year] = params[:bushing_lv_year].to_i
+				transformers[:bushing_lv_x0] = params[:bushing_lv_x0]
+				transformers[:bushing_lv_x1] = params[:bushing_lv_x1]
+				transformers[:bushing_lv_x2] = params[:bushing_lv_x2]
+				transformers[:bushing_lv_x3] = params[:bushing_lv_x3]
+				transformers.update_attributes(transformers.attributes)				
+			end
+			if params[:failurepart]=="TV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_tv_type] = params[:bushing_tv_type]
+				transformers[:bushing_tv_year] = params[:bushing_tv_year].to_i
+				transformers[:bushing_tv_y1] = params[:bushing_tv_y1]
+				transformers[:bushing_tv_y2] = params[:bushing_tv_y2]
+				transformers[:bushing_tv_y3] = params[:bushing_tv_y3]
+				transformers.update_attributes(transformers.attributes)		
+			end
+		end
+		if failuregroup.groupname=="Surge Arrester"
+			if params[:failurepart]=="HV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_hv_type] = params[:arrester_hv_type]
+				transformers[:arrester_hv_year] = params[:arrester_hv_year].to_i
+				transformers[:arrester_hv_h1] = params[:arrester_hv_h1]
+				transformers[:arrester_hv_h2] = params[:arrester_hv_h2]
+				transformers[:arrester_hv_h3] = params[:arrester_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_lv_type] = params[:arrester_lv_type]
+				transformers[:arrester_lv_year] = params[:arrester_lv_year].to_i
+				transformers[:arrester_lv_x1] = params[:arrester_lv_x1]
+				transformers[:arrester_lv_x2] = params[:arrester_lv_x2]
+				transformers[:arrester_lv_x3] = params[:arrester_lv_x3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="TV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_tv_type] = params[:arrester_tv_type]
+				transformers[:arrester_tv_year] = params[:arrester_tv_year].to_i
+				transformers[:arrester_tv_y1] = params[:arrester_tv_y1]
+				transformers[:arrester_tv_y2] = params[:arrester_tv_y2]
+				transformers[:arrester_tv_y3] = params[:arrester_tv_y3]
+				transformers.update_attributes(transformers.attributes)
+			end
+		end
+	end
+
+	failure[:remark] = params[:remark]
+	failure[:user] = params[:user]
+	failure.update_attributes(failure.attributes)
+	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+	
+  end
+
+  def delete_failurere
+	FailureDatabase.delete(params[:id])
+	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
   end
 
   def create_failurereport
+	failure = FailureDatabase.new
+	failure[:egatsn] = params[:egatsn]
+	if params[:eventdate]!=""
+		m1 = params[:eventdate].to_s.split("/")
+		failure[:eventdate] = m1[2]+"-"+m1[1]+"-"+m1[0]
+	end
+	failure[:counterOLTC] = params[:counterOLTC].to_i
+	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
+	if environment.environmnt=="อื่นๆ ระบุ"
+		failure[:environment] = params[:environment_etc]
+	else
+		failure[:environment] = environment.environmnt
+	end
+	failurestatus = FdFunction.get_function_id(params[:failurestatus].to_i)
+	if failurestatus.function=="อื่นๆ ระบุ"
+		failure[:failurestatus] = params[:failurestatus_etc]
+	else
+		failure[:failurestatus] = failurestatus.function
+	end
+	failuredetail = FdDetail.get_detail_id(params[:failuredetail].to_i)
+	if failuredetail.detail=="อื่นๆ ระบุ"
+		failure[:failuredetail] = params[:failuredetail_etc]
+	else
+		failure[:failuredetail] = failuredetail.detail
+	end
+
+	if params[:downdatetime]!=""
+		m2 = params[:downdatetime].to_s.split("/")
+		failure[:downdatetime] = m2[2]+"-"+m2[1]+"-"+m2[0]+" "+params[:downtimehour].to_s+":"+params[:downtimeminute].to_s+":"+"00"
+	end
 	
+	if params[:updatetime]!=""
+		m3 = params[:updatetime].to_s.split("/")
+		failure[:updatetime] = m3[2]+"-"+m3[1]+"-"+m3[0]+" "+params[:uptimehour].to_s+":"+params[:uptimeminute].to_s+":"+"00"
+	end
+
+	failure[:workorder] = params[:workorder]
+	
+	failuregroup = FdGroupPart.get_group_id(params[:failuregroup].to_i)
+	failure[:failuregroup] = failuregroup.groupname
+	
+	if params[:failurepart]!=""
+		failure[:failurepart] = params[:failurepart]
+	else
+		failure[:failurepart] = params[:failuredetail_etc]
+	end
+
+	failure[:failuremode] = params[:failuremode]
+	
+	failurereason = FdReason.get_reason_id(params[:failurereason].to_i)
+	if failurereason.reason=="อื่นๆ ระบุ"
+		failure[:failurereason] = params[:failurereason_etc]
+	else
+		failure[:failurereason] = failurereason.reason
+	end
+
+	managed = FdManage.get_manage_id(params[:manage].to_i)
+	if managed.manage=="อื่นๆ ระบุ"
+		failure[:manage] = params[:manage_etc]
+	else
+		failure[:manage] = managed.manage
+	end
+
+	if managed.manage=="Replace"
+			
+		if failuregroup.groupname=="On - load Tap Changer"
+			transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+			transformers[:oltc_manufacturer] = params[:replace_manufacturer].to_i
+			transformers[:oltc_type] = params[:oltc_type]
+			transformers[:oltc_year] = params[:oltc_year].to_i
+			transformers.update_attributes(transformers.attributes)
+		end
+		if failuregroup.groupname=="Bushing"
+			if params[:failurepart]=="HV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_hv_type] = params[:bushing_hv_type]
+				transformers[:bushing_hv_year] = params[:bushing_hv_year].to_i
+				transformers[:bushing_hv_h0] = params[:bushing_hv_h0]
+				transformers[:bushing_hv_h1] = params[:bushing_hv_h1]
+				transformers[:bushing_hv_h2] = params[:bushing_hv_h2]
+				transformers[:bushing_hv_h3] = params[:bushing_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_lv_type] = params[:bushing_lv_type]
+				transformers[:bushing_lv_year] = params[:bushing_lv_year].to_i
+				transformers[:bushing_lv_x0] = params[:bushing_lv_x0]
+				transformers[:bushing_lv_x1] = params[:bushing_lv_x1]
+				transformers[:bushing_lv_x2] = params[:bushing_lv_x2]
+				transformers[:bushing_lv_x3] = params[:bushing_lv_x3]
+				transformers.update_attributes(transformers.attributes)				
+			end
+			if params[:failurepart]=="TV Bushing"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:bushing_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:bushing_tv_type] = params[:bushing_tv_type]
+				transformers[:bushing_tv_year] = params[:bushing_tv_year].to_i
+				transformers[:bushing_tv_y1] = params[:bushing_tv_y1]
+				transformers[:bushing_tv_y2] = params[:bushing_tv_y2]
+				transformers[:bushing_tv_y3] = params[:bushing_tv_y3]
+				transformers.update_attributes(transformers.attributes)		
+			end
+		end
+		if failuregroup.groupname=="Surge Arrester"
+			if params[:failurepart]=="HV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_hv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_hv_type] = params[:arrester_hv_type]
+				transformers[:arrester_hv_year] = params[:arrester_hv_year].to_i
+				transformers[:arrester_hv_h1] = params[:arrester_hv_h1]
+				transformers[:arrester_hv_h2] = params[:arrester_hv_h2]
+				transformers[:arrester_hv_h3] = params[:arrester_hv_h3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="LV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_lv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_lv_type] = params[:arrester_lv_type]
+				transformers[:arrester_lv_year] = params[:arrester_lv_year].to_i
+				transformers[:arrester_lv_x1] = params[:arrester_lv_x1]
+				transformers[:arrester_lv_x2] = params[:arrester_lv_x2]
+				transformers[:arrester_lv_x3] = params[:arrester_lv_x3]
+				transformers.update_attributes(transformers.attributes)
+			end
+			if params[:failurepart]=="TV Arrester"
+				transformers = Transformer.get_transformer_egatsn(params[:egatsn].to_i)
+				transformers[:arrester_tv_manu] = params[:replace_manufacturer].to_i
+				transformers[:arrester_tv_type] = params[:arrester_tv_type]
+				transformers[:arrester_tv_year] = params[:arrester_tv_year].to_i
+				transformers[:arrester_tv_y1] = params[:arrester_tv_y1]
+				transformers[:arrester_tv_y2] = params[:arrester_tv_y2]
+				transformers[:arrester_tv_y3] = params[:arrester_tv_y3]
+				transformers.update_attributes(transformers.attributes)
+			end
+		end
+	end
+	failure[:remark] = params[:remark]
+	failure[:user] = params[:user]
+	failure.save
+	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
   end
   
   def txcreate
@@ -333,8 +730,8 @@ class TransformerInfoController < ApplicationController
   def modify_transformer
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
         @breadcrumb_link[1]  = '/transformer_info/txlist'
         @breadcrumb_title[2] = 'แก้ไขข้อมูลหม้อแปลงไฟฟ้า'
@@ -481,6 +878,47 @@ class TransformerInfoController < ApplicationController
   end
   
   def show_image
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
+        @breadcrumb_link[1]  = '/transformer_info/txlist'
+        @breadcrumb_title[2] = 'รายละเอียดหม้อแปลงไฟฟ้า'
+        @breadcrumb_link[2]  = ''
+
+
+
+
 	@transformer = Transformer.get_transformer_id(params[:id])
+	@stations = Station.order("name").all
+	@num_station = @stations.count
+	@brand_ids = Brand.order("name").all
+	@num_brand_ids = @brand_ids.count
+	@winding_types = WindingType.order("id").all
+	@num_winding_types = @winding_types.count
+	@power_usages = PowerUsage.order("id").all
+	@num_powerusages = @power_usages.count
+	if @transformer.first_energize!=nil
+		tempx = @transformer.first_energize.to_s.split(" ")
+		m=tempx[0].split("-")
+		@date_1=m[2]+"/"+m[1]+"/"+m[0]
+	end
+
+	@manufacturer_bushing = ManufacturerBushing.get_bushing()
+   	@num_bushing = @manufacturer_bushing.count
+    	if @num_bushing==0
+		@manufacturer_bushing = ManufacturerBushing.new
+   	end
+    	@manufacturer_arrester = ManufacturerArrester.get_arrester()
+    	@num_arrester = @manufacturer_arrester.count
+    	if @num_arrester==0
+		@manufacturer_arrester = ManufacturerArrester.new
+    	end
+    	@manufacturer_oltc = ManufacturerOltc.get_oltc()
+    	@num_oltc = @manufacturer_oltc.count
+    	if @num_oltc==0
+		@manufacturer_oltc = ManufacturerOltc.new
+    	end	
   end
 end

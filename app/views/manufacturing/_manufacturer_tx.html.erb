@@ -16,7 +16,7 @@
 
 <p>
 	<%= form_for @tx1 ,:url => {:action => "create_tx"}, :html => {:method => "post", :name => 'Tx'} do |f| %>
-		<b>Manufacturer:</b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green2" %>
+		<b>เพิ่มบริษัทผู้ผลิตหม้อแปลง : </b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green2" %>
 	<%end%>
 </p>
 </center>

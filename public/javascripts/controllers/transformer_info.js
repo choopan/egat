@@ -216,6 +216,8 @@ FGroup.setupTransformerNameComboxBox = function(id) {
       transformerId = selected.val();
     }
     var converted = new Ext.form.ComboBox({
+      id: id,
+      hiddenname: id,
       typeAhead: true,
       triggerAction: 'all',
       transform: id,
@@ -233,6 +235,75 @@ FGroup.setupTransformerNameComboxBox = function(id) {
 
 FGroup.onTransformerNamChange = function(transformerId) {
   displaysub(transformerId);
+  displayform();
+};
+
+var Replace = { };
+Replace.setupTransformerNameComboxBox = function(id) {
+  if ($('#' + id).length > 0) {
+    var region = $('#'+id+' : selected').text();
+    var transformerId;
+    var selected;
+
+
+    selected = $("#" + id + " " + "option:selected");
+    if (selected.val().length > 0) {
+      transformerId = selected.val();
+    }
+    var converted = new Ext.form.ComboBox({
+      id: id,
+      hiddenname: id,
+      typeAhead: true,
+      triggerAction: 'all',
+      transform: id,
+      width: '200',
+      forceSelection:true,
+      value: transformerId
+    });
+
+
+    converted.on('select', function() {
+      Replace.onTransformerNamChange(converted.getValue());
+    });
+  }
+};
+
+Replace.onTransformerNamChange = function(transformerId) {
+  displayform();
+};
+
+var Fpart = { };
+Fpart.setupTransformerNameComboxBox = function(id) {
+  if ($('#' + id).length > 0) {
+    var region = $('#'+id+' : selected').text();
+    var transformerId;
+    var selected;
+
+
+    selected = $("#" + id + " " + "option:selected");
+    if (selected.val().length > 0) {
+      transformerId = selected.val();
+    }
+    var converted = new Ext.form.ComboBox({
+      id: id,
+      hiddenname: id,
+      typeAhead: true,
+      triggerAction: 'all',
+      transform: id,
+      width: '200',
+      forceSelection:true,
+      value: transformerId
+    });
+
+
+    converted.on('select', function() {
+      Fpart.onTransformerNamChange(converted.getValue());
+    });
+  }
+};
+
+Fpart.onTransformerNamChange = function(transformerId) {
+  displayform();
 };
 function setCalendar(){
                 $("#transformer_transfer_action_date").datepicker({
@@ -275,9 +346,13 @@ $(function() {
   Cbox.setupComboxBox('uptimehour');
   Cbox.setupComboxBox('uptimeminute');
   FGroup.setupTransformerNameComboxBox('failuregroup');
-  Cbox.setupComboxBox('failurepart');
+  Fpart.setupTransformerNameComboxBox('failurepart');
   Cbox.setupComboxBox('failuremode');
   Cbox.setupComboxBox('failurereason');
-  Cbox.setupComboxBox('manage');
+  Replace.setupTransformerNameComboxBox('manage');
+  
+ displayform();
+  //Cbox.setupComboxBox('oltc_manufacturer');
+
 });
 

@@ -28,4 +28,9 @@ class Station < ActiveRecord::Base
                 return nil
         end
 
+        def self.get_region(station)
+                where("name = '#{station}'").first.region
+             rescue Exception
+                return nil
+        end
 end

@@ -15,7 +15,7 @@
 </p>
 <BR>
 <p>
-<%= form_for @station1 ,:url => {:action => "create_station"}, :html => {:method => "post", :name => 'station'} do |f| %>
+<%= form_for @station1 ,:url => {:action => "create_station"}, :html => {:method => "post", :name => 'power_station'} do |f| %>
 	<table>
 			<tr><td><b>ชื่อย่อสถานี : </b></td><td><%= f.text_field :name, :size => 15%></td><td></td></tr>
 			<tr><td><b>ชื่อเต็มสถานี :</b></td><td><%= f.text_field :full_name, :size => 15%></td><td></td></tr>

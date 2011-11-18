@@ -65,7 +65,7 @@ class ManufacturingController < ApplicationController
 	
   end
   def create_station
-	Station.create(params[:power_station])
+	Station.create(params[:station])
 	redirect_to("/manufacturing#station")
   end
 
@@ -120,10 +120,10 @@ class ManufacturingController < ApplicationController
 
   def update_station
 	station = Station.get_station_id(params[:id])
-	station[:name]=params[:power_station][:name]
-	station[:full_name]=params[:power_station][:full_name]
-	station[:region]=params[:power_station][:region]
-	station[:kv]=params[:power_station][:kv].to_i
+	station[:name]=params[:station][:name]
+	station[:full_name]=params[:station][:full_name]
+	station[:region]=params[:station][:region]
+	station[:kv]=params[:station][:kv].to_i
 	station.update_attributes(station.attributes)
 	redirect_to("/manufacturing#station")
   end

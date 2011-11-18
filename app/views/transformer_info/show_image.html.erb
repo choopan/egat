@@ -1,30 +1,358 @@
-<h1>รูปหม้อแปลง</h1>
-<p>
-<%m="/data/"+@transformer.picture.to_s%>
-<center><img src= '<%=m%>' width="300"></center>
-</p>
-<p><div class='grid_16'>&nbsp;</div></p>
-<p>
-<div id="transformers" class="grid_14 prefix_1">
-  <table id="transformers_table">
-    <thead>
-      <tr>
-      <th><center>หม้อแปลงไฟฟ้า</center></th>
-      <th><center>Equipment No.</center></th>
-      <th><center>บริษัทผู้ผลิต</center></th>
-      <th><center>พิกัดกำลังไฟฟ้าสูงสุด (MVA)</center></th>
-      <th width=100></th>
-      </tr>
-    </thead>
-    <tbody>
-	<tr>
-            <td><center><%=@transformer.transformer_name%></center></td>
-            <td><center><%= @transformer.egatsn %></center></td>
-            <td><center><%= @transformer.brand.name %></center></td>
-            <td><center><%= @transformer.maxcapacity %></center></td>
-	    <td><center><a href="javascript:history.back();">Back</a></center></td>
-	</tr>
-    </tbody>
-   </table>
+<h1>รายละเอียดหม้อแปลงไฟฟ้า</h1>
+<%= form_tag('#', :method=>'post', :multipart => true, :name => 'transformer') do %>
+<div class='grid_10 prefix_2 chemicals' >
+      <p>
+	<%= label_tag :egatsn, "Equipement No.", :class => 'inline' %>
+	<%= text_field_tag 'egatsn',@transformer.egatsn, :readonly => true %>
+      </p>
+      <p>
+	<%= label_tag :contract, "สัญญาเลขที่", :class => 'inline' %>
+	<%= text_field_tag 'contract',@transformer.contract , :readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :station, "สถานีไฟฟ้า", :class => 'inline' %>
+	<%= text_field_tag 'station',@transformer.station,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :txname, "ชื่อหม้อแปลงไฟฟ้า", :class => 'inline' %>
+	<%= text_field_tag 'tx_name',@transformer.txname,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :brand_id, "ชื่อบริษัทผู้ผลิต", :class => 'inline' %>
+	<%= text_field_tag 'brand_id',@transformer.txname%>
+	<%if !@transformer.brand_id.nil?%>
+		<%if @num_brand_ids!=0%>
+	  		<%for i in 0..@num_brand_ids-1 do%>
+				<%if @brand_ids[i].id==@transformer.brand_id%>
+					<%= text_field_tag 'brand_id',@brand_ids[i].name,:readonly => true%>
+				<%end%>
+	  		<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'brand_id',"",:readonly => true%>
+	<%end%>
+      </p>
+      <p>
+	<%= label_tag :manufacturingserial, "หมายเลขผู้ผลิต", :class => 'inline' %>
+	<%= text_field_tag 'manufacturingserial',@transformer.manufacturingserial,:readonly => true%>
+      </p>
+
+      <p>
+	<%= label_tag :phase, "จำนวนเฟส", :class => 'inline' %>
+	<%= text_field_tag 'phase',@transformer.phase,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :phase_position, "ตำแหน่งเฟส", :class => 'inline' %>
+	<%= text_field_tag 'phase_position',@transformer.position,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :maxcapacity, "พิกัดกำลังไฟฟ้าสูงสุด (MVA)", :class => 'inline' %>
+	<%= text_field_tag 'maxcapacity',@transformer.maxcapacity,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :hv, "พิกัดแรงดันไฟฟ้า Primary, HV (kV)", :class => 'inline' %>
+	<%= text_field_tag 'hv',@transformer.hv,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :lv, "พิกัดแรงดันไฟฟ้า Secondary, LV (kV)", :class => 'inline' %>
+	<%= text_field_tag 'lv',@transformer.lv,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :tv, "พิกัดแรงดันไฟฟ้า Tertiary, TV (kV)", :class => 'inline' %>
+	<%= text_field_tag 'tv',@transformer.tv,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :first_energize, "วันที่นำเข้าใช้งาน", :class => 'inline' %>
+	<%= text_field_tag 'first_energize',@date_1,:readonly => true%>
+      </p>
+      <p>
+	<%= label_tag :winding_type_id, "ชนิด Winding Insulation", :class => 'inline' %>
+	<%if !@transformer.winding_type_id.nil?%>
+		<%if @num_winding_types!=0%>
+			<%for i in 0..@num_winding_types-1 do%>
+				<%if @winding_types[i].id==@transformer.winding_type_id%>
+					<%= text_field_tag 'winding_type',@winding_types[i].description,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'winding_type',"",:readonly => true%>
+	<%end%>
+      </p>
+      <p>
+	<%= label_tag :vector_group, "Vector Group", :class => 'inline' %>
+	<%= text_field_tag 'vector_group',@transformer.vector_group,:readonly => true%>
+      </p>
+       <p>
+	<%= label_tag :status, "ลักษณะการใช้งานหม้อแปลงไฟฟ้า", :class => 'inline' %>
+	<%if !@transformer.status.nil?%>
+		<%if @num_powerusages!=0%>
+			<%for i in 0..@num_powerusages-1 do%>
+				<%if @power_usages[i].id==@transformer.status%>
+					<%= text_field_tag 'status',@power_usages[i].usage,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'status',"",:readonly => true%>
+	<%end%>
+      </p>
+       <p>
+	<%= label_tag :remark, "รายละเอียดเพิ่มเติม (Remark)", :class => 'inline' %>
+	<%= text_field_tag 'detail',@transformer.detail,:readonly => true%>
+      </p>
+       <p>
+	<%m="/data/"+@transformer.picture.to_s%>
+	<center><img src= '<%=m%>' width="300"></center>
+      </p>
+
 </div>
-</p>
+
+
+
+<!--transformer accessories-->
+<div class='grid_16' >&nbsp;</div>
+<div class='grid_16' >&nbsp;</div>
+<div class='grid_16 chemicals' >
+<h3>Accessories</h3>
+</div>
+<div class='grid_15 prefix_1 accessories' >
+<label>Bushing</label>
+<table>
+<tr>
+   <td><p align=left>HV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+
+	
+   <td><p>
+	<%if !@transformer.bushing_hv_manu.nil?%>
+		<%if @num_bushing!=0%>
+			<%for i in 0..@num_bushing-1 do%>
+				<%if @manufacturer_bushing[i].id==@transformer.bushing_hv_manu%>
+					<%= text_field_tag 'bushing_hv_manu',@manufacturer_bushing[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'bushing_hv_manu',"",:readonly => true%>
+	<%end%>
+	</p></td>
+
+
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'bushing_hv_type',@transformer.bushing_hv_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'bbushing_hv_year',@transformer.bushing_hv_year,:readonly => true%></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>H0 <%= text_field_tag 'bushing_hv_h0',@transformer.bushing_hv_h0,:readonly => true%></td>
+   <td>H1 <%= text_field_tag 'bushing_hv_h1',@transformer.bushing_hv_h1,:readonly => true%></td>
+   <td>H2 <%= text_field_tag 'bushing_hv_h2',@transformer.bushing_hv_h2,:readonly => true%></td>
+   <td>H3 <%= text_field_tag 'bushing_hv_h3',@transformer.bushing_hv_h3,:readonly => true%></td>
+</tr>
+<tr>
+   <td><p align=left>LV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+	<%if !@transformer.bushing_lv_manu.nil?%>
+		<%if @num_bushing!=0%>
+			<%for i in 0..@num_bushing-1 do%>
+				<%if @manufacturer_bushing[i].id==@transformer.bushing_lv_manu%>
+					<%= text_field_tag 'bushing_lv_manu',@manufacturer_bushing[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'bushing_lv_manu',"",:readonly => true%>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'bushing_lv_type',@transformer.bushing_lv_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'bushing_lv_year',@transformer.bushing_lv_year,:readonly => true%></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>X0 <%= text_field_tag 'bushing_lv_x0',@transformer.bushing_lv_x0,:readonly => true%></td>
+   <td>X1 <%= text_field_tag 'bushing_lv_x1',@transformer.bushing_lv_x1,:readonly => true%></td>
+   <td>X2 <%= text_field_tag 'bushing_lv_x2',@transformer.bushing_lv_x2,:readonly => true%></td>
+   <td>X3 <%= text_field_tag 'bushing_lv_x3',@transformer.bushing_lv_x3,:readonly => true%></td>
+</tr>
+<tr>
+   <td><p align=left>TV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p>
+	<%if !@transformer.bushing_tv_manu.nil?%>
+		<%if @num_bushing!=0%>
+			<%for i in 0..@num_bushing-1 do%>
+				<%if @manufacturer_bushing[i].id==@transformer.bushing_tv_manu%>
+					<%= text_field_tag 'bushing_tv_manu',@manufacturer_bushing[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'bushing_tv_manu',"",:readonly => true%>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'bushing_tv_type',@transformer.bushing_tv_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'bushing_tv_year',@transformer.bushing_tv_year,:readonly => true%></td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>Y1 <%= text_field_tag 'bushing_tv_y1',@transformer.bushing_tv_y1,:readonly => true%></td>
+   <td>Y2 <%= text_field_tag 'bushing_tv_y2',@transformer.bushing_tv_y2,:readonly => true%></td>
+   <td>Y3 <%= text_field_tag 'bushing_tv_y3',@transformer.bushing_tv_y3,:readonly => true%></td>
+   <td></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_16' >&nbsp;</div>
+
+<div class='grid_15 prefix_1 accessories' >
+<label>Arrester</label>
+<table>
+<tr>
+   <td><p align=left>HV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p>
+	<%if !@transformer.arrester_hv_manu.nil?%>
+		<%if @num_arrester!=0%>
+			<%for i in 0..@num_arrester-1 do%>
+				<%if @manufacturer_arrester[i].id==@transformer.arrester_hv_manu%>
+					<%= text_field_tag 'arrester_hv_manu',@manufacturer_arrester[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'arrester_hv_manu',"",:readonly => true%>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'arrester_hv_type',@transformer.arrester_hv_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'arrester_hv_year',@transformer.arrester_hv_year,:readonly => true%></td>
+   <td rowspan=2><table>
+		<%if @transformer.arrester_hv_gapless==0%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '0', true, :disabled => true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '1',false, :disabled => true %></td></tr>
+		<%else%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '0',false, :disabled => true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_hv_gapless', '1', true, :disabled => true %></td></tr>
+		<%end%>
+		</table>
+   </td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>H1 <%= text_field_tag 'arrester_hv_h1',@transformer.arrester_hv_h1,:readonly => true%></td>
+   <td>H2 <%= text_field_tag 'arrester_hv_h2',@transformer.arrester_hv_h2,:readonly => true%></td>
+   <td>H3 <%= text_field_tag 'arrester_hv_h3',@transformer.arrester_hv_h3,:readonly => true%></td>
+</tr>
+<tr>
+   <td><p align=left>LV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p>
+	<%if !@transformer.arrester_lv_manu.nil?%>
+		<%if @num_arrester!=0%>
+			<%for i in 0..@num_arrester-1 do%>
+				<%if @manufacturer_arrester[i].id==@transformer.arrester_lv_manu%>
+					<%= text_field_tag 'arrester_lv_manu',@manufacturer_arrester[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'arrester_lv_manu',"",:readonly => true%>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'arrester_lv_type',@transformer.arrester_lv_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'arrester_lv_year',@transformer.arrester_lv_year,:readonly => true%></td>
+   <td rowspan=2><table>
+		<%if @transformer.arrester_lv_gapless==0%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '0', true , :disabled => true%></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '1',false, :disabled => true %></td></tr>
+		<%else%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '0',false, :disabled => true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_lv_gapless', '1', true, :disabled => true %></td></tr>
+		<%end%>
+		</table>
+   </td>
+
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>X1 <%= text_field_tag 'arrester_lv_x1',@transformer.arrester_lv_x1,:readonly => true%></td>
+   <td>X2 <%= text_field_tag 'arrester_lv_x2',@transformer.arrester_lv_x2,:readonly => true%></td>
+   <td>X3 <%= text_field_tag 'arrester_lv_x3',@transformer.arrester_lv_x3,:readonly => true%></td>
+</tr>
+<tr>
+   <td><p align=left>TV</p></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p>
+	<%if !@transformer.arrester_tv_manu.nil?%>
+		<%if @num_arrester!=0%>
+			<%for i in 0..@num_arrester-1 do%>
+				<%if @manufacturer_arrester[i].id==@transformer.arrester_tv_manu%>
+					<%= text_field_tag 'arrester_tv_manu',@manufacturer_arrester[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'arrester_tv_manu',"",:readonly => true%>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'arrester_tv_type',@transformer.arrester_tv_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'arrester_tv_year',@transformer.arrester_tv_year,:readonly => true%></td>
+   <td rowspan=2><table>
+		<%if @transformer.arrester_tv_gapless==0%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '0', true,:disabled => true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '1',false,:disabled => true %></td></tr>
+		<%else%>
+			<tr><td><p align=right>Gap</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '0',false,:disabled => true %></td></tr>
+       			<tr><td><p align=right>Gapless</p></td><td><%= radio_button_tag 'arrester_tv_gapless', '1', true,:disabled => true %></td></tr>
+		<%end%>
+		</table>
+   </td>
+</tr>
+<tr>
+   <td></td>
+   <td><p align=right>Serial No.</p></td>
+   <td>Y1 <%= text_field_tag 'arrester_tv_y1',@transformer.arrester_tv_y1,:readonly => true%></td>
+   <td>Y2 <%= text_field_tag 'arrester_tv_y2',@transformer.arrester_tv_y2,:readonly => true%></td>
+   <td>Y3 <%= text_field_tag 'arrester_tv_y3',@transformer.arrester_tv_y3,:readonly => true%></td>
+   <td></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_16' >&nbsp;</div>
+
+<div class='grid_15 prefix_1 accessories' >
+<label>OLTC</label>
+<table>
+<tr>
+   <td></td>
+   <td><p align=right>Maufacturer</p></td>
+   <td><p>
+	<%if !@transformer.oltc_manufacturer.nil?%>
+		<%if @num_oltc!=0%>
+			<%for i in 0..@num_oltc-1 do%>
+				<%if @manufacturer_oltc[i].id==@transformer.oltc_manufacturer.to_i%>
+					<%= text_field_tag 'oltc_manufacturer',@manufacturer_oltc[i].manufacturer,:readonly => true%>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%else%>
+		<%= text_field_tag 'oltc_manufacturer',"",:readonly => true%>
+	<%end%>
+	</p></td>
+   <td>Type &nbsp;&nbsp;<%= text_field_tag 'oltc_type',@transformer.oltc_type,:readonly => true%></td>
+   <td colspan=2>ปีใน Nameplate &nbsp;&nbsp;<%= text_field_tag 'oltc_year',@transformer.oltc_year,:readonly => true%></td>
+</tr>
+</table>
+</div>
+
+<div class='grid_10 prefix_5'>
+<a href="javascript:history.back();"><%= submit_tag "<< Back", :class => "cupid-green" %></a>
+</div>
+
+<%end%>

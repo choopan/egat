@@ -1,4 +1,4 @@
-<h1>หม้อแปลงไฟฟ้า</h1>
+<h1>รายงานความผิดปกติของหม้อแปลงไฟฟ้า</h1>
 <%= form_for :failure do |f| %>
 <table width>
 <tr><td><p align='right'><label>เขต</label></p></td>
@@ -25,9 +25,43 @@
 	<center><%=link_to "เพิ่ม", {:controller => "transformer_info", :action => "addfailurereport",:region =>params[:region],:tid=>params[:tid]}, :class => 'add'%></center>
 	<BR>
 	<table>
-		<tr><th>ID</th><th>วันที่เกิดเหตุการณ์</th><th>วันที่ปลดออกจากระบบ</th><th>วันที่นำเข้าระบบ</th><th>อุปกรณ์ที่เสียหาย</th><th></th></tr>
+		<tr><th><center>วันที่เกิดเหตุการณ์</center></th><th><center>วันที่ปลดออกจากระบบ</center></th><th><center>วันที่นำเข้าระบบ</center></th><th><center>อุปกรณ์ที่เสียหาย</center></th><th></th></tr>
+	     <%if !@failures.nil?%>
+		<% for lisfailures in @failures %>		
+			<%if lisfailures.eventdate!=nil%>
+				<%e1=lisfailures.eventdate.to_s.split(" ")%>
+				<%e2=e1[0].split("-")%>
+				<%eventdate=e2[2]+"/"+e2[1]+"/"+e2[0]%>
+			<%else%>
+				<%eventdate="-"%>
+			<%end%>
 
+			<%if lisfailures.downdatetime!=nil%>
+				<%d1=lisfailures.downdatetime.to_s.split(" ")%>
+				<%d2=d1[0].split("-")%>
+				<%downdatetime=d2[2]+"/"+d2[1]+"/"+d2[0]%>
+			<%else%>
+				<%downdatetime="-"%>
+			<%end%>
+
+			<%if lisfailures.updatetime!=nil%>
+				<%u1=lisfailures.updatetime.to_s.split(" ")%>
+				<%u2=u1[0].split("-")%>
+				<%updatetime=u2[2]+"/"+u2[1]+"/"+u2[0]%>
+			<%else%>
+				<%updatetime="-"%>
+			<%end%>
+			<tr><td><center><%=eventdate%></center></td>
+			<td><center><%=downdatetime%></center></td>
+			<td><center><%=updatetime%></center></td>
+			<td><center><%=lisfailures.failuregroup%></center></td>
+			<td><center><%=link_to "Edit", {:controller => "transformer_info", :action => "modify_failurere",:id =>lisfailures.id ,:region =>params[:region],:tid=>params[:tid]}, :class => 'edit'%> &nbsp;&nbsp;&nbsp;&nbsp;
+                	<%= link_to("Delete", {:controller => "transformer_info", :action => "delete_failurere",:id =>lisfailures.id,:region =>params[:region],:tid=>params[:tid]}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete') %></center></td></tr>
+		<%end%>
+		</table>
+		<%= will_paginate @failures %>
+	    <%else%>
+		</table>
+	    <%end%>
 	<%end%>
-</table>
-
-<% end %>
+<%end%>

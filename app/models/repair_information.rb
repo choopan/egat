@@ -44,7 +44,7 @@ class RepairInformation < ActiveRecord::Base
     self.pm ||= 0
     self.mc_avg ||= 0
     self.det_cost ||= 0
-    self.winding_type ||= "new"
+    self.winding_type ||= "New"
     self.winding_cost ||= 0
     self.bushing_type ||= "OIP"
     self.bushing_cost ||= 0
