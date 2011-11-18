@@ -1,5 +1,6 @@
 Egat::Application.routes.draw do
 
+
    resources :manufacturing do
 	collection do
 		get "index"

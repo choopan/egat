@@ -225,7 +225,7 @@ def oil_start
 end
   
  def oil_store
-	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 2)
+	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 20)
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
 	 #@num=0
@@ -236,7 +236,7 @@ end
   end
 
   def oil_withdraw
-	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 2)
+	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 20)
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
 

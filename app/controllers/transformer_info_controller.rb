@@ -1,13 +1,13 @@
 #encoding : UTF-8
-@@bc_ic = "ข้อมูลหม้อแปลง"
-@@bc_ic_link = "/transformer_info"
+@@bc_tx = "ข้อมูลหม้อแปลง"
+@@bc_tx_link = "/transformer_info/txlist"
 
 class TransformerInfoController < ApplicationController
   def txlist
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
         @breadcrumb_link[1]  = ''
 
@@ -31,8 +31,8 @@ class TransformerInfoController < ApplicationController
   def txadd
     @breadcrumb_title = Array.new()
     @breadcrumb_link  = Array.new()
-    @breadcrumb_title[0] = @@bc_ic
-    @breadcrumb_link[0]  = @@bc_ic_link
+    @breadcrumb_title[0] = @@bc_tx
+    @breadcrumb_link[0]  = @@bc_tx_link
     @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
     @breadcrumb_link[1]  = '/transformer_info/txlist'
     @breadcrumb_title[2] = 'เพิ่มหม้อแปลงไฟฟ้า'
@@ -65,8 +65,8 @@ class TransformerInfoController < ApplicationController
   def txlistmove
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = ''
 
@@ -74,18 +74,28 @@ class TransformerInfoController < ApplicationController
   end
 
   def txshowmove
+
+	@breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
+        @breadcrumb_link[1]  = '/transformer_info/txlistmove'
+        @breadcrumb_title[2] = 'รายละเอียดการย้ายหม้อแปลง'
+        @breadcrumb_link[2]  = ''
+
 	@txmove = TransformerTransfer.find(params[:id])
   end
 
   def txaddmove
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = '/transformer_info/txlistmove'
-        @breadcrumb_title[1] = 'เพิ่มการย้ายหม้อแปลง'
-        @breadcrumb_link[1]  = ''
+        @breadcrumb_title[2] = 'เพิ่มการย้ายหม้อแปลง'
+        @breadcrumb_link[2]  = ''
 
 	@txmove = TransformerTransfer.new
 	@txnames = Transformer.order("transformer_name")
@@ -111,8 +121,8 @@ class TransformerInfoController < ApplicationController
   def txeditmove
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = '/transformer_info/txlistmove'
         @breadcrumb_title[2] = 'แก้ไขการย้ายหม้อแปลง'
@@ -137,36 +147,29 @@ class TransformerInfoController < ApplicationController
 	new_txinfos = Transformer.where("transformer_name = '#{new_transformer_name}'")
 
 	#Check if there are no using transformers on that name
-	if(!new_txinfos.nil?) 
+	if params[:transformer_transfer][:id].nil?  #new record
+	   if(!new_txinfos.nil?) 
 		for new_txinfo in new_txinfos do
 			if(new_txinfo.status == 1) #there is a using transformer on that name
 				redirect_to("/transformer_info/txaddmove", :notice => 'ชื่อหม้อแปลงที่สถานีใหม่กำลังใช้งานอยู่')
 				return
 			end
 		end
+	   end
+   	   #change transformer table information
+	   old_txinfo[:station] = params[:transformer_transfer][:new_station]
+  	   old_txinfo[:txname]  = params[:transformer_transfer][:new_txname]
+	   old_txinfo[:status]  = 1 #ready to operate
+	   old_txinfo[:transformer_name] = old_txinfo[:station]+"-"+old_txinfo[:txname]
+	   old_txinfo.update_attributes(old_txinfo.attributes)
 	end
 
-	#change transformer table information
-	old_txinfo[:station] = params[:transformer_transfer][:new_station]
-	old_txinfo[:txname]  = params[:transformer_transfer][:new_txname]
-	old_txinfo[:status]  = 1 #ready to operate
-	old_txinfo[:transformer_name] = old_txinfo[:station]+"-"+old_txinfo[:txname]
-	old_txinfo.update_attributes(old_txinfo.attributes)
 
-
-	#log transfer
-	#transformer_transfer_attribute = TransformerTransfer.new
-	#transformer_transfer_attribute[:old_txname] = params[:txmove][:txname]
-	#transformer_transfer_attribute[:new_txname] = params[:txmove][:new_txname]
-	#transformer_transfer_attribute[:egatsn] = params[:txmove][:egatsn]
-	#transformer_transfer_attribute[:action_date] = params[:txmove][:date]
-	#transformer_transfer_attribute[:user_op] = params[:txmove][:user]
-	#transformer_transfer_attribute[:station] = params[:txmove][:station]
-	#transformer_transfer_attribute[:new_station] = Station.where("name = '#{params[:transformer_transfer][:new_station]}'").first.full_name
+	#log transformer transfer
 	params[:transformer_transfer][:new_station] = Station.where("name = '#{params[:transformer_transfer][:new_station]}'").first.full_name
 	da = params[:transformer_transfer][:action_date].split("/") 
 	params[:transformer_transfer][:action_date] = da[2] + "-" + da[1] + "-" + da[0]
-	if params[:transformer_transfer][:id].nil?
+	if params[:transformer_transfer][:id].nil?  #new record
 		TransformerTransfer.create(params[:transformer_transfer])
 	else
 		record = TransformerTransfer.find(params[:transformer_transfer][:id])
@@ -177,7 +180,16 @@ class TransformerInfoController < ApplicationController
 	redirect_to('/transformer_info/txlistmove')
   end
 
+
   def failurereport
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'รายงานความผิดปกติ'
+        @breadcrumb_link[1]  = ''
+
+
 	if params[:region] == "" or params[:region].nil?
 		@txnames = Transformer.order("transformer_name")
 	else
@@ -203,9 +215,24 @@ class TransformerInfoController < ApplicationController
   end
 
   def addfailurereport
-	@region = params[:region]
+
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'รายงานความผิดปกติ'
+        @breadcrumb_link[1]  = '/transformer_info/failurereport?region='
+        @breadcrumb_title[2] = 'เพิ่มรายงานความผิดปกติ'
+        @breadcrumb_link[2]  = ''
+
+
+
 	@tid = params[:tid]
 	@txnams = Transformer.get_transformer_id(params[:tid])
+
+	@region = Station.get_region(@txnams.station)
+
+
 	@environments = FdEnvironmnt.get_environment()
 	@num_environments = @environments.count
 
@@ -697,8 +724,8 @@ class TransformerInfoController < ApplicationController
   def modify_transformer
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
-        @breadcrumb_title[0] = @@bc_ic
-        @breadcrumb_link[0]  = @@bc_ic_link
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
         @breadcrumb_link[1]  = '/transformer_info/txlist'
         @breadcrumb_title[2] = 'แก้ไขข้อมูลหม้อแปลงไฟฟ้า'
@@ -845,6 +872,18 @@ class TransformerInfoController < ApplicationController
   end
   
   def show_image
+        @breadcrumb_title = Array.new()
+        @breadcrumb_link  = Array.new()
+        @breadcrumb_title[0] = @@bc_tx
+        @breadcrumb_link[0]  = @@bc_tx_link
+        @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
+        @breadcrumb_link[1]  = '/transformer_info/txlist'
+        @breadcrumb_title[2] = 'รายละเอียดหม้อแปลงไฟฟ้า'
+        @breadcrumb_link[2]  = ''
+
+
+
+
 	@transformer = Transformer.get_transformer_id(params[:id])
 	@stations = Station.order("name").all
 	@num_station = @stations.count
