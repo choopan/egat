@@ -123,11 +123,9 @@ function displaytype(y){
 <tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td>
 <td><select id="failuredetail" name="failuredetail" size="1">
 	<option value="-- All --">-- All --</option>
-	<%if @num_fdfunction!=0%>
-		<%for i in 0..@num_fdfunction-1 do%>
-			<%if @fdfunction[i].function!="อื่นๆ ระบุ"%>
-				<option value='<%=@fdfunction[i].function%>'><%=@fdfunction[i].function%></option>
-			<%end%>
+	<%if @num_fddetail!=0%>
+		<%for i in 0..@num_fddetail-2 do%>
+				<option value='<%=@fddetail[i].detail%>'><%=@fddetail[i].detail%></option>
 		<%end%>
 	<%end%>
 </select></td></tr>

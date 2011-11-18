@@ -34,8 +34,8 @@ class WeibullController < ApplicationController
         end
         @alloltctype = Transformer.get_all_oltc_type()
 
-	@fdfunction = FdFunction.get_function()
-	@num_fdfunction = @fdfunction.count
+	@fddetail = FdDetail.get_detail()
+	@num_fddetail = @fddetail.count
   end
 
   def factorial(n)
