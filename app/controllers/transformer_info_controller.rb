@@ -194,7 +194,7 @@ class TransformerInfoController < ApplicationController
               @txinfo = Transformer.find(params[:tid])
 	      xxx = FailureDatabase.get_failure_egatsn(@txinfo.egatsn)
 		if !xxx.nil? and !xxx.blank?
-		      @failures = FailureDatabase.get_failure_egatsn(@txinfo.egatsn).paginate(:page => params[:page], :per_page => 2)
+		      @failures = FailureDatabase.get_failure_egatsn(@txinfo.egatsn).paginate(:page => params[:page], :per_page => 20)
 		else
 			@failures = nil
 		end
