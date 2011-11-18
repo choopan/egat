@@ -122,8 +122,6 @@
 <tr>
    <td><p align=left>HV</p></td>
    <td><p align=right>Maufacturer</p></td>
-
-	
    <td><p>
 	<%if !@transformer.bushing_hv_manu.nil?%>
 		<%if @num_bushing!=0%>
@@ -153,7 +151,7 @@
 <tr>
    <td><p align=left>LV</p></td>
    <td><p align=right>Maufacturer</p></td>
-	<%if !@transformer.bushing_lv_manu.nil?%>
+	<td><p><%if !@transformer.bushing_lv_manu.nil?%>
 		<%if @num_bushing!=0%>
 			<%for i in 0..@num_bushing-1 do%>
 				<%if @manufacturer_bushing[i].id==@transformer.bushing_lv_manu%>

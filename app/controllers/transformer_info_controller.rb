@@ -625,7 +625,7 @@ class TransformerInfoController < ApplicationController
   
   def txcreate
 	@transformer = Transformer.new
-	@transformer_accessory = TransformerAccessory.new
+	#@transformer_accessory = TransformerAccessory.new
 	#-------transformer-------
 	@transformer[:egatsn] = params[:egatsn]
 	@transformer[:contract] = params[:contract]
@@ -709,14 +709,14 @@ class TransformerInfoController < ApplicationController
 	
 	if params[:image]!=nil
 		#transformer1 = Transformer.transformer_getid()
-		m=params[:image].original_filename.to_s.split(".")
-		@transformer[:picture] = params[:egatsn]+"."+m[1].to_s
+			m=params[:image].original_filename.to_s.split(".")
+			@transformer[:picture] = params[:egatsn]+"."+m[1].to_s
 		#transformer1[:picture] = transformer1.id.to_s+"."+m[1].to_s
 		#transformer1.update_attributes(transformer1.attributes)
-		TxImage.save(params[:egatsn],params[:image])
+			TxImage.save(params[:egatsn],params[:image])
 	end
 
-	@transformer.save
+		@transformer.save
 
 	redirect_to("/transformer_info/txlist")
   end
@@ -798,75 +798,64 @@ class TransformerInfoController < ApplicationController
 	end
 
 	#-------------transformer_accessory----------
-	transformer_accessory = TransformerAccessory.get_transformer_accessories_id(params[:accessories_id])
-	if transformer_accessory.nil?
-		create=1
-		transformer_accessory = TransformerAccessory.new
-	end	
-	transformer_accessory[:bushing_hv_manu] = params[:bushing_hv_manu].to_i
-	transformer_accessory[:bushing_hv_type] = params[:bushing_hv_type]
-	transformer_accessory[:bushing_hv_year] = params[:bushing_hv_year].to_i
-	transformer_accessory[:bushing_hv_h0] = params[:bushing_hv_h0]
-	transformer_accessory[:bushing_hv_h1] = params[:bushing_hv_h1]
-	transformer_accessory[:bushing_hv_h2] = params[:bushing_hv_h2]
-	transformer_accessory[:bushing_hv_h3] = params[:bushing_hv_h3]
-	transformer_accessory[:bushing_lv_manu] = params[:bushing_lv_manu].to_i
-	transformer_accessory[:bushing_lv_type] = params[:bushing_lv_type]
-	transformer_accessory[:bushing_lv_year] = params[:bushing_lv_year].to_i
-	transformer_accessory[:bushing_lv_x0] = params[:bushing_lv_x0]
-	transformer_accessory[:bushing_lv_x1] = params[:bushing_lv_x1]
-	transformer_accessory[:bushing_lv_x2] = params[:bushing_lv_x2]
-	transformer_accessory[:bushing_lv_x3] = params[:bushing_lv_x3]
-	transformer_accessory[:bushing_tv_manu] = params[:bushing_tv_manu].to_i
-	transformer_accessory[:bushing_tv_type] = params[:bushing_tv_type]
-	transformer_accessory[:bushing_tv_year] = params[:bushing_tv_year].to_i
-	transformer_accessory[:bushing_tv_y1] = params[:bushing_tv_y1]
-	transformer_accessory[:bushing_tv_y2] = params[:bushing_tv_y2]
-	transformer_accessory[:bushing_tv_y3] = params[:bushing_tv_y3]
+	
+	transformer[:bushing_hv_manu] = params[:bushing_hv_manu].to_i
+	transformer[:bushing_hv_type] = params[:bushing_hv_type]
+	transformer[:bushing_hv_year] = params[:bushing_hv_year].to_i
+	transformer[:bushing_hv_h0] = params[:bushing_hv_h0]
+	transformer[:bushing_hv_h1] = params[:bushing_hv_h1]
+	transformer[:bushing_hv_h2] = params[:bushing_hv_h2]
+	transformer[:bushing_hv_h3] = params[:bushing_hv_h3]
+	transformer[:bushing_lv_manu] = params[:bushing_lv_manu].to_i
+	transformer[:bushing_lv_type] = params[:bushing_lv_type]
+	transformer[:bushing_lv_year] = params[:bushing_lv_year].to_i
+	transformer[:bushing_lv_x0] = params[:bushing_lv_x0]
+	transformer[:bushing_lv_x1] = params[:bushing_lv_x1]
+	transformer[:bushing_lv_x2] = params[:bushing_lv_x2]
+	transformer[:bushing_lv_x3] = params[:bushing_lv_x3]
+	transformer[:bushing_tv_manu] = params[:bushing_tv_manu].to_i
+	transformer[:bushing_tv_type] = params[:bushing_tv_type]
+	transformer[:bushing_tv_year] = params[:bushing_tv_year].to_i
+	transformer[:bushing_tv_y1] = params[:bushing_tv_y1]
+	transformer[:bushing_tv_y2] = params[:bushing_tv_y2]
+	transformer[:bushing_tv_y3] = params[:bushing_tv_y3]
 
-	transformer_accessory[:arrester_hv_manu] = params[:arrester_hv_manu].to_i
-	transformer_accessory[:arrester_hv_type] = params[:arrester_hv_type]
-	transformer_accessory[:arrester_hv_year] = params[:arrester_hv_year].to_i
-	transformer_accessory[:arrester_hv_h1] = params[:arrester_hv_h1]
-	transformer_accessory[:arrester_hv_h2] = params[:arrester_hv_h2]
-	transformer_accessory[:arrester_hv_h3] = params[:arrester_hv_h3]
-	transformer_accessory[:arrester_hv_isgap] = params[:arrester_hv_isgap].to_i
-	transformer_accessory[:arrester_lv_manu] = params[:arrester_lv_manu].to_i
-	transformer_accessory[:arrester_lv_type] = params[:arrester_lv_type]
-	transformer_accessory[:arrester_lv_year] = params[:arrester_lv_year].to_i
-	transformer_accessory[:arrester_lv_x1] = params[:arrester_lv_x1]
-	transformer_accessory[:arrester_lv_x2] = params[:arrester_lv_x2]
-	transformer_accessory[:arrester_lv_x3] = params[:arrester_lv_x3]
-	transformer_accessory[:arrester_lv_isgap] = params[:arrester_lv_isgap].to_i
-	transformer_accessory[:arrester_tv_manu] = params[:arrester_tv_manu].to_i
-	transformer_accessory[:arrester_tv_type] = params[:arrester_tv_type]
-	transformer_accessory[:arrester_tv_year] = params[:arrester_tv_year].to_i
-	transformer_accessory[:arrester_tv_y1] = params[:arrester_tv_y1]
-	transformer_accessory[:arrester_tv_y2] = params[:arrester_tv_y2]
-	transformer_accessory[:arrester_tv_y3] = params[:arrester_tv_y3]
-	transformer_accessory[:arrester_tv_isgap] = params[:arrester_tv_isgap].to_i
+	transformer[:arrester_hv_manu] = params[:arrester_hv_manu].to_i
+	transformer[:arrester_hv_type] = params[:arrester_hv_type]
+	transformer[:arrester_hv_year] = params[:arrester_hv_year].to_i
+	transformer[:arrester_hv_h1] = params[:arrester_hv_h1]
+	transformer[:arrester_hv_h2] = params[:arrester_hv_h2]
+	transformer[:arrester_hv_h3] = params[:arrester_hv_h3]
+	transformer[:arrester_hv_gapless] = params[:arrester_hv_gapless].to_i
+	transformer[:arrester_lv_manu] = params[:arrester_lv_manu].to_i
+	transformer[:arrester_lv_type] = params[:arrester_lv_type]
+	transformer[:arrester_lv_year] = params[:arrester_lv_year].to_i
+	transformer[:arrester_lv_x1] = params[:arrester_lv_x1]
+	transformer[:arrester_lv_x2] = params[:arrester_lv_x2]
+	transformer[:arrester_lv_x3] = params[:arrester_lv_x3]
+	transformer[:arrester_lv_gapless] = params[:arrester_lv_gapless].to_i
+	transformer[:arrester_tv_manu] = params[:arrester_tv_manu].to_i
+	transformer[:arrester_tv_type] = params[:arrester_tv_type]
+	transformer[:arrester_tv_year] = params[:arrester_tv_year].to_i
+	transformer[:arrester_tv_y1] = params[:arrester_tv_y1]
+	transformer[:arrester_tv_y2] = params[:arrester_tv_y2]
+	transformer[:arrester_tv_y3] = params[:arrester_tv_y3]
+	transformer[:arrester_tv_gapless] = params[:arrester_tv_gapless].to_i
 
-	transformer_accessory[:oltc_manu] = params[:oltc_manu].to_i
-	transformer_accessory[:oltc_type] = params[:oltc_type]
-	transformer_accessory[:oltc_year] = params[:oltc_year].to_i
-	if create==1
-		transformer_accessory.save
-		tranformer_accessory1 = TransformerAccessory.transformer_getid_instantaneous()
-		transformer[:transformer_accessories_id] = tranformer_accessory1.id
-		transformer.update_attributes(transformer.attributes)
-	else
-		transformer_accessory.update_attributes(transformer_accessory.attributes)
-		transformer.update_attributes(transformer.attributes)
-	end
+	transformer[:oltc_manu] = params[:oltc_manu].to_i
+	transformer[:oltc_type] = params[:oltc_type]
+	transformer[:oltc_year] = params[:oltc_year].to_i
+
 	if params[:image]!=nil
 		TxImage.save(transformer.id.to_s,params[:image])
-	end	
+	end
+	transformer.update_attributes(transformer.attributes)	
 	redirect_to("/transformer_info/txlist")
   end
 
   def delete_transformer
 	transformer = Transformer.get_transformer_id(params[:id])
-	TransformerAccessory.delete(transformer.transformer_accessories_id)
+	#TransformerAccessory.delete(transformer.transformer_accessories_id)
 	Transformer.delete(params[:id])
 	redirect_to("/transformer_info/txlist")
   end
