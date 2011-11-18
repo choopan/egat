@@ -335,17 +335,17 @@ $(function(){
 <table>
 <tr>
     <td>เขต</td>
-    <td><%= text_field_tag 'region',@region%></td>
+    <td><%= text_field_tag 'region',@region,:readonly => true%></td>
     <td></td>
 </tr>
 <tr>
     <td>หม้อแปลงไฟฟ้า</td>
-    <td><%= text_field_tag 'txname',@txnams.transformer_name%></td>
+    <td><%= text_field_tag 'txname',@txnams.transformer_name,:readonly => true%></td>
 
 </tr>
 <tr>
     <td>Equipement No.</td>
-    <td><%= text_field_tag 'egatsn',@txnams.egatsn%></td>
+    <td><%= text_field_tag 'egatsn',@txnams.egatsn,:readonly => true%></td>
     <td></td>
 </tr>
 <tr>

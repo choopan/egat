@@ -31,8 +31,6 @@ Egat::Application.routes.draw do
   end
 
   resource :oil_calculates do
-#	colection do
-#	end
   end
 
 

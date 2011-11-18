@@ -123,21 +123,13 @@ function displaytype(y){
 <tr><td><b>รายละเอียดความผิดปกติหรือเสียหาย</b></td>
 <td><select id="failuredetail" name="failuredetail" size="1">
 	<option value="-- All --">-- All --</option>
-	<option value="ปกติ">ปกติ</option>
-	<option value="รั่วซึม">รั่วซึม</option>
-	<option value="แตก/ขาด">แตก/ขาด</option>
-	<option value="ฝืด/ขัดตัว">ฝืด/ขัดตัว</option>
-	<option value="หลุด/หลวม">หลุด/หลวม</option>
-	<option value="สนิม/สกปรก">สนิม/สกปรก</option>
-	<option value="ลัดวงจร">ลัดวงจร</option>
-	<option value="Flashover">Flashover</option>
-	<option value="Hot Spot">Hot Spot</option>
-	<option value="อุปกรณ์ชำรุด">อุปกรณ์ชำรุด</option>
-	<option value="ไม่ทำงาน">ไม่ทำงาน</option>
-	<option value="ทำงานไม่ถูกต้อง">ทำงานไม่ถูกต้อง</option>
-	<option value="คุณสมบัติเปลี่ยนไป">คุณสมบัติเปลี่ยนไป</option>
-	<option value="ทดสอบไม่ผ่าน">ทดสอบไม่ผ่าน</option>
-	<option value="อื่นๆ">อื่นๆ</option>
+	<%if @num_fdfunction!=0%>
+		<%for i in 0..@num_fdfunction-1 do%>
+			<%if @fdfunction[i].function!="อื่นๆ ระบุ"%>
+				<option value='<%=@fdfunction[i].function%>'><%=@fdfunction[i].function%></option>
+			<%end%>
+		<%end%>
+	<%end%>
 </select></td></tr>
 <tr><td><b>Time Interval for Failure Observation(years)</b></td>
 <td><input id="time_interval" name="time_interval" type="text" size="10"></td></tr>
