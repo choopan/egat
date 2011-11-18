@@ -333,19 +333,19 @@ class TransformerInfoController < ApplicationController
 	end
 	failure[:counterOLTC] = params[:counterOLTC].to_i
 	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
-	if environment.environmnt=="อื่นๆ ระบุ"
+	if environment.environmnt.split(" ")[0]=="อื่นๆ"
 		failure[:environment] = params[:environment_etc]
 	else
 		failure[:environment] = environment.environmnt
 	end
 	failurestatus = FdFunction.get_function_id(params[:failurestatus].to_i)
-	if failurestatus.function=="อื่นๆ ระบุ"
+	if failurestatus.function.split(" ")[0]=="อื่นๆ"
 		failure[:failurestatus] = params[:failurestatus_etc]
 	else
 		failure[:failurestatus] = failurestatus.function
 	end
 	failuredetail = FdDetail.get_detail_id(params[:failuredetail].to_i)
-	if failuredetail.detail=="อื่นๆ ระบุ"
+	if failuredetail.detail.split(" ")[0]=="อื่นๆ"
 		failure[:failuredetail] = params[:failuredetail_etc]
 	else
 		failure[:failuredetail] = failuredetail.detail
@@ -375,14 +375,14 @@ class TransformerInfoController < ApplicationController
 	failure[:failuremode] = params[:failuremode]
 	
 	failurereason = FdReason.get_reason_id(params[:failurereason].to_i)
-	if failurereason.reason=="อื่นๆ ระบุ"
+	if failurereason.reason.split(" ")[0]=="อื่นๆ"
 		failure[:failurereason] = params[:failurereason_etc]
 	else
 		failure[:failurereason] = failurereason.reason
 	end
 
 	managed = FdManage.get_manage_id(params[:manage].to_i)
-	if managed.manage=="อื่นๆ ระบุ"
+	if managed.manage.split(" ")[0]=="อื่นๆ"
 		failure[:manage] = params[:manage_etc]
 	else
 		failure[:manage] = managed.manage
@@ -486,19 +486,19 @@ class TransformerInfoController < ApplicationController
 	end
 	failure[:counterOLTC] = params[:counterOLTC].to_i
 	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
-	if environment.environmnt=="อื่นๆ ระบุ"
+	if environment.environmnt.split(" ")[0]=="อื่นๆ"
 		failure[:environment] = params[:environment_etc]
 	else
 		failure[:environment] = environment.environmnt
 	end
 	failurestatus = FdFunction.get_function_id(params[:failurestatus].to_i)
-	if failurestatus.function=="อื่นๆ ระบุ"
+	if failurestatus.function.split(" ")[0]=="อื่นๆ"
 		failure[:failurestatus] = params[:failurestatus_etc]
 	else
 		failure[:failurestatus] = failurestatus.function
 	end
 	failuredetail = FdDetail.get_detail_id(params[:failuredetail].to_i)
-	if failuredetail.detail=="อื่นๆ ระบุ"
+	if failuredetail.detail.split(" ")[0]=="อื่นๆ"
 		failure[:failuredetail] = params[:failuredetail_etc]
 	else
 		failure[:failuredetail] = failuredetail.detail
@@ -528,14 +528,14 @@ class TransformerInfoController < ApplicationController
 	failure[:failuremode] = params[:failuremode]
 	
 	failurereason = FdReason.get_reason_id(params[:failurereason].to_i)
-	if failurereason.reason=="อื่นๆ ระบุ"
+	if failurereason.reason.split(" ")[0]=="อื่นๆ"
 		failure[:failurereason] = params[:failurereason_etc]
 	else
 		failure[:failurereason] = failurereason.reason
 	end
 
 	managed = FdManage.get_manage_id(params[:manage].to_i)
-	if managed.manage=="อื่นๆ ระบุ"
+	if managed.manage.split(" ")[0]=="อื่นๆ"
 		failure[:manage] = params[:manage_etc]
 	else
 		failure[:manage] = managed.manage
