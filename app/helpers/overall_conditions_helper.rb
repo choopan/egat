@@ -6,6 +6,8 @@ module OverallConditionsHelper
     else
       " - "
     end
+    rescue Exception 
+	" - "
   end
 
   def bushing_test(type, phase)
@@ -364,6 +366,9 @@ module OverallConditionsHelper
     else
       " - "
     end
+
+    rescue Exception 
+      " - "
   end
 
   def recent_date(visual_inspection)
