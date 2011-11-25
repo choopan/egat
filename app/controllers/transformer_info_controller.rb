@@ -147,36 +147,29 @@ class TransformerInfoController < ApplicationController
 	new_txinfos = Transformer.where("transformer_name = '#{new_transformer_name}'")
 
 	#Check if there are no using transformers on that name
-	if(!new_txinfos.nil?) 
+	if params[:transformer_transfer][:id].nil?  #new record
+	   if(!new_txinfos.nil?) 
 		for new_txinfo in new_txinfos do
 			if(new_txinfo.status == 1) #there is a using transformer on that name
 				redirect_to("/transformer_info/txaddmove", :notice => 'ชื่อหม้อแปลงที่สถานีใหม่กำลังใช้งานอยู่')
 				return
 			end
 		end
+	   end
+   	   #change transformer table information
+	   old_txinfo[:station] = params[:transformer_transfer][:new_station]
+  	   old_txinfo[:txname]  = params[:transformer_transfer][:new_txname]
+	   old_txinfo[:status]  = 1 #ready to operate
+	   old_txinfo[:transformer_name] = old_txinfo[:station]+"-"+old_txinfo[:txname]
+	   old_txinfo.update_attributes(old_txinfo.attributes)
 	end
 
-	#change transformer table information
-	old_txinfo[:station] = params[:transformer_transfer][:new_station]
-	old_txinfo[:txname]  = params[:transformer_transfer][:new_txname]
-	old_txinfo[:status]  = 1 #ready to operate
-	old_txinfo[:transformer_name] = old_txinfo[:station]+"-"+old_txinfo[:txname]
-	old_txinfo.update_attributes(old_txinfo.attributes)
 
-
-	#log transfer
-	#transformer_transfer_attribute = TransformerTransfer.new
-	#transformer_transfer_attribute[:old_txname] = params[:txmove][:txname]
-	#transformer_transfer_attribute[:new_txname] = params[:txmove][:new_txname]
-	#transformer_transfer_attribute[:egatsn] = params[:txmove][:egatsn]
-	#transformer_transfer_attribute[:action_date] = params[:txmove][:date]
-	#transformer_transfer_attribute[:user_op] = params[:txmove][:user]
-	#transformer_transfer_attribute[:station] = params[:txmove][:station]
-	#transformer_transfer_attribute[:new_station] = Station.where("name = '#{params[:transformer_transfer][:new_station]}'").first.full_name
+	#log transformer transfer
 	params[:transformer_transfer][:new_station] = Station.where("name = '#{params[:transformer_transfer][:new_station]}'").first.full_name
 	da = params[:transformer_transfer][:action_date].split("/") 
 	params[:transformer_transfer][:action_date] = da[2] + "-" + da[1] + "-" + da[0]
-	if params[:transformer_transfer][:id].nil?
+	if params[:transformer_transfer][:id].nil?  #new record
 		TransformerTransfer.create(params[:transformer_transfer])
 	else
 		record = TransformerTransfer.find(params[:transformer_transfer][:id])
@@ -186,6 +179,7 @@ class TransformerInfoController < ApplicationController
 
 	redirect_to('/transformer_info/txlistmove')
   end
+
 
   def failurereport
         @breadcrumb_title = Array.new()
@@ -212,7 +206,7 @@ class TransformerInfoController < ApplicationController
               @txinfo = Transformer.find(params[:tid])
 	      xxx = FailureDatabase.get_failure_egatsn(@txinfo.egatsn)
 		if !xxx.nil? and !xxx.blank?
-		      @failures = FailureDatabase.get_failure_egatsn(@txinfo.egatsn).paginate(:page => params[:page], :per_page => 2)
+		      @failures = FailureDatabase.get_failure_egatsn(@txinfo.egatsn).paginate(:page => params[:page], :per_page => 20)
 		else
 			@failures = nil
 		end
@@ -339,19 +333,19 @@ class TransformerInfoController < ApplicationController
 	end
 	failure[:counterOLTC] = params[:counterOLTC].to_i
 	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
-	if environment.environmnt=="อื่นๆ ระบุ"
+	if environment.environmnt.split(" ")[0]=="อื่นๆ"
 		failure[:environment] = params[:environment_etc]
 	else
 		failure[:environment] = environment.environmnt
 	end
 	failurestatus = FdFunction.get_function_id(params[:failurestatus].to_i)
-	if failurestatus.function=="อื่นๆ ระบุ"
+	if failurestatus.function.split(" ")[0]=="อื่นๆ"
 		failure[:failurestatus] = params[:failurestatus_etc]
 	else
 		failure[:failurestatus] = failurestatus.function
 	end
 	failuredetail = FdDetail.get_detail_id(params[:failuredetail].to_i)
-	if failuredetail.detail=="อื่นๆ ระบุ"
+	if failuredetail.detail.split(" ")[0]=="อื่นๆ"
 		failure[:failuredetail] = params[:failuredetail_etc]
 	else
 		failure[:failuredetail] = failuredetail.detail
@@ -381,14 +375,14 @@ class TransformerInfoController < ApplicationController
 	failure[:failuremode] = params[:failuremode]
 	
 	failurereason = FdReason.get_reason_id(params[:failurereason].to_i)
-	if failurereason.reason=="อื่นๆ ระบุ"
+	if failurereason.reason.split(" ")[0]=="อื่นๆ"
 		failure[:failurereason] = params[:failurereason_etc]
 	else
 		failure[:failurereason] = failurereason.reason
 	end
 
 	managed = FdManage.get_manage_id(params[:manage].to_i)
-	if managed.manage=="อื่นๆ ระบุ"
+	if managed.manage.split(" ")[0]=="อื่นๆ"
 		failure[:manage] = params[:manage_etc]
 	else
 		failure[:manage] = managed.manage
@@ -492,19 +486,19 @@ class TransformerInfoController < ApplicationController
 	end
 	failure[:counterOLTC] = params[:counterOLTC].to_i
 	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
-	if environment.environmnt=="อื่นๆ ระบุ"
+	if environment.environmnt.split(" ")[0] =="อื่นๆ"
 		failure[:environment] = params[:environment_etc]
 	else
 		failure[:environment] = environment.environmnt
 	end
 	failurestatus = FdFunction.get_function_id(params[:failurestatus].to_i)
-	if failurestatus.function=="อื่นๆ ระบุ"
+	if failurestatus.function.split(" ")[0]=="อื่นๆ"
 		failure[:failurestatus] = params[:failurestatus_etc]
 	else
 		failure[:failurestatus] = failurestatus.function
 	end
 	failuredetail = FdDetail.get_detail_id(params[:failuredetail].to_i)
-	if failuredetail.detail=="อื่นๆ ระบุ"
+	if failuredetail.detail.split(" ")[0]=="อื่นๆ"
 		failure[:failuredetail] = params[:failuredetail_etc]
 	else
 		failure[:failuredetail] = failuredetail.detail
@@ -534,14 +528,14 @@ class TransformerInfoController < ApplicationController
 	failure[:failuremode] = params[:failuremode]
 	
 	failurereason = FdReason.get_reason_id(params[:failurereason].to_i)
-	if failurereason.reason=="อื่นๆ ระบุ"
+	if failurereason.reason.split(" ")[0]=="อื่นๆ"
 		failure[:failurereason] = params[:failurereason_etc]
 	else
 		failure[:failurereason] = failurereason.reason
 	end
 
 	managed = FdManage.get_manage_id(params[:manage].to_i)
-	if managed.manage=="อื่นๆ ระบุ"
+	if managed.manage.split(" ")[0]=="อื่นๆ"
 		failure[:manage] = params[:manage_etc]
 	else
 		failure[:manage] = managed.manage
@@ -631,7 +625,7 @@ class TransformerInfoController < ApplicationController
   
   def txcreate
 	@transformer = Transformer.new
-	@transformer_accessory = TransformerAccessory.new
+	#@transformer_accessory = TransformerAccessory.new
 	#-------transformer-------
 	@transformer[:egatsn] = params[:egatsn]
 	@transformer[:contract] = params[:contract]
@@ -715,14 +709,14 @@ class TransformerInfoController < ApplicationController
 	
 	if params[:image]!=nil
 		#transformer1 = Transformer.transformer_getid()
-		m=params[:image].original_filename.to_s.split(".")
-		@transformer[:picture] = params[:egatsn]+"."+m[1].to_s
+			m=params[:image].original_filename.to_s.split(".")
+			@transformer[:picture] = params[:egatsn]+"."+m[1].to_s
 		#transformer1[:picture] = transformer1.id.to_s+"."+m[1].to_s
 		#transformer1.update_attributes(transformer1.attributes)
-		TxImage.save(params[:egatsn],params[:image])
+			TxImage.save(params[:egatsn],params[:image])
 	end
 
-	@transformer.save
+		@transformer.save
 
 	redirect_to("/transformer_info/txlist")
   end
@@ -804,75 +798,77 @@ class TransformerInfoController < ApplicationController
 	end
 
 	#-------------transformer_accessory----------
-	transformer_accessory = TransformerAccessory.get_transformer_accessories_id(params[:accessories_id])
-	if transformer_accessory.nil?
-		create=1
-		transformer_accessory = TransformerAccessory.new
-	end	
-	transformer_accessory[:bushing_hv_manu] = params[:bushing_hv_manu].to_i
-	transformer_accessory[:bushing_hv_type] = params[:bushing_hv_type]
-	transformer_accessory[:bushing_hv_year] = params[:bushing_hv_year].to_i
-	transformer_accessory[:bushing_hv_h0] = params[:bushing_hv_h0]
-	transformer_accessory[:bushing_hv_h1] = params[:bushing_hv_h1]
-	transformer_accessory[:bushing_hv_h2] = params[:bushing_hv_h2]
-	transformer_accessory[:bushing_hv_h3] = params[:bushing_hv_h3]
-	transformer_accessory[:bushing_lv_manu] = params[:bushing_lv_manu].to_i
-	transformer_accessory[:bushing_lv_type] = params[:bushing_lv_type]
-	transformer_accessory[:bushing_lv_year] = params[:bushing_lv_year].to_i
-	transformer_accessory[:bushing_lv_x0] = params[:bushing_lv_x0]
-	transformer_accessory[:bushing_lv_x1] = params[:bushing_lv_x1]
-	transformer_accessory[:bushing_lv_x2] = params[:bushing_lv_x2]
-	transformer_accessory[:bushing_lv_x3] = params[:bushing_lv_x3]
-	transformer_accessory[:bushing_tv_manu] = params[:bushing_tv_manu].to_i
-	transformer_accessory[:bushing_tv_type] = params[:bushing_tv_type]
-	transformer_accessory[:bushing_tv_year] = params[:bushing_tv_year].to_i
-	transformer_accessory[:bushing_tv_y1] = params[:bushing_tv_y1]
-	transformer_accessory[:bushing_tv_y2] = params[:bushing_tv_y2]
-	transformer_accessory[:bushing_tv_y3] = params[:bushing_tv_y3]
+	#transformer_accessory = TransformerAccessory.get_transformer_accessories_id(params[:accessories_id])
+	#if transformer_accessory.nil?
+	#	create=1
+	#	transformer_accessory = TransformerAccessory.new
+	#end	
+	transformer[:bushing_hv_manu] = params[:bushing_hv_manu].to_i
+	transformer[:bushing_hv_type] = params[:bushing_hv_type]
+	transformer[:bushing_hv_year] = params[:bushing_hv_year].to_i
+	transformer[:bushing_hv_h0] = params[:bushing_hv_h0]
+	transformer[:bushing_hv_h1] = params[:bushing_hv_h1]
+	transformer[:bushing_hv_h2] = params[:bushing_hv_h2]
+	transformer[:bushing_hv_h3] = params[:bushing_hv_h3]
+	transformer[:bushing_lv_manu] = params[:bushing_lv_manu].to_i
+	transformer[:bushing_lv_type] = params[:bushing_lv_type]
+	transformer[:bushing_lv_year] = params[:bushing_lv_year].to_i
+	transformer[:bushing_lv_x0] = params[:bushing_lv_x0]
+	transformer[:bushing_lv_x1] = params[:bushing_lv_x1]
+	transformer[:bushing_lv_x2] = params[:bushing_lv_x2]
+	transformer[:bushing_lv_x3] = params[:bushing_lv_x3]
+	transformer[:bushing_tv_manu] = params[:bushing_tv_manu].to_i
+	transformer[:bushing_tv_type] = params[:bushing_tv_type]
+	transformer[:bushing_tv_year] = params[:bushing_tv_year].to_i
+	transformer[:bushing_tv_y1] = params[:bushing_tv_y1]
+	transformer[:bushing_tv_y2] = params[:bushing_tv_y2]
+	transformer[:bushing_tv_y3] = params[:bushing_tv_y3]
 
-	transformer_accessory[:arrester_hv_manu] = params[:arrester_hv_manu].to_i
-	transformer_accessory[:arrester_hv_type] = params[:arrester_hv_type]
-	transformer_accessory[:arrester_hv_year] = params[:arrester_hv_year].to_i
-	transformer_accessory[:arrester_hv_h1] = params[:arrester_hv_h1]
-	transformer_accessory[:arrester_hv_h2] = params[:arrester_hv_h2]
-	transformer_accessory[:arrester_hv_h3] = params[:arrester_hv_h3]
-	transformer_accessory[:arrester_hv_isgap] = params[:arrester_hv_isgap].to_i
-	transformer_accessory[:arrester_lv_manu] = params[:arrester_lv_manu].to_i
-	transformer_accessory[:arrester_lv_type] = params[:arrester_lv_type]
-	transformer_accessory[:arrester_lv_year] = params[:arrester_lv_year].to_i
-	transformer_accessory[:arrester_lv_x1] = params[:arrester_lv_x1]
-	transformer_accessory[:arrester_lv_x2] = params[:arrester_lv_x2]
-	transformer_accessory[:arrester_lv_x3] = params[:arrester_lv_x3]
-	transformer_accessory[:arrester_lv_isgap] = params[:arrester_lv_isgap].to_i
-	transformer_accessory[:arrester_tv_manu] = params[:arrester_tv_manu].to_i
-	transformer_accessory[:arrester_tv_type] = params[:arrester_tv_type]
-	transformer_accessory[:arrester_tv_year] = params[:arrester_tv_year].to_i
-	transformer_accessory[:arrester_tv_y1] = params[:arrester_tv_y1]
-	transformer_accessory[:arrester_tv_y2] = params[:arrester_tv_y2]
-	transformer_accessory[:arrester_tv_y3] = params[:arrester_tv_y3]
-	transformer_accessory[:arrester_tv_isgap] = params[:arrester_tv_isgap].to_i
+	transformer[:arrester_hv_manu] = params[:arrester_hv_manu].to_i
+	transformer[:arrester_hv_type] = params[:arrester_hv_type]
+	transformer[:arrester_hv_year] = params[:arrester_hv_year].to_i
+	transformer[:arrester_hv_h1] = params[:arrester_hv_h1]
+	transformer[:arrester_hv_h2] = params[:arrester_hv_h2]
+	transformer[:arrester_hv_h3] = params[:arrester_hv_h3]
+	transformer[:arrester_hv_gapless] = params[:arrester_hv_gapless].to_i
+	transformer[:arrester_lv_manu] = params[:arrester_lv_manu].to_i
+	transformer[:arrester_lv_type] = params[:arrester_lv_type]
+	transformer[:arrester_lv_year] = params[:arrester_lv_year].to_i
+	transformer[:arrester_lv_x1] = params[:arrester_lv_x1]
+	transformer[:arrester_lv_x2] = params[:arrester_lv_x2]
+	transformer[:arrester_lv_x3] = params[:arrester_lv_x3]
+	transformer[:arrester_lv_gapless] = params[:arrester_lv_gapless].to_i
+	transformer[:arrester_tv_manu] = params[:arrester_tv_manu].to_i
+	transformer[:arrester_tv_type] = params[:arrester_tv_type]
+	transformer[:arrester_tv_year] = params[:arrester_tv_year].to_i
+	transformer[:arrester_tv_y1] = params[:arrester_tv_y1]
+	transformer[:arrester_tv_y2] = params[:arrester_tv_y2]
+	transformer[:arrester_tv_y3] = params[:arrester_tv_y3]
+	transformer[:arrester_tv_gapless] = params[:arrester_tv_gapless].to_i
 
-	transformer_accessory[:oltc_manu] = params[:oltc_manu].to_i
-	transformer_accessory[:oltc_type] = params[:oltc_type]
-	transformer_accessory[:oltc_year] = params[:oltc_year].to_i
-	if create==1
-		transformer_accessory.save
-		tranformer_accessory1 = TransformerAccessory.transformer_getid_instantaneous()
-		transformer[:transformer_accessories_id] = tranformer_accessory1.id
+	transformer[:oltc_manufacturer] = params[:oltc_manufacturer].to_i
+	transformer[:oltc_type] = params[:oltc_type]
+	transformer[:oltc_year] = params[:oltc_year].to_i
+	#if create==1
+	#	transformer_accessory.save
+	#	tranformer_accessory1 = TransformerAccessory.transformer_getid_instantaneous()
+	#	transformer[:transformer_accessories_id] = tranformer_accessory1.id
+	#	transformer.update_attributes(transformer.attributes)
+	#else
+	#	transformer_accessory.update_attributes(transformer_accessory.attributes)
 		transformer.update_attributes(transformer.attributes)
-	else
-		transformer_accessory.update_attributes(transformer_accessory.attributes)
-		transformer.update_attributes(transformer.attributes)
-	end
+	#end
+
 	if params[:image]!=nil
 		TxImage.save(transformer.id.to_s,params[:image])
-	end	
+	end
+	transformer.update_attributes(transformer.attributes)	
 	redirect_to("/transformer_info/txlist")
   end
 
   def delete_transformer
 	transformer = Transformer.get_transformer_id(params[:id])
-	TransformerAccessory.delete(transformer.transformer_accessories_id)
+	#TransformerAccessory.delete(transformer.transformer_accessories_id)
 	Transformer.delete(params[:id])
 	redirect_to("/transformer_info/txlist")
   end

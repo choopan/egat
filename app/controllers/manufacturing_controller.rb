@@ -10,10 +10,9 @@ class ManufacturingController < ApplicationController
   end
 
   def station
-	@station = Station.get_station()
+	@station = Station.get_station().paginate(:page => params[:page], :per_page => 20)
 	@station1 = Station.new
-	@num = @station.count
-	if @num==0
+	if @station.nil?
 		@station = Station.new
 	end
 

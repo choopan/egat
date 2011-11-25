@@ -335,17 +335,17 @@ $(function(){
 <table>
 <tr>
     <td>เขต</td>
-    <td><%= text_field_tag 'region',@region%></td>
+    <td><%= text_field_tag 'region',@region,:readonly => true%></td>
     <td></td>
 </tr>
 <tr>
     <td>หม้อแปลงไฟฟ้า</td>
-    <td><%= text_field_tag 'txname',@txnams.transformer_name%></td>
+    <td><%= text_field_tag 'txname',@txnams.transformer_name,:readonly => true%></td>
 
 </tr>
 <tr>
     <td>Equipement No.</td>
-    <td><%= text_field_tag 'egatsn',@txnams.egatsn%></td>
+    <td><%= text_field_tag 'egatsn',@txnams.egatsn,:readonly => true%></td>
     <td></td>
 </tr>
 <tr>
@@ -383,7 +383,7 @@ $(function(){
 		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :environment_etc%></td>
 	<%else%>
 		<%for i in 0..@num_environments-1 do%>
-			<%if @environments[i].environmnt=="อื่นๆ ระบุ"%>
+			<%if @environments[i].environmnt.split(" ")[0]=="อื่นๆ"%>
 				<option value='<%=@environments[i].id%>' selected="true"><%=@environments[i].environmnt%></option>
 			<%else%>
 				<option value='<%=@environments[i].id%>'><%=@environments[i].environmnt%></option>
@@ -412,7 +412,7 @@ $(function(){
 		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :failurestatus_etc%></td>
 	<%else%>
 		<%for i in 0..@num_functions-1 do%>
-			<%if @functions[i].function=="อื่นๆ ระบุ"%>
+			<%if @functions[i].function.split(" ")[0]=="อื่นๆ"%>
 				<option value='<%=@functions[i].id%>' selected="true"><%=@functions[i].function%></option>
 			<%else%>
 				<option value='<%=@functions[i].id%>'><%=@functions[i].function%></option>
@@ -441,7 +441,7 @@ $(function(){
 		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :failuredetail_etc%></td>
 	<%else%>
 		<%for i in 0..@num_details-1 do%>
-			<%if @details[i].detail=="อื่นๆ ระบุ"%>
+			<%if @details[i].detail.split(" ")[0]=="อื่นๆ"%>
 				<option value='<%=@details[i].id%>' selected="true"><%=@details[i].detail%></option>
 			<%else%>
 				<option value='<%=@details[i].id%>'><%=@details[i].detail%></option>
@@ -616,7 +616,7 @@ $(function(){
         <td><select id='failurepart' name = 'failurepart'>
 		<option value=""></option>
 	<%if !a.nil?%>
-		<%if @groups[a].groupname!="อื่นๆ ระบุ"%>
+		<%if @groups[a].groupname.split(" ")[0]!="อื่นๆ"%>
 		  <%for i in 0..@num_parts[a]-1 do%>
 			<%if @failureres.failurepart==@parts[a][i].part%>
 				<option value='<%=@parts[a][i].part%>' selected="true"><%=@parts[a][i].part%></option>
@@ -663,7 +663,7 @@ $(function(){
 		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :failurereason_etc%></td>
 	<%else%>
 		<%for i in 0..@num_reason-1 do%>
-			<%if @reason[i].reason=="อื่นๆ ระบุ"%>
+			<%if @reason[i].reason.split(" ")[0]=="อื่นๆ"%>
 				<option value='<%=@reason[i].id%>' selected="true"><%=@reason[i].reason%></option>
 			<%else%>
 				<option value='<%=@reason[i].id%>'><%=@reason[i].reason%></option>
@@ -692,7 +692,7 @@ $(function(){
 		  </select></td><td>อื่นๆ ระบุ <%= text_field_tag :manage_etc%></td>
 	<%else%>
 		<%for i in 0..@num_manage-1 do%>
-			<%if @manage[i].manage=="อื่นๆ ระบุ"%>
+			<%if @manage[i].manage.split(" ")[0]=="อื่นๆ"%>
 				<option value='<%=@manage[i].id%>' selected="true"><%=@manage[i].manage%></option>
 			<%else%>
 				<option value='<%=@manage[i].id%>'><%=@manage[i].manage%></option>
