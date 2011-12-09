@@ -1,6 +1,8 @@
 Egat::Application.routes.draw do
 
 
+  get "transformer_chart/chart"
+
    resources :manufacturing do
 	collection do
 		get "index"
