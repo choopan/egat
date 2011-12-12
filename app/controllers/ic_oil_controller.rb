@@ -81,7 +81,7 @@ def update_payment_cost
 	@calresult[:Y3] = UpdatePrice.get_y3().round()
 	@calresult[:Y4] = (avgD/@calresult[:Y2]).to_i
 	@calresult[:Y5] = ((avgD * UpdatePrice.get_sumDC200())/UpdatePrice.get_sumD()) + (x1 * @calresult[:Y4]) + ((x7 + @calresult[:Y2])/2)
-	@calresult.update_attributes(@calresult)
+	@calresult.update_attributes(@calresult.attributes)
 	redirect_to("/ic_oil/payment_list")
 end
 
