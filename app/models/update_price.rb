@@ -39,7 +39,7 @@ class UpdatePrice < ActiveRecord::Base
 	def self.get_sumD()
 		min = order("quantity").first.quantity
 		max = order("quantity").last.quantity
-		where("quantity != '#{min}' and quantity != '#{max}'").sum("quantity").to_f
+		where("quantity != '#{min}' and quantity != '#{max}'").sum("quantity").to_f 
 	    rescue Exception
 		return nil
 	end
