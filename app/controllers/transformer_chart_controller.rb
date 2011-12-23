@@ -35,6 +35,18 @@ class TransformerChartController < ApplicationController
   end
 
   def report_transformer
-	
+
+  end
+
+  def report_damaged
+
+  end
+
+  def report_transformer_f
+
+  end
+
+  def report_damaged_f
+
   end
 end

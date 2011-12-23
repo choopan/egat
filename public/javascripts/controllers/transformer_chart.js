@@ -98,6 +98,14 @@ $(function() {
   Cbox.setupComboxBox('transformer');
   Cbox.setupComboxBox('manufacturer');
   Cbox.setupComboxBox('group');
+  Cbox.setupComboxBox('environment');
+  Cbox.setupComboxBox('anomaly');
+  Cbox.setupComboxBox('detail_damage');
+  Cbox.setupComboxBox('device_group');
+  Cbox.setupComboxBox('device_damage');
+  Cbox.setupComboxBox('level_damage');
+  Cbox.setupComboxBox('cause');
+  Cbox.setupComboxBox('management');
   //Manu.setupTransformerNameComboxBox('area');
   //Manu.setupTransformerNameComboxBox('station');
   //Manu.setupTransformerNameComboxBox('transformer');
