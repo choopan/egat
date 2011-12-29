@@ -1,11 +1,8 @@
 <h1>รายงานตามผู้ใช้งานสำหรับข้อมูลความเสียหาย</h1>
 <%= form_tag('/transformer_chart/report_damaged_f', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
-<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ</font></b><br><br>
-รูปแบบการแสดงผล :&nbsp;&nbsp;<input type="radio" name="chart" checked value="1">&nbsp;กาฟวงกลม&nbsp;&nbsp;<input type="radio" name="chart" value="2">&nbsp;กาฟแท่ง<br><br>
-หน่วยการแสดงผล :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="unit" checked value="1">&nbsp;จำนวน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="unit" value="2">&nbsp;เปอร์เซ็นต์</p>
+<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ (เพียงหนึ่งเงื่อนไขเท่านั้น)</font></b><br><br></p>
 
-
-<p><b><font color="#56a86f">เลือกเงื่อนไข (เพียงหนึ่งเงื่อนไขเท่านั้น)</font></b><br><br>
+<p>
 อายุ: เริ่มต้น&nbsp;&nbsp;<input type="text" name='start_old' value=0><br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สิ้นสุด&nbsp;&nbsp;<input type="text" name='end_end' value=0></p>
 

@@ -138,7 +138,7 @@ $(document).ready(function(){
   line3 = [['Cup Holder Pinion Bob',(7*100/(7+9+15+12+3))], ['Generic Fog Lamp',(9*100/(7+9+15+12+3))], ['HDTV Receiver',(15*100/(7+9+15+12+3))], ['8 Track Control Module',(12*100/(7+9+15+12+3))], [' Sludge Pump Fourier Modulator', (3*100/(7+9+15+12+3))]];
   plot3 = $.jqplot('chart', [line3], {
 	  title: '<%=@titles%>',
-	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns:3}},
+	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
         }
@@ -163,7 +163,7 @@ $('#chart').bind('jqplotDataHighlight',
 	 line4 = [['Cup Holder Pinion Bob',7], ['Generic Fog Lamp',9], ['HDTV Receiver',15], ['8 Track Control Module',12], [' Sludge Pump Fourier Modulator', 3]];
 	 plot4 = $.jqplot('chart', [line4], {
 	  title: '<%=@titles%>',
-	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns:3}},
+	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
         }
@@ -190,11 +190,11 @@ $('#chart').bind('jqplotDataHighlight',
 
 <h1>แสดงกราฟความสัมพันธ์</h1>
 	<%if((params[:chart]==nil and params[:unit]==nil) or (params[:chart]=="1" and params[:unit]=="1") or (params[:chart]=="1" and params[:unit]=="2"))%>
-		<div class='jqplot' id='chart' class='graph' style='height:300px; width:300px;'></div>
+		<center><div class='jqplot' id='chart' class='graph' style='height:300px; width:300px;'></div></center><br><br><br><br><br>
 		<div><span>Moused Over: </span><span id="info"><font color="#0000ff">Nothing</font></span></div>
 	<%else%>
-		<div class='jqplot' id='chart' class='graph' style='height:320px; width:400px;'></div>
-	<%end%><br>
+		<center><div class='jqplot' id='chart' class='graph' style='height:320px; width:400px;'></div></center><br>
+	<%end%>
 <div class='grid_10 prefix_0 accessories' >
 <form name="form">
 <table><tr><td><b>เลือกรูปกราฟ</b></td><td></td><td></td></tr>
