@@ -1,0 +1,71 @@
+label.inlinetitle {
+  width: 50px;
+  display: inline !important;
+  float: left;
+  font-size: 14px
+}
+
+label.inline {
+  width: 300px;
+  display: inline !important;
+  float: left;
+  font-size: 14px
+}
+
+select, .accessories input[type="text"] {
+        width: 80px;
+}
+
+select, .accessories input[type="text"] {
+        display: inline !important;
+}
+
+
+select, .chemicals input[type="text"] {
+        width: 200px;
+}
+
+select, .chemicals input[type="text"] {
+        display: inline !important;
+}
+
+select, .chemicals input[type="file"] {
+        width: 200px;
+}
+
+select, .chemicals input[type="file"] {
+        display: inline !important;
+}
+
+
+
+a:hover {
+        text-decoration:none;
+}
+
+a.edit, a.delete, a.add {
+        padding-left:25px;
+        background-repeat:no-repeat;
+        background-position:left center;
+}
+a.add {
+        background-image:url(/images/icons/add.png)
+}
+a.edit {
+        background-image:url(/images/icons/page_edit.png)
+}
+a.delete {
+        background-image:url(/images/icons/delete.png)
+}
+
+input[type="submit"].cupid-green, button.cupid-green {
+  width: 370px;
+}
+
+input[type="password"] {
+  width: 200px;
+}
+input[type="text"] {
+  width: 200px;
+}
+

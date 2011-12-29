@@ -9,4 +9,10 @@ class ManufacturerTx < ActiveRecord::Base
     	     rescue Exception
       		return nil
   	end
+
+	def self.getname(id)
+		where("id = '#{id}'").first.manufacturer
+    	     rescue Exception
+      		return nil
+  	end
 end

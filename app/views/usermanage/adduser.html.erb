@@ -1,0 +1,46 @@
+<h1>เพิ่มบัญชีผู้ใช้งานระบบ</h1>
+<%= form_for @user, :url => {:action => "createuser"}, :html => {:method => 'post'} do |f| %>
+<div class='grid_14 chemicals' >
+  <table>
+    <tr>
+        <td><B>Login :</B></td><td><%= f.text_field :login, :size => 15 %></td>
+        <td><B>Password :</B></td><td><%= f.password_field :password, :size => 15 %></td>
+    </tr>
+    <tr>
+        <td><B>Firstname :</B></td><td><%= f.text_field :firstname, :size => 15 %></td>
+	<td><B>Lastname :</B></td><td><%= f.text_field :lastname, :size => 15 %></td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td colspan=4>สิทธิการใช้งาน</td>
+    </tr>
+    <tr>
+      <td></td><td><%= f.check_box :priv1  %> Visual Inspection</td>
+      <td colspan=2><%= f.check_box :priv5 %> ข้อมูลพื้นฐานของหม้อแปลง</td>
+    </tr>
+    <tr>
+      <td></td><td><%= f.check_box  :priv2 %> ผลทดสอบทางน้ำมัน</td>
+      <td colspan=2><%= f.check_box :priv6 %> การย้ายหม้อแปลง</td>
+    </tr>
+   <tr>
+      <td></td><td><%= f.check_box  :priv3 %> ผลทดสอบทางไฟฟ้า</td>
+      <td colspan=2><%= f.check_box :priv7 %> รายงานความเสียหายของหม้อแปลง</td>
+    </tr>
+   <tr>
+      <td></td><td><%= f.check_box  :priv4 %> บำรุงรักษา OLTC</td>
+      <td colspan=2><%= f.check_box :priv8 %> จัดการบัญชีผู้ใช้งานระบบ</td>
+    </tr>
+   <tr>
+      <td></td><td><%= f.check_box  :priv9 %> center administrator</td>
+      <td colspan=2></td>
+    </tr>
+
+
+  </table>
+</div>
+<div class='grid_12 prefix_3' >
+<p>
+<%= submit_tag "Save", :class => 'cupid-green' %>
+</p>
+</div>
+<% end %>
