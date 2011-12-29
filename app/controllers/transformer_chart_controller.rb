@@ -52,7 +52,11 @@ class TransformerChartController < ApplicationController
   end
 
   def report_damaged
-
+	if params[:count]==nil
+		@count=1
+	else
+		@count=params[:count].to_i+1
+	end
   end
 
   def report_transformer_f
@@ -60,6 +64,10 @@ class TransformerChartController < ApplicationController
   end
 
   def report_damaged_f
-
+	if params[:count]==nil
+		@count=1
+	else
+		@count=params[:count].to_i+1
+	end
   end
 end
