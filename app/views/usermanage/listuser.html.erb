@@ -1,0 +1,50 @@
+<h1>การจัดการผู้ใช้งานในระบบ</h1>
+<p align=center>
+  <%= link_to("เพิ่มผู้ใช้งานในระบบ", "/usermanage/adduser", :class => 'add') %> 
+</p>
+<p><div class='grid_16'>&nbsp;</div></p>
+<p>
+<div id="users" class="grid_14 prefix_1">
+  <table id="user_table">
+    <thead>
+      <tr>
+      <th>Login</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th width=160></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if !@users.blank? %>
+        <% for user in @users %>
+	<tr>
+            <td><%= user.login %></td>
+            <td><%= user.firstname %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.priv1 %> </td>
+            <td><%= user.priv2 %> </td>
+            <td><%= user.priv3 %> </td>
+            <td><%= user.priv4 %> </td>
+            <td><%= user.priv5 %> </td>
+            <td><%= user.priv6 %> </td>
+            <td><%= user.priv7 %> </td>
+            <td><%= user.priv8 %> </td>
+            <td><%= user.priv9 %> </td>
+            <td><%= link_to("Edit", "/usermanage/edituser?id=#{user.id}", :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to("Delete", "/usermanage/deleteuser?id=#{user.id}", :class => 'delete') %> </td>
+	</tr>
+	<%end%>
+      <%end%>
+    </tbody>
+   </table>
+</div>
+</p>

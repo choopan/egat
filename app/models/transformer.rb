@@ -1444,4 +1444,82 @@ class Transformer < ActiveRecord::Base
     	rescue Exception
       	return nil
   end
+
+  def self.graph1(start_year, end_year)
+     result = where("DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 >= #{start_year} and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 <= #{end_year}").select("DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 AS noyear, count(*) AS numtx").group("noyear")
+
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.noyear
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+ 
+  end
+
+  def self.graph2
+      result   = find_by_sql("SELECT manufacuturer, count(*) AS numtx FROM `transformer` LEFT OUTER JOIN \
+                              (SELECT distinct id, manufacturer from manufacturer_txes) A  ON transformer.brand_id = A.id group by manufacturer")
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.manuname
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+  def self.graph3
+      result   = find_by_sql("SELECT region, count(*) AS numtx FROM `transformer` LEFT OUTER JOIN \
+                              (SELECT distinct name, region from stations) A  ON transformer.station = A.name group by region")
+
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.region
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
 end
