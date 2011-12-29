@@ -9,10 +9,16 @@ class TransformerChartController < ApplicationController
 	else
 		@count=params[:count].to_i+1
 	end
+
+
 	if params[:charts]=='1'
 		@titles="จำนวนหม้อแปลงเมื่อเทียบกับอายุการใช้งาน"
 	elsif params[:charts]=='2'
 		@titles="จำนวนหม้อแปลงกับบริษัทผู้ผลิต"
+
+
+
+
 	elsif params[:charts]=='3'
 		@titles="จำนวนหม้อแปลงในแต่ละเขตสถานีไฟฟ้า"
 	elsif params[:charts]=='4'

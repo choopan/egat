@@ -33,6 +33,8 @@
 class Transformer < ActiveRecord::Base
   set_table_name "transformer"
   belongs_to :brand
+  belongs_to :station, :class_name => "Station",  :foreign_key => "station_id"
+
   has_many :transformer_information
   has_many :oil_dgas
   has_many :oltc_dgas
@@ -46,6 +48,11 @@ class Transformer < ActiveRecord::Base
   has_many :bushing_tests
   has_many :arresters
   delegate :name, :to => :brand, :prefix => true
+  #delegate :station, :to => :station, :prefix => true
+
+  def self.getStationRegionName
+	station.region	
+  end
 
   def self.find_all_by_transformer_name_initials(names)
     conditions = "transformer_name like ?"
