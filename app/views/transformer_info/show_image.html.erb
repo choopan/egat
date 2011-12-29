@@ -19,7 +19,6 @@
       </p>
       <p>
 	<%= label_tag :brand_id, "ชื่อบริษัทผู้ผลิต", :class => 'inline' %>
-	<%= text_field_tag 'brand_id',@transformer.txname%>
 	<%if !@transformer.brand_id.nil?%>
 		<%if @num_brand_ids!=0%>
 	  		<%for i in 0..@num_brand_ids-1 do%>

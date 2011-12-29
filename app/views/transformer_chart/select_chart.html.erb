@@ -50,13 +50,13 @@ function redirect() //onClick(href)
 		}
 	}
 	if((chart1=="1")&&(unit1=="1")){
-		window.location = "/transformer_chart/select_chart?chart=1&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/select_chart?chart=1&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>&start_old1=<%= params[:start_old1]%>&end_old1=<%= params[:end_old1] %>&start_old2=<%= params[:start_old2]%>&end_old2=<%= params[:end_old2] %>";
 	}else if((chart1=="1")&&(unit1=="2")){
-		window.location = "/transformer_chart/select_chart?chart=1&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/select_chart?chart=1&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>&start_old1=<%= params[:start_old1]%>&end_old1=<%= params[:end_old1] %>&start_old2=<%= params[:start_old2]%>&end_old2=<%= params[:end_old2] %>";
 	}else if((chart1=="2")&&(unit1=="1")){
-		window.location = "/transformer_chart/select_chart?chart=2&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/select_chart?chart=2&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>&start_old1=<%= params[:start_old1]%>&end_old1=<%= params[:end_old1] %>&start_old2=<%= params[:start_old2]%>&end_old2=<%= params[:end_old2] %>";
 	}else{
-		window.location = "/transformer_chart/select_chart?chart=2&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/select_chart?chart=2&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>&start_old1=<%= params[:start_old1]%>&end_old1=<%= params[:end_old1] %>&start_old2=<%= params[:start_old2]%>&end_old2=<%= params[:end_old2] %>";
 	}
 //	window.location = href;
 	return false;
@@ -68,7 +68,11 @@ $(document).ready(function(){
  
 
 <%if params[:chart] == "2" and params[:unit] == "2"%>
-  line1 = [['Cup Holder Pinion Bob',(7*100/(7+9+15+12+3))], ['Generic Fog Lamp',(9*100/(7+9+15+12+3))], ['HDTV Receiver',(15*100/(7+9+15+12+3))], ['8 Track Control Module',(12*100/(7+9+15+12+3))], [' Sludge Pump Fourier Modulator', (3*100/(7+9+15+12+3))]];
+  line1 = [
+  <% for i in 0..(@graphpercent.size-1) do %>
+      [ '<%= @graphpercent[i][0] %>', <%= @graphpercent[i][1] %> ],
+  <% end %>
+  ];
   bar1 = $.jqplot('chart', [line1], {
     title: '<%=@titles%>',
     series:[{renderer:$.jqplot.BarRenderer}],
@@ -102,7 +106,12 @@ $(document).ready(function(){
     }
   });
 <% elsif params[:chart] == "2" and params[:unit] == "1" %>
-  line2 = [['Cup Holder Pinion Bob', 7], ['Generic Fog Lamp', 9], ['HDTV Receiver', 15], ['8 Track Control Module', 12],[' Sludge Pump Fourier Modulator', 3]];
+
+  line2 = [
+  <% for i in 0..(@graphdata.size-1) do %>
+      [ '<%= @graphdata[i][0] %>', <%= @graphdata[i][1] %> ],
+  <% end %>
+  ];
   bar2 = $.jqplot('chart', [line2], {
     title: '<%=@titles%>',
      series:[{renderer:$.jqplot.BarRenderer}],
@@ -135,7 +144,11 @@ $(document).ready(function(){
   });
 
 <% elsif params[:chart] == "1" and params[:unit] == "2" %>
-  line3 = [['Cup Holder Pinion Bob',(7*100/(7+9+15+12+3))], ['Generic Fog Lamp',(9*100/(7+9+15+12+3))], ['HDTV Receiver',(15*100/(7+9+15+12+3))], ['8 Track Control Module',(12*100/(7+9+15+12+3))], [' Sludge Pump Fourier Modulator', (3*100/(7+9+15+12+3))]];
+  line3 = [
+  <% for i in 0..(@graphpercent.size-1) do %>
+      [ '<%= @graphpercent[i][0] %>', <%= @graphpercent[i][1] %> ],
+  <% end %>
+  ];
   plot3 = $.jqplot('chart', [line3], {
 	  title: '<%=@titles%>',
 	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
@@ -160,7 +173,11 @@ $('#chart').bind('jqplotDataHighlight',
     ); 
 
 <%else%>
-	 line4 = [['Cup Holder Pinion Bob',7], ['Generic Fog Lamp',9], ['HDTV Receiver',15], ['8 Track Control Module',12], [' Sludge Pump Fourier Modulator', 3]];
+  line4 = [
+  <% for i in 0..(@graphdata.size-1) do %>
+      [ '<%= @graphdata[i][0] %>', <%= @graphdata[i][1] %> ],
+  <% end %>
+  ];
 	 plot4 = $.jqplot('chart', [line4], {
 	  title: '<%=@titles%>',
 	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
@@ -190,11 +207,13 @@ $('#chart').bind('jqplotDataHighlight',
 
 <h1>แสดงกราฟความสัมพันธ์</h1>
 	<%if((params[:chart]==nil and params[:unit]==nil) or (params[:chart]=="1" and params[:unit]=="1") or (params[:chart]=="1" and params[:unit]=="2"))%>
-		<center><div class='jqplot' id='chart' class='graph' style='height:300px; width:300px;'></div></center><br><br><br><br><br>
+
+		<div class='jqplot' id='chart' class='graph' style='height:400px; width:400px;'></div>
 		<div><span>Moused Over: </span><span id="info"><font color="#0000ff">Nothing</font></span></div>
 	<%else%>
-		<center><div class='jqplot' id='chart' class='graph' style='height:320px; width:400px;'></div></center><br>
-	<%end%>
+		<div class='jqplot' id='chart' class='graph' style='height:420px; width:800px;'></div>
+	<%end%><br>
+
 <div class='grid_10 prefix_0 accessories' >
 <form name="form">
 <table><tr><td><b>เลือกรูปกราฟ</b></td><td></td><td></td></tr>
