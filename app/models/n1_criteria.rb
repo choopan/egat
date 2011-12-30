@@ -12,6 +12,8 @@
 #
 
 class N1Criteria < ActiveRecord::Base
+  set_table_name "n1_criterias"
+
   has_many :transformer_information
   before_save :insert_null_if_empty
 

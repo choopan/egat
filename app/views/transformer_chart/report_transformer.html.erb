@@ -1,0 +1,33 @@
+<h1>รายงานตามผู้ใช้งานสำหรับหม้อแปลงไฟฟ้า</h1>
+<%= form_tag('/transformer_chart/report_damaged', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
+<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ</font></b><br><br></p>
+
+<div class='grid_7 prefix_0 accessories'><p><table>
+	<tr><td>เขต :</td><td>
+			<select id="area" name="area">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+	<tr><td>สถานีไฟฟ้า :</td><td>
+			<select id="station" name="station">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
+			<select id="transformer" name="transformer">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+	<tr><td>ชื่อบริษัทผู้ผลิต :</td><td>
+			<select id="manufacturer" name="manufacturer">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+</table></p>
+<p><b><font color="#56a86f">เลือกการแบ่งกลุ่ม (แบ่งตาม)</font></b><br><br>
+	<select id="group" name="group">
+		<option value="#">Please Select....</option>
+	</select><br><br>
+<%= submit_tag "Ok", :class => "cupid-green" %>
+</p></div>
+<%end%>

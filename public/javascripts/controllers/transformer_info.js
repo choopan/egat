@@ -312,7 +312,16 @@ function setCalendar(){
                      buttonImage: "/images/icon_calendar.gif",
                      buttonImageOnly : true
                 });
+
+                $("#first_energize").datepicker({
+                     dateFormat: 'dd/mm/yy',
+                     showOn : "button",
+                     buttonImage: "/images/icon_calendar.gif",
+                     buttonImageOnly : true
+                });
+ 
 }
+        
 
 $(function() {
   Cbox.setupComboxBox('station');

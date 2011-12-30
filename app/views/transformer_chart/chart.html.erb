@@ -1,0 +1,20 @@
+<h1>รายงานมาตรฐาน</h1>
+<%= form_tag('/transformer_chart/select_chart', :method=>'post', :multipart => true, :name => 'transfor_name') do %>
+<p><table><tr><td><b><%= radio_button_tag 'charts', '1', true %>&nbsp;แสดงความสัมพันธ์ของจำนวนหม้อแปลงเมื่อเทียบกับอายุการใช้งาน</b><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ช่วงอายุ&nbsp;&nbsp;เริ่มต้น : <input type='text' name='start_old1' value=0><br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สิ้นสุด : <input type='text' name='end_old1' value=0></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '2'%>&nbsp;แสดงความสัมพันธ์ของจำนวนหม้อแปลงกับบริษัทผู้ผลิต</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '3'%>&nbsp;แสดงความสัมพันธ์ของจำนวนหม้อแปลงในแต่ละเขตสถานีไฟฟ้า</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '4'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามกลุ่มอุปกรณ์</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '5'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามชิ้นส่วนอุปกรณ์</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '6'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามรายละเอียดของความผิดปกติ</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '7'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามสาเหตุที่แท้จริง</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '8'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามระดับความรุนแรง</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '9'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามบริษัทผู้ผลิต</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '10'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามเขต</b></td></tr>
+<tr><td><b><%= radio_button_tag 'charts', '11'%>&nbsp;แสดงจำนวนครั้งที่เกิดความเสียหายแบ่งตามอายุการใช้งาน</b><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ช่วงอายุ&nbsp;&nbsp;เริ่มต้น : <input type='text' name='start_old2' value=0><br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สิ้นสุด : <input type='text' name='end_old2' value=0></td></tr>
+<tr><td><%= submit_tag "Show", :class => "cupid-green"%></td></tr>
+</table></p>
+<%end%>

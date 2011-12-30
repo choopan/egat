@@ -48,7 +48,7 @@ def update_payment_cost
 	end
 
 
-	x6 = (x4/100) * (UpdatePrice.get_sumDC200() / UpdatePrice.get_sumD())
+	x6 = (x4/100) * (UpdatePrice.get_sumDC200() / UpdatePrice.get_sumD()) 
 	params[:ic_allcost][:x6] = x6
 
 	################Calculate x7####################
@@ -80,8 +80,8 @@ def update_payment_cost
 	@calresult[:Y2] = (Math.sqrt((2 * avgD * x1) / x7)).round()
 	@calresult[:Y3] = UpdatePrice.get_y3().round()
 	@calresult[:Y4] = (avgD/@calresult[:Y2]).to_i
-	@calresult[:Y5] = ((avgD * UpdatePrice.get_sumDC200())/UpdatePrice.get_sumD()) + (x1 * @calresult[:Y4]) + ((x7 + @calresult[:Y2])/2)
-	@calresult.update_attributes(@calresult)
+	@calresult[:Y5] = ((avgD * UpdatePrice.get_sumDC200())/UpdatePrice.get_sumD()) + (x1 * @calresult[:Y4]) + ((x7 * @calresult[:Y2])/2)
+	@calresult.update_attributes(@calresult.attributes)
 	redirect_to("/ic_oil/payment_list")
 end
 

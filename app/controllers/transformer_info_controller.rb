@@ -486,7 +486,7 @@ class TransformerInfoController < ApplicationController
 	end
 	failure[:counterOLTC] = params[:counterOLTC].to_i
 	environment = FdEnvironmnt.get_environment_id(params[:environment].to_i)
-	if environment.environmnt.split(" ")[0]=="อื่นๆ"
+	if environment.environmnt.split(" ")[0] =="อื่นๆ"
 		failure[:environment] = params[:environment_etc]
 	else
 		failure[:environment] = environment.environmnt
@@ -798,7 +798,11 @@ class TransformerInfoController < ApplicationController
 	end
 
 	#-------------transformer_accessory----------
-	
+	#transformer_accessory = TransformerAccessory.get_transformer_accessories_id(params[:accessories_id])
+	#if transformer_accessory.nil?
+	#	create=1
+	#	transformer_accessory = TransformerAccessory.new
+	#end	
 	transformer[:bushing_hv_manu] = params[:bushing_hv_manu].to_i
 	transformer[:bushing_hv_type] = params[:bushing_hv_type]
 	transformer[:bushing_hv_year] = params[:bushing_hv_year].to_i
@@ -842,9 +846,18 @@ class TransformerInfoController < ApplicationController
 	transformer[:arrester_tv_y3] = params[:arrester_tv_y3]
 	transformer[:arrester_tv_gapless] = params[:arrester_tv_gapless].to_i
 
-	transformer[:oltc_manu] = params[:oltc_manu].to_i
+	transformer[:oltc_manufacturer] = params[:oltc_manufacturer].to_i
 	transformer[:oltc_type] = params[:oltc_type]
 	transformer[:oltc_year] = params[:oltc_year].to_i
+	#if create==1
+	#	transformer_accessory.save
+	#	tranformer_accessory1 = TransformerAccessory.transformer_getid_instantaneous()
+	#	transformer[:transformer_accessories_id] = tranformer_accessory1.id
+	#	transformer.update_attributes(transformer.attributes)
+	#else
+	#	transformer_accessory.update_attributes(transformer_accessory.attributes)
+		transformer.update_attributes(transformer.attributes)
+	#end
 
 	if params[:image]!=nil
 		TxImage.save(transformer.id.to_s,params[:image])

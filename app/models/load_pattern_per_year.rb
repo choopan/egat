@@ -21,7 +21,7 @@ class LoadPatternPerYear < ActiveRecord::Base
   before_save :assign_score
   validate :sum_must_not_more_than_12_months
 
-  protected
+  #choopan protected
 
   def sum_must_not_more_than_12_months
     sum = lteq_0_pt_6 + gt_0_pt_6_and_lteq_1 + gt_1_and_lteq_1_pt_2 + 

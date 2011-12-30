@@ -26,7 +26,7 @@
   .grid_8
     %dt OLTC Manufacturer
     %dd
-      = " : " + (transformer.oltc_manufacturer.nil? ? '-' : transformer.oltc_manufacturer)
+      = " : " + transformer_oltc_manufacturer(transformer.oltc_manufacturer)
   .grid_8
     %dt OLTC Type
     %dd

@@ -1,5 +1,17 @@
 Egat::Application.routes.draw do
 
+  resources :usermanage do
+    collection do
+      get "listuser"
+      get "adduser"
+      post "createuser"
+      get "edituser"
+      post "updateuser"
+      get "deleteuser"
+    end
+  end
+
+  get "transformer_chart/chart"
 
    resources :manufacturing do
 	collection do
@@ -30,7 +42,7 @@ Egat::Application.routes.draw do
 	end
   end
 
-  resource :oil_calculates do
+  resource :oil_calculate do
   end
 
 

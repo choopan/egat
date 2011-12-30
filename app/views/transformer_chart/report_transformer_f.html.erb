@@ -1,0 +1,90 @@
+<h1>รายงานตามผู้ใช้งานสำหรับข้อมูลความเสียหาย</h1>
+<%= form_tag('/transformer_chart/report_damaged_f', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
+<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ (เพียงหนึ่งเงื่อนไขเท่านั้น)</font></b><br><br></p>
+
+<p>
+อายุ: เริ่มต้น&nbsp;&nbsp;<input type="text" name='start_old' value=0><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สิ้นสุด&nbsp;&nbsp;<input type="text" name='end_end' value=0></p>
+
+
+<div class='grid_9 prefix_0 accessories' ><p><table>
+	<tr><td>เขต :</td><td>
+			<select id="area" name="area">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>สถานีไฟฟ้า :</td><td>
+			<select id="station" name="station">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
+			<select id="transformer" name="transformer">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>สภาพแวดล้อม :</td><td>
+			<select id="environment" name="environment">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>สภาวะการใช้งานขณะพบความผิดปกติ :</td><td>
+			<select id="anomaly" name="anomaly">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>รายละเอียดความผิดปกติหรือเสียหาย :</td><td>
+			<select id="detail_damage" name="detail_damage">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>กลุ่มอุปกรณ์ :</td><td>
+			<select id="device_group" name="device_group">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>ชิ้นส่วนที่เสียหายหรือผิดปกติ :</td><td>
+			<select id="device_damage" name="device_damage">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>ระดับความเสียหาย :</td><td>
+			<select id="level_damage" name="level_damage">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>สาเหตุที่แท้จริง :</td><td>
+			<select id="cause" name="cause">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>การจัดการ :</td><td>
+			<select id="management" name="management">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+	<tr><td>ชื่อบริษัทผู้ผลิต :</td><td>
+			<select id="manufacturer" name="manufacturer">
+				<option value="#">Please Select....</option>
+			</select>
+	</td></tr>
+
+</table></p>
+<p><b><font color="#56a86f">เลือกการแบ่งกลุ่ม (แบ่งตาม)</font></b><br><br>
+	<select id="group" name="group">
+		<option value="#">Please Select....</option>
+	</select><br><br>
+<%= submit_tag "Ok", :class => "cupid-green" %>
+</p></div>
+<%end%>
