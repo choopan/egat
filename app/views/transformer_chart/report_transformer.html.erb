@@ -1,32 +1,38 @@
 <h1>รายงานตามผู้ใช้งานสำหรับหม้อแปลงไฟฟ้า</h1>
-<%= form_tag('/transformer_chart/report_damaged', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
-<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ</font></b><br><br></p>
+<%= form_for :report do |f| %>
 
-<div class='grid_7 prefix_0 accessories'><p><table>
+<%#= form_tag('/transformer_chart/report_damaged', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
+<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ</font></b><br>
+
+<div class='grid_7 prefix_0 accessories'>
+<table>
 	<tr><td>เขต :</td><td>
-			<select id="area" name="area">
-				<option value="#">Please Select....</option>
-			</select>
+          <%=
+            f.collection_select(:area, @regions, "region", "region", {:prompt => 'ทั้งหมด', :selected => params[:area]} )
+          %>
 	</td></tr>
 	<tr><td>สถานีไฟฟ้า :</td><td>
-			<select id="station" name="station">
-				<option value="#">Please Select....</option>
-			</select>
+          <%=
+            f.collection_select(:station, @stations, "id", "name", {:prompt => 'ทั้งหมด'} )
+          %>
 	</td></tr>
 	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
-			<select id="transformer" name="transformer">
-				<option value="#">Please Select....</option>
-			</select>
+          <%=
+            f.collection_select(:transformer, @txnames, "id", "transformer_name", {:prompt => 'ทั้งหมด'} )
+          %>
 	</td></tr>
 	<tr><td>ชื่อบริษัทผู้ผลิต :</td><td>
-			<select id="manufacturer" name="manufacturer">
-				<option value="#">Please Select....</option>
-			</select>
+          <%=
+            f.collection_select(:manufacturer, @manus, "id", "name", {:prompt => 'ทั้งหมด'} )
+          %>
 	</td></tr>
 </table></p>
 <p><b><font color="#56a86f">เลือกการแบ่งกลุ่ม (แบ่งตาม)</font></b><br><br>
 	<select id="group" name="group">
-		<option value="#">Please Select....</option>
+		<option value="0">เขต</option>
+		<option value="1">สถานีไฟฟ้า</option>
+		<option value="2">หม้อแปลงไฟฟ้า</option>
+		<option value="3">ชื่อบริษัทผู้ผลิต</option>
 	</select><br><br>
 <%= submit_tag "Ok", :class => "cupid-green" %>
 </p></div>
