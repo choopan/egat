@@ -1,7 +1,6 @@
 #encoding: utf-8
 class DpController < ApplicationController
   def edit
-    @x = session[:username]
     @dp = Dp.find(1)
     rescue Exception
       @dp = Dp.new

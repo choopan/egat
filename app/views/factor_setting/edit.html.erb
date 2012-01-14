@@ -1,4 +1,8 @@
 <h1>Factor Setting</h1>
+<% @factor[:unavailability] = number_with_precision(@factor[:unavailability], :precision => 5) %>
+<% @factor[:powerfactor]    = number_with_precision(@factor[:powerfactor], :precision => 5) %>
+
+
 <%= form_for @factor, :url => {:action => "update"}, :html => {:method => 'post'} do |f| %>
 <div class='grid_12 prefix_2 chemicals' >
    <p>

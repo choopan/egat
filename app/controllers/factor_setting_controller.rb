@@ -2,7 +2,9 @@
 class FactorSettingController < ApplicationController
   def edit
     @factor = FactorSetting.find_by_user_id(1)
+	
     if @factor.nil?
+	  
       @factor = FactorSetting.newrecord_user_id(1)   
     end
   end
