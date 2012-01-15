@@ -251,11 +251,8 @@ function displayform(a) {
 }
 
 
-$(function(){
-		setValueText1(); 
-	});
-	
-	function setValueText1(){
+
+function setValueText1(){
 		$("#downdatetime").datepicker({
                      dateFormat: 'dd/mm/yy',
 		     showOn : "button",
@@ -274,17 +271,12 @@ $(function(){
                      buttonImage: "/images/icon_calendar.gif",
 		     buttonImageOnly : true
                 });
-	}
+}
 
-
-
-/*$(function() {
-  PriceLoss.setupTransformerNameComboxBox('station_station');
-  Cbox.setupComboxBox('select_manufacturer');
-  Cbox.setupComboxBox('voltage');
-  Cbox.setupComboxBox('manufacturer_1');
-});*/
-
+$(function(){
+		setValueText1(); 
+});
+	
 </script>
 
 <h1>เพิ่มรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
@@ -418,7 +410,7 @@ $(function(){
 </tr>
 <tr>
         <td>กลุ่มชิ้นส่วนที่เสียหายหรือผิดปกติ</td>
-        <td><sele<select id='failuregroup' name='failuregroup'>
+        <td><select id='failuregroup' name='failuregroup'>
 		<option value=''></option>
 		<%if @num_group!=0%>
 		  <%for i in 0..@num_group-1 do%>

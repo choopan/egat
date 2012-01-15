@@ -2,11 +2,13 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: sqlserver
-  dsn: egat
-  mode: odbc
+  #dsn: egat
+  mode: dblib
+  dataserver: choopan-dell\PSU
   database: egat_production
   username: sa
   password: pingpong
+  encoding: utf8
  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

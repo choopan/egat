@@ -4,7 +4,7 @@
 <p>
   <%= f.label :station, "เขต" , :class => 'inlinetitle' %>
   <%=
-      @stations = Station.group("region").all
+      @stations = Station.select("region").group("region").all
       f.collection_select(:station, @stations, :region, :region, 
                           {:prompt => 'All', :selected => params[:region]})
   %>

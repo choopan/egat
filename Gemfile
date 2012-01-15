@@ -8,7 +8,8 @@ gem 'rails', '>= 3.1.0'
 #gem 'mysql2'
 
 gem 'activerecord-sqlserver-adapter'
-gem 'ruby-odbc'
+#gem 'ruby-odbc'
+gem 'tiny_tds'
 gem "win32-open3-19", :platforms => :mingw
 
 gem 'haml'
