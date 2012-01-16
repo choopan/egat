@@ -1,5 +1,7 @@
 Egat::Application.routes.draw do
 
+  get "login/login"
+
   resources :usermanage do
     collection do
       get "listuser"

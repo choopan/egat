@@ -304,6 +304,7 @@ class WeibullController < ApplicationController
   end
 
   def weibull_detail
+	@data_user = User.get_user(session[:user])
 	equipement = params[:equipement]
         voltage = params[:voltage]
 	type = params[:type]

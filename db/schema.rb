@@ -2590,7 +2590,6 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "arrester_tv_gapless"
     t.integer  "oltc_year"
     t.integer  "oltc_manufacturer"
-    t.integer  "station_id"
   end
 
   add_index "transformer", ["transformer_name"], :name => "transformer_name"
