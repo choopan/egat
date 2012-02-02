@@ -6,13 +6,14 @@
         	<% for ic in @icoilbalance %>
 		    <%if ic.Quantity >=0%>
 			<%if ic.Quantitypass !=nil%>
-				<%m=icoildate=ic.Recv_date.to_s.split('-')%>
+				<%d=ic.Recv_date.to_s.split(' ')%>
+				<%m=d[0].split('-')%>
 				<%initquatity+=ic.Quantitypass%>
 				<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center>-</center></td><td><center><%=ic.Quantitypass%></center></td></tr>
 			<%end%>
 		    <%else%>
-			<%icoildate=ic.Date.to_s%>
-		    	<%m=icoildate.split('-')%>
+			<%d=ic.Date.to_s.split(' ')%>
+		    	<%m=d[0].split('-')%>
 			<%initquatity+=ic.Quantity%>
 			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=initquatity%></center></td><td><center><%= -1*ic.Quantity%></center></td><td><center>-</center></td></tr>
 		    <%end%>

@@ -4,10 +4,10 @@ development:
   adapter: sqlserver
   #dsn: egat
   mode: dblib
-  dataserver: choopan-dell\PSU
+  dataserver: Admin-HP\PSU
   database: egat_production
-  username: sa
-  password: pingpong
+  username: egat
+  password: root
   encoding: utf8
  
 # Warning: The database defined as "test" will be erased and

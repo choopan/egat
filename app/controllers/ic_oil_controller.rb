@@ -323,8 +323,8 @@ end
 	 @icoilinit = IcOilInit.new
 	 @icoilinit_1 = "-"
 	else
-	 stringDate=@icoilinit[:Date].to_s
-	 m=stringDate.split('-')
+	 stringDate=@icoilinit[:Date].to_s.split(' ')
+	 m=stringDate[0].split('-')
 	 @icoilinit_1=m[2]+"/"+m[1]+"/"+m[0]
   	end
   end
@@ -341,8 +341,8 @@ end
 	@breadcrumb_link[3]  = ""
 	
 	@icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
-	stringDate=@icoilbalance[:Date].to_s
-	m=stringDate.split('-')
+	stringDate=@icoilbalance[:Date].to_s.split(' ')
+	m=stringDate[0].split('-')
 	@icoilbalance_1=m[2]+"/"+m[1]+"/"+m[0]
   end
 
@@ -418,7 +418,8 @@ end
 	else
 	 m=params[:Date].split('/')
 	 params[:ic_oil_init][:Date]=m[2]+"-"+m[1]+"-"+m[0]
-	 @icoilinit.update_attributes(@icoilinit.attributes)
+	 params[:ic_oil_init][:initquatity] = params[:InitQuantity]
+	 @icoilinit.update_attributes(params[:ic_oil_init])
   	end
 	redirect_to("/ic_oil/menu_store#option2")
   end
@@ -463,7 +464,7 @@ end
 	updateprice = UpdatePrice.get_updatepriceid(params[:id])
 	updateprice[:Year]=params[:Year].to_i
 	updateprice[:quantity]=params[:Quantity].to_i
-	updateprice[:Price]=params[:update_price][:Price].to_f
+	updateprice[:Price]=params[:Price].to_f
 	updateprice.update_attributes(updateprice.attributes)
 	redirect_to("/ic_oil/menu_withdraw#option2")
   end

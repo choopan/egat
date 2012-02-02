@@ -4,8 +4,8 @@
 <% if !@icoilbalance.blank? %>
 	<% for ic in @icoilbalance %>
 		<%if ic.Quantity < 0%>
-			<%icoildate=ic.Date.to_s%>
-			<%m=icoildate.split('-')%>
+			<%icoildate=ic.Date.to_s.split(' ')%>
+			<%m=icoildate[0].split('-')%>
 			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*ic.Quantity%></center></td>
 			<td><center>
                         <%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_withdraw",:id =>ic.id}, :class => 'edit'%>

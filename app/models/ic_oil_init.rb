@@ -9,6 +9,7 @@ class IcOilInit < ActiveRecord::Base
 #  created_at   :datetime
 #  updated_at   :datetime
 #
+attr_accessible :id, :Date, :InitQuantity, :created_at, :updated_at
 after_initialize :init
 	def init
 		self.Date ||= "2005-01-01"

@@ -6,7 +6,7 @@
 		<input type=hidden name="id" value=<%= @updateprice.id %>>
 	  <tr><td><b>ปีเบิกจ่ายน้ำมัน</b></td><td><input id="valuetext" type="text" name="Year" size="15" value= <%=@updateprice.Year%> /></td></tr>
 	  <tr><td><b>ปริมาณการเบิกทั้งปี [ถัง]</b></td><td><input type="text" name="Quantity" size="15" value=<%=@updateprice.quantity%> /></td></tr>
-	  <tr><td><b>ราคา [บาทต่อลิตร]</b></td><td><%= f.text_field :Price, :size => 15%></td></tr>
+	  <tr><td><b>ราคา [บาทต่อลิตร]</b></td><td><input type="text" name="Price" size="15" value=<%=number_with_precision(@updateprice.Price,:delimiter => ',', :precision => 2)%>></td></tr>
 	  <tr><td><%= f.submit "Save", :class => "cupid-green" %></td><td></td></tr>
 	</table>
 	<%end%>

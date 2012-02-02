@@ -14,6 +14,7 @@ class OilInputController < ApplicationController
   end
 
   def search
+	session[:username] = "korn"
     @transformers = Transformer.all
   end
 

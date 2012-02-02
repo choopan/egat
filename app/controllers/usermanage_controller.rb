@@ -13,8 +13,6 @@ class UsermanageController < ApplicationController
     redirect_to('/usermanage/listuser', :notice => 'บันทีกค่าเรียบร้อยแล้ว')
   end
 
-  def deleteuser
-  end
 
   def edituser
     @user = User.find(params[:id].to_i)
