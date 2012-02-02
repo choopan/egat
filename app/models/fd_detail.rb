@@ -1,3 +1,4 @@
+#encoding: utf-8
 class FdDetail < ActiveRecord::Base
 	def self.get_detail()
 	order("id")

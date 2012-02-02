@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,9 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228083821) do
+ActiveRecord::Schema.define(:version => 20120114042644) do
 
-  create_table "aging_product_factors", :force => true do |t|
+  create_table "aging_product_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "aging_products", :force => true do |t|
+  create_table "aging_products", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "u_start"
     t.integer  "u_end"
     t.integer  "start"
@@ -37,9 +38,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "color_id"
   end
 
-  add_index "aging_products", ["color_id"], :name => "index_aging_products_on_color_id"
-
-  create_table "application_uses", :force => true do |t|
+  create_table "application_uses", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,23 +47,24 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "score_message"
   end
 
-  create_table "arrester", :force => true do |t|
+  create_table "arrester", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "humidity"
+    t.float    "ambient_temp",  :limit => 53
+    t.float    "humidity",      :limit => 53
     t.integer  "is_gap_less"
     t.string   "mfghv"
     t.string   "mfglv"
     t.string   "mfgtv"
-    t.float    "rated_current"
-    t.float    "rated_ka"
-    t.float    "rated_kahv"
-    t.float    "rated_kalv"
-    t.float    "rated_katv"
-    t.float    "rated_kvhv"
-    t.float    "rated_kvlv"
-    t.float    "rated_kvtv"
-    t.float    "rated_voltage"
+    t.float    "rated_current", :limit => 53
+    t.float    "rated_ka",      :limit => 53
+    t.float    "rated_kahv",    :limit => 53
+    t.float    "rated_kalv",    :limit => 53
+    t.float    "rated_katv",    :limit => 53
+    t.float    "rated_kvhv",    :limit => 53
+    t.float    "rated_kvlv",    :limit => 53
+    t.float    "rated_kvtv",    :limit => 53
+    t.float    "rated_voltage", :limit => 53
     t.datetime "test_date"
     t.string   "typehv"
     t.string   "typelv"
@@ -73,23 +74,25 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "yearhv"
     t.string   "yearlv"
     t.string   "yeartv"
-    t.decimal  "perform_type",  :precision => 10, :scale => 0
-    t.decimal  "transformer",   :precision => 10, :scale => 0
+    t.decimal  "perform_type",                :precision => 10, :scale => 0
+    t.decimal  "transformer",                 :precision => 10, :scale => 0
   end
 
-  create_table "arrester_conditions", :force => true do |t|
+  create_table "arrester_conditions", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "score"
     t.string   "score_message"
     t.string   "testing"
-    t.float    "start"
-    t.float    "end"
+    t.float    "start",         :limit => 24
+    t.float    "end",           :limit => 24
     t.integer  "weight"
     t.string   "color_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "arrester_factors", :force => true do |t|
+  create_table "arrester_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -99,7 +102,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "arresters", :force => true do |t|
+  create_table "arresters", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "h1_serial_number"
     t.decimal  "h1_test_kv",               :precision => 10, :scale => 2
     t.decimal  "h1_current",               :precision => 10, :scale => 2
@@ -156,13 +160,14 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "y3_leakage_current",       :precision => 10, :scale => 2
     t.integer  "transformer_id"
     t.string   "test_type"
-    t.date     "test_date"
+    t.datetime "test_date"
     t.string   "work_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "brands", :force => true do |t|
+  create_table "brands", :id => false, :force => true do |t|
+    t.integer  "id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -170,48 +175,52 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "score_message"
   end
 
-  create_table "bus_voltage_hvs", :force => true do |t|
+  create_table "bus_voltage_hvs", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bus_voltage_lvs", :force => true do |t|
+  create_table "bus_voltage_lvs", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bus_voltages", :force => true do |t|
+  create_table "bus_voltages", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "start"
     t.integer  "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bushing", :force => true do |t|
+  create_table "bushing", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "amphv"
-    t.float    "amplv"
-    t.float    "amptv"
+    t.float    "amphv",        :limit => 53
+    t.float    "amplv",        :limit => 53
+    t.float    "amptv",        :limit => 53
     t.integer  "bilhv"
     t.integer  "billv"
     t.integer  "biltv"
-    t.float    "caphv"
-    t.float    "caplv"
-    t.float    "captv"
+    t.float    "caphv",        :limit => 53
+    t.float    "caplv",        :limit => 53
+    t.float    "captv",        :limit => 53
     t.integer  "classhv"
     t.integer  "classlv"
     t.integer  "classtv"
-    t.float    "kvhv"
-    t.float    "kvlv"
-    t.float    "kvtv"
+    t.float    "kvhv",         :limit => 53
+    t.float    "kvlv",         :limit => 53
+    t.float    "kvtv",         :limit => 53
     t.string   "manufachv"
     t.string   "manufaclv"
     t.string   "manufactv"
-    t.float    "pfhv"
-    t.float    "pflv"
-    t.float    "pftv"
+    t.float    "pfhv",         :limit => 53
+    t.float    "pflv",         :limit => 53
+    t.float    "pftv",         :limit => 53
     t.datetime "test_date"
     t.string   "typehv"
     t.string   "typelv"
@@ -220,11 +229,12 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "yearhv"
     t.string   "yearlv"
     t.string   "yeartv"
-    t.decimal  "perform_type", :precision => 10, :scale => 0
-    t.decimal  "transformer",  :precision => 10, :scale => 0
+    t.decimal  "perform_type",               :precision => 10, :scale => 0
+    t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "bushing_condition_factors", :force => true do |t|
+  create_table "bushing_condition_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -234,7 +244,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "created_at"
   end
 
-  create_table "bushing_conditions", :force => true do |t|
+  create_table "bushing_conditions", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "oil_color_hv",         :precision => 10, :scale => 0
     t.decimal "oil_color_lv",         :precision => 10, :scale => 0
     t.decimal "oil_color_tv",         :precision => 10, :scale => 0
@@ -253,19 +264,21 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "bushing_test_conditions", :force => true do |t|
+  create_table "bushing_test_conditions", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "score"
     t.string   "score_message"
     t.string   "testing"
-    t.float    "start"
-    t.float    "end"
+    t.float    "start",         :limit => 24
+    t.float    "end",           :limit => 24
     t.integer  "weight"
     t.string   "color_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bushing_test_factors", :force => true do |t|
+  create_table "bushing_test_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -275,10 +288,11 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "bushing_tests", :force => true do |t|
+  create_table "bushing_tests", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "transformer_id"
     t.string   "test_type"
-    t.date     "test_date"
+    t.datetime "test_date"
     t.string   "work_order"
     t.string   "h1_c1_serial_number"
     t.integer  "h1_c1_test_kv"
@@ -417,20 +431,21 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "cf",                  :precision => 10, :scale => 0
   end
 
-  add_index "bushing_tests", ["transformer_id"], :name => "index_bushing_tests_on_transformer_id"
-
-  create_table "chart_present", :force => true do |t|
+  create_table "chart_present", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
   end
 
-  create_table "colors", :force => true do |t|
+  create_table "colors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "conservator_tank", :force => true do |t|
+  create_table "conservator_tank", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -449,7 +464,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",        :precision => 10, :scale => 0
   end
 
-  create_table "conservator_tank_factors", :force => true do |t|
+  create_table "conservator_tank_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -459,7 +475,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "conservator_tanks", :force => true do |t|
+  create_table "conservator_tanks", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "breather_maintank",    :precision => 10, :scale => 0
     t.decimal "breather_oltc",        :precision => 10, :scale => 0
     t.decimal "corrosion_maintank",   :precision => 10, :scale => 0
@@ -473,7 +490,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "damage_of_properties", :force => true do |t|
+  create_table "damage_of_properties", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.string   "message"
     t.datetime "created_at"
@@ -487,7 +505,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "dga_gas_scores", :force => true do |t|
+  create_table "dga_gas_scores", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "score"
     t.string   "score_message"
     t.integer  "start"
@@ -498,7 +517,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "dgas", :force => true do |t|
+  create_table "dgas", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "gas"
     t.integer  "start"
     t.integer  "end"
@@ -509,13 +529,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "dps", :force => true do |t|
-    t.integer  "dp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "eco_option1s", :force => true do |t|
+  create_table "eco_option1s", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "user_id"
     t.integer  "transformer_id"
     t.integer  "transformer_price"
@@ -544,7 +559,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "eco_option2s", :force => true do |t|
+  create_table "eco_option2s", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "new_transformer_price"
     t.integer  "rated_power"
     t.integer  "noload_loss"
@@ -558,7 +574,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "eco_option3s", :force => true do |t|
+  create_table "eco_option3s", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "new_transformer_price"
     t.integer  "rated_power"
     t.integer  "noload_loss"
@@ -572,7 +589,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "elec_cor", :force => true do |t|
+  create_table "elec_cor", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.integer  "resistance"
     t.string   "test_by"
@@ -582,30 +600,31 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",  :precision => 10, :scale => 0
   end
 
-  create_table "elec_dcr", :force => true do |t|
+  create_table "elec_dcr", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "amph1h0_2r"
-    t.float    "amph1h0_max"
-    t.float    "amph1h0_min"
-    t.float    "amph1h0_n"
-    t.float    "amph2h0_2r"
-    t.float    "amph2h0_max"
-    t.float    "amph2h0_min"
-    t.float    "amph2h0_n"
-    t.float    "amph3h0_2r"
-    t.float    "amph3h0_max"
-    t.float    "amph3h0_min"
-    t.float    "amph3h0_n"
-    t.float    "ampx1x0"
-    t.float    "ampx2x0"
-    t.float    "ampx3x0"
-    t.float    "ampy1y2"
-    t.float    "ampy2y3"
-    t.float    "ampy3y1"
-    t.float    "humidity"
-    t.float    "oil_temp"
-    t.float    "rated_current"
+    t.float    "ambient_temp",  :limit => 53
+    t.float    "amph1h0_2r",    :limit => 53
+    t.float    "amph1h0_max",   :limit => 53
+    t.float    "amph1h0_min",   :limit => 53
+    t.float    "amph1h0_n",     :limit => 53
+    t.float    "amph2h0_2r",    :limit => 53
+    t.float    "amph2h0_max",   :limit => 53
+    t.float    "amph2h0_min",   :limit => 53
+    t.float    "amph2h0_n",     :limit => 53
+    t.float    "amph3h0_2r",    :limit => 53
+    t.float    "amph3h0_max",   :limit => 53
+    t.float    "amph3h0_min",   :limit => 53
+    t.float    "amph3h0_n",     :limit => 53
+    t.float    "ampx1x0",       :limit => 53
+    t.float    "ampx2x0",       :limit => 53
+    t.float    "ampx3x0",       :limit => 53
+    t.float    "ampy1y2",       :limit => 53
+    t.float    "ampy2y3",       :limit => 53
+    t.float    "ampy3y1",       :limit => 53
+    t.float    "humidity",      :limit => 53
+    t.float    "oil_temp",      :limit => 53
+    t.float    "rated_current", :limit => 53
     t.string   "remarkhv_2r"
     t.string   "remarkhv_max"
     t.string   "remarkhv_min"
@@ -614,69 +633,70 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "remarktv"
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "volth1h0_2r"
-    t.float    "volth1h0_max"
-    t.float    "volth1h0_min"
-    t.float    "volth1h0_n"
-    t.float    "volth2h0_2r"
-    t.float    "volth2h0_max"
-    t.float    "volth2h0_min"
-    t.float    "volth2h0_n"
-    t.float    "volth3h0_2r"
-    t.float    "volth3h0_max"
-    t.float    "volth3h0_min"
-    t.float    "volth3h0_n"
-    t.float    "voltx1x0"
-    t.float    "voltx2x0"
-    t.float    "voltx3x0"
-    t.float    "volty1y2"
-    t.float    "volty2y3"
-    t.float    "volty3y1"
-    t.float    "wdg_temp"
+    t.float    "volth1h0_2r",   :limit => 53
+    t.float    "volth1h0_max",  :limit => 53
+    t.float    "volth1h0_min",  :limit => 53
+    t.float    "volth1h0_n",    :limit => 53
+    t.float    "volth2h0_2r",   :limit => 53
+    t.float    "volth2h0_max",  :limit => 53
+    t.float    "volth2h0_min",  :limit => 53
+    t.float    "volth2h0_n",    :limit => 53
+    t.float    "volth3h0_2r",   :limit => 53
+    t.float    "volth3h0_max",  :limit => 53
+    t.float    "volth3h0_min",  :limit => 53
+    t.float    "volth3h0_n",    :limit => 53
+    t.float    "voltx1x0",      :limit => 53
+    t.float    "voltx2x0",      :limit => 53
+    t.float    "voltx3x0",      :limit => 53
+    t.float    "volty1y2",      :limit => 53
+    t.float    "volty2y3",      :limit => 53
+    t.float    "volty3y1",      :limit => 53
+    t.float    "wdg_temp",      :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",  :precision => 10, :scale => 0
-    t.decimal  "transformer",   :precision => 10, :scale => 0
+    t.decimal  "perform_type",                :precision => 10, :scale => 0
+    t.decimal  "transformer",                 :precision => 10, :scale => 0
   end
 
-  create_table "elec_exc", :force => true do |t|
-    t.float    "ac_amph1h0"
-    t.float    "ac_amph1h0_2r"
-    t.float    "ac_amph1h0_max"
-    t.float    "ac_amph1h0_min"
-    t.float    "ac_amph1h0_n"
-    t.float    "ac_amph2h0"
-    t.float    "ac_amph2h0_2r"
-    t.float    "ac_amph2h0_max"
-    t.float    "ac_amph2h0_min"
-    t.float    "ac_amph2h0_n"
-    t.float    "ac_amph3h0"
-    t.float    "ac_amph3h0_2r"
-    t.float    "ac_amph3h0_max"
-    t.float    "ac_amph3h0_min"
-    t.float    "ac_amph3h0_n"
-    t.float    "ac_ampx1x0"
-    t.float    "ac_ampx1x0_n"
-    t.float    "ac_ampx2x0"
-    t.float    "ac_ampx2x0_n"
-    t.float    "ac_ampx3x0"
-    t.float    "ac_ampx3x0_n"
-    t.float    "ac_ampy1y2"
-    t.float    "ac_ampy2y3"
-    t.float    "ac_ampy3y1"
-    t.float    "ac_kvhv"
-    t.float    "ac_kvlv"
-    t.float    "ac_volthv"
-    t.float    "ac_voltlv"
-    t.float    "ac_volttv"
+  create_table "elec_exc", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.float    "ac_amph1h0",     :limit => 53
+    t.float    "ac_amph1h0_2r",  :limit => 53
+    t.float    "ac_amph1h0_max", :limit => 53
+    t.float    "ac_amph1h0_min", :limit => 53
+    t.float    "ac_amph1h0_n",   :limit => 53
+    t.float    "ac_amph2h0",     :limit => 53
+    t.float    "ac_amph2h0_2r",  :limit => 53
+    t.float    "ac_amph2h0_max", :limit => 53
+    t.float    "ac_amph2h0_min", :limit => 53
+    t.float    "ac_amph2h0_n",   :limit => 53
+    t.float    "ac_amph3h0",     :limit => 53
+    t.float    "ac_amph3h0_2r",  :limit => 53
+    t.float    "ac_amph3h0_max", :limit => 53
+    t.float    "ac_amph3h0_min", :limit => 53
+    t.float    "ac_amph3h0_n",   :limit => 53
+    t.float    "ac_ampx1x0",     :limit => 53
+    t.float    "ac_ampx1x0_n",   :limit => 53
+    t.float    "ac_ampx2x0",     :limit => 53
+    t.float    "ac_ampx2x0_n",   :limit => 53
+    t.float    "ac_ampx3x0",     :limit => 53
+    t.float    "ac_ampx3x0_n",   :limit => 53
+    t.float    "ac_ampy1y2",     :limit => 53
+    t.float    "ac_ampy2y3",     :limit => 53
+    t.float    "ac_ampy3y1",     :limit => 53
+    t.float    "ac_kvhv",        :limit => 53
+    t.float    "ac_kvlv",        :limit => 53
+    t.float    "ac_volthv",      :limit => 53
+    t.float    "ac_voltlv",      :limit => 53
+    t.float    "ac_volttv",      :limit => 53
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "humidity"
+    t.float    "ambient_temp",   :limit => 53
+    t.float    "humidity",       :limit => 53
     t.string   "hv_max_tap"
     t.string   "hv_min_tap"
     t.string   "hv_tap"
-    t.float    "oil_temp"
-    t.float    "rated_current"
+    t.float    "oil_temp",       :limit => 53
+    t.float    "rated_current",  :limit => 53
     t.string   "remarkhv"
     t.string   "remarkhv_2r"
     t.string   "remarkhv_max"
@@ -687,57 +707,58 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "remarktv"
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "wdg_temp"
+    t.float    "wdg_temp",       :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",   :precision => 10, :scale => 0
-    t.decimal  "transformer",    :precision => 10, :scale => 0
+    t.decimal  "perform_type",                 :precision => 10, :scale => 0
+    t.decimal  "transformer",                  :precision => 10, :scale => 0
   end
 
-  create_table "elec_imp_single", :force => true do |t|
+  create_table "elec_imp_single", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "amp1_2r"
-    t.float    "amp1_max"
-    t.float    "amp1_min"
-    t.float    "amp1_n"
-    t.float    "amp1_n_ht"
-    t.float    "amp1_n_lt"
-    t.float    "amp2_2r"
-    t.float    "amp2_max"
-    t.float    "amp2_min"
-    t.float    "amp2_n"
-    t.float    "amp2_n_ht"
-    t.float    "amp2_n_lt"
-    t.float    "amp3_2r"
-    t.float    "amp3_max"
-    t.float    "amp3_min"
-    t.float    "amp3_n"
-    t.float    "amp3_n_ht"
-    t.float    "amp3_n_lt"
-    t.float    "humidity"
+    t.float    "ambient_temp",     :limit => 53
+    t.float    "amp1_2r",          :limit => 53
+    t.float    "amp1_max",         :limit => 53
+    t.float    "amp1_min",         :limit => 53
+    t.float    "amp1_n",           :limit => 53
+    t.float    "amp1_n_ht",        :limit => 53
+    t.float    "amp1_n_lt",        :limit => 53
+    t.float    "amp2_2r",          :limit => 53
+    t.float    "amp2_max",         :limit => 53
+    t.float    "amp2_min",         :limit => 53
+    t.float    "amp2_n",           :limit => 53
+    t.float    "amp2_n_ht",        :limit => 53
+    t.float    "amp2_n_lt",        :limit => 53
+    t.float    "amp3_2r",          :limit => 53
+    t.float    "amp3_max",         :limit => 53
+    t.float    "amp3_min",         :limit => 53
+    t.float    "amp3_n",           :limit => 53
+    t.float    "amp3_n_ht",        :limit => 53
+    t.float    "amp3_n_lt",        :limit => 53
+    t.float    "humidity",         :limit => 53
     t.string   "max_tap"
     t.string   "min_tap"
-    t.float    "oil_temp"
-    t.float    "rate_imp1_2r"
-    t.float    "rate_imp1_max"
-    t.float    "rate_imp1_min"
-    t.float    "rate_imp1_n"
-    t.float    "rate_imp1_n_ht"
-    t.float    "rate_imp1_n_lt"
-    t.float    "rate_imp2_2r"
-    t.float    "rate_imp2_max"
-    t.float    "rate_imp2_min"
-    t.float    "rate_imp2_n"
-    t.float    "rate_imp2_n_ht"
-    t.float    "rate_imp2_n_lt"
-    t.float    "rate_imp3_2r"
-    t.float    "rate_imp3_max"
-    t.float    "rate_imp3_min"
-    t.float    "rate_imp3_n"
-    t.float    "rate_imp3_n_ht"
-    t.float    "rate_imp3_n_lt"
-    t.float    "rated_current"
+    t.float    "oil_temp",         :limit => 53
+    t.float    "rate_imp1_2r",     :limit => 53
+    t.float    "rate_imp1_max",    :limit => 53
+    t.float    "rate_imp1_min",    :limit => 53
+    t.float    "rate_imp1_n",      :limit => 53
+    t.float    "rate_imp1_n_ht",   :limit => 53
+    t.float    "rate_imp1_n_lt",   :limit => 53
+    t.float    "rate_imp2_2r",     :limit => 53
+    t.float    "rate_imp2_max",    :limit => 53
+    t.float    "rate_imp2_min",    :limit => 53
+    t.float    "rate_imp2_n",      :limit => 53
+    t.float    "rate_imp2_n_ht",   :limit => 53
+    t.float    "rate_imp2_n_lt",   :limit => 53
+    t.float    "rate_imp3_2r",     :limit => 53
+    t.float    "rate_imp3_max",    :limit => 53
+    t.float    "rate_imp3_min",    :limit => 53
+    t.float    "rate_imp3_n",      :limit => 53
+    t.float    "rate_imp3_n_ht",   :limit => 53
+    t.float    "rate_imp3_n_lt",   :limit => 53
+    t.float    "rated_current",    :limit => 53
     t.string   "test_by"
     t.string   "test_choice_2r"
     t.string   "test_choice_max"
@@ -746,53 +767,54 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "test_choice_n_ht"
     t.string   "test_choice_n_lt"
     t.datetime "test_date"
-    t.float    "volt1_2r"
-    t.float    "volt1_max"
-    t.float    "volt1_min"
-    t.float    "volt1_n"
-    t.float    "volt1_n_ht"
-    t.float    "volt1_n_lt"
-    t.float    "volt2_2r"
-    t.float    "volt2_max"
-    t.float    "volt2_min"
-    t.float    "volt2_n"
-    t.float    "volt2_n_ht"
-    t.float    "volt2_n_lt"
-    t.float    "volt3_2r"
-    t.float    "volt3_max"
-    t.float    "volt3_min"
-    t.float    "volt3_n"
-    t.float    "volt3_n_ht"
-    t.float    "volt3_n_lt"
-    t.float    "wdg_temp"
+    t.float    "volt1_2r",         :limit => 53
+    t.float    "volt1_max",        :limit => 53
+    t.float    "volt1_min",        :limit => 53
+    t.float    "volt1_n",          :limit => 53
+    t.float    "volt1_n_ht",       :limit => 53
+    t.float    "volt1_n_lt",       :limit => 53
+    t.float    "volt2_2r",         :limit => 53
+    t.float    "volt2_max",        :limit => 53
+    t.float    "volt2_min",        :limit => 53
+    t.float    "volt2_n",          :limit => 53
+    t.float    "volt2_n_ht",       :limit => 53
+    t.float    "volt2_n_lt",       :limit => 53
+    t.float    "volt3_2r",         :limit => 53
+    t.float    "volt3_max",        :limit => 53
+    t.float    "volt3_min",        :limit => 53
+    t.float    "volt3_n",          :limit => 53
+    t.float    "volt3_n_ht",       :limit => 53
+    t.float    "volt3_n_lt",       :limit => 53
+    t.float    "wdg_temp",         :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",     :precision => 10, :scale => 0
-    t.decimal  "transformer",      :precision => 10, :scale => 0
+    t.decimal  "perform_type",                   :precision => 10, :scale => 0
+    t.decimal  "transformer",                    :precision => 10, :scale => 0
   end
 
-  create_table "elec_imp_three", :force => true do |t|
+  create_table "elec_imp_three", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "amp1_2r"
-    t.float    "amp1_max"
-    t.float    "amp1_min"
-    t.float    "amp1_n"
-    t.float    "amp1_n_ht"
-    t.float    "amp1_n_lt"
-    t.float    "amp2_2r"
-    t.float    "amp2_max"
-    t.float    "amp2_min"
-    t.float    "amp2_n"
-    t.float    "amp2_n_ht"
-    t.float    "amp2_n_lt"
-    t.float    "amp3_2r"
-    t.float    "amp3_max"
-    t.float    "amp3_min"
-    t.float    "amp3_n"
-    t.float    "amp3_n_ht"
-    t.float    "amp3_n_lt"
-    t.float    "humidity"
+    t.float    "ambient_temp",        :limit => 53
+    t.float    "amp1_2r",             :limit => 53
+    t.float    "amp1_max",            :limit => 53
+    t.float    "amp1_min",            :limit => 53
+    t.float    "amp1_n",              :limit => 53
+    t.float    "amp1_n_ht",           :limit => 53
+    t.float    "amp1_n_lt",           :limit => 53
+    t.float    "amp2_2r",             :limit => 53
+    t.float    "amp2_max",            :limit => 53
+    t.float    "amp2_min",            :limit => 53
+    t.float    "amp2_n",              :limit => 53
+    t.float    "amp2_n_ht",           :limit => 53
+    t.float    "amp2_n_lt",           :limit => 53
+    t.float    "amp3_2r",             :limit => 53
+    t.float    "amp3_max",            :limit => 53
+    t.float    "amp3_min",            :limit => 53
+    t.float    "amp3_n",              :limit => 53
+    t.float    "amp3_n_ht",           :limit => 53
+    t.float    "amp3_n_lt",           :limit => 53
+    t.float    "humidity",            :limit => 53
     t.string   "impedance_from_2r"
     t.string   "impedance_from_max"
     t.string   "impedance_from_min"
@@ -801,184 +823,188 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "impedance_from_n_lt"
     t.string   "max_tap"
     t.string   "min_tap"
-    t.float    "oil_temp"
-    t.float    "rate_impedance_2r"
-    t.float    "rate_impedance_max"
-    t.float    "rate_impedance_min"
-    t.float    "rate_impedance_n"
-    t.float    "rate_impedance_n_ht"
-    t.float    "rate_impedance_n_lt"
-    t.float    "rated_kv"
-    t.float    "tap_voltage_2r"
-    t.float    "tap_voltage_max"
-    t.float    "tap_voltage_min"
-    t.float    "tap_voltage_n"
-    t.float    "tap_voltage_n_ht"
-    t.float    "tap_voltage_n_lt"
+    t.float    "oil_temp",            :limit => 53
+    t.float    "rate_impedance_2r",   :limit => 53
+    t.float    "rate_impedance_max",  :limit => 53
+    t.float    "rate_impedance_min",  :limit => 53
+    t.float    "rate_impedance_n",    :limit => 53
+    t.float    "rate_impedance_n_ht", :limit => 53
+    t.float    "rate_impedance_n_lt", :limit => 53
+    t.float    "rated_kv",            :limit => 53
+    t.float    "tap_voltage_2r",      :limit => 53
+    t.float    "tap_voltage_max",     :limit => 53
+    t.float    "tap_voltage_min",     :limit => 53
+    t.float    "tap_voltage_n",       :limit => 53
+    t.float    "tap_voltage_n_ht",    :limit => 53
+    t.float    "tap_voltage_n_lt",    :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "volt1_2r"
-    t.float    "volt1_max"
-    t.float    "volt1_min"
-    t.float    "volt1_n"
-    t.float    "volt1_n_ht"
-    t.float    "volt1_n_lt"
-    t.float    "volt2_2r"
-    t.float    "volt2_max"
-    t.float    "volt2_min"
-    t.float    "volt2_n"
-    t.float    "volt2_n_ht"
-    t.float    "volt2_n_lt"
-    t.float    "volt3_2r"
-    t.float    "volt3_max"
-    t.float    "volt3_min"
-    t.float    "volt3_n"
-    t.float    "volt3_n_ht"
-    t.float    "volt3_n_lt"
-    t.float    "wdg_temp"
+    t.float    "volt1_2r",            :limit => 53
+    t.float    "volt1_max",           :limit => 53
+    t.float    "volt1_min",           :limit => 53
+    t.float    "volt1_n",             :limit => 53
+    t.float    "volt1_n_ht",          :limit => 53
+    t.float    "volt1_n_lt",          :limit => 53
+    t.float    "volt2_2r",            :limit => 53
+    t.float    "volt2_max",           :limit => 53
+    t.float    "volt2_min",           :limit => 53
+    t.float    "volt2_n",             :limit => 53
+    t.float    "volt2_n_ht",          :limit => 53
+    t.float    "volt2_n_lt",          :limit => 53
+    t.float    "volt3_2r",            :limit => 53
+    t.float    "volt3_max",           :limit => 53
+    t.float    "volt3_min",           :limit => 53
+    t.float    "volt3_n",             :limit => 53
+    t.float    "volt3_n_ht",          :limit => 53
+    t.float    "volt3_n_lt",          :limit => 53
+    t.float    "wdg_temp",            :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",        :precision => 10, :scale => 0
-    t.decimal  "transformer",         :precision => 10, :scale => 0
+    t.decimal  "perform_type",                      :precision => 10, :scale => 0
+    t.decimal  "transformer",                       :precision => 10, :scale => 0
   end
 
-  create_table "elec_ins_auto", :force => true do |t|
+  create_table "elec_ins_auto", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "cap1"
-    t.float    "cap2"
-    t.float    "cap3"
-    t.float    "cap4"
-    t.float    "corpc"
-    t.float    "current1"
-    t.float    "current2"
-    t.float    "current3"
-    t.float    "current4"
-    t.float    "humidity"
-    t.float    "hv1"
-    t.float    "hv10"
-    t.float    "hv_test"
-    t.float    "oil_temp"
-    t.float    "rated_current"
+    t.float    "ambient_temp",  :limit => 53
+    t.float    "cap1",          :limit => 53
+    t.float    "cap2",          :limit => 53
+    t.float    "cap3",          :limit => 53
+    t.float    "cap4",          :limit => 53
+    t.float    "corpc",         :limit => 53
+    t.float    "current1",      :limit => 53
+    t.float    "current2",      :limit => 53
+    t.float    "current3",      :limit => 53
+    t.float    "current4",      :limit => 53
+    t.float    "humidity",      :limit => 53
+    t.float    "hv1",           :limit => 53
+    t.float    "hv10",          :limit => 53
+    t.float    "hv_test",       :limit => 53
+    t.float    "oil_temp",      :limit => 53
+    t.float    "rated_current", :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "test_kv"
-    t.float    "tv1"
-    t.float    "tv10"
-    t.float    "tv_test"
-    t.float    "watt1"
-    t.float    "watt2"
-    t.float    "watt3"
-    t.float    "watt4"
-    t.float    "wdg_temp"
+    t.float    "test_kv",       :limit => 53
+    t.float    "tv1",           :limit => 53
+    t.float    "tv10",          :limit => 53
+    t.float    "tv_test",       :limit => 53
+    t.float    "watt1",         :limit => 53
+    t.float    "watt2",         :limit => 53
+    t.float    "watt3",         :limit => 53
+    t.float    "watt4",         :limit => 53
+    t.float    "wdg_temp",      :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",  :precision => 10, :scale => 0
-    t.decimal  "transformer",   :precision => 10, :scale => 0
+    t.decimal  "perform_type",                :precision => 10, :scale => 0
+    t.decimal  "transformer",                 :precision => 10, :scale => 0
   end
 
-  create_table "elec_ins_three", :force => true do |t|
+  create_table "elec_ins_three", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "cap1"
-    t.float    "cap2"
-    t.float    "cap3"
-    t.float    "cap4"
-    t.float    "cap5"
-    t.float    "cap6"
-    t.float    "corpc"
-    t.float    "current1"
-    t.float    "current2"
-    t.float    "current3"
-    t.float    "current4"
-    t.float    "current5"
-    t.float    "current6"
-    t.float    "humidity"
-    t.float    "hv1"
-    t.float    "hv10"
-    t.float    "hv_test"
-    t.float    "lv1"
-    t.float    "lv10"
-    t.float    "lv_test"
-    t.float    "oil_temp"
-    t.float    "rated_current"
+    t.float    "ambient_temp",  :limit => 53
+    t.float    "cap1",          :limit => 53
+    t.float    "cap2",          :limit => 53
+    t.float    "cap3",          :limit => 53
+    t.float    "cap4",          :limit => 53
+    t.float    "cap5",          :limit => 53
+    t.float    "cap6",          :limit => 53
+    t.float    "corpc",         :limit => 53
+    t.float    "current1",      :limit => 53
+    t.float    "current2",      :limit => 53
+    t.float    "current3",      :limit => 53
+    t.float    "current4",      :limit => 53
+    t.float    "current5",      :limit => 53
+    t.float    "current6",      :limit => 53
+    t.float    "humidity",      :limit => 53
+    t.float    "hv1",           :limit => 53
+    t.float    "hv10",          :limit => 53
+    t.float    "hv_test",       :limit => 53
+    t.float    "lv1",           :limit => 53
+    t.float    "lv10",          :limit => 53
+    t.float    "lv_test",       :limit => 53
+    t.float    "oil_temp",      :limit => 53
+    t.float    "rated_current", :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "test_kv"
-    t.float    "tv1"
-    t.float    "tv10"
-    t.float    "tv_test"
-    t.float    "watt1"
-    t.float    "watt2"
-    t.float    "watt3"
-    t.float    "watt4"
-    t.float    "watt5"
-    t.float    "watt6"
-    t.float    "wdg_temp"
+    t.float    "test_kv",       :limit => 53
+    t.float    "tv1",           :limit => 53
+    t.float    "tv10",          :limit => 53
+    t.float    "tv_test",       :limit => 53
+    t.float    "watt1",         :limit => 53
+    t.float    "watt2",         :limit => 53
+    t.float    "watt3",         :limit => 53
+    t.float    "watt4",         :limit => 53
+    t.float    "watt5",         :limit => 53
+    t.float    "watt6",         :limit => 53
+    t.float    "wdg_temp",      :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",  :precision => 10, :scale => 0
-    t.decimal  "transformer",   :precision => 10, :scale => 0
+    t.decimal  "perform_type",                :precision => 10, :scale => 0
+    t.decimal  "transformer",                 :precision => 10, :scale => 0
   end
 
-  create_table "elec_ins_two", :force => true do |t|
+  create_table "elec_ins_two", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "cap1"
-    t.float    "cap2"
-    t.float    "cap3"
-    t.float    "cap4"
-    t.float    "corpc"
-    t.float    "current1"
-    t.float    "current2"
-    t.float    "current3"
-    t.float    "current4"
-    t.float    "humidity"
-    t.float    "hv1"
-    t.float    "hv10"
-    t.float    "hv_test"
-    t.float    "lv1"
-    t.float    "lv10"
-    t.float    "lv_test"
-    t.float    "oil_temp"
-    t.float    "rated_current"
+    t.float    "ambient_temp",  :limit => 53
+    t.float    "cap1",          :limit => 53
+    t.float    "cap2",          :limit => 53
+    t.float    "cap3",          :limit => 53
+    t.float    "cap4",          :limit => 53
+    t.float    "corpc",         :limit => 53
+    t.float    "current1",      :limit => 53
+    t.float    "current2",      :limit => 53
+    t.float    "current3",      :limit => 53
+    t.float    "current4",      :limit => 53
+    t.float    "humidity",      :limit => 53
+    t.float    "hv1",           :limit => 53
+    t.float    "hv10",          :limit => 53
+    t.float    "hv_test",       :limit => 53
+    t.float    "lv1",           :limit => 53
+    t.float    "lv10",          :limit => 53
+    t.float    "lv_test",       :limit => 53
+    t.float    "oil_temp",      :limit => 53
+    t.float    "rated_current", :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "test_kv"
-    t.float    "watt1"
-    t.float    "watt2"
-    t.float    "watt3"
-    t.float    "watt4"
-    t.float    "wdg_temp"
+    t.float    "test_kv",       :limit => 53
+    t.float    "watt1",         :limit => 53
+    t.float    "watt2",         :limit => 53
+    t.float    "watt3",         :limit => 53
+    t.float    "watt4",         :limit => 53
+    t.float    "wdg_temp",      :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.decimal  "perform_type",  :precision => 10, :scale => 0
-    t.decimal  "transformer",   :precision => 10, :scale => 0
+    t.decimal  "perform_type",                :precision => 10, :scale => 0
+    t.decimal  "transformer",                 :precision => 10, :scale => 0
   end
 
-  create_table "elec_rat", :force => true do |t|
+  create_table "elec_rat", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "h1h0ratio_2r"
-    t.float    "h1h0ratio_max"
-    t.float    "h1h0ratio_min"
-    t.float    "h1h0ratio_n"
-    t.float    "h1h0ratio_n_tv"
-    t.float    "h2h0ratio_2r"
-    t.float    "h2h0ratio_max"
-    t.float    "h2h0ratio_min"
-    t.float    "h2h0ratio_n"
-    t.float    "h2h0ratio_n_tv"
-    t.float    "h3h0ratio_2r"
-    t.float    "h3h0ratio_max"
-    t.float    "h3h0ratio_min"
-    t.float    "h3h0ratio_n"
-    t.float    "h3h0ratio_n_tv"
-    t.float    "humidity"
+    t.float    "ambient_temp",    :limit => 53
+    t.float    "h1h0ratio_2r",    :limit => 53
+    t.float    "h1h0ratio_max",   :limit => 53
+    t.float    "h1h0ratio_min",   :limit => 53
+    t.float    "h1h0ratio_n",     :limit => 53
+    t.float    "h1h0ratio_n_tv",  :limit => 53
+    t.float    "h2h0ratio_2r",    :limit => 53
+    t.float    "h2h0ratio_max",   :limit => 53
+    t.float    "h2h0ratio_min",   :limit => 53
+    t.float    "h2h0ratio_n",     :limit => 53
+    t.float    "h2h0ratio_n_tv",  :limit => 53
+    t.float    "h3h0ratio_2r",    :limit => 53
+    t.float    "h3h0ratio_max",   :limit => 53
+    t.float    "h3h0ratio_min",   :limit => 53
+    t.float    "h3h0ratio_n",     :limit => 53
+    t.float    "h3h0ratio_n_tv",  :limit => 53
+    t.float    "humidity",        :limit => 53
     t.string   "max_tap"
     t.string   "min_tap"
-    t.float    "oil_temp"
-    t.float    "rated_current"
+    t.float    "oil_temp",        :limit => 53
+    t.float    "rated_current",   :limit => 53
     t.string   "remark_2r"
     t.string   "remark_lv_tv"
     t.string   "remark_max"
@@ -987,75 +1013,81 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "remark_n_tv"
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "volthv_2r"
-    t.float    "volthv_hv_tv"
-    t.float    "volthv_lv_tv"
-    t.float    "volthv_max"
-    t.float    "volthv_min"
-    t.float    "volthv_n"
-    t.float    "voltlv_2r"
-    t.float    "voltlv_hv_tv"
-    t.float    "voltlv_lv_tv"
-    t.float    "voltlv_max"
-    t.float    "voltlv_min"
-    t.float    "voltlv_n"
-    t.float    "wdg_temp"
+    t.float    "volthv_2r",       :limit => 53
+    t.float    "volthv_hv_tv",    :limit => 53
+    t.float    "volthv_lv_tv",    :limit => 53
+    t.float    "volthv_max",      :limit => 53
+    t.float    "volthv_min",      :limit => 53
+    t.float    "volthv_n",        :limit => 53
+    t.float    "voltlv_2r",       :limit => 53
+    t.float    "voltlv_hv_tv",    :limit => 53
+    t.float    "voltlv_lv_tv",    :limit => 53
+    t.float    "voltlv_max",      :limit => 53
+    t.float    "voltlv_min",      :limit => 53
+    t.float    "voltlv_n",        :limit => 53
+    t.float    "wdg_temp",        :limit => 53
     t.string   "weather"
     t.string   "work_order"
-    t.float    "x1x0ratio_lv_tv"
-    t.float    "x2x0ratio_lv_tv"
-    t.float    "x3x0ratio_lv_tv"
-    t.decimal  "perform_type",    :precision => 10, :scale => 0
-    t.decimal  "transformer",     :precision => 10, :scale => 0
+    t.float    "x1x0ratio_lv_tv", :limit => 53
+    t.float    "x2x0ratio_lv_tv", :limit => 53
+    t.float    "x3x0ratio_lv_tv", :limit => 53
+    t.decimal  "perform_type",                  :precision => 10, :scale => 0
+    t.decimal  "transformer",                   :precision => 10, :scale => 0
   end
 
-  create_table "equipment", :force => true do |t|
+  create_table "equipment", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "name"
     t.decimal "equipment_group", :precision => 10, :scale => 0
   end
 
-  create_table "equipment_group", :force => true do |t|
+  create_table "equipment_group", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "factor_settings", :force => true do |t|
-    t.float    "intrate"
-    t.float    "infrate"
-    t.float    "loadavg"
-    t.float    "loadloss"
+  create_table "factor_settings", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.float    "intrate",        :limit => 24
+    t.float    "infrate",        :limit => 24
+    t.float    "loadavg",        :limit => 24
+    t.float    "loadloss",       :limit => 24
     t.integer  "projectlife"
     t.integer  "zerolife"
-    t.float    "power"
-    t.float    "unavailability"
-    t.float    "powerfactor"
+    t.float    "power",          :limit => 24
+    t.float    "unavailability", :limit => 24
+    t.float    "powerfactor",    :limit => 24
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "failure_condition", :force => true do |t|
+  create_table "failure_condition", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "failure_condition_detail", :force => true do |t|
+  create_table "failure_condition_detail", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "detail"
     t.integer "is_other"
     t.decimal "failure_condition", :precision => 10, :scale => 0
   end
 
-  create_table "failure_databases", :force => true do |t|
+  create_table "failure_databases", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "egatsn"
     t.datetime "eventdate"
     t.integer  "counterOLTC"
     t.string   "environment"
     t.string   "failurestatus"
     t.string   "failuredetail"
-    t.datetime "downdate"
-    t.datetime "update"
+    t.datetime "downdatetime"
+    t.datetime "updatetime"
     t.string   "workorder"
     t.string   "failuregroup"
     t.string   "failurepart"
@@ -1068,90 +1100,103 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "fd_details", :force => true do |t|
+  create_table "fd_details", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "detail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_environmnts", :force => true do |t|
+  create_table "fd_environmnts", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "environmnt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_functions", :force => true do |t|
+  create_table "fd_functions", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "function"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_group_parts", :force => true do |t|
+  create_table "fd_group_parts", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "groupname"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_manages", :force => true do |t|
+  create_table "fd_manages", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "manage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_modes", :force => true do |t|
+  create_table "fd_modes", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "mode"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_parts", :force => true do |t|
+  create_table "fd_parts", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "mainid"
     t.string   "part"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_reasons", :force => true do |t|
+  create_table "fd_reasons", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fruits", :force => true do |t|
+  create_table "fruits", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
   end
 
-  create_table "furan_factors", :force => true do |t|
+  create_table "furan_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
-    t.float    "start"
-    t.float    "end"
+    t.float    "start",      :limit => 24
+    t.float    "end",        :limit => 24
     t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "furans", :force => true do |t|
-    t.float    "acf"
-    t.float    "fal"
-    t.float    "fol"
-    t.float    "hmf"
-    t.float    "mef"
+  create_table "furans", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.float    "acf",            :limit => 53
+    t.float    "fal",            :limit => 53
+    t.float    "fol",            :limit => 53
+    t.float    "hmf",            :limit => 53
+    t.float    "mef",            :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
-    t.decimal  "perform_type",   :precision => 10, :scale => 0
+    t.decimal  "perform_type",                 :precision => 10, :scale => 0
     t.integer  "transformer_id"
     t.string   "test_type"
   end
 
-  create_table "gas", :force => true do |t|
+  create_table "gas", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "general_condition", :force => true do |t|
+  create_table "general_condition", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1166,7 +1211,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "vibration",        :precision => 10, :scale => 0
   end
 
-  create_table "general_condition_factors", :force => true do |t|
+  create_table "general_condition_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1176,7 +1222,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "general_conditions", :force => true do |t|
+  create_table "general_conditions", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
@@ -1191,7 +1238,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "visual_inspection_id"
   end
 
-  create_table "hif_of_oil_dgas", :force => true do |t|
+  create_table "hif_of_oil_dgas", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "percent_dgaf_start"
@@ -1201,7 +1249,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "color"
   end
 
-  create_table "hot_line_oil_filter", :force => true do |t|
+  create_table "hot_line_oil_filter", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1212,7 +1261,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",  :precision => 10, :scale => 0
   end
 
-  create_table "hot_line_oil_filter_factors", :force => true do |t|
+  create_table "hot_line_oil_filter_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1222,52 +1272,57 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "hot_line_oil_filters", :force => true do |t|
+  create_table "hot_line_oil_filters", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "corrosion",            :precision => 10, :scale => 0
     t.decimal "pressure",             :precision => 10, :scale => 0
     t.integer "visual_inspection_id"
   end
 
-  create_table "ic_allcosts", :force => true do |t|
-    t.float    "oc1"
-    t.float    "oc2"
-    t.float    "oc3"
-    t.float    "oc4"
-    t.float    "oc5"
-    t.float    "oc6"
-    t.float    "oc7"
-    t.float    "oc8"
-    t.float    "oc9"
-    t.float    "oc10"
-    t.float    "x1"
-    t.float    "x2"
-    t.float    "x3"
-    t.float    "x4"
-    t.float    "x5"
-    t.float    "x6"
-    t.float    "x7"
+  create_table "ic_allcosts", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.float    "oc1",        :limit => 24
+    t.float    "oc2",        :limit => 24
+    t.float    "oc3",        :limit => 24
+    t.float    "oc4",        :limit => 24
+    t.float    "oc5",        :limit => 24
+    t.float    "oc6",        :limit => 24
+    t.float    "oc7",        :limit => 24
+    t.float    "oc8",        :limit => 24
+    t.float    "oc9",        :limit => 24
+    t.float    "oc10",       :limit => 24
+    t.float    "x1",         :limit => 24
+    t.float    "x2",         :limit => 24
+    t.float    "x3",         :limit => 24
+    t.float    "x4",         :limit => 24
+    t.float    "x5",         :limit => 24
+    t.float    "x6",         :limit => 24
+    t.float    "x7",         :limit => 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ic_oil_balances", :force => true do |t|
-    t.date     "Date"
+  create_table "ic_oil_balances", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.datetime "Date"
     t.integer  "Quantity"
     t.integer  "Price"
-    t.date     "Recv_date"
+    t.datetime "Recv_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "Quantitypass"
   end
 
-  create_table "ic_oil_inits", :force => true do |t|
-    t.date     "Date"
+  create_table "ic_oil_inits", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.datetime "Date"
     t.integer  "InitQuantity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "importance_indices", :force => true do |t|
+  create_table "importance_indices", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "start"
     t.integer  "end"
     t.string   "importance"
@@ -1276,14 +1331,16 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "inspection", :force => true do |t|
+  create_table "inspection", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "name"
     t.string  "perform_name"
     t.integer "wi"
   end
 
-  create_table "inspection_detail", :force => true do |t|
+  create_table "inspection_detail", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "color"
     t.string  "description"
@@ -1291,7 +1348,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal "visual_inspection", :precision => 10, :scale => 0
   end
 
-  create_table "insulating_oil_factors", :force => true do |t|
+  create_table "insulating_oil_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1301,7 +1359,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "insulating_oil_weights", :force => true do |t|
+  create_table "insulating_oil_weights", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.string   "description"
     t.integer  "weight"
@@ -1309,41 +1368,43 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "insulating_oils", :force => true do |t|
+  create_table "insulating_oils", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ambient_temp"
-    t.float    "cf"
-    t.float    "current_avg_maintank"
-    t.float    "current_avg_oltc"
-    t.float    "gap_distance_maintank"
-    t.float    "gap_distance_oltc"
-    t.float    "humidity"
-    t.float    "oil_temp"
+    t.float    "ambient_temp",          :limit => 53
+    t.float    "cf",                    :limit => 53
+    t.float    "current_avg_maintank",  :limit => 53
+    t.float    "current_avg_oltc",      :limit => 53
+    t.float    "gap_distance_maintank", :limit => 53
+    t.float    "gap_distance_oltc",     :limit => 53
+    t.float    "humidity",              :limit => 53
+    t.float    "oil_temp",              :limit => 53
     t.string   "remark_maintank"
     t.string   "remark_oltc"
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "watt_avg_maintank"
-    t.float    "watt_avg_oltc"
+    t.float    "watt_avg_maintank",     :limit => 53
+    t.float    "watt_avg_oltc",         :limit => 53
     t.string   "work_order"
-    t.float    "xi1_maintank"
-    t.float    "xi1_oltc"
-    t.float    "xi2_maintank"
-    t.float    "xi2_oltc"
-    t.float    "xi3_maintank"
-    t.float    "xi3_oltc"
-    t.float    "xi4_maintank"
-    t.float    "xi4_oltc"
-    t.float    "xi5_maintank"
-    t.float    "xi5_oltc"
-    t.decimal  "perform_type",          :precision => 10, :scale => 0
+    t.float    "xi1_maintank",          :limit => 53
+    t.float    "xi1_oltc",              :limit => 53
+    t.float    "xi2_maintank",          :limit => 53
+    t.float    "xi2_oltc",              :limit => 53
+    t.float    "xi3_maintank",          :limit => 53
+    t.float    "xi3_oltc",              :limit => 53
+    t.float    "xi4_maintank",          :limit => 53
+    t.float    "xi4_oltc",              :limit => 53
+    t.float    "xi5_maintank",          :limit => 53
+    t.float    "xi5_oltc",              :limit => 53
+    t.decimal  "perform_type",                        :precision => 10, :scale => 0
     t.string   "test_type"
     t.integer  "transformer_id"
     t.integer  "test_kv_maintank"
     t.integer  "test_kv_oltc"
   end
 
-  create_table "lightning_arrester", :force => true do |t|
+  create_table "lightning_arrester", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1364,7 +1425,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",         :precision => 10, :scale => 0
   end
 
-  create_table "load_history", :force => true do |t|
+  create_table "load_history", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.integer  "n0"
     t.integer  "n1"
@@ -1378,7 +1440,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",  :precision => 10, :scale => 0
   end
 
-  create_table "load_history_factors", :force => true do |t|
+  create_table "load_history_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1388,7 +1451,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "load_pattern_factors", :force => true do |t|
+  create_table "load_pattern_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "start"
     t.integer  "end"
     t.integer  "score"
@@ -1397,7 +1461,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "load_pattern_per_years", :force => true do |t|
+  create_table "load_pattern_per_years", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "lteq_0_pt_6"
     t.integer  "gt_0_pt_6_and_lteq_1"
     t.integer  "gt_1_and_lteq_1_pt_2"
@@ -1409,7 +1474,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "load_pattern_factor_id"
   end
 
-  create_table "main_tank_factors", :force => true do |t|
+  create_table "main_tank_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1419,13 +1485,15 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "main_tanks", :force => true do |t|
+  create_table "main_tanks", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "corrosion",            :precision => 10, :scale => 0
     t.decimal "oil_fail",             :precision => 10, :scale => 0
     t.integer "visual_inspection_id"
   end
 
-  create_table "maintank", :force => true do |t|
+  create_table "maintank", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1436,38 +1504,44 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",  :precision => 10, :scale => 0
   end
 
-  create_table "manufacturer", :force => true do |t|
+  create_table "manufacturer", :id => false, :force => true do |t|
+    t.integer "id"
     t.string  "address"
     t.integer "version"
     t.string  "name"
     t.string  "tel_no"
   end
 
-  create_table "manufacturer_arresters", :force => true do |t|
+  create_table "manufacturer_arresters", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturer_bushings", :force => true do |t|
+  create_table "manufacturer_bushings", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturer_oltcs", :force => true do |t|
+  create_table "manufacturer_oltcs", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturer_txes", :force => true do |t|
+  create_table "manufacturer_txes", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturers", :force => true do |t|
+  create_table "manufacturers", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "address"
     t.integer  "version"
     t.string   "name"
@@ -1476,7 +1550,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "n1_criterias", :force => true do |t|
+  create_table "n1_criterias", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.integer  "score"
     t.string   "score_message"
@@ -1484,7 +1559,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "ngr", :force => true do |t|
+  create_table "ngr", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1497,7 +1573,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",      :precision => 10, :scale => 0
   end
 
-  create_table "ngr_factors", :force => true do |t|
+  create_table "ngr_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1507,7 +1584,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "ngrs", :force => true do |t|
+  create_table "ngrs", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "base_status",          :precision => 10, :scale => 0
     t.decimal "ground_connector",     :precision => 10, :scale => 0
     t.decimal "ngr_status",           :precision => 10, :scale => 0
@@ -1515,30 +1593,33 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "oil_aging", :force => true do |t|
+  create_table "oil_aging", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "ift"
-    t.float    "nn"
-    t.float    "pf100"
+    t.float    "ift",          :limit => 53
+    t.float    "nn",           :limit => 53
+    t.float    "pf100",        :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
-    t.decimal  "perform_type", :precision => 10, :scale => 0
-    t.decimal  "transformer",  :precision => 10, :scale => 0
+    t.decimal  "perform_type",               :precision => 10, :scale => 0
+    t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "oil_calculates", :force => true do |t|
-    t.float    "Y1"
-    t.float    "Y2"
-    t.float    "Y3"
-    t.float    "Y4"
-    t.float    "Y5"
+  create_table "oil_calculates", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.float    "Y1",         :limit => 24
+    t.float    "Y2",         :limit => 24
+    t.float    "Y3",         :limit => 24
+    t.float    "Y4",         :limit => 24
+    t.float    "Y5",         :limit => 24
     t.integer  "W"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "oil_contamination_factors", :force => true do |t|
+  create_table "oil_contamination_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1548,13 +1629,14 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oil_contaminations", :force => true do |t|
+  create_table "oil_contaminations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "color"
-    t.float    "ift"
-    t.float    "nn"
-    t.float    "pf100"
-    t.float    "pf20"
+    t.float    "color",          :limit => 53
+    t.float    "ift",            :limit => 53
+    t.float    "nn",             :limit => 53
+    t.float    "pf100",          :limit => 53
+    t.float    "pf20",           :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.integer  "water_content"
@@ -1563,29 +1645,31 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "test_type"
   end
 
-  create_table "oil_dga", :force => true do |t|
+  create_table "oil_dga", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "c2h2"
-    t.float    "c2h4"
-    t.float    "c2h6"
-    t.float    "c3h6"
-    t.float    "c3h8"
-    t.float    "ch4"
-    t.float    "co"
-    t.float    "co2"
-    t.float    "h2"
-    t.float    "n2"
-    t.float    "o2"
+    t.float    "c2h2",         :limit => 53
+    t.float    "c2h4",         :limit => 53
+    t.float    "c2h6",         :limit => 53
+    t.float    "c3h6",         :limit => 53
+    t.float    "c3h8",         :limit => 53
+    t.float    "ch4",          :limit => 53
+    t.float    "co",           :limit => 53
+    t.float    "co2",          :limit => 53
+    t.float    "h2",           :limit => 53
+    t.float    "n2",           :limit => 53
+    t.float    "o2",           :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
-    t.decimal  "perform_type", :precision => 10, :scale => 0
-    t.decimal  "transformer",  :precision => 10, :scale => 0
+    t.decimal  "perform_type",               :precision => 10, :scale => 0
+    t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "oil_dgas", :force => true do |t|
+  create_table "oil_dgas", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "test_type"
-    t.date     "test_date"
+    t.datetime "test_date"
     t.string   "work_order"
     t.integer  "co2"
     t.integer  "co2_score"
@@ -1610,12 +1694,13 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "n2"
   end
 
-  create_table "oil_qualities", :force => true do |t|
+  create_table "oil_qualities", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.integer  "u_start"
     t.integer  "u_end"
-    t.float    "start"
-    t.float    "end"
+    t.float    "start",      :limit => 24
+    t.float    "end",        :limit => 24
     t.integer  "score"
     t.integer  "weight"
     t.integer  "color_id"
@@ -1623,7 +1708,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oil_quality_factors", :force => true do |t|
+  create_table "oil_quality_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1633,7 +1719,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_compartment", :force => true do |t|
+  create_table "oltc_compartment", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1644,7 +1731,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",  :precision => 10, :scale => 0
   end
 
-  create_table "oltc_compartment_factors", :force => true do |t|
+  create_table "oltc_compartment_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1654,35 +1742,38 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_compartments", :force => true do |t|
+  create_table "oltc_compartments", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "corrosion",            :precision => 10, :scale => 0
     t.decimal "oil_fail",             :precision => 10, :scale => 0
     t.integer "visual_inspection_id"
   end
 
-  create_table "oltc_contact", :force => true do |t|
+  create_table "oltc_contact", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "moving_a"
-    t.float    "moving_b"
-    t.float    "moving_c"
-    t.float    "r1_a"
-    t.float    "r1_b"
-    t.float    "r1_c"
-    t.float    "r2_a"
-    t.float    "r2_b"
-    t.float    "r2_c"
-    t.float    "station_a"
-    t.float    "station_b"
-    t.float    "station_c"
+    t.float    "moving_a",     :limit => 53
+    t.float    "moving_b",     :limit => 53
+    t.float    "moving_c",     :limit => 53
+    t.float    "r1_a",         :limit => 53
+    t.float    "r1_b",         :limit => 53
+    t.float    "r1_c",         :limit => 53
+    t.float    "r2_a",         :limit => 53
+    t.float    "r2_b",         :limit => 53
+    t.float    "r2_c",         :limit => 53
+    t.float    "station_a",    :limit => 53
+    t.float    "station_b",    :limit => 53
+    t.float    "station_c",    :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
-    t.decimal  "oltc_type",    :precision => 10, :scale => 0
-    t.decimal  "perform_type", :precision => 10, :scale => 0
-    t.decimal  "transformer",  :precision => 10, :scale => 0
+    t.decimal  "oltc_type",                  :precision => 10, :scale => 0
+    t.decimal  "perform_type",               :precision => 10, :scale => 0
+    t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "oltc_control_cab", :force => true do |t|
+  create_table "oltc_control_cab", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -1696,7 +1787,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "wiring_control",   :precision => 10, :scale => 0
   end
 
-  create_table "oltc_control_cabinet_factors", :force => true do |t|
+  create_table "oltc_control_cabinet_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1706,7 +1798,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_control_cabinets", :force => true do |t|
+  create_table "oltc_control_cabinets", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "animal",               :precision => 10, :scale => 0
     t.decimal "control_humidity",     :precision => 10, :scale => 0
     t.decimal "corrosion",            :precision => 10, :scale => 0
@@ -1715,7 +1808,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "oltc_dga_factors", :force => true do |t|
+  create_table "oltc_dga_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.string   "status"
@@ -1724,23 +1818,25 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_dgas", :force => true do |t|
-    t.float    "c2h2"
-    t.float    "c2h4"
-    t.float    "c2h6"
-    t.float    "ch4"
-    t.float    "h2"
+  create_table "oltc_dgas", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.float    "c2h2",           :limit => 53
+    t.float    "c2h4",           :limit => 53
+    t.float    "c2h6",           :limit => 53
+    t.float    "ch4",            :limit => 53
+    t.float    "h2",             :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
-    t.decimal  "oltc_type",      :precision => 10, :scale => 0
-    t.decimal  "transformer_id", :precision => 10, :scale => 0
-    t.float    "c3h6"
+    t.decimal  "oltc_type",                    :precision => 10, :scale => 0
+    t.decimal  "transformer_id",               :precision => 10, :scale => 0
+    t.float    "c3h6",           :limit => 53
     t.string   "status"
     t.string   "test_type"
   end
 
-  create_table "oltc_dielectric_property_factors", :force => true do |t|
+  create_table "oltc_dielectric_property_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1750,12 +1846,14 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_model", :force => true do |t|
+  create_table "oltc_model", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "oltc_oil_contamination_factors", :force => true do |t|
+  create_table "oltc_oil_contamination_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1765,24 +1863,26 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_oil_contaminations", :force => true do |t|
+  create_table "oltc_oil_contaminations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "color"
+    t.float    "color",          :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.integer  "water_content"
     t.string   "work_order"
-    t.decimal  "oltc_type",      :precision => 10, :scale => 0
+    t.decimal  "oltc_type",                    :precision => 10, :scale => 0
     t.integer  "transformer_id"
     t.integer  "test_type"
   end
 
-  create_table "oltc_oil_qualities", :force => true do |t|
+  create_table "oltc_oil_qualities", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.integer  "u_start"
     t.integer  "u_end"
-    t.float    "start"
-    t.float    "end"
+    t.float    "start",      :limit => 24
+    t.float    "end",        :limit => 24
     t.integer  "score"
     t.integer  "weight"
     t.datetime "created_at"
@@ -1790,7 +1890,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "color_id"
   end
 
-  create_table "oltc_oil_quality_factors", :force => true do |t|
+  create_table "oltc_oil_quality_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -1800,12 +1901,14 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "oltc_type", :force => true do |t|
+  create_table "oltc_type", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "overall_condition_weights", :force => true do |t|
+  create_table "overall_condition_weights", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.string   "text"
     t.string   "weight"
@@ -1813,211 +1916,218 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "perform_draft_result", :force => true do |t|
-    t.float   "activehv"
+  create_table "perform_draft_result", :id => false, :force => true do |t|
+    t.integer "id"
+    t.float   "activehv",                   :limit => 53
     t.string  "activehvcolor"
-    t.float   "activelv"
+    t.float   "activelv",                   :limit => 53
     t.string  "activelvcolor"
-    t.float   "activetv"
+    t.float   "activetv",                   :limit => 53
     t.string  "activetvcolor"
-    t.float   "activepart"
+    t.float   "activepart",                 :limit => 53
     t.string  "activepart_color"
     t.integer "version"
-    t.float   "arresterhv"
+    t.float   "arresterhv",                 :limit => 53
     t.string  "arresterhvcolor"
-    t.float   "arresterlv"
+    t.float   "arresterlv",                 :limit => 53
     t.string  "arresterlvcolor"
-    t.float   "arrestertv"
+    t.float   "arrestertv",                 :limit => 53
     t.string  "arrestertvcolor"
-    t.float   "bushinghv"
+    t.float   "bushinghv",                  :limit => 53
     t.string  "bushinghvcolor"
-    t.float   "bushinglv"
+    t.float   "bushinglv",                  :limit => 53
     t.string  "bushinglvcolor"
-    t.float   "bushingtv"
+    t.float   "bushingtv",                  :limit => 53
     t.string  "bushingtvcolor"
-    t.float   "eleccor"
+    t.float   "eleccor",                    :limit => 53
     t.string  "eleccor_color"
-    t.float   "elecdcrhv1"
+    t.float   "elecdcrhv1",                 :limit => 53
     t.string  "elecdcrhv1color"
-    t.float   "elecdcrhv2"
+    t.float   "elecdcrhv2",                 :limit => 53
     t.string  "elecdcrhv2color"
-    t.float   "elecdcrlv1"
+    t.float   "elecdcrlv1",                 :limit => 53
     t.string  "elecdcrlv1color"
-    t.float   "elecdcrlv2"
+    t.float   "elecdcrlv2",                 :limit => 53
     t.string  "elecdcrlv2color"
-    t.float   "elecdcrtv1"
+    t.float   "elecdcrtv1",                 :limit => 53
     t.string  "elecdcrtv1color"
-    t.float   "elecdcrtv2"
+    t.float   "elecdcrtv2",                 :limit => 53
     t.string  "elecdcrtv2color"
-    t.float   "elecexchv1"
+    t.float   "elecexchv1",                 :limit => 53
     t.string  "elecexchv1color"
-    t.float   "elecexchv2"
+    t.float   "elecexchv2",                 :limit => 53
     t.string  "elecexchv2color"
-    t.float   "elecexclv1"
+    t.float   "elecexclv1",                 :limit => 53
     t.string  "elecexclv1color"
-    t.float   "elecexclv2"
+    t.float   "elecexclv2",                 :limit => 53
     t.string  "elecexclv2color"
-    t.float   "elecexctv"
+    t.float   "elecexctv",                  :limit => 53
     t.string  "elecexctvcolor"
-    t.float   "elecimpsinglehl"
+    t.float   "elecimpsinglehl",            :limit => 53
     t.string  "elecimpsinglehlcolor"
-    t.float   "elecimpsingleht"
+    t.float   "elecimpsingleht",            :limit => 53
     t.string  "elecimpsinglehtcolor"
-    t.float   "elecimpsinglelt"
+    t.float   "elecimpsinglelt",            :limit => 53
     t.string  "elecimpsingleltcolor"
-    t.float   "elecimpthreehl"
+    t.float   "elecimpthreehl",             :limit => 53
     t.string  "elecimpthreehlcolor"
-    t.float   "elecimpthreeht"
+    t.float   "elecimpthreeht",             :limit => 53
     t.string  "elecimpthreehtcolor"
-    t.float   "elecimpthreelt"
+    t.float   "elecimpthreelt",             :limit => 53
     t.string  "elecimpthreeltcolor"
-    t.float   "elecinsautohv"
+    t.float   "elecinsautohv",              :limit => 53
     t.string  "elecinsautohvcolor"
-    t.float   "elecinsautotv"
+    t.float   "elecinsautotv",              :limit => 53
     t.string  "elecinsautotvcolor"
-    t.float   "elecinsthreehv"
+    t.float   "elecinsthreehv",             :limit => 53
     t.string  "elecinsthreehvcolor"
-    t.float   "elecinsthreelv"
+    t.float   "elecinsthreelv",             :limit => 53
     t.string  "elecinsthreelvcolor"
-    t.float   "elecinsthreetv"
+    t.float   "elecinsthreetv",             :limit => 53
     t.string  "elecinsthreetvcolor"
-    t.float   "elecinstwohv"
+    t.float   "elecinstwohv",               :limit => 53
     t.string  "elecinstwohvcolor"
-    t.float   "elecinstwolv"
+    t.float   "elecinstwolv",               :limit => 53
     t.string  "elecinstwolvcolor"
-    t.float   "elecrathl"
+    t.float   "elecrathl",                  :limit => 53
     t.string  "elecrathlcolor"
-    t.float   "elecratht"
+    t.float   "elecratht",                  :limit => 53
     t.string  "elecrathtcolor"
-    t.float   "elecratlt"
+    t.float   "elecratlt",                  :limit => 53
     t.string  "elecratltcolor"
-    t.float   "oilaging"
+    t.float   "oilaging",                   :limit => 53
     t.string  "oilaging_color"
-    t.float   "oilcontamination"
+    t.float   "oilcontamination",           :limit => 53
     t.string  "oilcontamination_color"
-    t.float   "oildga"
+    t.float   "oildga",                     :limit => 53
     t.string  "oildga_color"
-    t.float   "oilfuran"
+    t.float   "oilfuran",                   :limit => 53
     t.string  "oilfuran_color"
-    t.float   "oilpart"
+    t.float   "oilpart",                    :limit => 53
     t.string  "oilpart_color"
-    t.float   "oltccontact"
+    t.float   "oltccontact",                :limit => 53
     t.string  "oltccontact_color"
-    t.float   "oltcdga"
+    t.float   "oltcdga",                    :limit => 53
     t.string  "oltcdga_color"
-    t.float   "oltcdielectric"
+    t.float   "oltcdielectric",             :limit => 53
     t.string  "oltcdielectric_color"
-    t.float   "oltcoilcontamination"
+    t.float   "oltcoilcontamination",       :limit => 53
     t.string  "oltcoilcontamination_color"
-    t.float   "oltcpart"
+    t.float   "oltcpart",                   :limit => 53
     t.string  "oltcpart_color"
-    t.float   "overall"
+    t.float   "overall",                    :limit => 53
     t.string  "overall_color"
     t.integer "quater"
     t.string  "recordyear"
-    t.float   "vbushing"
+    t.float   "vbushing",                   :limit => 53
     t.string  "vbushing_color"
-    t.float   "vconservator"
+    t.float   "vconservator",               :limit => 53
     t.string  "vconservator_color"
-    t.float   "vgeneral"
+    t.float   "vgeneral",                   :limit => 53
     t.string  "vgeneral_color"
-    t.float   "vhotline"
+    t.float   "vhotline",                   :limit => 53
     t.string  "vhotline_color"
-    t.float   "vlightning"
+    t.float   "vlightning",                 :limit => 53
     t.string  "vlightning_color"
-    t.float   "vloadhistory"
+    t.float   "vloadhistory",               :limit => 53
     t.string  "vloadhistory_color"
-    t.float   "vmaintank"
+    t.float   "vmaintank",                  :limit => 53
     t.string  "vmaintank_color"
-    t.float   "vngr"
+    t.float   "vngr",                       :limit => 53
     t.string  "vngr_color"
-    t.float   "voilquality"
+    t.float   "voilquality",                :limit => 53
     t.string  "voilquality_color"
-    t.float   "voltccompartment"
+    t.float   "voltccompartment",           :limit => 53
     t.string  "voltccompartment_color"
-    t.float   "voltccontrolcab"
+    t.float   "voltccontrolcab",            :limit => 53
     t.string  "voltccontrolcab_color"
-    t.float   "voltcdga"
+    t.float   "voltcdga",                   :limit => 53
     t.string  "voltcdga_color"
-    t.float   "voltcoilquality"
+    t.float   "voltcoilquality",            :limit => 53
     t.string  "voltcoilquality_color"
-    t.float   "vpowerfactor"
+    t.float   "vpowerfactor",               :limit => 53
     t.string  "vpowerfactor_color"
-    t.float   "vradiatorcooling"
+    t.float   "vradiatorcooling",           :limit => 53
     t.string  "vradiatorcooling_color"
-    t.float   "vregulatingpt"
+    t.float   "vregulatingpt",              :limit => 53
     t.string  "vregulatingpt_color"
-    t.float   "vthermoscan"
+    t.float   "vthermoscan",                :limit => 53
     t.string  "vthermoscan_color"
-    t.float   "vtranscontrolcab"
+    t.float   "vtranscontrolcab",           :limit => 53
     t.string  "vtranscontrolcab_color"
-    t.decimal "transformer",                :precision => 10, :scale => 0
+    t.decimal "transformer",                              :precision => 10, :scale => 0
   end
 
-  create_table "perform_part", :force => true do |t|
+  create_table "perform_part", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "name"
-    t.float   "wf"
-    t.decimal "perform_group", :precision => 10, :scale => 0
+    t.float   "wf",            :limit => 53
+    t.decimal "perform_group",               :precision => 10, :scale => 0
   end
 
-  create_table "perform_score", :force => true do |t|
+  create_table "perform_score", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "evaluation"
     t.string  "more_perform"
-    t.float   "score1max"
+    t.float   "score1max",     :limit => 53
     t.string  "score1meaning"
-    t.float   "score1min"
-    t.float   "score2max"
+    t.float   "score1min",     :limit => 53
+    t.float   "score2max",     :limit => 53
     t.string  "score2meaning"
-    t.float   "score2min"
-    t.float   "score3max"
+    t.float   "score2min",     :limit => 53
+    t.float   "score3max",     :limit => 53
     t.string  "score3meaning"
-    t.float   "score3min"
-    t.float   "score4max"
+    t.float   "score3min",     :limit => 53
+    t.float   "score4max",     :limit => 53
     t.string  "score4meaning"
-    t.float   "score4min"
-    t.float   "score5max"
+    t.float   "score4min",     :limit => 53
+    t.float   "score5max",     :limit => 53
     t.string  "score5meaning"
-    t.float   "score5min"
-    t.float   "score6max"
+    t.float   "score5min",     :limit => 53
+    t.float   "score6max",     :limit => 53
     t.string  "score6meaning"
-    t.float   "score6min"
+    t.float   "score6min",     :limit => 53
     t.string  "variable"
-    t.float   "variable_max"
-    t.float   "variable_min"
+    t.float   "variable_max",  :limit => 53
+    t.float   "variable_min",  :limit => 53
     t.integer "wi"
-    t.decimal "perform_group", :precision => 10, :scale => 0
-    t.decimal "sub_group",     :precision => 10, :scale => 0
+    t.decimal "perform_group",               :precision => 10, :scale => 0
+    t.decimal "sub_group",                   :precision => 10, :scale => 0
   end
 
-  create_table "perform_sub_group", :force => true do |t|
+  create_table "perform_sub_group", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "color"
     t.integer "hi_factor"
-    t.float   "lower_bound"
+    t.float   "lower_bound",   :limit => 53
     t.string  "meaning"
     t.string  "name"
-    t.float   "upper_bound"
-    t.decimal "perform_group", :precision => 10, :scale => 0
+    t.float   "upper_bound",   :limit => 53
+    t.decimal "perform_group",               :precision => 10, :scale => 0
   end
 
-  create_table "perform_type", :force => true do |t|
+  create_table "perform_type", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "performance_group", :force => true do |t|
+  create_table "performance_group", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "color"
     t.string  "description"
-    t.float   "lower_bound"
+    t.float   "lower_bound", :limit => 53
     t.string  "meaning"
     t.string  "name"
-    t.float   "upper_bound"
+    t.float   "upper_bound", :limit => 53
   end
 
-  create_table "person", :force => true do |t|
+  create_table "person", :id => false, :force => true do |t|
+    t.integer "id"
     t.string  "authority_enum"
     t.integer "version"
     t.string  "department"
@@ -2027,7 +2137,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string  "username"
   end
 
-  create_table "pollutions", :force => true do |t|
+  create_table "pollutions", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2035,23 +2146,26 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "score_message"
   end
 
-  create_table "posts", :force => true do |t|
+  create_table "posts", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "power_factors", :force => true do |t|
+  create_table "power_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
-    t.float    "start"
-    t.float    "end"
+    t.float    "start",      :limit => 24
+    t.float    "end",        :limit => 24
     t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "power_stations", :force => true do |t|
+  create_table "power_stations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.string   "fullName"
     t.string   "region"
@@ -2060,13 +2174,15 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "power_usages", :force => true do |t|
+  create_table "power_usages", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "usage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "probability_of_force_outages", :force => true do |t|
+  create_table "probability_of_force_outages", :id => false, :force => true do |t|
+    t.integer  "id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score"
@@ -2075,7 +2191,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "end"
   end
 
-  create_table "public_images", :force => true do |t|
+  create_table "public_images", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.integer  "score"
     t.string   "score_message"
@@ -2083,7 +2200,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "radiator_cooling", :force => true do |t|
+  create_table "radiator_cooling", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -2097,7 +2215,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",  :precision => 10, :scale => 0
   end
 
-  create_table "radiator_cooling_system_factors", :force => true do |t|
+  create_table "radiator_cooling_system_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -2107,7 +2226,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "radiator_cooling_systems", :force => true do |t|
+  create_table "radiator_cooling_systems", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "animal",               :precision => 10, :scale => 0
     t.decimal "corrosion",            :precision => 10, :scale => 0
     t.decimal "noise_level",          :precision => 10, :scale => 0
@@ -2116,7 +2236,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "regulating_pt_factors", :force => true do |t|
+  create_table "regulating_pt_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -2126,7 +2247,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "regulating_pts", :force => true do |t|
+  create_table "regulating_pts", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "oil_color",            :precision => 10, :scale => 0
     t.decimal "oil_fail",             :precision => 10, :scale => 0
     t.decimal "oil_level",            :precision => 10, :scale => 0
@@ -2135,7 +2257,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "regulatingpt", :force => true do |t|
+  create_table "regulatingpt", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -2149,7 +2272,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",     :precision => 10, :scale => 0
   end
 
-  create_table "repair_informations", :force => true do |t|
+  create_table "repair_informations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "repair_age"
     t.integer  "pm"
     t.integer  "mc_avg"
@@ -2176,7 +2300,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "report", :force => true do |t|
+  create_table "report", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.datetime "down_date"
     t.string   "down_time"
@@ -2197,7 +2322,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",    :precision => 10, :scale => 0
   end
 
-  create_table "risk_probabilities", :force => true do |t|
+  create_table "risk_probabilities", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "start"
     t.integer  "end"
     t.string   "probability_of_failure"
@@ -2206,14 +2332,16 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "risks", :force => true do |t|
+  create_table "risks", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "start"
     t.integer "end"
     t.string  "risk"
     t.string  "action"
   end
 
-  create_table "social_aspects", :force => true do |t|
+  create_table "social_aspects", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2221,7 +2349,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "score_message"
   end
 
-  create_table "station", :force => true do |t|
+  create_table "station", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "full_name"
     t.integer "kv"
@@ -2229,7 +2358,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string  "region"
   end
 
-  create_table "stations", :force => true do |t|
+  create_table "stations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "full_name"
     t.integer  "kv"
@@ -2239,18 +2369,21 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "students", :force => true do |t|
+  create_table "students", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sun_flower", :force => true do |t|
+  create_table "sun_flower", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "owner"
   end
 
-  create_table "surge_arrester_factors", :force => true do |t|
+  create_table "surge_arrester_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -2260,7 +2393,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "surge_arresters", :force => true do |t|
+  create_table "surge_arresters", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "ground_connector_hv",  :precision => 10, :scale => 0
     t.decimal "ground_connector_lv",  :precision => 10, :scale => 0
     t.decimal "ground_connector_tv",  :precision => 10, :scale => 0
@@ -2277,7 +2411,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "system_fault_levels", :force => true do |t|
+  create_table "system_fault_levels", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "start"
     t.integer  "end"
     t.integer  "score"
@@ -2287,7 +2422,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "system_locations", :force => true do |t|
+  create_table "system_locations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2295,7 +2431,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "score_message"
   end
 
-  create_table "system_stabilities", :force => true do |t|
+  create_table "system_stabilities", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2303,53 +2440,54 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "score_message"
   end
 
-  create_table "tarrester", :force => true do |t|
+  create_table "tarrester", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "currenth1"
-    t.float    "currenth2"
-    t.float    "currenth3"
-    t.float    "currentx1"
-    t.float    "currentx2"
-    t.float    "currentx3"
-    t.float    "currenty1"
-    t.float    "currenty2"
-    t.float    "currenty3"
-    t.float    "leakage_firsth1"
-    t.float    "leakage_firsth2"
-    t.float    "leakage_firsth3"
-    t.float    "leakage_firstx1"
-    t.float    "leakage_firstx2"
-    t.float    "leakage_firstx3"
-    t.float    "leakage_firsty1"
-    t.float    "leakage_firsty2"
-    t.float    "leakage_firsty3"
-    t.float    "leakageh1"
-    t.float    "leakageh2"
-    t.float    "leakageh3"
-    t.float    "leakagex1"
-    t.float    "leakagex2"
-    t.float    "leakagex3"
-    t.float    "leakagey1"
-    t.float    "leakagey2"
-    t.float    "leakagey3"
-    t.float    "ohm_firsth1"
-    t.float    "ohm_firsth2"
-    t.float    "ohm_firsth3"
-    t.float    "ohm_firstx1"
-    t.float    "ohm_firstx2"
-    t.float    "ohm_firstx3"
-    t.float    "ohm_firsty1"
-    t.float    "ohm_firsty2"
-    t.float    "ohm_firsty3"
-    t.float    "ohmh1"
-    t.float    "ohmh2"
-    t.float    "ohmh3"
-    t.float    "ohmx1"
-    t.float    "ohmx2"
-    t.float    "ohmx3"
-    t.float    "ohmy1"
-    t.float    "ohmy2"
-    t.float    "ohmy3"
+    t.float    "currenth1",       :limit => 53
+    t.float    "currenth2",       :limit => 53
+    t.float    "currenth3",       :limit => 53
+    t.float    "currentx1",       :limit => 53
+    t.float    "currentx2",       :limit => 53
+    t.float    "currentx3",       :limit => 53
+    t.float    "currenty1",       :limit => 53
+    t.float    "currenty2",       :limit => 53
+    t.float    "currenty3",       :limit => 53
+    t.float    "leakage_firsth1", :limit => 53
+    t.float    "leakage_firsth2", :limit => 53
+    t.float    "leakage_firsth3", :limit => 53
+    t.float    "leakage_firstx1", :limit => 53
+    t.float    "leakage_firstx2", :limit => 53
+    t.float    "leakage_firstx3", :limit => 53
+    t.float    "leakage_firsty1", :limit => 53
+    t.float    "leakage_firsty2", :limit => 53
+    t.float    "leakage_firsty3", :limit => 53
+    t.float    "leakageh1",       :limit => 53
+    t.float    "leakageh2",       :limit => 53
+    t.float    "leakageh3",       :limit => 53
+    t.float    "leakagex1",       :limit => 53
+    t.float    "leakagex2",       :limit => 53
+    t.float    "leakagex3",       :limit => 53
+    t.float    "leakagey1",       :limit => 53
+    t.float    "leakagey2",       :limit => 53
+    t.float    "leakagey3",       :limit => 53
+    t.float    "ohm_firsth1",     :limit => 53
+    t.float    "ohm_firsth2",     :limit => 53
+    t.float    "ohm_firsth3",     :limit => 53
+    t.float    "ohm_firstx1",     :limit => 53
+    t.float    "ohm_firstx2",     :limit => 53
+    t.float    "ohm_firstx3",     :limit => 53
+    t.float    "ohm_firsty1",     :limit => 53
+    t.float    "ohm_firsty2",     :limit => 53
+    t.float    "ohm_firsty3",     :limit => 53
+    t.float    "ohmh1",           :limit => 53
+    t.float    "ohmh2",           :limit => 53
+    t.float    "ohmh3",           :limit => 53
+    t.float    "ohmx1",           :limit => 53
+    t.float    "ohmx2",           :limit => 53
+    t.float    "ohmx3",           :limit => 53
+    t.float    "ohmy1",           :limit => 53
+    t.float    "ohmy2",           :limit => 53
+    t.float    "ohmy3",           :limit => 53
     t.string   "serialh1"
     t.string   "serialh2"
     t.string   "serialh3"
@@ -2362,76 +2500,77 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "test_by"
     t.datetime "test_date"
     t.integer  "test_kv"
-    t.float    "watt_firsth1"
-    t.float    "watt_firsth2"
-    t.float    "watt_firsth3"
-    t.float    "watt_firstx1"
-    t.float    "watt_firstx2"
-    t.float    "watt_firstx3"
-    t.float    "watt_firsty1"
-    t.float    "watt_firsty2"
-    t.float    "watt_firsty3"
-    t.float    "watth1"
-    t.float    "watth2"
-    t.float    "watth3"
-    t.float    "wattx1"
-    t.float    "wattx2"
-    t.float    "wattx3"
-    t.float    "watty1"
-    t.float    "watty2"
-    t.float    "watty3"
+    t.float    "watt_firsth1",    :limit => 53
+    t.float    "watt_firsth2",    :limit => 53
+    t.float    "watt_firsth3",    :limit => 53
+    t.float    "watt_firstx1",    :limit => 53
+    t.float    "watt_firstx2",    :limit => 53
+    t.float    "watt_firstx3",    :limit => 53
+    t.float    "watt_firsty1",    :limit => 53
+    t.float    "watt_firsty2",    :limit => 53
+    t.float    "watt_firsty3",    :limit => 53
+    t.float    "watth1",          :limit => 53
+    t.float    "watth2",          :limit => 53
+    t.float    "watth3",          :limit => 53
+    t.float    "wattx1",          :limit => 53
+    t.float    "wattx2",          :limit => 53
+    t.float    "wattx3",          :limit => 53
+    t.float    "watty1",          :limit => 53
+    t.float    "watty2",          :limit => 53
+    t.float    "watty3",          :limit => 53
     t.string   "work_order"
-    t.decimal  "perform_type",    :precision => 10, :scale => 0
-    t.decimal  "transformer",     :precision => 10, :scale => 0
+    t.decimal  "perform_type",                  :precision => 10, :scale => 0
+    t.decimal  "transformer",                   :precision => 10, :scale => 0
   end
 
-  create_table "tbushing", :force => true do |t|
+  create_table "tbushing", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "capc1h0"
-    t.float    "capc1h1"
-    t.float    "capc1h2"
-    t.float    "capc1h3"
-    t.float    "capc1x0"
-    t.float    "capc1x1"
-    t.float    "capc1x2"
-    t.float    "capc1x3"
-    t.float    "capc1y1"
-    t.float    "capc1y2"
-    t.float    "capc1y3"
-    t.float    "capc2h0"
-    t.float    "capc2h1"
-    t.float    "capc2h2"
-    t.float    "capc2h3"
-    t.float    "capc2x0"
-    t.float    "capc2x1"
-    t.float    "capc2x2"
-    t.float    "capc2x3"
-    t.float    "capc2y1"
-    t.float    "capc2y2"
-    t.float    "capc2y3"
-    t.float    "corb"
-    t.float    "currentc1h0"
-    t.float    "currentc1h1"
-    t.float    "currentc1h2"
-    t.float    "currentc1h3"
-    t.float    "currentc1x0"
-    t.float    "currentc1x1"
-    t.float    "currentc1x2"
-    t.float    "currentc1x3"
-    t.float    "currentc1y1"
-    t.float    "currentc1y2"
-    t.float    "currentc1y3"
-    t.float    "currentc2h0"
-    t.float    "currentc2h1"
-    t.float    "currentc2h2"
-    t.float    "currentc2h3"
-    t.float    "currentc2x0"
-    t.float    "currentc2x1"
-    t.float    "currentc2x2"
-    t.float    "currentc2x3"
-    t.float    "currentc2y1"
-    t.float    "currentc2y2"
-    t.float    "currentc2y3"
+    t.float    "capc1h0",      :limit => 53
+    t.float    "capc1h1",      :limit => 53
+    t.float    "capc1h2",      :limit => 53
+    t.float    "capc1h3",      :limit => 53
+    t.float    "capc1x0",      :limit => 53
+    t.float    "capc1x1",      :limit => 53
+    t.float    "capc1x2",      :limit => 53
+    t.float    "capc1x3",      :limit => 53
+    t.float    "capc1y1",      :limit => 53
+    t.float    "capc1y2",      :limit => 53
+    t.float    "capc1y3",      :limit => 53
+    t.float    "capc2h0",      :limit => 53
+    t.float    "capc2h1",      :limit => 53
+    t.float    "capc2h2",      :limit => 53
+    t.float    "capc2h3",      :limit => 53
+    t.float    "capc2x0",      :limit => 53
+    t.float    "capc2x1",      :limit => 53
+    t.float    "capc2x2",      :limit => 53
+    t.float    "capc2x3",      :limit => 53
+    t.float    "capc2y1",      :limit => 53
+    t.float    "capc2y2",      :limit => 53
+    t.float    "capc2y3",      :limit => 53
+    t.float    "corb",         :limit => 53
+    t.float    "currentc1h0",  :limit => 53
+    t.float    "currentc1h1",  :limit => 53
+    t.float    "currentc1h2",  :limit => 53
+    t.float    "currentc1h3",  :limit => 53
+    t.float    "currentc1x0",  :limit => 53
+    t.float    "currentc1x1",  :limit => 53
+    t.float    "currentc1x2",  :limit => 53
+    t.float    "currentc1x3",  :limit => 53
+    t.float    "currentc1y1",  :limit => 53
+    t.float    "currentc1y2",  :limit => 53
+    t.float    "currentc1y3",  :limit => 53
+    t.float    "currentc2h0",  :limit => 53
+    t.float    "currentc2h1",  :limit => 53
+    t.float    "currentc2h2",  :limit => 53
+    t.float    "currentc2h3",  :limit => 53
+    t.float    "currentc2x0",  :limit => 53
+    t.float    "currentc2x1",  :limit => 53
+    t.float    "currentc2x2",  :limit => 53
+    t.float    "currentc2x3",  :limit => 53
+    t.float    "currentc2y1",  :limit => 53
+    t.float    "currentc2y2",  :limit => 53
+    t.float    "currentc2y3",  :limit => 53
     t.string   "serialh0"
     t.string   "serialh1"
     t.string   "serialh2"
@@ -2445,46 +2584,54 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "serialy3"
     t.string   "test_by"
     t.datetime "test_date"
-    t.float    "test_kv"
-    t.float    "wattc1h0"
-    t.float    "wattc1h1"
-    t.float    "wattc1h2"
-    t.float    "wattc1h3"
-    t.float    "wattc1x0"
-    t.float    "wattc1x1"
-    t.float    "wattc1x2"
-    t.float    "wattc1x3"
-    t.float    "wattc1y1"
-    t.float    "wattc1y2"
-    t.float    "wattc1y3"
-    t.float    "wattc2h0"
-    t.float    "wattc2h1"
-    t.float    "wattc2h2"
-    t.float    "wattc2h3"
-    t.float    "wattc2x0"
-    t.float    "wattc2x1"
-    t.float    "wattc2x2"
-    t.float    "wattc2x3"
-    t.float    "wattc2y1"
-    t.float    "wattc2y2"
-    t.float    "wattc2y3"
+    t.float    "test_kv",      :limit => 53
+    t.float    "wattc1h0",     :limit => 53
+    t.float    "wattc1h1",     :limit => 53
+    t.float    "wattc1h2",     :limit => 53
+    t.float    "wattc1h3",     :limit => 53
+    t.float    "wattc1x0",     :limit => 53
+    t.float    "wattc1x1",     :limit => 53
+    t.float    "wattc1x2",     :limit => 53
+    t.float    "wattc1x3",     :limit => 53
+    t.float    "wattc1y1",     :limit => 53
+    t.float    "wattc1y2",     :limit => 53
+    t.float    "wattc1y3",     :limit => 53
+    t.float    "wattc2h0",     :limit => 53
+    t.float    "wattc2h1",     :limit => 53
+    t.float    "wattc2h2",     :limit => 53
+    t.float    "wattc2h3",     :limit => 53
+    t.float    "wattc2x0",     :limit => 53
+    t.float    "wattc2x1",     :limit => 53
+    t.float    "wattc2x2",     :limit => 53
+    t.float    "wattc2x3",     :limit => 53
+    t.float    "wattc2y1",     :limit => 53
+    t.float    "wattc2y2",     :limit => 53
+    t.float    "wattc2y3",     :limit => 53
     t.string   "work_order"
-    t.decimal  "perform_type", :precision => 10, :scale => 0
-    t.decimal  "transformer",  :precision => 10, :scale => 0
+    t.decimal  "perform_type",               :precision => 10, :scale => 0
+    t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "thermo_scan", :force => true do |t|
+  create_table "test_xes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "thermo_scan", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
-    t.float    "delt"
-    t.float    "load"
+    t.float    "delt",         :limit => 53
+    t.float    "load",         :limit => 53
     t.string   "test_by"
     t.datetime "test_date"
     t.string   "work_order"
-    t.decimal  "perform_type", :precision => 10, :scale => 0
-    t.decimal  "transformer",  :precision => 10, :scale => 0
+    t.decimal  "perform_type",               :precision => 10, :scale => 0
+    t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "thermo_scan_factors", :force => true do |t|
+  create_table "thermo_scan_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "load_start"
@@ -2496,18 +2643,21 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "thermo_scans", :force => true do |t|
-    t.float   "delt"
-    t.float   "load"
+  create_table "thermo_scans", :id => false, :force => true do |t|
+    t.integer "id"
+    t.float   "delt",                 :limit => 53
+    t.float   "load",                 :limit => 53
     t.integer "visual_inspection_id"
   end
 
-  create_table "tran_status", :force => true do |t|
+  create_table "tran_status", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "trans_control_cab", :force => true do |t|
+  create_table "trans_control_cab", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -2521,27 +2671,28 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "wiring_control",   :precision => 10, :scale => 0
   end
 
-  create_table "transformer", :force => true do |t|
+  create_table "transformer", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "contract"
     t.string   "detail"
     t.string   "egatsn"
     t.datetime "first_energize"
-    t.float    "hv"
+    t.float    "hv",                  :limit => 53
     t.integer  "item"
-    t.float    "lv"
+    t.float    "lv",                  :limit => 53
     t.string   "manufacturingserial"
-    t.float    "maxcapacity"
+    t.float    "maxcapacity",         :limit => 53
     t.string   "old_egatsn"
     t.integer  "phase"
     t.string   "picture"
     t.string   "transformer_name"
-    t.float    "tv"
+    t.float    "tv",                  :limit => 53
     t.string   "vector_group"
-    t.decimal  "first_substation",    :precision => 10, :scale => 0
-    t.decimal  "manufacturing",       :precision => 10, :scale => 0
-    t.decimal  "status",              :precision => 10, :scale => 0
-    t.decimal  "winding_type_id",     :precision => 10, :scale => 0
+    t.decimal  "first_substation",                  :precision => 10, :scale => 0
+    t.decimal  "manufacturing",                     :precision => 10, :scale => 0
+    t.decimal  "status",                            :precision => 10, :scale => 0
+    t.decimal  "winding_type_id",                   :precision => 10, :scale => 0
     t.integer  "brand_id"
     t.string   "position"
     t.string   "oltc_type"
@@ -2592,9 +2743,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "oltc_manufacturer"
   end
 
-  add_index "transformer", ["transformer_name"], :name => "transformer_name"
-
-  create_table "transformer_accessories", :force => true do |t|
+  create_table "transformer_accessories", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "bushing_hv_manu"
     t.string   "bushing_hv_type"
     t.integer  "bushing_hv_year"
@@ -2644,7 +2794,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "egatsn"
   end
 
-  create_table "transformer_control_cabinet_factors", :force => true do |t|
+  create_table "transformer_control_cabinet_factors", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "hi_factor"
     t.string   "condition"
     t.integer  "start"
@@ -2654,7 +2805,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "transformer_control_cabinets", :force => true do |t|
+  create_table "transformer_control_cabinets", :id => false, :force => true do |t|
+    t.integer "id"
     t.decimal "animal",               :precision => 10, :scale => 0
     t.decimal "control_humidity",     :precision => 10, :scale => 0
     t.decimal "corrosion",            :precision => 10, :scale => 0
@@ -2663,7 +2815,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "transformer_history_move", :force => true do |t|
+  create_table "transformer_history_move", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "move_by"
     t.datetime "move_date"
@@ -2674,13 +2827,14 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer", :precision => 10, :scale => 0
   end
 
-  create_table "transformer_informations", :force => true do |t|
+  create_table "transformer_informations", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "bus_voltage_hv_id"
     t.integer  "bus_voltage_lv_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "system_fault_level_hv"
-    t.float    "system_fault_level_lv"
+    t.float    "system_fault_level_hv",             :limit => 53
+    t.float    "system_fault_level_lv",             :limit => 53
     t.integer  "probability_of_force_outage_id"
     t.integer  "social_aspect_id"
     t.integer  "system_location_id"
@@ -2691,14 +2845,15 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "public_image_id"
     t.integer  "system_fault_level_id"
     t.integer  "transformer_id"
-    t.date     "recorded_date"
+    t.datetime "recorded_date"
     t.integer  "bus_voltage_id"
-    t.float    "overall_condition"
+    t.float    "overall_condition",                 :limit => 53
     t.integer  "probability_of_force_outage_value"
-    t.boolean  "recent"
+    t.integer  "recent",                            :limit => 2
   end
 
-  create_table "transformer_price_losses", :force => true do |t|
+  create_table "transformer_price_losses", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "transformer_price"
     t.integer  "noload_loss"
     t.integer  "loadloss"
@@ -2708,7 +2863,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.integer  "user_id"
   end
 
-  create_table "transformer_transfers", :force => true do |t|
+  create_table "transformer_transfers", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "egatsn"
     t.datetime "action_date"
     t.string   "user_op"
@@ -2720,20 +2876,23 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.string   "new_txname"
   end
 
-  create_table "tx_images", :force => true do |t|
+  create_table "tx_images", :id => false, :force => true do |t|
+    t.integer  "id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "update_prices", :force => true do |t|
+  create_table "update_prices", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "Year"
-    t.float    "Price"
+    t.float    "Price",      :limit => 24
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "quantity"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "login"
     t.string   "password"
     t.string   "firstname"
@@ -2751,7 +2910,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  create_table "visual_bushing", :force => true do |t|
+  create_table "visual_bushing", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "version"
     t.string   "test_by"
     t.datetime "test_date"
@@ -2775,7 +2935,8 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.decimal  "transformer",        :precision => 10, :scale => 0
   end
 
-  create_table "visual_inspection_conditions", :force => true do |t|
+  create_table "visual_inspection_conditions", :id => false, :force => true do |t|
+    t.integer  "id"
     t.string   "description"
     t.integer  "start"
     t.integer  "end"
@@ -2790,35 +2951,37 @@ ActiveRecord::Schema.define(:version => 20111228083821) do
     t.datetime "updated_at"
   end
 
-  add_index "visual_inspection_conditions", ["name"], :name => "name"
-  add_index "visual_inspection_conditions", ["table_name"], :name => "table_name"
-
-  create_table "visual_inspections", :force => true do |t|
+  create_table "visual_inspections", :id => false, :force => true do |t|
+    t.integer  "id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "test_type"
     t.string   "test_by"
-    t.date     "test_date"
+    t.datetime "test_date"
     t.string   "oltc_counter"
     t.string   "work_order"
     t.integer  "transformer_id"
   end
 
-  create_table "web_link", :force => true do |t|
+  create_table "web_link", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
   end
 
-  create_table "web_tool", :force => true do |t|
+  create_table "web_tool", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
   end
 
-  create_table "winding_type", :force => true do |t|
+  create_table "winding_type", :id => false, :force => true do |t|
+    t.integer "id"
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "winding_types", :force => true do |t|
-    t.string "description"
+  create_table "winding_types", :id => false, :force => true do |t|
+    t.integer "id"
+    t.string  "description"
   end
 
 end

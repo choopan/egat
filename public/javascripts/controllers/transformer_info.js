@@ -177,8 +177,6 @@ TxName.setupTransformerNameComboxBox = function(id) {
     var transformerId;
     var selected;
 
-
-
     selected = $("#" + id + " " + "option:selected");
     if (selected.val().length > 0) {
       transformerId = selected.val();

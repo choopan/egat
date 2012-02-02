@@ -48,6 +48,45 @@ class TransformerChartController < ApplicationController
   end
 
   def report_transformer
+         @regions  = Station.group("region").order("region")
+        if params[:area] == "" or params[:area].nil?
+            @stations = Station.all
+            @txnames  = Transformer.order("transformer_name")
+            @manus    = Brand.all
+        else
+            @stations = Station.where("region = '#{params[:area]}'").order("region")
+            @txnames  = Transformer.find_by_sql("SELECT transformer.id AS id, transformer.transformer_name AS transformer_name FROM transformer LEFT OUTER JOIN (SELECT DISTINCT name, region FROM stations) A ON transformer.station = A.name WHERE A.region='#{params[:area]}' ORDER BY A.name")
+            @manus    = Transformer.find_by_sql("SELECT DISTINCT A.name AS name FROM transformer LEFT OUTER JOIN (SELECT DISTINCT id, name FROM brands) A ON transformer.brand_id = A.id  LEFT OUTER JOIN (SELECT name, region FROM stations) B ON transformer.station = B.name WHERE B.region='#{params[:area]}' ORDER BY A.name")
+        end
+          #if params[:station] == "" or params[:station].nil?
+          #  @stations = Station.all
+          #else
+          #  @txnames  = Transformer.order("transformer_name")
+          #  @manus    = Brand.all
+          #end
+        #end
+      
+        #if params[:area] == "" or params[:area].nil?
+        #        @txnames = Transformer.order("transformer_name")
+       # else
+        #        @stations = Station.where("region = '#{params[:region]}'")
+         #       whereclause = ""
+                #for station in @stations
+                 #       whereclause += "transformer_name like '#{station.name}%' or "
+                #end
+                #whereclause += "0"
+                #@txnames = Transformer.where(whereclause).order("transformer_name")
+        #end
+
+       # if params[:tid] != "" and !params[:tid].nil?
+        #      @txinfo = Transformer.find(params[:tid])
+         #     xxx = FailureDatabase.get_failure_egatsn(@txinfo.egatsn)
+          #      if !xxx.nil? and !xxx.blank?
+           #           @failures = FailureDatabase.get_failure_egatsn(@txinfo.egatsn).paginate(:page => params[:page], :per_page => 20)
+            #    else
+            #            @failures = nil
+             #   end
+       # end
 
   end
 

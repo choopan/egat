@@ -108,11 +108,11 @@ class Transformer < ActiveRecord::Base
 
 
   def self.get_oltc_type(id)
-        where("oltc_manufacturer='#{id}'").group(:oltc_type).order(:oltc_type)
+        select("oltc_type").where("oltc_manufacturer='#{id}'").group("oltc_type").order("oltc_type")
   end
 
   def self.get_all_oltc_type()
-        group(:oltc_type).order(:oltc_type)
+        select("oltc_type").group("oltc_type").order("oltc_type")
   end
 
   def self.calculate_f_normal_weibull(equipe, voltage, manufacturer, type, failuredetail)

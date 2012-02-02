@@ -19,7 +19,7 @@ class TransformerInfoController < ApplicationController
 		for station in @stations
 			whereclause += "transformer_name like '#{station.name}%' or "
 		end
-		whereclause += "0"
+		whereclause += "0=1"
 		@txinfos = Transformer.where(whereclause).order("id").paginate(:page => params[:page], :per_page => 5)
 	end
 
@@ -198,7 +198,7 @@ class TransformerInfoController < ApplicationController
 		for station in @stations
 			whereclause += "transformer_name like '#{station.name}%' or "
 		end
-		whereclause += "0"
+		whereclause += "0=1"
 		@txnames = Transformer.where(whereclause).order("transformer_name")
 	end
 
@@ -228,9 +228,8 @@ class TransformerInfoController < ApplicationController
 
 
 	@tid = params[:tid]
-	@txnams = Transformer.get_transformer_id(params[:tid])
-
-	@region = Station.get_region(@txnams.station)
+	@txnams = Transformer.get_transformer_id(@tid)
+	@region = Station.get_region(@txnams[:station])
 
 
 	@environments = FdEnvironmnt.get_environment()

@@ -19,7 +19,7 @@
 <%= form_for @icoilbalance ,:url => {:action => "update_buy"}, :html => {:method => "post", :name => 'icoilbalance'} do |f| %>
 	<table>
 	  <input type=hidden name="id" value=<%= @icoilbalance.id %>>
-	  <%m=@icoilbalance.Date.to_s.split('-')%>
+	  <%m=@icoilbalance.Date.to_s.split(' ')[0].split('-')%>
 	  <tr><td><%= f.label :Date, "วันที่สั่งน้ำมัน", :class => 'inline' %></td><td><input type="text" name="Date" size="15" value= <%=m[2]+'/'+m[1]+'/'+m[0]%> /></td></tr>
 	  <tr><td><%= f.label :Quantity, "ปริมาณการสั่งต่อครั้ง [ถัง]", :class => 'inline' %></td><td><input type="text" name="Quantity" size="15" value=<%=@icoilbalance.Quantity%> /></td></tr>
 	  <tr><td><%= f.label :Price, "ราคาต่อลิตร", :class => 'inline' %></td><td><input type="text" name="Price" size="15" value=<%=@icoilbalance.Price%> /></td></tr>

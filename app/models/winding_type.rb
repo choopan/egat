@@ -8,5 +8,7 @@
 #
 
 class WindingType < ActiveRecord::Base
+  set_table_name "winding_type"
+  set_primary_key "id"
   belongs_to :transformer
 end

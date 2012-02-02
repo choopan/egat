@@ -13,6 +13,13 @@ Egat::Application.routes.draw do
     end
   end
 
+  resources :transformer_chart do
+    collection do
+		get "chart"
+		get "report_transformer"
+		get "report_damaged"
+	end
+  end
   get "transformer_chart/chart"
 
    resources :manufacturing do

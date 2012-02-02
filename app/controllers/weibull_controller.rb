@@ -1,3 +1,4 @@
+#encoding: utf-8
 class WeibullController < ApplicationController
   def weibull_select
 	@bushing  = ManufacturerBushing.get_bushing()

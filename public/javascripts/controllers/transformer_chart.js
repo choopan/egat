@@ -1,3 +1,6 @@
+
+
+
 var Cbox = { };
 Cbox.setupComboxBox = function(id) {
   if ($('#' + id).length > 0) {
@@ -20,6 +23,38 @@ Cbox.setupComboxBox = function(id) {
     });
   }
 };
+
+var RegionName = { };
+RegionName.setupRegionNameComboBox = function(id) {
+  if ($('#' + id).length > 0) {
+    var region = $('#'+id+' : selected').text();
+    var transformerId;
+    var selected;
+
+    selected = $("#" + id + " " + "option:selected");
+    if (selected.val().length > 0) {
+      transformerId = selected.val();
+    }
+    var converted = new Ext.form.ComboBox({
+      typeAhead: true,
+      triggerAction: 'all',
+      transform: id,
+      width: '200',
+      forceSelection:true,
+      value: transformerId
+    });
+
+
+    converted.on('select', function() {
+      RegionName.onRegionNameChange(converted.getValue());
+    });
+  }
+};
+RegionName.onRegionNameChange = function(transformerId) {
+    window.location.href = "/transformer_chart/report_transformer?area=" + transformerId;
+};
+
+
 
 var Phase = { };
 Phase.setupTransformerNameComboxBox = function(id) {
@@ -93,10 +128,9 @@ Manu.onTransformerNamChange = function(transformerId) {
 
 
 $(function() {
-  Cbox.setupComboxBox('area');
-  Cbox.setupComboxBox('station');
-  Cbox.setupComboxBox('transformer');
-  Cbox.setupComboxBox('manufacturer');
+  Cbox.setupComboxBox('report_station');
+  Cbox.setupComboxBox('report_transformer');
+  Cbox.setupComboxBox('report_manufacturer');
   Cbox.setupComboxBox('group');
   Cbox.setupComboxBox('environment');
   Cbox.setupComboxBox('anomaly');
@@ -106,6 +140,7 @@ $(function() {
   Cbox.setupComboxBox('level_damage');
   Cbox.setupComboxBox('cause');
   Cbox.setupComboxBox('management');
+  RegionName.setupRegionNameComboBox('report_area');
   //Manu.setupTransformerNameComboxBox('area');
   //Manu.setupTransformerNameComboxBox('station');
   //Manu.setupTransformerNameComboxBox('transformer');

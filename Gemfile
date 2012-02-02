@@ -5,7 +5,13 @@ gem 'rails', '>= 3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+#gem 'mysql2'
+
+gem 'activerecord-sqlserver-adapter'
+#gem 'ruby-odbc'
+gem 'tiny_tds'
+gem "win32-open3-19", :platforms => :mingw
+
 gem 'haml'
 gem 'jquery-rails', '>= 0.2.6'
 group :development do 

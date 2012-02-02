@@ -1,28 +1,54 @@
 <h1 id="head">EGAT - PTU</h1>
  <ul class="nav main"> 
+   <li><%= link_to 'Home', transformer_informations_path %></li>
+   
+   <li><%= link_to 'รายงาน'  , '#' %>
+		<ul>
+		<li><%= link_to 'รายงานมาตรฐาน',  chart_transformer_chart_index_path %></li>
+		<li><%= link_to 'รายงานตามผู้ใช้งานสำหรับหม้อแปลงไฟฟ้า',  report_transformer_transformer_chart_index_path %></li>
+		<li><%= link_to 'รายงานตามผู้ใช้งานสำหรับข้อมูลความเสียหาย',  report_damaged_transformer_chart_index_path %></li>
+		</ul>
+   </li>
+
+    <li> <%= link_to 'ข้อมูลพื้นฐานของหม้อแปลง', '#' %>
+      <ul>  
+        <li><%= link_to 'หม้อแปลงไฟฟ้า', '/transformer_info/txlist' %></li>
+		<li><%= link_to 'การย้ายหม้อแปลง', '/transformer_info/txlistmove' %></li>
+		<li><%= link_to 'กำหนดค่าข้อมูล', manufacturing_index_path %></li>
+     </ul> 
+   </li>
+ 
+   
+   <li><%= link_to 'ความผิดปกติหม้อแปลง', '/transformer_info/failurereport?region=' %></li>
+   
+    <li><%= link_to 'ข้อมูลบำรุงรักษาหม้อแปลง', '#' %>
+		<ul>
+			<li><%= link_to 'Visual Inspection', search_visual_inspections_path %></li>    
+			<li><%= link_to 'ผลทดสอบทางน้ำมัน', search_oil_input_index_path %></li> 
+			<li><%= link_to 'ผลทดสอบทางไฟฟ้า', search_electrical_tests_path %></li>      
+			<li><%= link_to 'บำรุง OLTC', '#' %></li>      
+		</ul>
+	<li>
+	
+	<li><%= link_to 'ค่าประเมินอายุ', '#' %>
+		<ul>
+			<li><%= link_to 'DP Limit', edit_dp_index_path %></li>
+		</ul>
+	</li>
+	
+	<li><%= link_to 'Upload ข้อมูล', '#'%><li>
+	
    <li> 
-     <a href="#">Importance Index</a> 
+     <a href="#">ข้อมูลความสำคัญของหม้อแปลง</a> 
      <ul> 
-       <li><%= link_to 'Graph', transformer_informations_path %></li>
-       <li><%= link_to 'New', new_transformer_information_path %></li>
-       <li><%= link_to 'Search', search_transformer_informations_path%></li> 
+       <li><%= link_to 'เพิ่มรายการ', new_transformer_information_path %></li>
+       <li><%= link_to 'ค้นหาและเเก้ไข', search_transformer_informations_path%></li> 
      </ul> 
    </li> 
 
+        
    <li> 
-     <%= link_to 'Oil Input', search_oil_input_index_path %>
-   </li> 
-   <li> 
-     <%= link_to 'Visual Inspection', search_visual_inspections_path %>
-   </li>    
-   <li> 
-     <%= link_to 'Electrical Test', search_electrical_tests_path %>
-   </li>       
-   <li> 
-     <%= link_to 'DP', edit_dp_index_path %>
-   </li>       
-   <li> 
-     <%= link_to 'Economic Analysis', economic_analysis_path %>
+     <%= link_to 'การวิเคราะห์ทางเศรษฐศาสตร์', economic_analysis_path %>
       <ul> 
        <li><%= link_to 'Factor Setting', edit_factor_setting_index_path %></li>
        <li><%= link_to 'ราคาและ Loss ของหม้อแปลง', search_price_loss_path %></li>
@@ -33,7 +59,7 @@
      <%= link_to 'Inventory Control', ic_oil_index_path %>
       <ul>  
         <li><%= link_to 'น้ำมันหม้อแปลง', oil_chart_ic_oil_index_path %></li>
-			<li><a href="/ic_oil/menu_store">&nbsp;&nbsp;&nbsp; - คลังรายการน้ำมัน</a></li>
+				<li><a href="/ic_oil/menu_store">&nbsp;&nbsp;&nbsp; - คลังรายการน้ำมัน</a></li>
        			<li><a href="/ic_oil/menu_withdraw">&nbsp;&nbsp;&nbsp; - รายการเบิกจ่าย</a></li> 
        			<li><a href="/ic_oil/oil_buy">&nbsp;&nbsp;&nbsp; - รายการสั่งซื้อ/รับน้ำมัน</a></li> 
        			<li><a href="/ic_oil/payment_list">&nbsp;&nbsp;&nbsp; - รายการค่าใช้จ่าย</a></li> 
@@ -42,13 +68,9 @@
 	<li><%= link_to 'Bushing, Arrester, OLTC', weibull_select_weibull_index_path %></li>
      </ul> 
    </li>
-   <li> <%= link_to 'ข้อมูลหม้อแปลง', '#' %>
-      <ul>  
-        <li><%= link_to 'หม้อแปลงไฟฟ้า', '/transformer_info/txlist' %></li>
-	<li><%= link_to 'การย้ายหม้อแปลง', '/transformer_info/txlistmove' %></li>
-	<li><%= link_to 'รายงานความผิดปกติ', '/transformer_info/failurereport?region=' %></li>
-	<li><%= link_to 'กำหนดค่าข้อมูล', manufacturing_index_path %></li>
-     </ul> 
-   </li>
+   
+   <li> <%= link_to 'คู่มือการใช้งาน', '#' %>
+
+  
 
  </ul> 
