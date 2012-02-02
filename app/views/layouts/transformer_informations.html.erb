@@ -6,11 +6,21 @@
     <title>Transformer Information: <%= controller.action_name %></title>
     <!--[if IE]><%= javascript_include_tag 'extcanvas.min' %><![endif]--> 
     <% unless @no_js %>
-    <%= include_javascripts :transformer_informations %>
+    <%= 
+        javascript_include_tag 'jquery-1.4.2.min', 'ext-jquery-adapter', 
+                              'ext-all', 'jquery-ui-1.8.4.custom.min', 
+                              'jquery.blockUI', 'jquery.tmpl', 'facybox', 'facebox' ,
+                              'json2', 'jquery.url', 'jquery.tablesorter.min',
+                              'jquery.cluetip', 'jquery.flot.min', 'jquery.flot.selection.min', 
+                              'jquery.flot.axislabels', 'jquery.multirowcheckboxmenu', 
+                              'controllers/transformer_informations'
+
+      %>
     <%= yield :javascript %>
     <% end %>
-    <%= include_stylesheets :transformer_informations %>
-    <%= yield :css %>
+    <%= stylesheet_link_tag '960', 'template', 'nav', 'colour', 'facebox' %>
+ 	<%= stylesheet_link_tag 'jquery-ui-1.8.4.custom', 'jquery.cluetip', 'controllers/transformer_information' %>
+       <%= yield :css %>
     <style type="text/css">
     </style>
   </head>

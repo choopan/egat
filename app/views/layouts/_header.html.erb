@@ -5,8 +5,8 @@
    <li><%= link_to 'รายงาน'  , '#' %>
 		<ul>
 		<li><%= link_to 'รายงานมาตรฐาน',  chart_transformer_chart_index_path %></li>
-		<li><%= link_to 'รายงานตามผู้ใช้งานสำหรับหม้อแปลงไฟฟ้า',  report_transformer_transformer_chart_index_path %></li>
-		<li><%= link_to 'รายงานตามผู้ใช้งานสำหรับข้อมูลความเสียหาย',  report_damaged_transformer_chart_index_path %></li>
+		<li><%= link_to 'รายงานข้อมูลหม้อแปลงไฟฟ้า',  report_transformer_transformer_chart_index_path %></li>
+		<li><%= link_to 'รายงานข้อมูลความเสียหาย',  report_damaged_transformer_chart_index_path %></li>
 		</ul>
    </li>
 
@@ -39,10 +39,12 @@
 	<li><%= link_to 'Upload ข้อมูล', '#'%><li>
 	
    <li> 
-     <a href="#">ข้อมูลความสำคัญของหม้อแปลง</a> 
+     <a href="#">ความสำคัญของหม้อแปลง</a> 
      <ul> 
        <li><%= link_to 'เพิ่มรายการ', new_transformer_information_path %></li>
        <li><%= link_to 'ค้นหาและเเก้ไข', search_transformer_informations_path%></li> 
+       <li><%= link_to 'ปรับเปลี่ยนหลักเกณฑ์การคำนวณ', search_transformer_informations_path%></li> 
+ 
      </ul> 
    </li> 
 

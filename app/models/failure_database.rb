@@ -127,7 +127,7 @@ class FailureDatabase < ActiveRecord::Base
     end
 
     def self.graph9
-      result   = find_by_sql("SELECT A.brand_id AS brand_id, count(*) AS numtx FROM `failure_databases` LEFT OUTER JOIN \
+      result   = find_by_sql("SELECT A.brand_id AS brand_id, count(*) AS numtx FROM failure_databases LEFT OUTER JOIN \
                               (SELECT distinct brand_id, egatsn from transformer) A  ON failure_databases.egatsn = A.egatsn group by A.brand_id")
      
 
@@ -153,7 +153,7 @@ class FailureDatabase < ActiveRecord::Base
     end
 
     def self.graph10
-      result   = find_by_sql("SELECT region, count(*) AS numtx FROM `failure_databases` LEFT OUTER JOIN \
+      result   = find_by_sql("SELECT region, count(*) AS numtx FROM failure_databases LEFT OUTER JOIN \
                               (SELECT distinct egatsn, region from transformer LEFT OUTER JOIN stations ON \
                               transformer.station = stations.name) AS A  ON failure_databases.egatsn = A.egatsn group by region")
 
