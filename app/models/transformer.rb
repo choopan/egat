@@ -1446,7 +1446,7 @@ class Transformer < ActiveRecord::Base
   end
 
   def self.graph1(start_year, end_year)
-     result = where("DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 >= #{start_year} and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 <= #{end_year}").select("DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 AS noyear, count(*) AS numtx").group("noyear")
+     result = where("DATEDIFF(year, first_energize, GETDATE()) >= #{start_year} and DATEDIFF(year, first_energize, GETDATE()) <= #{end_year}").select("DATEDIFF(year, first_energize, GETDATE()) AS noyear, count(*) AS numtx").group("DATEDIFF(year, first_energize, GETDATE())")
 
       n = 0
       numtotal = 0
@@ -1472,8 +1472,8 @@ class Transformer < ActiveRecord::Base
   end
 
   def self.graph2
-      result   = find_by_sql("SELECT manufacuturer, count(*) AS numtx FROM `transformer` LEFT OUTER JOIN \
-                              (SELECT distinct id, manufacturer from manufacturer_txes) A  ON transformer.brand_id = A.id group by manufacturer")
+      result   = find_by_sql("SELECT manufacturer AS manuname, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+                              (SELECT distinct id, manufacturer from manufacturer_txes) AS A  ON transformer.brand_id = A.id group by manufacturer")
       n = 0
       numtotal = 0
       graphdata = Array.new

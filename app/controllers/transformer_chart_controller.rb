@@ -48,7 +48,7 @@ class TransformerChartController < ApplicationController
   end
 
   def report_transformer
-         @regions  = Station.group("region").order("region")
+         @regions  = Station.group("region").order("region").select("region")
         if params[:area] == "" or params[:area].nil?
             @stations = Station.all
             @txnames  = Transformer.order("transformer_name")
