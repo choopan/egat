@@ -1497,8 +1497,8 @@ class Transformer < ActiveRecord::Base
   end
 
   def self.graph3
-      result   = find_by_sql("SELECT region, count(*) AS numtx FROM `transformer` LEFT OUTER JOIN \
-                              (SELECT distinct name, region from stations) A  ON transformer.station = A.name group by region")
+      result   = find_by_sql("SELECT region, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+                              (SELECT distinct name, region from stations) AS A  ON transformer.station = A.name group by region")
 
       n = 0
       numtotal = 0

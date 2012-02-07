@@ -180,11 +180,12 @@ class FailureDatabase < ActiveRecord::Base
 
     def self.graph11(start_year, end_year)
 
-      result   = find_by_sql("SELECT DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 AS noyear, count(*) AS numtx FROM `failure_databases`\
-                              LEFT OUTER JOIN \
-                              (SELECT distinct egatsn, first_energize from transformer) A ON failure_databases.egatsn = A.egatsn \
-                              WHERE DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0 >= #{start_year} AND \
-                                    DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), first_energize)), '%Y')+0  <= #{end_year} GROUP BY  noyear")
+      result   = find_by_sql("SELECT DATEDIFF(year, first_energize, GETDATE()) AS noyear, count(*) AS numtx \
+                              FROM failure_databases LEFT OUTER JOIN \
+                              (SELECT distinct egatsn, first_energize from transformer) A ON \
+                              failure_databases.egatsn = A.egatsn \
+                              WHERE DATEDIFF(year, first_energize, GETDATE()) >= #{start_year} AND \
+                              DATEDIFF(year, first_energize, GETDATE()) <= #{end_year} GROUP BY  DATEDIFF(year, first_energize, GETDATE())")
 
       n = 0
       numtotal = 0
