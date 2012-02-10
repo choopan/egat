@@ -16,6 +16,7 @@ Egat::Application.routes.draw do
   resources :transformer_chart do
     collection do
 		get "chart"
+		get "select_chart"
 		get "report_transformer"
 		get "report_damaged"
 	end

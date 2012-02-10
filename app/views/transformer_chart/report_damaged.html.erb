@@ -138,7 +138,7 @@ $(document).ready(function(){
   line3 = [['Cup Holder Pinion Bob',(7*100/(7+9+15+12+3))], ['Generic Fog Lamp',(9*100/(7+9+15+12+3))], ['HDTV Receiver',(15*100/(7+9+15+12+3))], ['8 Track Control Module',(12*100/(7+9+15+12+3))], [' Sludge Pump Fourier Modulator', (3*100/(7+9+15+12+3))]];
   plot3 = $.jqplot('chart', [line3], {
 	  title: '<%=@titles%>',
-	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
+	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
         }
@@ -163,7 +163,7 @@ $('#chart').bind('jqplotDataHighlight',
 	 line4 = [['Cup Holder Pinion Bob',7], ['Generic Fog Lamp',9], ['HDTV Receiver',15], ['8 Track Control Module',12], [' Sludge Pump Fourier Modulator', 3]];
 	 plot4 = $.jqplot('chart', [line4], {
 	  title: '<%=@titles%>',
-	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
+	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
         }
@@ -190,38 +190,32 @@ $('#chart').bind('jqplotDataHighlight',
 
 <h1>แสดงกราฟความสัมพันธ์</h1>
 	<%if((params[:chart]==nil and params[:unit]==nil) or (params[:chart]=="1" and params[:unit]=="1") or (params[:chart]=="1" and params[:unit]=="2"))%>
-		<center><div class='jqplot' id='chart' class='graph' style='height:300px; width:300px;'></div></center><br><br><br><br><br>
 		<div><span>Moused Over: </span><span id="info"><font color="#0000ff">Nothing</font></span></div>
+		<div class='jqplot' id='chart' class='graph' style='height:400px; width:400px;'></div><br><br><br><br><br>
 	<%else%>
-		<center><div class='jqplot' id='chart' class='graph' style='height:320px; width:400px;'></div></center><br>
+		<div class='jqplot' id='chart' class='graph' style='height:420px; width:800px;'></div><br>
 	<%end%>
-<div class='grid_10 prefix_0 accessories' >
 <form name="form">
-<table><tr><td><b>เลือกรูปกราฟ</b></td><td></td><td></td></tr>
+<b>เลือกรูปกราฟ</b><br><br>
 
-<tr><td><b>รูแบบการแสดงผล :</b></td><td>
+<b>รูปแบบการแสดงผล :</b>&nbsp;&nbsp;&nbsp;
 <% if params[:chart] == "2" %>
-	<input type="radio" name="chart" value="1" OnClick="return redirect();">&nbsp;กราฟวงกลม</td><td>
-<input type="radio" name="chart" value="2" checked OnClick="return redirect();">&nbsp;กราฟแท่ง</td></tr>
+<input type="radio" name="chart" value="1" OnClick="return redirect();">&nbsp;กราฟวงกลม&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="chart" value="2" checked OnClick="return redirect();">&nbsp;กราฟแท่ง
 
 <%else%>
-	<input type="radio" name="chart" value="1" checked OnClick="return redirect();">&nbsp;กราฟวงกลม</td><td>
-<input type="radio" name="chart" value="2" OnClick="return redirect();">&nbsp;กราฟแท่ง</td></tr>
+<input type="radio" name="chart" value="1" checked OnClick="return redirect();">&nbsp;กราฟวงกลม&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="chart" value="2" OnClick="return redirect();">&nbsp;กราฟแท่ง
 <%end%>
-
-<tr><td><b>หน่วยการแสดงผล :</b></td><td>
+<br><br>
+<b>หน่วยการแสดงผล :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <% if params[:unit] == "2" %>
-<input type="radio" name="unit" value="1" OnClick="return redirect();">
-&nbsp;จำนวน</td><td><input type="radio" name="unit" checked value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์</td></tr>
+<input type="radio" name="unit" value="1" OnClick="return redirect();">&nbsp;จำนวน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="unit" checked value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์
 <%else%>
-<input type="radio" name="unit" value="1" checked OnClick="return redirect();">
-&nbsp;จำนวน</td><td><input type="radio" name="unit" value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์</td></tr>
+<input type="radio" name="unit" value="1" checked OnClick="return redirect();">&nbsp;จำนวน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="unit" value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์
 <%end%>
-
-
-
-
-
-<tr><td><a href="javascript:javascript: history.go(-<%=@count%>);"><%= submit_tag "<< Back", :class => "cupid-green" %></a></td><td></td></tr></table>
+<br><br>
+<a href="javascript:javascript: history.go(-<%=@count%>);"><input type="button" value="<< Back"></a>
 </form>
-</div>
