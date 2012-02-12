@@ -151,7 +151,7 @@ $(document).ready(function(){
   ];
   plot3 = $.jqplot('chart', [line3], {
 	  title: '<%=@titles%>',
-	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
+	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
         }
@@ -180,7 +180,7 @@ $('#chart').bind('jqplotDataHighlight',
   ];
 	 plot4 = $.jqplot('chart', [line4], {
 	  title: '<%=@titles%>',
-	  legend: { show: true, placement: 'outside',  rendererOptions:{numberRows: 2}, location: 's'},
+	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
         }
@@ -205,42 +205,36 @@ $('#chart').bind('jqplotDataHighlight',
 </script>
 
 
-<h1>แสดงกราฟความสัมพันธ์</h1>
+<h1>แสดงกราฟความสัมพันธ์ </h1>
 	<%if((params[:chart]==nil and params[:unit]==nil) or (params[:chart]=="1" and params[:unit]=="1") or (params[:chart]=="1" and params[:unit]=="2"))%>
-
 		<div class='jqplot' id='chart' class='graph' style='height:400px; width:400px;'></div>
 		<div><span>Moused Over: </span><span id="info"><font color="#0000ff">Nothing</font></span></div>
 	<%else%>
 		<div class='jqplot' id='chart' class='graph' style='height:420px; width:800px;'></div>
 	<%end%><br>
 
-<div class='grid_10 prefix_0 accessories' >
+
 <form name="form">
-<table><tr><td><b>เลือกรูปกราฟ</b></td><td></td><td></td></tr>
+<b>เลือกรูปกราฟ</b><br><br>
 
-<tr><td><b>รูแบบการแสดงผล :</b></td><td>
+<b>รูปแบบการแสดงผล :</b>&nbsp;&nbsp;&nbsp;
 <% if params[:chart] == "2" %>
-	<input type="radio" name="chart" value="1" OnClick="return redirect();">&nbsp;กราฟวงกลม</td><td>
-<input type="radio" name="chart" value="2" checked OnClick="return redirect();">&nbsp;กราฟแท่ง</td></tr>
+<input type="radio" name="chart" value="1" OnClick="return redirect();">&nbsp;กราฟวงกลม&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="chart" value="2" checked OnClick="return redirect();">&nbsp;กราฟแท่ง
 
 <%else%>
-	<input type="radio" name="chart" value="1" checked OnClick="return redirect();">&nbsp;กราฟวงกลม</td><td>
-<input type="radio" name="chart" value="2" OnClick="return redirect();">&nbsp;กราฟแท่ง</td></tr>
+<input type="radio" name="chart" value="1" checked OnClick="return redirect();">&nbsp;กราฟวงกลม&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="chart" value="2" OnClick="return redirect();">&nbsp;กราฟแท่ง
 <%end%>
-
-<tr><td><b>หน่วยการแสดงผล :</b></td><td>
+<br><br>
+<b>หน่วยการแสดงผล :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <% if params[:unit] == "2" %>
-<input type="radio" name="unit" value="1" OnClick="return redirect();">
-&nbsp;จำนวน</td><td><input type="radio" name="unit" checked value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์</td></tr>
+<input type="radio" name="unit" value="1" OnClick="return redirect();">&nbsp;จำนวน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="unit" checked value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์
 <%else%>
-<input type="radio" name="unit" value="1" checked OnClick="return redirect();">
-&nbsp;จำนวน</td><td><input type="radio" name="unit" value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์</td></tr>
+<input type="radio" name="unit" value="1" checked OnClick="return redirect();">&nbsp;จำนวน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="unit" value="2" OnClick="return redirect();">&nbsp;เปอร์เซนต์
 <%end%>
-
-
-
-
-
-<tr><td><a href="javascript:javascript: history.go(-<%=@count%>);"><%= submit_tag "<< Back", :class => "cupid-green" %></a></td><td></td></tr></table>
+<br><br>
+<a href="javascript:javascript: history.go(-<%=@count%>);"><input type="button" value="<< Back"></a>
 </form>
-</div>
