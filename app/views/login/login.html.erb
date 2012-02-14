@@ -1,51 +1,14 @@
 <link href="stylelog.css" rel="stylesheet" type="text/css" />
 <body>
-<div id="layer01_holder">
-  <div id="left"></div>
-  <div id="center"></div>
-  <div id="right"></div>
+<%= form_tag('/login/confirm', :method=>'post', :multipart => true, :name => 'login') do %>
+<div class="grid_4 prefix_6">
+  <table>
+  <tr><td><label>LOGIN</label></td><td></td></tr>
+  <tr><td><label>Nama :</label></td><td><input type="text" name="user" /></td></tr>
+  <tr><td><label>Password :</label></td><td><input type="password" name="passwd"/></td></tr>
+  <tr><td></td><td><input type="submit" value="Login" /></td></tr>
+  </table>
 </div>
-
-<div id="layer02_holder">
-  <div id="left"></div>
-  <div id="center"></div>
-  <div id="right"></div>
-</div>
-
-<div id="layer03_holder">
-  <div id="left"></div>
-  <div id="center">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td>LOGIN<br /><br /></td>
-  </tr>
-  <tr>
-    <td><form id="form1" name="form1" method="post" action="">
-      <label>Nama  
-        <input name="textfield" type="text" id="textfield" />
-      </label>
-      <label>Password  
-      <input type="password" name="textfield2" id="textfield2" style="margin-top:5px;" />
-      </label>
-      <label>
-       <input type="submit" name="button" id="button" value="Submit" />
-      </label>
-    </form>    </td>
-  </tr>
-</table>
-  </div>
-  <div id="right"></div>
-</div>
-
-<div id="layer04_holder">
-  <div id="left"></div>
-  <div id="center">
-  If you forgot your password, please contact administrator or <a href="#">click here</a></div>
-  <div id="right"></div>
-</div>
-
-<div id="layer05_holder">
-  <div align="left">Copyright © 2007, Artfans Design</div>
-</div>
+<%end%>
 </body>
 </html>
