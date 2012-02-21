@@ -1,89 +1,78 @@
 <h1>รายงานตามผู้ใช้งานสำหรับข้อมูลความเสียหาย</h1>
-<%= form_tag('/transformer_chart/report_damaged_f', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
-<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ (เพียงหนึ่งเงื่อนไขเท่านั้น)</font></b><br><br></p>
+<%= form_tag('/transformer_chart/report_damaged_f', :method=>'post', :multipart => true, :name => 'transformer_chart_f') do %>
+<p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ (เพียงหนึ่งเงื่อนไขเท่านั้น)</font></b><BR></p>
 
-<p>
-อายุ: เริ่มต้น&nbsp;&nbsp;<input type="text" name='start_old' value=0><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สิ้นสุด&nbsp;&nbsp;<input type="text" name='end_end' value=0></p>
+
 
 
 <div class='grid_9 prefix_0 accessories' ><p><table>
-	<tr><td>เขต :</td><td>
-			<select id="area" name="area">
-				<option value="#">Please Select....</option>
-			</select>
+	<tr><td>อายุ:</td><td>เริ่มต้น&nbsp;&nbsp;<input type="text" name='start_year' value=0><br><br>
+						สิ้นสุด&nbsp;&nbsp;<input type="text" name='end_year' value=0>
 	</td></tr>
+	<tr><td>เขต :</td>
+		<td>
+		 <%=select_tag "report3_area", options_from_collection_for_select(@regions, "region", "region"), :prompt => 'Please Select...'%>
+		</td>
+	</tr>
 
-	<tr><td>สถานีไฟฟ้า :</td><td>
-			<select id="station" name="station">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
-			<select id="transformer" name="transformer">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>สภาพแวดล้อม :</td><td>
-			<select id="environment" name="environment">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>สภาวะการใช้งานขณะพบความผิดปกติ :</td><td>
-			<select id="anomaly" name="anomaly">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>รายละเอียดความผิดปกติหรือเสียหาย :</td><td>
-			<select id="detail_damage" name="detail_damage">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>กลุ่มอุปกรณ์ :</td><td>
-			<select id="device_group" name="device_group">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>ชิ้นส่วนที่เสียหายหรือผิดปกติ :</td><td>
-			<select id="device_damage" name="device_damage">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>ระดับความเสียหาย :</td><td>
-			<select id="level_damage" name="level_damage">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>สาเหตุที่แท้จริง :</td><td>
-			<select id="cause" name="cause">
-				<option value="#">Please Select....</option>
-			</select>
-	</td></tr>
-
-	<tr><td>การจัดการ :</td><td>
-			<select id="management" name="management">
-				<option value="#">Please Select....</option>
-			</select>
+	<tr><td>สถานีไฟฟ้า :</td>
+		<td>
+		 <%=select_tag "report3_station", options_from_collection_for_select(@stations, "name", "name"),  :prompt =>  'Please Select...'%>
 	</td></tr>
 
 	<tr><td>ชื่อบริษัทผู้ผลิต :</td><td>
-			<select id="manufacturer" name="manufacturer">
-				<option value="#">Please Select....</option>
-			</select>
+		   <%=select_tag "report3_manufacturer", options_from_collection_for_select(@manufacturers, "id", "name"),  :prompt => 'Please Select...'%>			
 	</td></tr>
+
+
+	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
+		   <%=select_tag "report3_transformer", options_from_collection_for_select(@txnames, "egatsn", "transformer_name"),  :prompt => 'Please Select...'%>
+	</td></tr>
+
+	<tr><td>สภาพแวดล้อม :</td><td>
+		   <%=select_tag "report3_environment", options_from_collection_for_select(@environments, "environmnt", "environmnt"),  :prompt => 'Please Select...'%>			
+	</td></tr>
+
+	<tr><td>สภาวะการใช้งานขณะพบความผิดปกติ :</td><td>
+		   <%=select_tag "report3_function", options_from_collection_for_select(@functions, "function", "function"),  :prompt => 'Please Select...'%>			
+	</td></tr>
+
+	<tr><td>รายละเอียดความผิดปกติหรือเสียหาย :</td><td>
+		   <%=select_tag "report3_detail", options_from_collection_for_select(@details, "detail", "detail"),  :prompt => 'Please Select...'%>			
+	</td></tr>
+
+	<tr><td>กลุ่มอุปกรณ์ :</td><td>
+		   <%=select_tag "report3_group", options_from_collection_for_select(@groups, "groupname", "groupname"),  :prompt => 'Please Select...'%>			
+	</td></tr>
+
+	<tr><td>ชิ้นส่วนที่เสียหายหรือผิดปกติ :</td><td>
+		   <%=select_tag "report3_part", options_from_collection_for_select(@parts, "part", "part"),  :prompt => 'Please Select...'%>			
+	</td></tr>
+
+	<tr><td>ระดับความเสียหาย :</td><td>
+		   <%=select_tag "report3_mode", options_from_collection_for_select(@modes, "mode", "mode"),  :prompt => 'Please Select...'%>			
+			
+	</td></tr>
+
+	<tr><td>สาเหตุที่แท้จริง :</td><td>
+		   <%=select_tag "report3_reason", options_from_collection_for_select(@reasons, "reason", "reason"),  :prompt => 'Please Select...'%>			
+		
+	</td></tr>
+
+	<tr><td>การจัดการ :</td><td>
+		   <%=select_tag "report3_manage", options_from_collection_for_select(@manages, "manage", "manage"),  :prompt => 'Please Select...'%>			
+			
+	</td></tr>
+
 
 </table></p>
 <p><b><font color="#56a86f">เลือกการแบ่งกลุ่ม (แบ่งตาม)</font></b><br><br>
 	<select id="group" name="group">
-		<option value="#">Please Select....</option>
+		<option value="0">เขต</option>
+		<option value="1">สถานีไฟฟ้า</option>
+		<option value="2">ชื่อบริษัทผู้ผลิต</option>
+		<option value="3">หม้อแปลงไฟฟ้า</option>
+		
 	</select><br><br>
 <%= submit_tag "Ok", :class => "cupid-green" %>
 </p></div>

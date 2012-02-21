@@ -1521,5 +1521,282 @@ class Transformer < ActiveRecord::Base
 
       return [graphdata, graphpercent]
   end
+  
+  def self.graph_numtx_per_region(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT region, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY region "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.region
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+ def self.graph_numtx_per_station(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT station_name, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY station_name "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.station_name
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+
+ def self.graph_numtx_per_manufacturer(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT manu_name, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY manu_name "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.manu_name
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+  def self.graph_numtx_per_txname(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT transformer_name, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY manu_name "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.manu_name
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
 
 end

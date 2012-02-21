@@ -19,6 +19,9 @@ Egat::Application.routes.draw do
 		  get "select_chart"
 		  get "report_transformer"
 		  get "report_damaged"
+      get "report_transformer_f"
+      get "report_damaged_f"
+
 	 end
   end
 
