@@ -12,7 +12,9 @@
 </div>
 <div class='prefix_2 grid_3'>
 <p>
-  <%= link_to("เพิ่มหม้อแปลงไฟฟ้า", "/transformer_info/txadd", :class => 'add') %> 
+<%if @userid.priv5==1%>
+  <%= link_to("เพิ่มหม้อแปลงไฟฟ้า", "/transformer_info/txadd", :class => 'add') %>
+<%end%>
 </p>
 </div>
 <% end %>
@@ -26,7 +28,9 @@
       <th>Equipment No.</th>
       <th>บริษัทผู้ผลิต</th>
       <th>พิกัดกำลังไฟฟ้าสูงสุด (MVA)</th>
+	  <%if @userid.priv5==1%>
       <th width=160></th>
+	  <%end%>
       </tr>
     </thead>
     <tbody>
@@ -37,8 +41,10 @@
             <td><%= txinfo.egatsn %></td>
             <td><%= txinfo.brand.name %></td>
             <td><%= txinfo.maxcapacity %> </td>
+			<%if @userid.priv5==1%>
             <td><%=link_to "Edit", {:controller => "transformer_info", :action => "modify_transformer",:id =>txinfo.id}, :class => 'edit'%> &nbsp;&nbsp;&nbsp;&nbsp;
                 <%= link_to("Delete", {:controller => "transformer_info", :action => "delete_transformer",:id =>txinfo.id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete') %> </td>
+			<%end%>
 	</tr>
 	<%end%>
       <%end%>

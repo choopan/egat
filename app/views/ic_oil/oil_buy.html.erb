@@ -2,7 +2,16 @@
 
 <p><center>
 <table border=1>
-<tr><th><center>วันที่สั่งซื้อ</center></th><th><center>ปริมาณสั่งซื้อ [ถัง]</center></th><th><center>ราคาต่อลิตร [บาท]</center></th><th><center>วันที่ได้รับ</center></th><th><center>ปริมาณที่ผ่านการทดสอบ [ถัง]</center></th><th><center>แก้ไข</center></th><th><center>ลบ</center></th></tr>
+<tr><th><center>วันที่สั่งซื้อ</center></th>
+<th><center>ปริมาณสั่งซื้อ [ถัง]</center></th>
+<th><center>ราคาต่อลิตร [บาท]</center></th>
+<th><center>วันที่ได้รับ</center></th>
+<th><center>ปริมาณที่ผ่านการทดสอบ [ถัง]</center></th>
+<%if @userid.priv9==1%>
+<th><center>แก้ไข</center></th>
+<th><center>ลบ</center></th>
+<%end%>
+</tr>
 <%if @num!=0%>
 	<% for i in 0..@num-1 do%>
 		<%if @icoilbalance[i].Quantity >= 0%>
@@ -10,13 +19,25 @@
 			<%if @icoilbalance[i].Recv_date!=nil && @icoilbalance[i].Quantitypass!=nil%>
 				<%n=@icoilbalance[i].Recv_date.to_s.split(' ')[0].split('-')%>
 				<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=@icoilbalance[i].Quantity%></center></td>
-				<td><center><%=@icoilbalance[i].Price%></center></td><td><center><%=n[2]+"/"+n[1]+"/"+n[0]%></center></td><td><center><%=@icoilbalance[i].Quantitypass%></center></td>
+				<td><center><%=@icoilbalance[i].Price%></center></td>
+				<td><center><%=n[2]+"/"+n[1]+"/"+n[0]%></center></td>
+				<td><center><%=@icoilbalance[i].Quantitypass%></center></td>
+			<%if @userid.priv9==1%>
 				<td><center><%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_buy",:id =>@icoilbalance[i].id}, :class => 'edit'%></center></td>
-				<td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_buy", :id =>@icoilbalance[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></tr>
+				<td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_buy", :id =>@icoilbalance[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td>
+			<%end%>
+				</tr>
 			<%else%>
-				<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=@icoilbalance[i].Quantity%></center></td><td><center><%=@icoilbalance[i].Price%></center></td>
-				<td><center>-</center></td><td><center>-</center></td><td><center><%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_buy",:id =>@icoilbalance[i].id}, :class => 'edit'%></center>
-				</td><td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_buy", :id =>@icoilbalance[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></tr>
+				<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td>
+				<td><center><%=@icoilbalance[i].Quantity%></center></td>
+				<td><center><%=@icoilbalance[i].Price%></center></td>
+				<td><center>-</center></td>
+				<td><center>-</center></td>
+			<%if @userid.priv9==1%>
+				<td><center><%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_buy",:id =>@icoilbalance[i].id}, :class => 'edit'%></center>
+				</td><td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_buy", :id =>@icoilbalance[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td>
+			<%end%>
+				</tr>
 			<%end%>
 		<%end%>
 	<%end%>
@@ -25,6 +46,8 @@
 </table>
 </center>
 <p>
+<%if @userid.priv9==1%>
 <%= link_to "เพิ่มรายการใหม่", {:action => "new_buy", :controller => "ic_oil"}, :class => 'add'%>
+<%end%>
 </p>
 </p>

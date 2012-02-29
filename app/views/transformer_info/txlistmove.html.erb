@@ -1,6 +1,8 @@
 <h1>การย้ายหม้อแปลง</h1>
 <p align=center>
-  <%= link_to("เพิ่มข้อมูลการย้ายหม้อแปลงไฟฟ้า", "/transformer_info/txaddmove", :class => 'add') %> 
+<%if @userid.priv6==1%>
+  <%= link_to("เพิ่มข้อมูลการย้ายหม้อแปลงไฟฟ้า", "/transformer_info/txaddmove", :class => 'add') %>
+<%end%>
 </p>
 <p><div class='grid_16'>&nbsp;</div></p>
 <p>
@@ -13,7 +15,9 @@
       <th>Equipment No.</th>
       <th>สถานีเก่า</th>
       <th>สถานีใหม่</th>
+	  <%if @userid.priv6==1%>
       <th width=160></th>
+	  <%end%>
       </tr>
     </thead>
     <tbody>
@@ -25,8 +29,10 @@
             <td><%= txtransfer.egatsn %></td>
             <td><%= txtransfer.station %></td>
             <td><%= txtransfer.new_station %> </td>
+			<%if @userid.priv6==1%>
             <td><%= link_to("Edit", "/transformer_info/txeditmove?id=#{txtransfer.id}", :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to("Delete", "/transformer_info/txdeletemove?id=#{txtransfer.id}", :class => 'delete') %> </td>
+				<%= link_to("Delete", {:controller => "transformer_info", :action => "txdeletemove",:id =>txtransfer.id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete') %></td>
+			<%end%>
 	</tr>
 	<%end%>
       <%end%>

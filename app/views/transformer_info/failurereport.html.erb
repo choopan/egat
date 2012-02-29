@@ -21,11 +21,17 @@
   		<td><%= f.text_field :egatsn, :value => @txinfo.egatsn, :readonly => true %></td>
  	</tr>
 	</table>
+	<%if @userid.priv7==1%>
 	<BR>
 	<center><%=link_to "เพิ่ม", {:controller => "transformer_info", :action => "addfailurereport",:region =>params[:region],:tid=>params[:tid]}, :class => 'add'%></center>
+	<%end%>
 	<BR>
 	<table>
-		<tr><th><center>วันที่เกิดเหตุการณ์</center></th><th><center>วันที่ปลดออกจากระบบ</center></th><th><center>วันที่นำเข้าระบบ</center></th><th><center>อุปกรณ์ที่เสียหาย</center></th><th></th></tr>
+		<tr><th><center>วันที่เกิดเหตุการณ์</center></th><th><center>วันที่ปลดออกจากระบบ</center></th><th><center>วันที่นำเข้าระบบ</center></th><th><center>อุปกรณ์ที่เสียหาย</center></th>
+	<%if @userid.priv7==1%>
+		<th></th>
+	<%end%>
+		</tr>
 	     <%if !@failures.nil?%>
 		<% for lisfailures in @failures %>		
 			<%if lisfailures.eventdate!=nil%>
@@ -55,8 +61,11 @@
 			<td><center><%=downdatetime%></center></td>
 			<td><center><%=updatetime%></center></td>
 			<td><center><%=lisfailures.failuregroup%></center></td>
+		<%if @userid.priv7==1%>
 			<td><center><%=link_to "Edit", {:controller => "transformer_info", :action => "modify_failurere",:id =>lisfailures.id ,:region =>params[:region],:tid=>params[:tid]}, :class => 'edit'%> &nbsp;&nbsp;&nbsp;&nbsp;
-                	<%= link_to("Delete", {:controller => "transformer_info", :action => "delete_failurere",:id =>lisfailures.id,:region =>params[:region],:tid=>params[:tid]}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete') %></center></td></tr>
+                	<%= link_to("Delete", {:controller => "transformer_info", :action => "delete_failurere",:id =>lisfailures.id,:region =>params[:region],:tid=>params[:tid]}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete') %></center></td>
+		<%end%>			
+		</tr>
 		<%end%>
 		</table>
 		<%= will_paginate @failures %>

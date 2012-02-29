@@ -4,13 +4,19 @@
 <div class='grid_12 prefix_2 chemicals' >
    <p>
 	<%= f.label :dp, "ค่า DP Limit",:class => 'inline' %>
+<%if @userid.priv9==1%>
 	<%= f.text_field :dp, :size => 15 %>
+<%else%>
+    <%= f.text_field :dp, :size => 15,:readonly => true %>
+<%end%>
    </p>
 </div>
 <div class='grid_12 prefix_3' >
+<%if @userid.priv9==1%>
 <p>
 <%= submit_tag "Save", :class => 'cupid-green' %>
 </p>
+<%end%>
 </div>
 test
 <% end %>

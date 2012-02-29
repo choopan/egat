@@ -4,13 +4,16 @@
 
 class TransformerInfoController < ApplicationController
   def txlist
+		if session[:user].nil?
+			redirect_to('/login/login')
+		end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
         @breadcrumb_link[1]  = ''
-
+	@userid = User.get_user(session[:user])
 	if params[:region] == "" or params[:region].nil?
 		@txinfos = Transformer.order("id").paginate(:page => params[:page], :per_page => 5)
 	else
@@ -29,6 +32,7 @@ class TransformerInfoController < ApplicationController
   end
 
   def txadd
+   if User.get_user(session[:user]).priv5==1
     @breadcrumb_title = Array.new()
     @breadcrumb_link  = Array.new()
     @breadcrumb_title[0] = @@bc_tx
@@ -59,23 +63,27 @@ class TransformerInfoController < ApplicationController
     if @num_oltc==0
 	@manufacturer_oltc = ManufacturerOltc.new
     end
-	
+	else
+		redirect_to("/transformer_info/txlist")
+   end
   end
 
   def txlistmove
+		if session[:user].nil?
+			redirect_to('/login/login')
+		end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
         @breadcrumb_link[1]  = ''
-
+		@userid = User.get_user(session[:user])
 	@txtransfers = TransformerTransfer.order("id").paginate(:page => params[:page], :per_page => 25)
   end
 
   def txshowmove
-
-	@breadcrumb_title = Array.new()
+		@breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
@@ -84,10 +92,11 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[2] = 'รายละเอียดการย้ายหม้อแปลง'
         @breadcrumb_link[2]  = ''
 
-	@txmove = TransformerTransfer.find(params[:id])
+		@txmove = TransformerTransfer.find(params[:id])
   end
 
   def txaddmove
+	if User.get_user(session[:user]).priv6==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -97,28 +106,33 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[2] = 'เพิ่มการย้ายหม้อแปลง'
         @breadcrumb_link[2]  = ''
 
-	@txmove = TransformerTransfer.new
-	@txnames = Transformer.order("transformer_name")
-	selectedTx = params[:transformer_name]
-	if(!selectedTx.nil?) 
-		txinfo = Transformer.where("transformer_name = '#{selectedTx}'").first
-		@egatsn   = txinfo.egatsn
-		station_name  = txinfo.station
-	else
-		@egatsn   = @txnames.first.egatsn
-		station_name  = @txnames.first.station
-	end
-	@station = Station.where("name = '#{station_name}'").first.full_name
-	@stations = Station.order("name")
-
+		@txmove = TransformerTransfer.new
+		@txnames = Transformer.order("transformer_name")
+		selectedTx = params[:transformer_name]
+		if(!selectedTx.nil?) 
+			txinfo = Transformer.where("transformer_name = '#{selectedTx}'").first
+			@egatsn   = txinfo.egatsn
+			station_name  = txinfo.station
+		else
+			@egatsn   = @txnames.first.egatsn
+			station_name  = @txnames.first.station
+		end
+		@station = Station.where("name = '#{station_name}'").first.full_name
+		@stations = Station.order("name")
+	  else
+		redirect_to("/transformer_info/txlistmove")
+	  end
   end
 	
   def txdeletemove
-        TransformerTransfer.delete(params[:id])
+	if User.get_user(session[:user]).priv6==1
+      TransformerTransfer.delete(params[:id])
+	end
 	redirect_to('/transformer_info/txlistmove')
   end
 
   def txeditmove
+     if User.get_user(session[:user]).priv6==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -130,14 +144,18 @@ class TransformerInfoController < ApplicationController
 
 
         @txmove = TransformerTransfer.find(params[:id])
-	@stations = Station.order("name")
-	@new_station = Station.where("full_name='#{@txmove.new_station}'").first.name
-	dt = @txmove[:action_date].to_s.split(" ")
-	da = dt[0].split("-")
-	@txmove[:action_date] = da[2] + "/" + da[1] + "/" + da[0]
+		@stations = Station.order("name")
+		@new_station = Station.where("full_name='#{@txmove.new_station}'").first.name
+		dt = @txmove[:action_date].to_s.split(" ")
+		da = dt[0].split("-")
+		@txmove[:action_date] = da[2] + "/" + da[1] + "/" + da[0]
+	 else
+		redirect_to('/transformer_info/txlistmove')
+	 end
   end
 
   def update_txaddmove
+   if User.get_user(session[:user]).priv6==1
 	#Get old transformer information
 	old_transformer_egatsn = params[:transformer_transfer][:egatsn]
 	old_txinfo = Transformer.where("egatsn = '#{old_transformer_egatsn}'").first
@@ -176,7 +194,7 @@ class TransformerInfoController < ApplicationController
 		record.update_attributes(params[:transformer_transfer])
 	end	
 	#transformer_transfer_attribute.save
-
+	end
 	redirect_to('/transformer_info/txlistmove')
   end
 
@@ -188,8 +206,10 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'รายงานความผิดปกติ'
         @breadcrumb_link[1]  = ''
-
-
+	if session[:user].nil?
+			redirect_to('/login/login')
+	end
+	@userid = User.get_user(session[:user])
 	if params[:region] == "" or params[:region].nil?
 		@txnames = Transformer.order("transformer_name")
 	else
@@ -215,7 +235,7 @@ class TransformerInfoController < ApplicationController
   end
 
   def addfailurereport
-
+     if User.get_user(session[:user]).priv7==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -226,56 +246,60 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_link[2]  = ''
 
 
+  
+		@tid = params[:tid]
+		@txnams = Transformer.get_transformer_id(@tid)
+		@region = Station.get_region(@txnams[:station])
 
-	@tid = params[:tid]
-	@txnams = Transformer.get_transformer_id(@tid)
-	@region = Station.get_region(@txnams[:station])
 
+		@environments = FdEnvironmnt.get_environment()
+		@num_environments = @environments.count
 
-	@environments = FdEnvironmnt.get_environment()
-	@num_environments = @environments.count
-
-	@function = FdFunction.get_function()
-	@num_function = @function.count
+		@function = FdFunction.get_function()
+		@num_function = @function.count
 	
-	@detail = FdDetail.get_detail()
-	@num_detail = @detail.count
+		@detail = FdDetail.get_detail()
+		@num_detail = @detail.count
 #-------------------------------------------------------------
-	@group = FdGroupPart.get_group()
-	@num_group = @group.count
-	@oltcs = FdGroupPart.get_group_part("On - load Tap Changer")
-	@bushings = FdGroupPart.get_group_part("Bushing")
-	@arresters = FdGroupPart.get_group_part("Surge Arrester")
-	if @num_group!=0
-		@part = Array.new()
-		@num_part = Array.new()
-		for i in 0..@num_group-1 do
-			@part[i] = FdPart.get_part(@group[i].id)
-			@num_part[i] = @part[i].count
+		@group = FdGroupPart.get_group()
+		@num_group = @group.count
+		@oltcs = FdGroupPart.get_group_part("On - load Tap Changer")
+		@bushings = FdGroupPart.get_group_part("Bushing")
+		@arresters = FdGroupPart.get_group_part("Surge Arrester")
+		if @num_group!=0
+			@part = Array.new()
+			@num_part = Array.new()
+			for i in 0..@num_group-1 do
+				@part[i] = FdPart.get_part(@group[i].id)
+				@num_part[i] = @part[i].count
+			end
 		end
-	end
 #----------------------------------------------------------------
-	@mode = FdMode.get_mode()
-	@num_mode = @mode.count
+		@mode = FdMode.get_mode()
+		@num_mode = @mode.count
 
-	@reason = FdReason.get_reason()
-	@num_reason = @reason.count
+		@reason = FdReason.get_reason()
+		@num_reason = @reason.count
 	
-	@manage = FdManage.get_manage()
-	@num_manage = @manage.count
-	@replaces = FdManage.get_manage_part("Replace")
+		@manage = FdManage.get_manage()
+		@num_manage = @manage.count
+		@replaces = FdManage.get_manage_part("Replace")
 
-	@manufacturer_oltc = ManufacturerOltc.get_oltc()
-	@num_oltc = @manufacturer_oltc.count
+		@manufacturer_oltc = ManufacturerOltc.get_oltc()
+		@num_oltc = @manufacturer_oltc.count
 
-	@manufacturer_bushing = ManufacturerBushing.get_bushing()
-	@num_bushing = @manufacturer_bushing.count
+		@manufacturer_bushing = ManufacturerBushing.get_bushing()
+		@num_bushing = @manufacturer_bushing.count
 
-	@manufacturer_arrester = ManufacturerArrester.get_arrester()
-	@num_arrester = @manufacturer_arrester.count
+		@manufacturer_arrester = ManufacturerArrester.get_arrester()
+		@num_arrester = @manufacturer_arrester.count
+	else
+		redirect_to('/transformer_info/failurereport?region=')
+	end
   end
 
   def modify_failurere
+   if User.get_user(session[:user]).priv7==1
 	@region = params[:region]
 	@tid = params[:tid]
 	@txnams = Transformer.get_transformer_id(params[:tid])
@@ -321,6 +345,9 @@ class TransformerInfoController < ApplicationController
 
 	@manufacturer_arrester = ManufacturerArrester.get_arrester()
 	@num_arrester = @manufacturer_arrester.count
+   else
+	redirect_to('/transformer_info/failurereport?region=')
+   end
   end
 
   def update_failurereport
@@ -472,11 +499,16 @@ class TransformerInfoController < ApplicationController
   end
 
   def delete_failurere
+   if User.get_user(session[:user]).priv7==1
 	FailureDatabase.delete(params[:id])
 	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+   else
+	redirect_to('/transformer_info/failurereport?region=')
+   end
   end
 
   def create_failurereport
+   if User.get_user(session[:user]).priv7==1
 	failure = FailureDatabase.new
 	failure[:egatsn] = params[:egatsn]
 	if params[:eventdate]!=""
@@ -620,9 +652,13 @@ class TransformerInfoController < ApplicationController
 	failure[:user] = params[:user]
 	failure.save
 	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+	else
+	 redirect_to('/transformer_info/failurereport?region=')
+	end
   end
   
   def txcreate
+   if User.get_user(session[:user]).priv5==1
 	@transformer = Transformer.new
 	#@transformer_accessory = TransformerAccessory.new
 	#-------transformer-------
@@ -716,11 +752,13 @@ class TransformerInfoController < ApplicationController
 	end
 
 		@transformer.save
-
+	
+	end
 	redirect_to("/transformer_info/txlist")
   end
 
   def modify_transformer
+		if User.get_user(session[:user]).priv5==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -760,9 +798,13 @@ class TransformerInfoController < ApplicationController
     	if @num_oltc==0
 		@manufacturer_oltc = ManufacturerOltc.new
     	end	
+	else
+		redirect_to("/transformer_info/txlist")
+	end
   end
 
   def updat_transformer
+   if User.get_user(session[:user]).priv5==1
 	transformer = Transformer.get_transformer_id(params[:transformer_id])	
 	#-------transformer-------
 	transformer[:egatsn] = params[:egatsn]
@@ -862,13 +904,16 @@ class TransformerInfoController < ApplicationController
 		TxImage.save(transformer.id.to_s,params[:image])
 	end
 	transformer.update_attributes(transformer.attributes)	
+	end
 	redirect_to("/transformer_info/txlist")
   end
 
   def delete_transformer
+	if User.get_user(session[:user]).priv5==1
 	transformer = Transformer.get_transformer_id(params[:id])
 	#TransformerAccessory.delete(transformer.transformer_accessories_id)
 	Transformer.delete(params[:id])
+	end
 	redirect_to("/transformer_info/txlist")
   end
   
