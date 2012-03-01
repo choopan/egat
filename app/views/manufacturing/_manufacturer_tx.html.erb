@@ -2,12 +2,21 @@
 <p>
 <center>
 	<table border=1>
-		<tr><th><center>No.</center></th><th><center>Manufacturer</center></th><th><centeR>Edit</center></th><th><centeR>Delete</center></th></tr>
+		<tr><th><center>No.</center></th>
+		<th><center>Manufacturer</center></th>
+	<%if @userid.priv9==1%>
+		<th><centeR>Edit</center></th>
+		<th><centeR>Delete</center></th>
+	<%end%>
+		</tr>
 	<%if @num2!=0%>
 		<%for i in 0..@num2-1 do%>
 			<tr><td><center><%=i+1%></center></td><td><center><%=@tx[i].manufacturer%></center></td>
+		<%if @userid.priv9==1%>
 			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_tx",:id =>@tx[i].id}, :class => 'edit'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
-			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_tx",:id =>@tx[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></tr>
+			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_tx",:id =>@tx[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td>
+		<%end%>
+			</tr>
 		<%end%>
 	<%end%>
 		<tr><td></td><td></td><td></td><td></td></tr>
@@ -15,8 +24,10 @@
 </p>
 
 <p>
+<%if @userid.priv9==1%>
 	<%= form_for @tx1 ,:url => {:action => "create_tx"}, :html => {:method => "post", :name => 'Tx'} do |f| %>
 		<b>เพิ่มบริษัทผู้ผลิตหม้อแปลง : </b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green2" %>
 	<%end%>
+<%end%>
 </p>
 </center>

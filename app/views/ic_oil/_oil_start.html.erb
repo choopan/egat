@@ -1,8 +1,17 @@
 <%initquatity=@icoilinit.InitQuantity%>
 <p><table border=1>
-		<tr><th><center>Date</center></th><th><center>ปริมาณน้ำมันในคลัง [ถัง]</center></th><th><center>แก้ไข</center></th></tr>
+		<tr><th><center>Date</center></th>
+		<th><center>ปริมาณน้ำมันในคลัง [ถัง]</center></th>
+	<%if @userid.priv9==1%>
+		<th><center>แก้ไข</center></th>
+	<%end%>
+		</tr>
 		<%icoildate=@icoilinit.Date.to_s.split(' ')%>
 		<%n=icoildate[0].split('-')%>
-		<tr><td><center><%=n[2]+"/"+n[1]+"/"+n[0]%></center></td><td><center><%=initquatity%></center></td><td><center><%= button_to "แก้ไข", :action => "modify_icoilinit" %></center></td></tr>
+		<tr><td><center><%=n[2]+"/"+n[1]+"/"+n[0]%></center></td><td><center><%=initquatity%></center></td>
+    <%if @userid.priv9==1%>
+		<td><center><%= button_to "แก้ไข", :action => "modify_icoilinit" %></center></td>
+	<%end%>
+		</tr>
 		<tr><td></td><td></td><td></td></tr>
 </table></p>

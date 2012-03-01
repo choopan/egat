@@ -6,7 +6,7 @@ $(function() {
 <p>
   <h1>รายการค่าใช้จ่าย</font></h1>
 </p>
-
+<%if @userid.priv9==1%>
 <%= form_for @payment_cost ,:url => {:action => "update_payment_cost"}, :html => {:method => "post", :name => 'payment_cost'} do |f| %>
       <p>
 		<h3>Ordering Cost</h3>
@@ -91,3 +91,8 @@ $(function() {
 	</tr>
       </table>
 <% end %>
+<%else%>
+<p>
+<b><font color="#ff0000">* คุณไม่มีสิทธิ์เข้าใช้หน้านี้</font></b>
+</p>
+<%end%>

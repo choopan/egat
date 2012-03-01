@@ -2,13 +2,24 @@
 <p>
 <center>
 <table border=1>
-	<tr><th><center>ชื่อย่อสถานี</center></th><th><center>ชื่อเต็มสถานี</center></th><th><center>เขต</center></th><th><center>Kv</center></th><th><center>Edit</center></th><th><center>Delete</center></ht></tr>
+	<tr><th><center>ชื่อย่อสถานี</center></th>
+	<th><center>ชื่อเต็มสถานี</center></th>
+	<th><center>เขต</center></th>
+	<th><center>Kv</center></th>
+<%if @userid.priv9==1%>
+	<th><center>Edit</center></th>
+	<th><center>Delete</center></th>
+<%end%>
+	</tr>
 	<%if !@station.blank?%>
 		<%for stations in @station do%>
 			<tr><td><center><%=stations.name%></center></td><td><center><%=stations.full_name%></center></td>
 			<td><center><%=stations.region%></center></td><td><center><%=stations.kv%></center></td>
+		<%if @userid.priv9==1%>
 			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_station",:id =>stations.id}, :class => 'edit'%></center></td>
-			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_station",:id =>stations.id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td></rt>
+			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_station",:id =>stations.id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td>
+		<%end%>	
+			</tr>
 		<%end%>
 	<%end%>
 </table>
@@ -16,6 +27,7 @@
 </p>
 <BR>
 <p>
+<%if @userid.priv9==1%>
 <%= form_for @station1 ,:url => {:action => "create_station"}, :html => {:method => "post", :name => 'power_station'} do |f| %>
 	<table>
 			<tr><td><b>ชื่อย่อสถานี : </b></td><td><%= f.text_field :name, :size => 15%></td><td></td></tr>
@@ -24,6 +36,7 @@
 			<tr><td><b>KV : </b></td><td><%= f.text_field :kv, :size => 15%></td><td></td></tr>
 			<tr><td colspan=2><%= f.submit "Save", :class => "cupid-green2" %></td><td></td></tr>
 	</table>
+<%end%>
 <%end%>
 </p>
 </center>

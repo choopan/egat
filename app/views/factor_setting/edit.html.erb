@@ -4,10 +4,11 @@
 
 
 <%= form_for @factor, :url => {:action => "update"}, :html => {:method => 'post'} do |f| %>
+<%if @userid.priv9==1%>
 <div class='grid_12 prefix_2 chemicals' >
    <p>
 	<%= f.label :intrate, "อัตราดอกเบี้ย",:class => 'inline' %>
-	<%= f.text_field :intrate, :size => 15 %>
+	<%= f.text_field :intrate, :size => 15%>
 	<span class="span-ppm">[%]</span>
    </p>
 </div>
@@ -27,7 +28,6 @@
 	<span class="span-ppm">[%]</span>
    </p>
 </div>
-
 <div class='grid_12 prefix_2 chemicals' >
    <p>
    	<%= f.label :loadloss, "ค่า Loss ของหม้อแปลง (no-load and load loss)", :class => 'inline' %>
@@ -81,4 +81,79 @@
 <%= submit_tag "Save", :class => 'cupid-green' %>
 </p>
 </div>
+<%else%>
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+	<%= f.label :intrate, "อัตราดอกเบี้ย",:class => 'inline' %>
+	<%= f.text_field :intrate, :size => 15,:readonly => true %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :infrate, "อัตราเงินเฟ้อ", :class => 'inline' %>
+   	<%= f.text_field :infrate, :size => 15,:readonly => true %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :loadavg, "% การจ่ายโหลดโดยเฉลี่ย", :class => 'inline' %>
+   	<%= f.text_field :loadavg, :size => 15,:readonly => true %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :loadloss, "ค่า Loss ของหม้อแปลง (no-load and load loss)", :class => 'inline' %>
+   	<%= f.text_field :loadloss, :size => 15,:readonly => true %>
+	<span class="span-ppm">[Baht/kWh]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :projectlife, "อายุใช้งานของหม้อแปลงใหม่ (project life)", :class => 'inline' %>
+   	<%= f.text_field :projectlife, :size => 15,:readonly => true %>
+	<span class="span-ppm">[ปี]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :zerolife, "อายุหม้อแปลงปีที่ซากเป็นศูนย์", :class => 'inline' %>
+   	<%= f.text_field :zerolife, :size => 15,:readonly => true %>
+	<span class="span-ppm">[ปี]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :power, "ค่าพลังงานที่ไม่ได้จ่ายไฟ", :class => 'inline' %>
+   	<%= f.text_field :power, :size => 15,:readonly => true %>
+	<span class="span-ppm">[Baht/kWh]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :unavailability, "Unavailability (%)", :class => 'inline' %>
+   	<%= f.text_field :unavailability, :size => 15,:readonly => true %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_2 chemicals' >
+   <p>
+   	<%= f.label :powerfactor, "Power Factor", :class => 'inline' %>
+   	<%= f.text_field :powerfactor, :size => 15,:readonly => true %>
+	<span class="span-ppm">[%]</span>
+   </p>
+</div>
+
+<div class='grid_12 prefix_3' >
+</div>
+<%end%>
 <% end %>

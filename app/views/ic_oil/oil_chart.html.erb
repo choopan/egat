@@ -85,8 +85,10 @@ $(document).ready(function(){
 });
 </script>
 <h1>น้ำมันหม้อแปลง</h1>
+<%if @userid.priv9==1%>
 <%if @updateprice.nil?%>
 <div class=box><b><center>กรุณากรอกราคาน้ำมันของปีเบิกจ่ายที่ผ่านมา</b><br>(เพื่อคำนวณพารามิเตอร์ต่างๆ)<br><%=link_to "คลิกเพื่อกรอกข้อมูล",:controller => "ic_oil",:action => "fill_price"%></center></div>
+<%end%>
 <%end%>
 <label>ปริมาณน้ำมันคงเหลือ &nbsp;&nbsp;&nbsp;<%=@Quantity_1%> &nbsp;&nbsp;ลิตร </label>
 <label>Action

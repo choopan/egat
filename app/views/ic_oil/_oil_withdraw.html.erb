@@ -1,17 +1,25 @@
 <p><center>
 <table border=1>
-<tr><th><center>วันที่เบิกน้ำมันไปใช้งาน</center></th><th><center>ปริมาณการเบิก [ถัง]</center></th><th><center>แก้ไข</center></th><th><center>ลบ</center></th></tr>
+<tr><th><center>วันที่เบิกน้ำมันไปใช้งาน</center></th>
+<th><center>ปริมาณการเบิก [ถัง]</center></th>
+<%if @userid.priv9==1%>
+<th><center>แก้ไข</center></th>
+<th><center>ลบ</center></th>
+<%end%>
+</tr>
 <% if !@icoilbalance.blank? %>
 	<% for ic in @icoilbalance %>
 		<%if ic.Quantity < 0%>
 			<%icoildate=ic.Date.to_s.split(' ')%>
 			<%m=icoildate[0].split('-')%>
 			<tr><td><center><%=m[2]+"/"+m[1]+"/"+m[0]%></center></td><td><center><%=-1*ic.Quantity%></center></td>
-			<td><center>
-                        <%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_withdraw",:id =>ic.id}, :class => 'edit'%>
-                        </center></td>
+		<%if @userid.priv9==1%>
+			<td><center><%=link_to "แก้ไข", {:controller => "ic_oil", :action => "modify_withdraw",:id =>ic.id}, :class => 'edit'%>
+            </center></td>
 			<td><center><%=link_to "ลบ", {:controller => "ic_oil",:action => "delete_withdraw", :id =>ic.id}, :confirm => 'ยืนยันการลบข้อมูล
-', :class => 'delete' %></center></td></tr>
+			', :class => 'delete' %></center></td>
+		<%end%>
+			</tr>
 		<%end%>
 	<%end%>
 <%end%>
@@ -19,4 +27,6 @@
 </table>
 </center>
 <%= will_paginate @icoilbalance %>
+<%if @userid.priv9==1%>
 <%= link_to "เพิ่มรายการใหม่", {:action => "new_withdraw", :controller => "ic_oil"}, :class => 'add'%>
+<%end%>

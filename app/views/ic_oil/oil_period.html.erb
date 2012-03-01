@@ -2,7 +2,12 @@
 <p>
 <center>
 <%= form_for @oilperiod ,:url => {:action => "update_oilperiod"}, :html => {:method => "post", :name => 'oilperiod'} do |f| %>
-<table><tr><td><b>ระยะเวลาได้รับน้ำมัน</b></td><td><%= f.text_field :W, :size => 15%> <b>วัน</b></td></tr>
-	<rtr><td><%= f.submit "Save",:class => "cupid-green" %></td><td></td></tr></table>
-
+<table>
+<%if @userid.priv9==1%>
+	<tr><td><b>ระยะเวลาได้รับน้ำมัน</b></td><td><%= f.text_field :W, :size => 15%> <b>วัน</b></td></tr>
+	<tr><td><%= f.submit "Save",:class => "cupid-green" %></td><td></td></tr>
+<%else%>
+	<tr><td><b>ระยะเวลาได้รับน้ำมัน</b></td><td><%= f.text_field :W, :size => 15,:readonly => true%> <b>วัน</b></td></tr>
+<%end%>
+</table>
 <%end%>

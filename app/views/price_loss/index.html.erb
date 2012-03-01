@@ -2,6 +2,7 @@
 <%= render :partial => 'transformer_search_form' %>
 <%= render :partial => 'transformer_details', :locals => {:transformer => @transformer} %>
 <hr>
+<%if @userid.priv9==1%>
 <%= form_for @transformer_price_loss ,:url => {:action => "update"}, :html => {:method => "post"} do |f| %>
   <input type=hidden name=transformer_id value=<%= @transformer.id %>>
   <div class='grid_12 prefix_4 chemicals'>
@@ -31,3 +32,4 @@
     </p>
   </div>
 <% end %>
+<%end%>
