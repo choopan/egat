@@ -111,4 +111,20 @@ class TransformerInformationsController < ApplicationController
       format.html
     end
   end
+
+  def adjust_x_color
+	
+  end
+
+  def adjust_y_color
+	
+  end
+
+  def adjust_risk
+	
+  end
+
+  def adjust_criteria
+	
+  end
 end
