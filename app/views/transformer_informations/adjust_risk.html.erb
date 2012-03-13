@@ -1,0 +1,35 @@
+<h1>การคำนวณระยะ "d"</h1>
+<p><div class="grid_10 prefix_3">
+<%= form_tag('#', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+<table border="2">
+<tr><td colspan=3><center><b>Risk Table</b></center></td><tr>
+
+<tr><th><center>d</center></th>
+<th><center>Risk</center></th>
+<th><center>Action</center></th></tr>
+
+<tr><td><center><input type="text" name="s1">-<input type="text" name="e1"></center></td>
+<td><center>Very Low</center></td>
+<td><center><input type="text" name="action1"></center></td></tr>
+
+<tr><td><center><input type="text" name="s2">-<input type="text" name="e2"></center></td>
+<td><center>Low</center></td>
+<td><center><input type="text" name="action2"></center></td></tr>
+
+<tr><td><center><input type="text" name="s3">-<input type="text" name="e3"></center></td>
+<td><center>Moderate</center></td>
+<td><center><input type="text" name="action3"></center></td></tr>
+
+<tr><td><center><input type="text" name="s4">-<input type="text" name="e4"></center></td>
+<td><center>High</center></td>
+<td><center><input type="text" name="action4"></center></td></tr>
+
+<tr><td><center><input type="text" name="s5">-<input type="text" name="e5"></center></td>
+<td><center>Vary High</center></td>
+<td><center><input type="text" name="action5"></center></td></tr>
+
+<tr><td></td><td></td><td><center><input type="submit" value="Save"></center></td></tr>
+
+</table>
+<%end%>
+</div></p>
