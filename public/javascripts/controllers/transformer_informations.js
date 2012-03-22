@@ -81,7 +81,7 @@ function plotRiskGraph(points, transformer_names) {
   
 }
 
-function plotImportanceIndex(points, transformer_names) {
+function plotImportanceIndex(points, transformer_names, xscale_data) {
   var placeholder = $("#placeholder"); 
   var options = {
     series: {lines: { show: false }, points: { show: true }},
@@ -89,23 +89,23 @@ function plotImportanceIndex(points, transformer_names) {
       hoverable: true,
       clickable: true,
       markings: [
-        {xaxis: {from: 0, to: 40}, yaxis: {from: 0, to: 40 },
+        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 0, to: 40 },
          color: 'rgb(0, 255, 0)'},
-        {xaxis: {from: 40, to: 60}, yaxis: {from: 0, to: 40 },
+        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 0, to: 40 },
          color: 'rgb(0, 0, 255)'},
-        {xaxis: {from: 60, to: 100}, yaxis: {from: 0, to: 40 },
+        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 0, to: 40 },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: 0, to: 40}, yaxis: {from: 40, to: 60 },
+        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 40, to: 60 },
          color: 'rgb(0, 0, 255)'},
-        {xaxis: {from: 40, to: 60}, yaxis: {from: 40, to: 60 },
+        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 40, to: 60 },
          color: 'rgb(255, 255, 0)'},
-        {xaxis: {from: 60, to: 100}, yaxis: {from: 40, to: 60 },
+        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 40, to: 60 },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: 0, to: 40}, yaxis: {from: 60, to: 100 },
+        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 60, to: 100 },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: 40, to: 60}, yaxis: {from: 60, to: 100 },
+        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 60, to: 100 },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: 60, to: 100}, yaxis: {from: 60, to: 100 },
+        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 60, to: 100 },
          color: 'rgb(255, 0, 0)'}
       ]
     },
@@ -114,7 +114,7 @@ function plotImportanceIndex(points, transformer_names) {
              axisLabelUseCanvas: false,
              axisLabelFontSizePixels: 12,
              axisLabelFontFamily: 'Arial' },
-    xaxis: { min: 0, max: 100, ticks: [0, 40, 60, 100], 
+    xaxis: { min: 0, max: 100, ticks: [0, xscale_data[1][0], xscale_data[2][0], 100], 
              axisLabel: 'Transformer Importance',
              axisLabelUseCanvas: true,
              axisLabelFontSizePixels: 12,
@@ -122,18 +122,18 @@ function plotImportanceIndex(points, transformer_names) {
   };
 
   var plot = $.plot(placeholder, [ { data: points}], options);
-  o = plot.pointOffset({ x: 15, y: -1.2});
+  o = plot.pointOffset({ x: (xscale_data[1][0]/2)-5, y: -1.2});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
-                     'px;color:#666;font-size:smaller">Low</div>');
-  o = plot.pointOffset({ x: 45, y: -1.2});
+                     'px;color:#666;font-size:smaller">' + xscale_data[0][1] + '</div>');
+  o = plot.pointOffset({ x: xscale_data[1][0]-5+((xscale_data[2][0]-xscale_data[1][0])/2), y: -1.2});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
-                     'px;color:#666;font-size:smaller">Moderate</div>');
-  o = plot.pointOffset({ x: 75, y: -1.2});
+                     'px;color:#666;font-size:smaller">' + xscale_data[1][1] + '</div>');
+  o = plot.pointOffset({ x: xscale_data[2][0]-5+((100 - xscale_data[2][0])/2), y: -1.2});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
-                     'px;color:#666;font-size:smaller">High</div>');
+                     'px;color:#666;font-size:smaller">' + xscale_data[2][1] + '</div>');
   o = plot.pointOffset({ x: -8.9, y: 20});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
@@ -220,12 +220,24 @@ var app = {
   },
   
   getPointsForGraphs: function () {
-    var url = jQuery.url.attr("path") + "?q=data_points";
+  	
+  	//get transformer points
+    var url = jQuery.url.attr("path");// + "?q=data_points";
     if (jQuery.url.param("region") != null)  {
       url += "&region=" + encodeURI(jQuery.url.param("region"));
     } 
     $.get(url, function(data) {
-      var data_points = eval('(' + data + ')');
+      //alert(data);
+      var jsondata = eval('(' + data + ')');
+      //alert(jsondata);
+      //alert(jsondata.xscale);
+      //alert(jsondata.xscale_data.length);
+      var xscale_data = eval('(' + jsondata.xscale + ')');
+      //alert(xscale_data);
+      //alert(xscale_data.length);  
+      //alert(xscale_data[0][0]);    
+      //var data_points = eval('(' + data + ')');
+      var data_points = jsondata.data_points;
       var points = []; 
       var transformer_names = []; 
       var checkedTransformerNames = [];
@@ -241,10 +253,11 @@ var app = {
           
         }
       }
+      
       if (jQuery.url.param("graph") == "risk") { 
         plotRiskGraph(points, transformer_names);
       } else {
-        plotImportanceIndex(points, transformer_names);
+        plotImportanceIndex(points, transformer_names, xscale_data);
       }
       
     });

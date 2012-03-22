@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120114042644) do
+ActiveRecord::Schema.define(:version => 20120321024141) do
 
   create_table "aging_product_factors", :id => false, :force => true do |t|
     t.integer  "id"
@@ -38,8 +39,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer  "color_id"
   end
 
-  create_table "application_uses", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "application_uses", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -166,8 +166,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "brands", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "brands", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -175,22 +174,19 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string   "score_message"
   end
 
-  create_table "bus_voltage_hvs", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "bus_voltage_hvs", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bus_voltage_lvs", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "bus_voltage_lvs", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bus_voltages", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "bus_voltages", :force => true do |t|
     t.integer  "start"
     t.integer  "end"
     t.datetime "created_at"
@@ -490,8 +486,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "damage_of_properties", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "damage_of_properties", :force => true do |t|
     t.string   "value"
     t.string   "message"
     t.datetime "created_at"
@@ -529,8 +524,13 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "eco_option1s", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "dps", :force => true do |t|
+    t.integer  "dp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "eco_option1s", :force => true do |t|
     t.integer  "user_id"
     t.integer  "transformer_id"
     t.integer  "transformer_price"
@@ -559,8 +559,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "eco_option2s", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "eco_option2s", :force => true do |t|
     t.integer  "new_transformer_price"
     t.integer  "rated_power"
     t.integer  "noload_loss"
@@ -574,8 +573,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "eco_option3s", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "eco_option3s", :force => true do |t|
     t.integer  "new_transformer_price"
     t.integer  "rated_power"
     t.integer  "noload_loss"
@@ -1048,8 +1046,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string  "description"
   end
 
-  create_table "factor_settings", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "factor_settings", :force => true do |t|
     t.float    "intrate",        :limit => 24
     t.float    "infrate",        :limit => 24
     t.float    "loadavg",        :limit => 24
@@ -1063,6 +1060,8 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "factor_settings", ["id"], :name => "IX_factor_settings"
 
   create_table "failure_condition", :id => false, :force => true do |t|
     t.integer "id"
@@ -1079,7 +1078,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
   end
 
   create_table "failure_databases", :id => false, :force => true do |t|
-    t.integer  "id"
+    t.integer  "id",            :null => false
     t.string   "egatsn"
     t.datetime "eventdate"
     t.integer  "counterOLTC"
@@ -1100,15 +1099,13 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "fd_details", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "fd_details", :force => true do |t|
     t.string   "detail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fd_environmnts", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "fd_environmnts", :force => true do |t|
     t.string   "environmnt"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -1173,8 +1170,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "furans", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "furans", :force => true do |t|
     t.float    "acf",            :limit => 53
     t.float    "fal",            :limit => 53
     t.float    "fol",            :limit => 53
@@ -1279,8 +1275,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer "visual_inspection_id"
   end
 
-  create_table "ic_allcosts", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "ic_allcosts", :force => true do |t|
     t.float    "oc1",        :limit => 24
     t.float    "oc2",        :limit => 24
     t.float    "oc3",        :limit => 24
@@ -1302,8 +1297,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "ic_oil_balances", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "ic_oil_balances", :force => true do |t|
     t.datetime "Date"
     t.integer  "Quantity"
     t.integer  "Price"
@@ -1313,8 +1307,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer  "Quantitypass"
   end
 
-  create_table "ic_oil_inits", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "ic_oil_inits", :force => true do |t|
     t.datetime "Date"
     t.integer  "InitQuantity"
     t.datetime "created_at"
@@ -1451,8 +1444,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "load_pattern_factors", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "load_pattern_factors", :force => true do |t|
     t.integer  "start"
     t.integer  "end"
     t.integer  "score"
@@ -1512,29 +1504,25 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string  "tel_no"
   end
 
-  create_table "manufacturer_arresters", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "manufacturer_arresters", :force => true do |t|
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturer_bushings", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "manufacturer_bushings", :force => true do |t|
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturer_oltcs", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "manufacturer_oltcs", :force => true do |t|
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "manufacturer_txes", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "manufacturer_txes", :force => true do |t|
     t.string   "manufacturer"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -1550,8 +1538,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "n1_criterias", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "n1_criterias", :force => true do |t|
     t.string   "value"
     t.integer  "score"
     t.string   "score_message"
@@ -1606,8 +1593,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.decimal  "transformer",                :precision => 10, :scale => 0
   end
 
-  create_table "oil_calculates", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "oil_calculates", :force => true do |t|
     t.float    "Y1",         :limit => 24
     t.float    "Y2",         :limit => 24
     t.float    "Y3",         :limit => 24
@@ -2137,8 +2123,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string  "username"
   end
 
-  create_table "pollutions", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "pollutions", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2174,8 +2159,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "power_usages", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "power_usages", :force => true do |t|
     t.string   "usage"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2191,8 +2175,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer  "end"
   end
 
-  create_table "public_images", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "public_images", :force => true do |t|
     t.string   "value"
     t.integer  "score"
     t.string   "score_message"
@@ -2272,8 +2255,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.decimal  "transformer",     :precision => 10, :scale => 0
   end
 
-  create_table "repair_informations", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "repair_informations", :force => true do |t|
     t.integer  "repair_age"
     t.integer  "pm"
     t.integer  "mc_avg"
@@ -2340,8 +2322,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string  "action"
   end
 
-  create_table "social_aspects", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "social_aspects", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2349,17 +2330,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string   "score_message"
   end
 
-  create_table "station", :id => false, :force => true do |t|
-    t.integer "id"
-    t.integer "version"
-    t.string  "full_name"
-    t.integer "kv"
-    t.string  "name"
-    t.string  "region"
-  end
-
-  create_table "stations", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "stations", :force => true do |t|
     t.integer  "version"
     t.string   "full_name"
     t.integer  "kv"
@@ -2422,8 +2393,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "system_locations", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "system_locations", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2431,8 +2401,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.string   "score_message"
   end
 
-  create_table "system_stabilities", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "system_stabilities", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2671,8 +2640,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.decimal  "wiring_control",   :precision => 10, :scale => 0
   end
 
-  create_table "transformer", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "transformer", :force => true do |t|
     t.integer  "version"
     t.string   "contract"
     t.string   "detail"
@@ -2742,6 +2710,8 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer  "oltc_year"
     t.integer  "oltc_manufacturer"
   end
+
+  add_index "transformer", ["id"], :name => "IX_transformer"
 
   create_table "transformer_accessories", :id => false, :force => true do |t|
     t.integer  "id"
@@ -2827,8 +2797,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.decimal  "transformer", :precision => 10, :scale => 0
   end
 
-  create_table "transformer_informations", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "transformer_informations", :force => true do |t|
     t.integer  "bus_voltage_hv_id"
     t.integer  "bus_voltage_lv_id"
     t.datetime "created_at"
@@ -2852,8 +2821,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer  "recent",                            :limit => 2
   end
 
-  create_table "transformer_price_losses", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "transformer_price_losses", :force => true do |t|
     t.integer  "transformer_price"
     t.integer  "noload_loss"
     t.integer  "loadloss"
@@ -2882,8 +2850,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.datetime "updated_at"
   end
 
-  create_table "update_prices", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "update_prices", :force => true do |t|
     t.integer  "Year"
     t.float    "Price",      :limit => 24
     t.datetime "created_at"
@@ -2891,8 +2858,7 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer  "quantity"
   end
 
-  create_table "users", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "password"
     t.string   "firstname"
@@ -2973,15 +2939,19 @@ ActiveRecord::Schema.define(:version => 20120114042644) do
     t.integer "version"
   end
 
-  create_table "winding_type", :id => false, :force => true do |t|
-    t.integer "id"
+  create_table "winding_type", :force => true do |t|
     t.integer "version"
     t.string  "description"
   end
 
-  create_table "winding_types", :id => false, :force => true do |t|
-    t.integer "id"
-    t.string  "description"
+  create_table "x_axes", :force => true do |t|
+    t.integer  "start"
+    t.integer  "end"
+    t.string   "importance"
+    t.string   "action"
+    t.string   "color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

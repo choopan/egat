@@ -6,6 +6,14 @@ input[type="text"] {
 }
 
 
+input.medtext { 
+width: 100px; 
+} 
+
+input.longtext { 
+width: 200px; 
+} 
+
 .grid_16 input {
   width: 20px;
 }
@@ -34,4 +42,8 @@ th.headerSortDown {
 }
 #switchGraph{
   padding-top: 200px;
+}
+
+input[type="submit"].cupid-green, button.cupid-green {
+  width: 370px;
 }

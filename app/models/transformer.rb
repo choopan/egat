@@ -342,9 +342,9 @@ class Transformer < ActiveRecord::Base
       if equipe == "Bushing"
         #count hv bushing failure
         if failuredetail == '-- All --'
-        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='HV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='HV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !hv_bushing_failure.nil?
            for i in 0..hv_bushing_failure.size-1 do
@@ -369,9 +369,9 @@ class Transformer < ActiveRecord::Base
         end
 
         if failuredetail == '-- All --'
-        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='LV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='LV Bushing' and DATEDIFF(year, downdatetime, GETDATE())  <= #{time_interval}")
 	else
-        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !lv_bushing_failure.nil?
            for i in 0..lv_bushing_failure.size-1 do
@@ -397,9 +397,9 @@ class Transformer < ActiveRecord::Base
 
 
         if failuredetail == '-- All --'
-        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='TV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='TV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !tv_bushing_failure.nil?
            for i in 0..tv_bushing_failure.size-1 do
@@ -426,9 +426,9 @@ class Transformer < ActiveRecord::Base
     elsif equipe == "Arrester"
         #count hv arrester failure
         if failuredetail == '-- All --'
-        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='HV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='HV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !hv_ar_failure.nil?
            for i in 0..hv_ar_failure.size-1 do
@@ -453,9 +453,9 @@ class Transformer < ActiveRecord::Base
         end
 
         if failuredetail == '-- All --'
-        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='LV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='LV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !lv_ar_failure.nil?
            for i in 0..lv_ar_failure.size-1 do
@@ -481,9 +481,9 @@ class Transformer < ActiveRecord::Base
 
 
         if failuredetail == '-- All --'
-        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='TV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='TV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !tv_ar_failure.nil?
            for i in 0..tv_ar_failure.size-1 do
@@ -509,9 +509,9 @@ class Transformer < ActiveRecord::Base
       
       else 
         if failuredetail == '-- All --'
-        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !hv_oltc_failure.nil?
            for i in 0..hv_oltc_failure.size-1 do
