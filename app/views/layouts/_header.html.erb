@@ -14,7 +14,7 @@
       <ul>  
         <li><%= link_to 'หม้อแปลงไฟฟ้า', '/transformer_info/txlist' %></li>
 		<li><%= link_to 'การย้ายหม้อแปลง', '/transformer_info/txlistmove' %></li>
-		<li><%= link_to 'กำหนดค่าข้อมูล', manufacturing_index_path %></li>
+		
      </ul> 
    </li>
  
@@ -70,6 +70,19 @@
 	<li><%= link_to 'Bushing, Arrester, OLTC', weibull_select_weibull_index_path %></li>
      </ul> 
    </li>
+
+
+   <li>
+     <%= link_to 'การจัดการ', '#' %>
+      <ul> 
+       <li><%= link_to 'การจัดการผู้ใช้', listuser_usermanage_index_path %></li>
+       <li><%= link_to 'กำหนดข้อมูลพื้นฐานหม้อแปลง', manufacturing_index_path %></li>
+       <li><%= link_to 'กำหนดข้อมูลความสำคัญหม้อแปลง', adjust_transformer_informations_path %></li> 
+       <li><%= link_to 'กำหนดข้อมูลการทดสอบ', '#' %></li> 
+     </ul> 
+   </li>
+
+
    
    <li> <%= link_to 'คู่มือการใช้งาน', '#' %>
 

@@ -1,0 +1,18 @@
+<script>
+$(function() {
+  $("#tabs").tabs();
+});
+</script>
+<p><h2>กำหนดค่าข้อมูลความสำคัญหม้อแปลง</h2></p>
+<div id="tabs">
+  <ul>
+    <li><a href="#criteria">Criteria</a></li>
+    <li><a href="#risk">Risk</a></li>
+    <li><a href="#xscale">X-Scale</a></li>
+    <li><a href="#yscale">Y-Scale</a></li>
+  </ul>
+    <div id="criteria"><p><%= render :partial => 'adjust_criteria'%></p></div>
+    <div id="risk"><p><%= render :partial => 'adjust_risk'%></p></div>
+    <div id="xscale"><p><%= render :partial => 'adjust_x_color'%></p></div>
+    <div id="yscale"><p><%= render :partial => 'adjust_y_color'%></p></div>
+</div>

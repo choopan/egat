@@ -113,17 +113,36 @@ class TransformerInformationsController < ApplicationController
       format.html
     end
   end
+  
+  def adjust
+    adjust_x_color
+    adjust_y_color
+    adjust_criteria
+    adjust_risk
+  end
 
   def adjust_x_color
 	   @xdata = XAxis.all
   end
 
   def adjust_y_color
-	
+	   @ydata = YAxis.all
   end
 
   def adjust_risk
 	   @risks = Risk.all
+  end
+  
+  def update_y_color_table
+    for i in 1..3 do
+      ydata = YAxis.find(i)
+      ydata[:start] = params["start_"+i.to_s].to_i
+      ydata[:end] = params["end_"+i.to_s].to_i
+      ydata[:importance] = params["importance_"+i.to_s].to_s
+      ydata[:action] = params["action_"+i.to_s].to_s     
+      ydata.update_attributes(ydata.attributes)
+    end
+    redirect_to('/transformer_informations/adjust#yscale', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
   
   def update_x_color_table
@@ -136,7 +155,7 @@ class TransformerInformationsController < ApplicationController
       xdata[:color] = params["color_"+i.to_s].to_s
       xdata.update_attributes(xdata.attributes)
     end
-    redirect_to(adjust_x_color_transformer_informations_url, :notice => 'บันทึกค่าเรียบร้อยแล้ว')
+    redirect_to('/transformer_informations/adjust#xscale', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
   
   def update_risk_table
@@ -148,18 +167,159 @@ class TransformerInformationsController < ApplicationController
       risk[:action] = params["action_"+i.to_s].to_s     
       risk.update_attributes(risk.attributes)
     end
-    redirect_to(adjust_risk_transformer_informations_url, :notice => 'บันทึกค่าเรียบร้อยแล้ว')
+    redirect_to('/transformer_informations/adjust#risk', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
   
   
   def adjust_criteria
-	 #@load_pattern_factor = LoadPatternFactor.all
-
+	 @lpf = LoadPatternFactor.all
+	 @imp_weight = ImportanceWeight.select("weight").order("id")
+	 @system_locations = SystemLocation.select("value").order("score")
+	 @n1s = N1Criteria.select("value").order("score")
+	 @system_stability = SystemStability.select("value").order("score")
+   @application_uses = ApplicationUse.select("value").order("score")
+   
+   @social_aspects = SocialAspect.select("value").order("score")
+   @public_images = PublicImage.select("value").order("score")
+   @pollutions = Pollution.select("value").order("score")
   end
   
-  def x_axis
-   # if request.xhr?
-   #     @data_points = @data_points.to_json    
-    #end
+  def update_criteria_table
+    ######################### update load_pattern_factor table
+    lpfs = LoadPatternFactor.order("id")
+    i = 1
+    lpfs.each { |lpf|
+       if i == 1
+         lpf[:end] = params["lpfe_" + i.to_s].to_i
+       elsif i == 5
+         lpf[:start] = params["lpfs_" + i.to_s].to_i
+       else  
+         lpf[:start] = params["lpfs_" + i.to_s].to_i
+         lpf[:end] = params["lpfe_" + i.to_s].to_i
+       end
+       lpf.update_attributes(lpf.attributes)
+       i = i + 1
+    }
+    #update load_pattern_factor weight (importance_weight no 1)
+    lpf_weight = ImportanceWeight.where("no = 1").first
+    lpf_weight[:weight] = params["lpf_weight"].to_i
+    lpf_weight.update_attributes(lpf_weight.attributes)
+  
+
+    ######################### update SystemLocation
+    system_locations = SystemLocation.order("score")
+
+    i = 1
+    system_locations.each { |p|
+         p[:value] = params["system_location_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update system location weight (importance_weight no 2)
+    sysloc_weight = ImportanceWeight.where("no = 2").first
+    sysloc_weight[:weight] = params["system_location_weight"].to_i
+    sysloc_weight.update_attributes(sysloc_weight.attributes)
+
+
+    ######################### update N1 Criteria
+    n1s = N1Criteria.order("score")
+
+    i = 1
+    n1s.each { |p|
+         p[:value] = params["n1_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update n1 criteria weight (importance_weight no 3)
+    n1_weight = ImportanceWeight.where("no = 3").first
+    n1_weight[:weight] = params["n1_weight"].to_i
+    n1_weight.update_attributes(n1_weight.attributes)
+
+    ######################### update System Stability
+    system_stabilities = SystemStability.order("score")
+
+    i = 1
+    system_stabilities.each { |p|
+         p[:value] = params["system_stability_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update system stability weight (importance_weight no 4)
+    system_stability_weight = ImportanceWeight.where("no = 4").first
+    system_stability_weight[:weight] = params["system_stability_weight"].to_i
+    system_stability_weight.update_attributes(system_stability_weight.attributes)
+
+
+    ######################### update application use
+    app_uses = ApplicationUse.order("score")
+
+    i = 1
+    app_uses.each { |p|
+         p[:value] = params["app_use_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update application use weight (importance_weight no 5)
+    app_use_weight = ImportanceWeight.where("no = 5").first
+    app_use_weight[:weight] = params["app_use_weight"].to_i
+    app_use_weight.update_attributes(app_use_weight.attributes)
+
+
+    #update damage of property weight (importance_weight no 8)
+    dmg_weight = ImportanceWeight.where("no = 8").first
+    dmg_weight[:weight] = params["dmg_weight"].to_i
+    dmg_weight.update_attributes(dmg_weight.attributes)
+
+
+    ######################### update social aspect
+    soc_as = SocialAspect.order("score")
+
+    i = 1
+    soc_as.each { |p|
+         p[:value] = params["soc_as_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update social aspect weight (importance_weight no 9)
+    soc_as_weight = ImportanceWeight.where("no = 9").first
+    soc_as_weight[:weight] = params["soc_as_weight"].to_i
+    soc_as_weight.update_attributes(soc_as_weight.attributes)
+
+   ######################### update public image
+    pub_imgs = PublicImage.order("score")
+
+    i = 1
+    pub_imgs.each { |p|
+         p[:value] = params["pub_img_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update public image weight (importance_weight no 10)
+    pub_img_weight = ImportanceWeight.where("no = 10").first
+    pub_img_weight[:weight] = params["pub_img_weight"].to_i
+    pub_img_weight.update_attributes(pub_img_weight.attributes)
+
+
+  ######################### update pollution
+    polutions = Pollution.order("score")
+
+    i = 1
+    pollutions.each { |p|
+         p[:value] = params["pollution_" + i.to_s]
+         p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update pollution weight (importance_weight no 11)
+    pollution_weight = ImportanceWeight.where("no = 11").first
+    pollution_weight[:weight] = params["pollution_weight"].to_i
+    pollution_weight.update_attributes(pollution_weight.attributes)
+
+    #update brand weight (importance_weight no 12)
+    brand_weight = ImportanceWeight.where("no = 12").first
+    brand_weight[:weight] = params["brand_weight"].to_i
+    brand_weight.update_attributes(brand_weight.attributes)
+
+    redirect_to('/transformer_informations/adjust#criteria', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
+  
   end
 end

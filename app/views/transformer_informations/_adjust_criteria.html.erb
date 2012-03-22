@@ -1,0 +1,234 @@
+<h1>Score Color</h1>
+<STYLE type="text/css"> 
+	input[id="text1"] {
+		width: 15px;
+	}
+	input[id="text2"] {
+		width: 70px;
+	}
+</STYLE> 
+
+<%= form_tag(update_criteria_table_transformer_informations_url, :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>	
+<table>
+<tr>
+	<th rowspan="2"><center><b>No.</b></center></th>
+	<th rowspan="2"><center>Criteria</center></th>
+	<th rowspan="2"><center>BUS<br>Voltage<br>[KV]</center></th>
+	<th colspan="6"><center>Score</center></th>
+	<th rowspan="2"><center>Weight<br>(1-5)</center></th>
+</tr>
+<tr>
+	<td><center>Very Low = 1</center></td>
+	<td><center>Low = 2</center></td>
+	<td><center>Moderate = 3</center></td>
+	<td><center>High = 4</center></td>
+	<td><center>Very High = 5</center></td>
+	<td><center>Extremely High = 6</center></td>
+	</tr>
+
+<tr>
+	<td><center>1</center></td>
+	<td><center>Load Pattern (%LPF)</center></td>
+	<td><center> - </center></td>
+	
+	<% counter = 1
+		lpf_size = @lpf.size
+		@lpf.each { |p|
+			if (counter == 1)
+	%>
+				<td><center> &le; <input id="text1" type="text" name="lpfe_<%= counter %>" value="<%=p.end%>"></center></td>
+	<%
+			elsif (counter == lpf_size)
+	%>
+				<td><center> &ge; <input id="text1" type="text" name="lpfs_<%= counter %>" value="<%=p.start%>"></center></td>
+	<%
+			else
+	%>
+				<td><center><input id="text1" type="text" name="lpfs_<%=counter %>" value="<%=p.start%>">-<input id="text1" type="text" name="lpfe_<%= counter %>" value="<%= p.end %>">
+				</center></td>
+	<%			
+			end
+			counter = counter + 1
+		}
+	%>
+	
+	<td></td>
+	<td><center><input id="text1" type="text" name="lpf_weight" value="<%= @imp_weight[0].weight %>"></center></td>
+</tr>
+
+<tr>
+	<td><center>2</center></td>
+	<td><center>System Location</center></td>
+	<td><center> - </center></td>
+	<% counter = 1
+		@system_locations.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="system_location_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	
+	<td><center><input id="text1" type="text" name="system_location_weight" value="<%= @imp_weight[1].weight%>"></center></td>
+</tr>
+
+<tr>
+	<td><center>3</center></td>
+	<td><center>N-1 Criteria</center></td>
+	<td><center> - </center></td>
+	<% counter = 1
+		@n1s.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="n1_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	<td></td>
+	<td><center><input id="text1" type="text" name="n1_weight" value="<%= @imp_weight[2].weight%>"></center></td>
+</tr>
+
+<tr>
+	<td><center>4</center></td>
+	<td><center>System Stability</center></td>
+	<td><center> - </center></td>
+	<% counter = 1
+		@system_stability.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="system_stability_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	<td></td>
+	<td><center><input id="text1" type="text" name="system_stability_weight" value="<%= @imp_weight[3].weight%>"></center></td>
+</tr>
+
+
+<tr>
+	<td><center>5</center></td>
+	<td><center>Application / Use</center></td>
+	<td><center> - </center></td>
+	<% counter = 1
+		@application_uses.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="app_use_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	<td></td><td></td>
+	<td><center><input id="text1" type="text" name="app_use_weight" value="<%= @imp_weight[4].weight%>"></center></td>
+</tr>
+
+
+
+<tr>
+	<td rowspan="2"><center>6</center></td>
+	<td rowspan="2"><center>System<br>Fault Level<br>(MVA)</center></td>
+	<td><center></center></td>
+	<td><center><input id="text2" type="text" name="Vl6"></center></td>
+	<td><center><input id="text1" type="text" name="ls6">-<input id="text1" type="text" name="le6"></center></td>
+	<td><center><input id="text1" type="text" name="ms6">-<input id="text1" type="text" name="me6"></center></td>
+	<td><center><input id="text1" type="text" name="hs6">-<input id="text1" type="text" name="he6"></center></td>
+	<td><center><input id="text2" type="text" name="Vh6"></center></td>
+	<td><center></center></td>
+	<td rowspan="2"><center><input id="text1" type="text" name="w6"></center></td>
+</tr>
+
+<tr>
+	<td><center></center></td>
+	<td><center><input id="text2" type="text" name="Vl7"></center></td>
+	<td><center><input id="text1" type="text" name="ls7">-<input id="text1" type="text" name="le7"></center></td>
+	<td><center><input id="text1" type="text" name="ms7">-<input id="text1" type="text" name="me7"></center></td>
+	<td><center><input id="text1" type="text" name="hs7">-<input id="text1" type="text" name="he7"></center></td>
+	<td><center><input id="text2" type="text" name="Vh7"></center></td>
+	<td><center></center></td>
+</tr>
+
+<tr>
+	<td><center>7</center></td>
+	<td><center>Probability of<br>Force Outage</center></td>
+	<td><center></center></td>
+	<td><center><input id="text2" type="text" name="Vl8"></center></td>
+	<td><center><input id="text2" type="text" name="l8"></center></td>
+	<td><center><input id="text2" type="text" name="m8"></center></td>
+	<td><center><input id="text2" type="text" name="h8"></center></td>
+	<td><center><input id="text2" type="text" name="Vh8"></center></td>
+	<td><center></center></td>
+	<td><center><input id="text1" type="text" name="w8"></center></td>
+</tr>
+
+<tr>
+	<td><center>8</center></td>
+	<td><center>Damage of property</center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td></td>
+	<td><center><input id="text1" type="text" name="dmg_weight" value="<%= @imp_weight[7].weight%>"></center></td>
+</tr>
+
+<tr>
+	<td><center>9</center></td>
+	<td><center>Social aspects</center></td>
+	<td><center> - </center></td>
+	<% counter = 1
+		@social_aspects.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="soc_as_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	<td></td>
+	<td><center><input id="text1" type="text" name="soc_as_weight" value="<%= @imp_weight[8].weight%>"></center></td>
+</tr>
+
+
+<tr>
+	<td><center>10</center></td>
+	<td><center>Public Image</center></td>
+	<td><center> - </center></td>
+<% counter = 1
+		@public_images.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="pub_img_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	<td></td>
+	<td><center><input id="text1" type="text" name="pub_img_weight" value="<%= @imp_weight[9].weight%>"></center></td>
+</tr>
+
+
+<tr>
+	<td><center>11</center></td>
+	<td><center>Pollution</center></td>
+	<td><center> - </center></td>
+	<% counter = 1
+		@pollutions.each { |p|
+	%>
+		<td><center><input id="text2" type="text" name="pollution_<%=counter%>" value="<%=p.value%>"></center></td>
+	<%		counter = counter + 1
+		}
+	%>
+	<td></td><td></td>
+	<td><center><input id="text1" type="text" name="pollution_weight" value="<%= @imp_weight[10].weight%>"></center></td>
+</tr>
+
+<tr>
+	<td><center>12</center></td>
+	<td><center>Brand</center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td><center> - </center></td>
+	<td></td>
+	<td><center><input id="text1" type="text" name="brand_weight" value="<%= @imp_weight[11].weight%>"></center></td>
+</tr>
+
+
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><center><input type="submit" value="Save"></center></td></tr>
+</table>
+<%end%>

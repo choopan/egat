@@ -124,11 +124,14 @@ Egat::Application.routes.draw do
     end
     collection do
      get 'search'
+     get 'adjust'
 	   get 'adjust_x_color'
 	   get 'adjust_y_color'
 	   get 'adjust_risk'
 	   post 'update_risk_table'
 	   post 'update_x_color_table'
+	   post 'update_criteria_table'
+	   post 'update_y_color_table'
 	   get 'adjust_criteria'
     
     end
