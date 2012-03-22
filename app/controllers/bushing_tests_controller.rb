@@ -1,6 +1,9 @@
 class BushingTestsController < ApplicationController
   
   def index
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @bushing_tests = BushingTest.where(:transformer_id => params[:transformer_id]).order("test_date DESC") 
     @bushing_test = @bushing_tests.first
@@ -20,11 +23,17 @@ class BushingTestsController < ApplicationController
   end
 
   def new
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @bushing_test = BushingTest.new 
   end
 
   def create
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @bushing_test = BushingTest.new(params[:bushing_test])
     respond_to do |format|
       if @bushing_test.save
@@ -38,11 +47,17 @@ class BushingTestsController < ApplicationController
   end
   
   def edit
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @bushing_test = BushingTest.find(params[:id])
   end
   
   def update
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @bushing_test = BushingTest.find(params[:id])
     respond_to do |format|

@@ -1,5 +1,8 @@
 class ApplicationUsesController < ApplicationController
   def index
+    if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @application_uses = ApplicationUse.all
     respond_to do |format|
       format.html 
@@ -8,6 +11,9 @@ class ApplicationUsesController < ApplicationController
   end
 
   def update
+    if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @application_use = ApplicationUse.find(params[:id])
     params[:application_use] = { 
       :value => params[:value], 
