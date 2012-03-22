@@ -4,7 +4,9 @@
           "Bus Voltage HV side [kV]" 
   %>
   <%= 
-    @bus_voltage_hvs = BusVoltageHv.order("CAST(value as UNSIGNED)").all
+    #@bus_voltage_hvs = BusVoltageHv.order("CAST(value as UNSIGNED)").all
+    @bus_voltage_hvs = BusVoltageHv.order("value").all
+
     f.collection_select(:bus_voltage_hv_id, @bus_voltage_hvs, :id, :value, 
                         {:prompt => true}) 
   %>

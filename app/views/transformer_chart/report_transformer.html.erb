@@ -1,38 +1,44 @@
 <h1>รายงานตามผู้ใช้งานสำหรับหม้อแปลงไฟฟ้า</h1>
-<%= form_for :report do |f| %>
+<%#= form_for :report, :url => '/transformer_chart/report_damaged' do |f| 
+%>
 
-<%#= form_tag('/transformer_chart/report_damaged', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
+<%= form_tag('/transformer_chart/report_damaged', :method=>'post', :multipart => true, :name => 'transformer_chart') do %>
 <p><b><font color="#56a86f">เลือกเงื่อนไขในการสร้างกราฟ</font></b><br>
 
 <div class='grid_7 prefix_0 accessories'>
 <table>
 	<tr><td>เขต :</td><td>
           <%=
-            f.collection_select(:area, @regions, "region", "region", {:prompt => 'ทั้งหมด', :selected => params[:area]} )
+#            f.collection_select(:area, @regions, "region", "region", {:prompt => 'ทั้งหมด', :selected => params[:area]} )
+            select_tag "report2_area", options_from_collection_for_select(@regions, "region", "region", params[:report2_area]), :prompt => 'ทั้งหมด'
           %>
 	</td></tr>
 	<tr><td>สถานีไฟฟ้า :</td><td>
           <%=
-            f.collection_select(:station, @stations, "id", "name", {:prompt => 'ทั้งหมด'} )
-          %>
-	</td></tr>
-	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
-          <%=
-            f.collection_select(:transformer, @txnames, "id", "transformer_name", {:prompt => 'ทั้งหมด'} )
+            #f.collection_select(:station, @stations, "name", "name", {:prompt => 'ทั้งหมด', :selected => params[:station]} )
+            select_tag "report2_station", options_from_collection_for_select(@stations, "name", "name", params[:report2_station]),  :prompt =>  'ทั้งหมด'
+
           %>
 	</td></tr>
 	<tr><td>ชื่อบริษัทผู้ผลิต :</td><td>
           <%=
-            f.collection_select(:manufacturer, @manus, "id", "name", {:prompt => 'ทั้งหมด'} )
+            #f.collection_select(:manufacturer, @manus, "id", "name", {:prompt => 'ทั้งหมด', :selected => params[:manufacturer]} )
+            select_tag "report2_manufacturer", options_from_collection_for_select(@manus, "id", "name", params[:report2_manufacturer]), :prompt => 'ทั้งหมด'
+
           %>
 	</td></tr>
+	<tr><td>หม้อแปลงไฟฟ้า :</td><td>
+          <%=select_tag "report2_transformer", options_from_collection_for_select(@txnames, "id", "transformer_name"),  :prompt => 'ทั้งหมด'%>
+	</td></tr>
+
 </table></p>
 <p><b><font color="#56a86f">เลือกการแบ่งกลุ่ม (แบ่งตาม)</font></b><br><br>
 	<select id="group" name="group">
 		<option value="0">เขต</option>
 		<option value="1">สถานีไฟฟ้า</option>
-		<option value="2">หม้อแปลงไฟฟ้า</option>
-		<option value="3">ชื่อบริษัทผู้ผลิต</option>
+		<option value="2">ชื่อบริษัทผู้ผลิต</option>
+		<option value="3">หม้อแปลงไฟฟ้า</option>
+		
 	</select><br><br>
 <%= submit_tag "Ok", :class => "cupid-green" %>
 </p></div>

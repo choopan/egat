@@ -93,6 +93,7 @@ class TransformerInformation < ActiveRecord::Base
       d = ((importance_index + percent_hi)/Math.sqrt(2))
       if d.round.between?(r.start, r.end)
         risk = r
+        break
       end
     end
     risk

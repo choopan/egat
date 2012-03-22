@@ -1,7 +1,8 @@
 <script language="javascript" type="text/javascript" src="/javascripts/jscolor.js"></script>
 <h1>ปรับค่าสีในแนวแกน x</h1>
-<p><div class="grid_10 prefix_3">
-<%= form_tag('#', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+<p><div class="grid_12 prefix_2">
+<%= form_tag(update_x_color_table_transformer_informations_url, :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+
 <table><tr><th colspan=4><center>%II Table</center></th><tr></table>
 <table>
 <tr><th><center>%II</center></th>
@@ -9,22 +10,18 @@
 <th><center>Action</center></th>
 <th><center>Color</center></th></tr>
 
-<tr><td><center><input type="text" name="s1">-<input type="text" name="e1"></center></td>
-<td><center>Low</center></td>
-<td><center><input type="text" name="action1"></center></td>
-<td><center><input class="color" name="color1" value="ff0000"></center></td></tr>
-
-<tr><td><center><input type="text" name="s2">-<input type="text" name="e2"></center></td>
-<td><center>Moderlate</center></td>
-<td><center><input type="text" name="action2"></center></td>
-<td><center><input class="color" name="color2" value="00ff00"></center></td></tr>
-
-<tr><td><center><input type="text" name="s3">-<input type="text" name="e3"></center></td>
-<td><center>High</center></td>
-<td><center><input type="text" name="action3"></center></td>
-<td><center><input class="color" name="color3" value="0000ff"></center></td></tr>
-<tr><td></td><td></td><td></td><td><center><input type="submit" value="Save"></center></td></tr>
-
+<% @xdata.each do |r| %>
+	<tr>
+		<td><center>
+		<input type="text" name="start_<%=r.id%>" value="<%= r.start %>"> - <input type="text" name="end_<%=r.id%>" value="<%= r.end %>">
+		</center></td>
+	
+		<td><center><input type="text" class="medtext" name="importance_<%=r.id%>" value="<%= r.importance %>"></center></td>
+		<td><center><input type="text" class="longtext" name="action_<%=r.id%>" value="<%= r.action %>"></center></td>
+		<td><center><input class="color" name="color_<%= r.id%>" value="<%= r.color %>"></center></td></tr>
+		</tr>
+<% end%>
+<tr><td colspan=4><center><input class="cupid-green" type="submit" value="Save"></center></td></tr>
 </table>
 <%end%>
 </div></p>

@@ -19,6 +19,9 @@ Egat::Application.routes.draw do
 		  get "select_chart"
 		  get "report_transformer"
 		  get "report_damaged"
+      get "report_transformer_f"
+      get "report_damaged_f"
+
 	 end
   end
 
@@ -120,11 +123,14 @@ Egat::Application.routes.draw do
 
     end
     collection do
-      get 'search'
-	  get 'adjust_x_color'
-	  get 'adjust_y_color'
-	  get 'adjust_risk'
-	  get 'adjust_criteria'
+     get 'search'
+	   get 'adjust_x_color'
+	   get 'adjust_y_color'
+	   get 'adjust_risk'
+	   post 'update_risk_table'
+	   post 'update_x_color_table'
+	   get 'adjust_criteria'
+    
     end
   end
 

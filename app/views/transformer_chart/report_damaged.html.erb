@@ -50,13 +50,13 @@ function redirect() //onClick(href)
 		}
 	}
 	if((chart1=="1")&&(unit1=="1")){
-		window.location = "/transformer_chart/report_damaged?chart=1&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/report_damaged?chart=1&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>&report2_area=<%= params[:report2_area]%>&report2_station=<%= params[:report2_station]%>&report2_manufacturer=<%= params[:report2_manufacturer]%>&report2_transformer=<%= params[:report2_transformer]%>&group=<%=params[:group]%>";
 	}else if((chart1=="1")&&(unit1=="2")){
-		window.location = "/transformer_chart/report_damaged?chart=1&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/report_damaged?chart=1&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>&report2_area=<%= params[:report2_area]%>&report2_station=<%= params[:report2_station]%>&report2_manufacturer=<%= params[:report2_manufacturer]%>&report2_transformer=<%= params[:report2_transformer]%>&group=<%=params[:group]%>";
 	}else if((chart1=="2")&&(unit1=="1")){
-		window.location = "/transformer_chart/report_damaged?chart=2&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/report_damaged?chart=2&unit=1&charts=<%= params[:charts] %>&count=<%=@count%>&report2_area=<%= params[:report2_area]%>&report2_station=<%= params[:report2_station]%>&report2_manufacturer=<%= params[:report2_manufacturer]%>&report2_transformer=<%= params[:report2_transformer]%>&group=<%=params[:group]%>";
 	}else{
-		window.location = "/transformer_chart/report_damaged?chart=2&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>";
+		window.location = "/transformer_chart/report_damaged?chart=2&unit=2&charts=<%= params[:charts] %>&count=<%=@count%>&report2_area=<%= params[:report2_area]%>&report2_station=<%= params[:report2_station]%>&report2_manufacturer=<%= params[:report2_manufacturer]%>&report2_transformer=<%= params[:report2_transformer]%>&group=<%=params[:group]%>";
 	}
 //	window.location = href;
 	return false;
@@ -66,9 +66,12 @@ function redirect() //onClick(href)
 $(document).ready(function(){
       $.jqplot.config.enablePlugins = true;
  
-
 <%if params[:chart] == "2" and params[:unit] == "2"%>
-  line1 = [['Cup Holder Pinion Bob',(7*100/(7+9+15+12+3))], ['Generic Fog Lamp',(9*100/(7+9+15+12+3))], ['HDTV Receiver',(15*100/(7+9+15+12+3))], ['8 Track Control Module',(12*100/(7+9+15+12+3))], [' Sludge Pump Fourier Modulator', (3*100/(7+9+15+12+3))]];
+  line1 = [
+  <% for i in 0..(@graphpercent.size-1) do %>
+      [ '<%= @graphpercent[i][0] %>', <%= @graphpercent[i][1] %> ],
+  <% end %>
+  ];
   bar1 = $.jqplot('chart', [line1], {
     title: '<%=@titles%>',
     series:[{renderer:$.jqplot.BarRenderer}],
@@ -102,7 +105,14 @@ $(document).ready(function(){
     }
   });
 <% elsif params[:chart] == "2" and params[:unit] == "1" %>
-  line2 = [['Cup Holder Pinion Bob', 7], ['Generic Fog Lamp', 9], ['HDTV Receiver', 15], ['8 Track Control Module', 12],[' Sludge Pump Fourier Modulator', 3]];
+
+  line2 = [
+  <% for i in 0..(@graphdata.size-1) do %>
+      [ '<%= @graphdata[i][0] %>', <%= @graphdata[i][1] %> ],
+  <% end %>
+  ];
+
+
   bar2 = $.jqplot('chart', [line2], {
     title: '<%=@titles%>',
      series:[{renderer:$.jqplot.BarRenderer}],
@@ -135,7 +145,11 @@ $(document).ready(function(){
   });
 
 <% elsif params[:chart] == "1" and params[:unit] == "2" %>
-  line3 = [['Cup Holder Pinion Bob',(7*100/(7+9+15+12+3))], ['Generic Fog Lamp',(9*100/(7+9+15+12+3))], ['HDTV Receiver',(15*100/(7+9+15+12+3))], ['8 Track Control Module',(12*100/(7+9+15+12+3))], [' Sludge Pump Fourier Modulator', (3*100/(7+9+15+12+3))]];
+ line3 = [
+  <% for i in 0..(@graphpercent.size-1) do %>
+      [ '<%= @graphpercent[i][0] %>', <%= @graphpercent[i][1] %> ],
+  <% end %>
+  ];
   plot3 = $.jqplot('chart', [line3], {
 	  title: '<%=@titles%>',
 	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
@@ -160,7 +174,11 @@ $('#chart').bind('jqplotDataHighlight',
     ); 
 
 <%else%>
-	 line4 = [['Cup Holder Pinion Bob',7], ['Generic Fog Lamp',9], ['HDTV Receiver',15], ['8 Track Control Module',12], [' Sludge Pump Fourier Modulator', 3]];
+  line4 = [
+  <% for i in 0..(@graphdata.size-1) do %>
+      [ '<%= @graphdata[i][0] %>', <%= @graphdata[i][1] %> ],
+  <% end %>
+  ];
 	 plot4 = $.jqplot('chart', [line4], {
 	  title: '<%=@titles%>',
 	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
@@ -187,6 +205,7 @@ $('#chart').bind('jqplotDataHighlight',
 
 </script>
 
+<%= debug(params) %>
 
 <h1>แสดงกราฟความสัมพันธ์</h1>
 	<%if((params[:chart]==nil and params[:unit]==nil) or (params[:chart]=="1" and params[:unit]=="1") or (params[:chart]=="1" and params[:unit]=="2"))%>

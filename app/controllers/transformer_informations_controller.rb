@@ -1,5 +1,7 @@
+#encoding : UTF-8
 class TransformerInformationsController < ApplicationController
   def index
+    @xscale = XAxis.get_x_scale.to_json
     if request.xhr?
       if params[:region]
         @stations = Station.find_all_by_region(params[:region])
@@ -31,7 +33,7 @@ class TransformerInformationsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js { render :json => @data_points}
+      format.js { render :json => {:data_points => @data_points, :xscale => @xscale}}
     end
   end
 
@@ -113,7 +115,7 @@ class TransformerInformationsController < ApplicationController
   end
 
   def adjust_x_color
-	
+	   @xdata = XAxis.all
   end
 
   def adjust_y_color
@@ -121,10 +123,43 @@ class TransformerInformationsController < ApplicationController
   end
 
   def adjust_risk
-	
+	   @risks = Risk.all
   end
-
+  
+  def update_x_color_table
+    for i in 1..3 do
+      xdata = XAxis.find(i)
+      xdata[:start] = params["start_"+i.to_s].to_i
+      xdata[:end] = params["end_"+i.to_s].to_i
+      xdata[:importance] = params["importance_"+i.to_s].to_s
+      xdata[:action] = params["action_"+i.to_s].to_s     
+      xdata[:color] = params["color_"+i.to_s].to_s
+      xdata.update_attributes(xdata.attributes)
+    end
+    redirect_to(adjust_x_color_transformer_informations_url, :notice => 'บันทึกค่าเรียบร้อยแล้ว')
+  end
+  
+  def update_risk_table
+    for i in 1..5 do
+      risk = Risk.find(i)
+      risk[:start] = params["start_"+i.to_s].to_i
+      risk[:end] = params["end_"+i.to_s].to_i
+      risk[:risk] = params["risk_"+i.to_s].to_s
+      risk[:action] = params["action_"+i.to_s].to_s     
+      risk.update_attributes(risk.attributes)
+    end
+    redirect_to(adjust_risk_transformer_informations_url, :notice => 'บันทึกค่าเรียบร้อยแล้ว')
+  end
+  
+  
   def adjust_criteria
-	
+	 #@load_pattern_factor = LoadPatternFactor.all
+
+  end
+  
+  def x_axis
+   # if request.xhr?
+   #     @data_points = @data_points.to_json    
+    #end
   end
 end

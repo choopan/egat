@@ -29,6 +29,10 @@
       <%= render :partial => 'layouts/header' %>    
     <% end %>
     <div id="content" class="container_16 clearfix">
+    <% if notice %>
+	<p class="success"><%= notice %></p>
+    <%end %>   	
+    	
       <%= yield %>
     </div>
     <% unless @no_footer %>

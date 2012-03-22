@@ -75,9 +75,7 @@
               <%= link_to transformer_information.importance_index.to_s, transformer_information, {:rel => 'facebox'} %>
             </td>
             <td>
-              <% link_to importance_and_risk_table_transformer_information_url(transformer_information.id), {:rel => 'facebox'} do %>
-                <%= transformer_information.risk.risk %>
-              <% end %>
+              <%= link_to transformer_information.risk.risk, importance_and_risk_table_transformer_information_url(transformer_information.id),  {:rel => 'facebox'} %>    
             </td>
             <td><%= transformer_information.risk.action %></td>
             <td>

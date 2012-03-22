@@ -342,9 +342,9 @@ class Transformer < ActiveRecord::Base
       if equipe == "Bushing"
         #count hv bushing failure
         if failuredetail == '-- All --'
-        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='HV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='HV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='HV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !hv_bushing_failure.nil?
            for i in 0..hv_bushing_failure.size-1 do
@@ -369,9 +369,9 @@ class Transformer < ActiveRecord::Base
         end
 
         if failuredetail == '-- All --'
-        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='LV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='LV Bushing' and DATEDIFF(year, downdatetime, GETDATE())  <= #{time_interval}")
 	else
-        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='LV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !lv_bushing_failure.nil?
            for i in 0..lv_bushing_failure.size-1 do
@@ -397,9 +397,9 @@ class Transformer < ActiveRecord::Base
 
 
         if failuredetail == '-- All --'
-        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='TV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failurepart='TV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_bushing_failure = FailureDatabase.where("failuregroup='Bushing' and failuredetail='#{failuredetail}' and failurepart='TV Bushing' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !tv_bushing_failure.nil?
            for i in 0..tv_bushing_failure.size-1 do
@@ -426,9 +426,9 @@ class Transformer < ActiveRecord::Base
     elsif equipe == "Arrester"
         #count hv arrester failure
         if failuredetail == '-- All --'
-        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='HV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='HV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='HV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !hv_ar_failure.nil?
            for i in 0..hv_ar_failure.size-1 do
@@ -453,9 +453,9 @@ class Transformer < ActiveRecord::Base
         end
 
         if failuredetail == '-- All --'
-        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='LV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='LV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	lv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='LV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !lv_ar_failure.nil?
            for i in 0..lv_ar_failure.size-1 do
@@ -481,9 +481,9 @@ class Transformer < ActiveRecord::Base
 
 
         if failuredetail == '-- All --'
-        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='TV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failurepart='TV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	tv_ar_failure = FailureDatabase.where("failuregroup='Arrester' and failuredetail='#{failuredetail}' and failurepart='TV Arrester' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !tv_ar_failure.nil?
            for i in 0..tv_ar_failure.size-1 do
@@ -509,9 +509,9 @@ class Transformer < ActiveRecord::Base
       
       else 
         if failuredetail == '-- All --'
-        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	else
-        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}' and DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), downdatetime)), '%Y')+0 < #{time_interval}")
+        	hv_oltc_failure = FailureDatabase.where("failuregroup='On - Load Tap Changer' and failuredetail='#{failuredetail}' and DATEDIFF(year, downdatetime, GETDATE()) <= #{time_interval}")
 	end
         if !hv_oltc_failure.nil?
            for i in 0..hv_oltc_failure.size-1 do
@@ -1508,6 +1508,283 @@ class Transformer < ActiveRecord::Base
       for i in result do
             graphdata[n] = Array.new
             graphdata[n][0] = i.region
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+  
+  def self.graph_numtx_per_region(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT region, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY region "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.region
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+ def self.graph_numtx_per_station(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT station_name, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY station_name "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.station_name
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+
+ def self.graph_numtx_per_manufacturer(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT manu_name, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY manu_name "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.manu_name
+            graphdata[n][1] = i.numtx
+            n = n + 1
+            numtotal = numtotal + i.numtx
+      end
+
+      for i in 0..graphdata.size-1 do
+          graphpercent[i] = Array.new
+          graphpercent[i][0] = graphdata[i][0]
+          graphpercent[i][1] = (graphdata[i][1]/numtotal.to_f)*100
+      end
+
+      return [graphdata, graphpercent]
+  end
+
+  def self.graph_numtx_per_txname(region_name, station_name, manufacturer_id, tx_id)
+              
+      query = "SELECT transformer_name, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+              (SELECT distinct name AS station_name, region from stations) AS A  ON transformer.station = A.station_name \ 
+              LEFT OUTER JOIN (SELECT distinct id AS manu_id, name AS manu_name FROM brands) AS B ON transformer.brand_id = B.manu_id" 
+  
+      whereclause = 0        
+                              
+      if region_name!="" and !region_name.nil?
+        if whereclause == 0
+          query = query + " WHERE region='#{region_name}'"
+          whereclause = 1
+        end          
+      end
+    
+      if station_name!="" and !station_name.nil?
+        if whereclause == 0
+          query = query + " WHERE station='#{station_name}'"
+          whereclause = 1
+        else
+          query = query + " AND station='#{station_name}'"
+        end          
+      end
+      
+      if manufacturer_id!="" and !manufacturer_id.nil?
+        if whereclause == 0
+          query = query + " WHERE brand_id='#{manufacturer_id}'"
+          whereclause = 1
+        else
+          query = query + " AND brand_id='#{manufacturer_id}'"
+        end          
+      end
+ 
+      if tx_id!="" and !tx_id.nil?
+        if whereclause == 0
+          query = query + " WHERE id='#{tx_id}'"
+          whereclause = 1
+        else
+          query = query + " AND id='#{tx_id}'"
+        end          
+      end
+    
+      query = query + " GROUP BY manu_name "
+    
+      
+      result = find_by_sql(query)
+      
+      n = 0
+      numtotal = 0
+      graphdata = Array.new
+      graphpercent = Array.new
+
+      for i in result do
+            graphdata[n] = Array.new
+            graphdata[n][0] = i.manu_name
             graphdata[n][1] = i.numtx
             n = n + 1
             numtotal = numtotal + i.numtx
