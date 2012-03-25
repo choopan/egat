@@ -1,6 +1,9 @@
 class OltcOilContaminationsController < ApplicationController
 
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_contamination = OltcOilContamination.where(:transformer_id => params[:transformer_id])
    respond_to do |format|
@@ -11,11 +14,17 @@ class OltcOilContaminationsController < ApplicationController
   end
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_contamination = OltcOilContamination.new
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_contamination = OltcOilContamination.new(params[:oltc_oil_contamination])
     respond_to do |format|
@@ -31,11 +40,17 @@ class OltcOilContaminationsController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_id(params[:transformer_id])
     @oltc_oil_contamination = OltcOilContamination.find(params[:id])
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_contamination = OltcOilContamination.find(params[:id])
     respond_to do |format|
@@ -50,6 +65,9 @@ class OltcOilContaminationsController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_contamination = OltcOilContamination.find(params[:id])
     @oltc_oil_contamination.destroy

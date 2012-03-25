@@ -210,7 +210,7 @@ $('#chart').bind('jqplotDataHighlight',
 <h1>แสดงกราฟความสัมพันธ์</h1>
 	<%if((params[:chart]==nil and params[:unit]==nil) or (params[:chart]=="1" and params[:unit]=="1") or (params[:chart]=="1" and params[:unit]=="2"))%>
 		<div class='jqplot' id='chart' class='graph' style='height:400px; width:400px;'></div>
-		<div><span>Moused Over: </span><span id="info"><font color="#0000ff">Nothing</font></span></div>
+		<div><span>: </span><span id="info"><font color="#0000ff">Nothing</font></span></div>
 	<%else%>
 		<div class='jqplot' id='chart' class='graph' style='height:420px; width:800px;'></div><br>
 	<%end%>

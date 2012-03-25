@@ -1,5 +1,8 @@
 class OltcOilQualitiesController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_qualities = OltcOilQuality.find_all_by_name_and_transformer(params[:name], @transformer)
     @insulating_oil = InsulatingOil.most_recent(params[:transformer_id]).first
@@ -12,6 +15,9 @@ class OltcOilQualitiesController < ApplicationController
   end
   
   def oltc_oil_contaminations
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_qualities = OltcOilQuality.find_all_by_name_and_transformer(params[:name], @transformer)
     @insulating_oil = InsulatingOil.most_recent(params[:transformer_id]).first
@@ -24,6 +30,9 @@ class OltcOilQualitiesController < ApplicationController
   end
   
   def oltc_dielectric_properties
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_oil_qualities = OltcOilQuality.find_all_by_name_and_transformer(params[:name], @transformer)
     @insulating_oil = InsulatingOil.most_recent(params[:transformer_id]).first

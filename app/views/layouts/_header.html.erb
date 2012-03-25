@@ -14,7 +14,7 @@
       <ul>  
         <li><%= link_to 'หม้อแปลงไฟฟ้า', '/transformer_info/txlist' %></li>
 		<li><%= link_to 'การย้ายหม้อแปลง', '/transformer_info/txlistmove' %></li>
-		<li><%= link_to 'กำหนดค่าข้อมูล', manufacturing_index_path %></li>
+		
      </ul> 
    </li>
  
@@ -23,10 +23,14 @@
    
     <li><%= link_to 'ข้อมูลบำรุงรักษาหม้อแปลง', '#' %>
 		<ul>
+			<li><%= link_to 'ค้นหาข้อมูลบำรุงรักษาหม้อแปลง', '#' %></li>    			
 			<li><%= link_to 'Visual Inspection', search_visual_inspections_path %></li>    
 			<li><%= link_to 'ผลทดสอบทางน้ำมัน', search_oil_input_index_path %></li> 
 			<li><%= link_to 'ผลทดสอบทางไฟฟ้า', search_electrical_tests_path %></li>      
-			<li><%= link_to 'บำรุง OLTC', '#' %></li>      
+			<li><%= link_to 'บำรุงรักษา OLTC', '#' %></li>      
+			<li><%= link_to 'ดูข้อมูลผลการทดสอบทั้งหมด', '#' %></li>      
+			<li><%= link_to 'ตรวจสอบสภาพหม้อแปลงไฟฟ้า', '#' %></li>      
+
 		</ul>
 	<li>
 	
@@ -36,15 +40,19 @@
 		</ul>
 	</li>
 	
-	<li><%= link_to 'Upload ข้อมูล', '#'%><li>
+	<li><%= link_to 'Upload ข้อมูล', '#'%>
+		<ul>
+			<li><%= link_to 'การทดสอบทางน้ำมัน', '#' %></li>    			
+			<li><%= link_to 'การทดสอบทางไฟฟ้า', '#' %></li>    
+			<li><%= link_to 'Ativate Data', '#' %></li> 
+		</ul>				
+	</li>
 	
    <li> 
      <a href="#">ความสำคัญของหม้อแปลง</a> 
      <ul> 
        <li><%= link_to 'เพิ่มรายการ', new_transformer_information_path %></li>
        <li><%= link_to 'ค้นหาและเเก้ไข', search_transformer_informations_path%></li> 
-       <li><%= link_to 'ปรับเปลี่ยนหลักเกณฑ์การคำนวณ', search_transformer_informations_path%></li> 
- 
      </ul> 
    </li> 
 
@@ -70,9 +78,24 @@
 	<li><%= link_to 'Bushing, Arrester, OLTC', weibull_select_weibull_index_path %></li>
      </ul> 
    </li>
+
+
+   <li>
+     <%= link_to 'การจัดการ', '#' %>
+      <ul> 
+       <li><%= link_to 'การจัดการผู้ใช้', listuser_usermanage_index_path %></li>
+       <li><%= link_to 'กำหนดข้อมูลพื้นฐานหม้อแปลง', manufacturing_index_path %></li>
+       <li><%= link_to 'กำหนดข้อมูลความสำคัญหม้อแปลง', adjust_transformer_informations_path %></li> 
+       <li><%= link_to 'กำหนดข้อมูลการทดสอบ', '#' %></li> 
+     </ul> 
+   </li>
+
+
    
    <li> <%= link_to 'คู่มือการใช้งาน', '#' %>
-
+  <%if ! session[:user].nil?%>
+	<li><a href="/login/logout">ออกจากระบบ</a></li>
+  <%end%>
   
 
  </ul> 

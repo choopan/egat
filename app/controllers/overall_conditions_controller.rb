@@ -1,5 +1,8 @@
 class OverallConditionsController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_dgas = OilDga.where("transformer_id = ?", params[:transformer_id]).order("test_date DESC")
     @visual_inspection = VisualInspection.where("transformer_id = ?", 

@@ -86,6 +86,9 @@ class TransformerInfoController < ApplicationController
   end
 
   def txshowmove
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 		@breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -217,7 +220,7 @@ class TransformerInfoController < ApplicationController
   def failurereport
      if session[:user].nil?
 			redirect_to('/login/login')
-	 end
+	 else
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -248,6 +251,7 @@ class TransformerInfoController < ApplicationController
 		else
 			@failures = nil
 		end
+	end
 	end
 	
   end
@@ -965,7 +969,7 @@ class TransformerInfoController < ApplicationController
   def show_image
    if session[:user].nil?
 			redirect_to('/login/login')
-		end
+	end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx

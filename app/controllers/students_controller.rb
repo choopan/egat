@@ -2,6 +2,9 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.xml
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @students = Student.all
 
     respond_to do |format|
@@ -13,6 +16,9 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.xml
   def show
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @student = Student.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +30,9 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.xml
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @student = Student.new
 
     respond_to do |format|
@@ -34,12 +43,18 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @student = Student.find(params[:id])
   end
 
   # POST /students
   # POST /students.xml
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @student = Student.new(params[:student])
 
     respond_to do |format|
@@ -56,6 +71,9 @@ class StudentsController < ApplicationController
   # PUT /students/1
   # PUT /students/1.xml
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @student = Student.find(params[:id])
 
     respond_to do |format|
@@ -72,6 +90,9 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.xml
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @student = Student.find(params[:id])
     @student.destroy
 

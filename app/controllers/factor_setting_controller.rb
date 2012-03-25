@@ -15,6 +15,9 @@ class FactorSettingController < ApplicationController
 
 
   def update
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
    if User.get_user(session[:user]).priv9==1
 	@factor = FactorSetting.find_by_user_id(1)
 	if @factor.update_attributes(params[:factor_setting])

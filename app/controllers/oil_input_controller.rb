@@ -1,5 +1,8 @@
 class OilInputController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_id(params[:transformer_id])
     @oil_dgas = OilDga.where(:transformer_id => params[:transformer_id]).order("test_date DESC")
     @oltc_dgas = OltcDga.where('transformer_id = ?', params[:transformer_id]).order("test_date DESC")
@@ -10,10 +13,16 @@ class OilInputController < ApplicationController
   end
 
   def show
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_transformer_name(params[:id])
   end
 
   def search
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	session[:username] = "korn"
     @transformers = Transformer.all
   end

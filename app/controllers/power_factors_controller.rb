@@ -1,5 +1,8 @@
 class PowerFactorsController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oils = 
       InsulatingOil.where("transformer_id =?",

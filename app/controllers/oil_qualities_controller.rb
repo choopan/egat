@@ -2,6 +2,9 @@ class OilQualitiesController < ApplicationController
   before_filter :format_json
   
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     unless params[:name].nil?
       @oil_qualities = OilQuality.find_all_by_name_and_transformer(params[:name], @transformer)
@@ -17,6 +20,9 @@ class OilQualitiesController < ApplicationController
   end
   
   def oil_contaminations
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     unless params[:name].nil?
       @oil_qualities = OilQuality.find_all_by_name_and_transformer(params[:name], @transformer)
@@ -33,6 +39,9 @@ class OilQualitiesController < ApplicationController
   
   private
     def format_json
+	  if session[:user].nil?
+		redirect_to('/login/login')
+	  end
       ActiveRecord::Base.include_root_in_json = false
     end
 end

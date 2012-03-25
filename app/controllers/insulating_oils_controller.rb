@@ -1,6 +1,9 @@
 class InsulatingOilsController < ApplicationController
 
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oils = InsulatingOil.where("transformer_id =?", params[:transformer_id]).order("test_date DESC")
     respond_to do |format|
@@ -16,11 +19,17 @@ class InsulatingOilsController < ApplicationController
   end
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oil = InsulatingOil.new
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oil = InsulatingOil.new(params[:insulating_oil])
     respond_to do |format|
@@ -35,11 +44,17 @@ class InsulatingOilsController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oil = InsulatingOil.find(params[:id])
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oil = InsulatingOil.find(params[:id])
     respond_to do |format|
@@ -55,6 +70,9 @@ class InsulatingOilsController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @insulating_oil = InsulatingOil.find(params[:id])
     @insulating_oil.destroy

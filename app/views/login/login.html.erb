@@ -1,11 +1,15 @@
 <link href="stylelog.css" rel="stylesheet" type="text/css" />
 <body>
+<STYLE type="text/css"> 
+	input[id="text1"] {
+		width: 140px;
+	}
+</STYLE>
 <%= form_tag('/login/confirm', :method=>'post', :multipart => true, :name => 'login') do %>
-<div class="grid_4 prefix_6">
-  <table>
-  <tr><td><label>LOGIN</label></td><td></td></tr>
-  <tr><td><label>Nama :</label></td><td><input type="text" name="user" /></td></tr>
-  <tr><td><label>Password :</label></td><td><input type="password" name="passwd"/></td></tr>
+<div class="grid_6 prefix_5">
+  <table border="1">
+  <tr><td><label>Nama :</label></td><td><input type="text" name="user" id="text1"/></td></tr>
+  <tr><td><label>Password :</label></td><td><input type="password" name="passwd" id="text1"/></td></tr>
   <tr><td></td><td><input type="submit" value="Login" /></td></tr>
   </table>
 </div>

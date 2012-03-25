@@ -1,5 +1,8 @@
 class SystemLocationsController < ApplicationController  
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @system_locations = SystemLocation.all
     respond_to do |format|
       format.html 
@@ -8,6 +11,9 @@ class SystemLocationsController < ApplicationController
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @system_location = SystemLocation.find(params[:id])
     params[:system_location] = { 
       :value => params[:value], 

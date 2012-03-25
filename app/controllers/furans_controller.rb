@@ -1,6 +1,9 @@
 class FuransController < ApplicationController
 
   def index
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @furans = Furan.where("transformer_id =?", params[:transformer_id]).order("test_date DESC")
     respond_to do |format|
@@ -11,11 +14,17 @@ class FuransController < ApplicationController
   end
 
   def new
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @furan = Furan.new
   end
 
   def create
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @furan = Furan.new(params[:furan])
     respond_to do |format|
@@ -30,11 +39,17 @@ class FuransController < ApplicationController
   end
 
   def edit
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_id(params[:transformer_id])
     @furan = Furan.find(params[:id])
   end
 
   def update
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @furan = Furan.find(params[:id])
     respond_to do |format|
@@ -49,6 +64,9 @@ class FuransController < ApplicationController
   end
 
   def destroy
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @furan = Furan.find(params[:id])
     @furan.destroy

@@ -1,9 +1,24 @@
 #encoding: utf-8
 class TransformerChartController < ApplicationController
+@@bc_ic = "รายงาน"
+@@bc_ic_link = ""
+
   def chart
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'รายงานมาตรฐาน'
+	@breadcrumb_link[1]  = ""
   end
 
   def select_chart
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	if params[:count]==nil
 		@count=1
 	else
@@ -48,6 +63,9 @@ class TransformerChartController < ApplicationController
   end
 
   def report_transformer
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
         @regions  = Station.group("region").order("region").select("region")
         if params[:report2_area] == "" or params[:report2_area].nil?
           if params[:report2_station] == "" or params[:report2_station].nil?
@@ -98,6 +116,9 @@ class TransformerChartController < ApplicationController
   end
 
   def report_damaged
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if params[:count]==nil
 	 	 @count=1
 	  else
@@ -125,6 +146,9 @@ class TransformerChartController < ApplicationController
   end
 
   def report_transformer_f
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @regions  = Station.group("region").order("region").select("region")
     @stations = Station.order("name")
     @txnames  = Transformer.order("transformer_name")
@@ -140,6 +164,9 @@ class TransformerChartController < ApplicationController
   end
 
   def report_damaged_f
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	  if params[:count]==nil
 		  @count=1
 	  else

@@ -14,6 +14,9 @@ class ManufacturingController < ApplicationController
   end
 
   def station
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@station = Station.get_station().paginate(:page => params[:page], :per_page => 20)
 	@station1 = Station.new
 	if @station.nil?
@@ -23,6 +26,9 @@ class ManufacturingController < ApplicationController
   end
 
   def usage
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@usage = PowerUsage.get_usage()
 	@usage1 = PowerUsage.new
 	@num1 = @usage.count
@@ -32,15 +38,21 @@ class ManufacturingController < ApplicationController
   end
 
   def manufacturer_tx
-	@tx = ManufacturerTx.get_tx()
-	@tx1 = ManufacturerTx.new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
+	@tx = Brand.get_tx()
+	@tx1 = Brand.new
 	@num2 = @tx.count
 	if @num2==0
-		@tx = ManufacturerTx.new
+		@tx = Brand.new
 	end
   end
 
   def manufacturer_bushing
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@bushing = ManufacturerBushing.get_bushing()
 	@bushing1 = ManufacturerBushing.new
 	@num3 = @bushing.count
@@ -50,6 +62,9 @@ class ManufacturingController < ApplicationController
   end
 
   def manufacturer_arrester
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@arrester = ManufacturerArrester.get_arrester()
 	@arrester1 = ManufacturerArrester.new
 	@num4 = @arrester.count
@@ -59,6 +74,9 @@ class ManufacturingController < ApplicationController
   end
 
   def manufacturer_oltc
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@oltc = ManufacturerOltc.get_oltc()
 	@oltc1 = ManufacturerOltc.new
 	@num5 = @oltc.count
@@ -67,7 +85,11 @@ class ManufacturingController < ApplicationController
 	end
 	
   end
+
   def create_station
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if User.get_user(session[:user]).priv9==1
 	Station.create(params[:station])
 	end
@@ -75,6 +97,9 @@ class ManufacturingController < ApplicationController
   end
 
   def create_usage
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	PowerUsage.create(params[:power_usage])
    end
@@ -82,13 +107,19 @@ class ManufacturingController < ApplicationController
   end
 
   def create_tx
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
-	ManufacturerTx.create(params[:manufacturer_tx])
+	Brand.create(params[:brand])
    end
         redirect_to("/manufacturing#tx")
   end
 
   def create_bushing
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	ManufacturerBushing.create(params[:manufacturer_bushing])
    end
@@ -96,6 +127,9 @@ class ManufacturingController < ApplicationController
   end
 
   def create_arrester
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	ManufacturerArrester.create(params[:manufacturer_arrester])
    end
@@ -103,6 +137,9 @@ class ManufacturingController < ApplicationController
   end
 
   def create_oltc
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	ManufacturerOltc.create(params[:manufacturer_oltc])
    end
@@ -110,6 +147,9 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_station
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@station  = Station.get_station_id(params[:id])
    else
@@ -118,6 +158,9 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_usage
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@usage = PowerUsage.get_usage_id(params[:id])
    else
@@ -126,14 +169,20 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_tx
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
-	@tx = ManufacturerTx.get_tx_id(params[:id])
+	@tx = Brand.get_tx_id(params[:id])
    else
 	redirect_to("/manufacturing#tx")
    end
   end
 
   def modify_bushing
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@bushing = ManufacturerBushing.get_bushing_id(params[:id])
    else
@@ -142,6 +191,9 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_arrester
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@arrester = ManufacturerArrester.get_arrester_id(params[:id])
    else
@@ -150,6 +202,9 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_oltc
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@oltc = ManufacturerOltc.get_oltc_id(params[:id])
    else
@@ -158,6 +213,9 @@ class ManufacturingController < ApplicationController
   end
 
   def update_station
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	station = Station.get_station_id(params[:id])
 	station[:name]=params[:station][:name]
@@ -170,6 +228,9 @@ class ManufacturingController < ApplicationController
   end
 
   def update_usage
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	usage = PowerUsage.get_usage_id(params[:id])
 	usage[:usage]=params[:power_usage][:usage]
@@ -179,15 +240,22 @@ class ManufacturingController < ApplicationController
   end
 
   def update_tx
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
-	tx = ManufacturerTx.get_tx_id(params[:id])
-	tx[:manufacturer] = params[:manufacturer_tx][:manufacturer]
+	tx = Brand.get_tx_id(params[:id])
+	tx[:name] = params[:brand][:name]
+	tx[:score] = params[:brand][:score]
 	tx.update_attributes(tx.attributes)
    end
 	redirect_to("/manufacturing#tx")
   end
 
   def updat_bushing
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	bushing = ManufacturerBushing.get_bushing_id(params[:id])
 	bushing[:manufacturer] = params[:manufacturer_bushing][:manufacturer]
@@ -197,6 +265,9 @@ class ManufacturingController < ApplicationController
   end
 
   def updat_arrester
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	arrester = ManufacturerArrester.get_arrester_id(params[:id])
 	arrester[:manufacturer] = params[:manufacturer_arrester][:manufacturer]
@@ -206,6 +277,9 @@ class ManufacturingController < ApplicationController
   end
 
   def updat_oltc
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	oltc = ManufacturerOltc.get_oltc_id(params[:id])
 	oltc[:manufacturer] = params[:manufacturer_oltc][:manufacturer]
@@ -215,6 +289,9 @@ class ManufacturingController < ApplicationController
   end
 
   def delete_station
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	Station.delete(params[:id])
    end
@@ -222,6 +299,9 @@ class ManufacturingController < ApplicationController
   end
 
   def delete_usage
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	PowerUsage.delete(params[:id])
    end
@@ -229,13 +309,19 @@ class ManufacturingController < ApplicationController
   end
 
   def delete_tx
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
-	ManufacturerTx.delete(params[:id])
+	Brand.delete(params[:id])
    end
 	redirect_to("/manufacturing#tx")
   end
 
   def delete_bushing
+  if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	ManufacturerBushing.delete(params[:id])
    end
@@ -243,6 +329,9 @@ class ManufacturingController < ApplicationController
   end
 
   def delete_arrester
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	ManufacturerArrester.delete(params[:id])
    end
@@ -250,6 +339,9 @@ class ManufacturingController < ApplicationController
   end
 
   def delete_oltc
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	ManufacturerOltc.delete(params[:id])
    end

@@ -26,6 +26,9 @@ def payment_list
 end
 
 def update_payment_cost
+ if session[:user].nil?
+		redirect_to('/login/login')
+	end
  if User.get_user(session[:user]).priv9==1
 	x1 = params[:ic_allcost][:x1].to_i
 	################Calculate x5####################
@@ -91,6 +94,9 @@ def update_payment_cost
 end
 
 def index
+ if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
 	@breadcrumb_title[0] = @@bc_ic
@@ -204,6 +210,9 @@ end
  end
 
  def fill_price
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
 	@breadcrumb_title[0] = @@bc_ic
@@ -238,6 +247,9 @@ end
  end
   
 def oil_start
+ if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
 	 @icoilinit = IcOilInit.new
@@ -245,6 +257,9 @@ def oil_start
 end
   
  def oil_store
+  if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 20)
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
@@ -256,6 +271,9 @@ end
   end
 
   def oil_withdraw
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@icoilbalance = IcOilBalance.get_icoilbalance().paginate(:page => params[:page], :per_page => 20)
 	if @icoilbalance.nil?
 	 @icoilbalance = IcOilBalance.new
@@ -264,6 +282,9 @@ end
   end
   
   def oil_annually
+    if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@updateprice=UpdatePrice.get_updatepriceall()
 	if @updateprice.nil?
 		@updateprice=UpdatePrice.new
@@ -298,6 +319,9 @@ end
   end
 
   def oil_calresult
+    if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
 	@breadcrumb_title[0] = @@bc_ic
@@ -334,6 +358,9 @@ end
   end
 
   def modify_icoilinit
+    if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
 	@breadcrumb_title[0] = @@bc_ic
@@ -361,6 +388,9 @@ end
   end
 
   def modify_withdraw
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -383,6 +413,9 @@ end
   end
 
   def modify_annually
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -399,6 +432,9 @@ end
   end
 
   def modify_buy
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -418,6 +454,9 @@ end
   end
 
   def new_withdraw
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -439,6 +478,9 @@ end
   end
 
   def new_buy
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -461,6 +503,9 @@ end
   end
 
   def update_icoilinit
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	@icoilinit = IcOilInit.get_icoilinit()
 	if @icoilinit.nil?
@@ -479,6 +524,9 @@ end
   end
   
   def update_withdraw
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
 	m=params[:Date].split('/')
@@ -490,6 +538,9 @@ end
   end
 
   def update_buy
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	icoilbalance = IcOilBalance.get_icoilbalance_id(params[:id])
 	m=params[:Date].split('/')
@@ -505,6 +556,9 @@ end
   end
 
   def update_oilperiod
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	oilperiod=OilCalculate.get_period()
 	if oilperiod.nil?
@@ -519,6 +573,9 @@ end
   end
   
   def update_annually
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	updateprice = UpdatePrice.get_updatepriceid(params[:id])
 	updateprice[:Year]=params[:Year].to_i
@@ -530,6 +587,9 @@ end
   end
 
   def create_withdraw
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	m=params[:Date].split('/')
 	params[:ic_oil_balance][:Date]=m[2]+"-"+m[1]+"-"+m[0]
@@ -540,6 +600,9 @@ end
   end
 
   def create_buy
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	m=params[:Date].split('/')
 	#n=params[:Recv_date].split('/')
@@ -553,6 +616,9 @@ end
   end
   
   def create_updateprice
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	params[:update_price][:Year]=params[:Year].to_i
 	params[:update_price][:quantity]=params[:Quantity].to_i
@@ -563,6 +629,9 @@ end
   end
 
   def delete_withdraw
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	IcOilBalance.delete(params[:id])
    end
@@ -570,6 +639,9 @@ end
   end
 
   def delete_buy
+   if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
 	IcOilBalance.delete(params[:id])
    end

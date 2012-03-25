@@ -1,6 +1,9 @@
 #encoding: utf-8
 class WeibullController < ApplicationController
   def weibull_select
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@bushing  = ManufacturerBushing.get_bushing()
 	@numBushing = @bushing.count
 	if @numBushing==0
@@ -40,6 +43,9 @@ class WeibullController < ApplicationController
   end
 
   def factorial(n)
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	fac = 1
 	for i in 1..n do
 		fac = fac * i
@@ -48,6 +54,9 @@ class WeibullController < ApplicationController
   end
 
   def weibull_calculation
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	@equipement = params[:select_manufacturer]
 	@voltage = params[:voltage]
 	@manufacturer = params[:manufacturer]
@@ -179,6 +188,9 @@ class WeibullController < ApplicationController
   end
 
   def calculate_grammar(x2)
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	g_table = [	[1.00, 1.00000], [1.01, 0.99433], [1.02, 0.98884], [1.03, 0.98355], [1.04, 0.97844], 
 			[1.05, 0.97350], [1.06, 0.96874], [1.07, 0.96415], [1.08, 0.95973], [1.09, 0.95546],
 			[1.10, 0.95135], [1.11, 0.94740], [1.12, 0.94359], [1.13, 0.93993], [1.14, 0.93642],
@@ -214,6 +226,9 @@ class WeibullController < ApplicationController
   end
 
   def weibull_chart
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	#if !params[:chart].nil?	
 	#else 
 	#   redirect_to('/weibull/weibull_detail',
@@ -305,6 +320,9 @@ class WeibullController < ApplicationController
   end
 
   def weibull_detail
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	equipement = params[:equipement]
         voltage = params[:voltage]
 	type = params[:type]

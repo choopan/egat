@@ -130,7 +130,7 @@ Egat::Application.routes.draw do
 	   post 'update_risk_table'
 	   post 'update_x_color_table'
 	   get 'adjust_criteria'
-    
+	   get 'adjust'
     end
   end
 
