@@ -1,6 +1,9 @@
 class OilContaminationsController < ApplicationController
   
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_contamination = OilContamination.where(:transformer_id => params[:transformer_id])
     respond_to do |format|
@@ -11,11 +14,17 @@ class OilContaminationsController < ApplicationController
   end
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_contamination = OilContamination.new
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_contamination = OilContamination.new(params[:oil_contamination])
     respond_to do |format|
@@ -31,11 +40,17 @@ class OilContaminationsController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_id(params[:transformer_id])
     @oil_contamination = OilContamination.find(params[:id])
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_contamination = OilContamination.find(params[:id])
     respond_to do |format|
@@ -51,6 +66,9 @@ class OilContaminationsController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_contamination = Furan.find(params[:id])
     @oil_contamination.destroy

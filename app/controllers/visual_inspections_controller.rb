@@ -1,14 +1,23 @@
 class VisualInspectionsController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @visual_inspections = VisualInspection.where(:transformer_id => params[:transformer_id])
   end
 
   def search
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformers = Transformer.all
   end
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @visual_inspection = VisualInspection.new
     @visual_inspection.build_general_condition
@@ -27,6 +36,9 @@ class VisualInspectionsController < ApplicationController
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @visual_inspection = VisualInspection.new(params[:visual_inspection])
     respond_to do |format|
       if @visual_inspection.save
@@ -40,10 +52,16 @@ class VisualInspectionsController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @visual_inspection = get_visual_inspection
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @visual_inspection = get_visual_inspection
     respond_to do |format|
       if @visual_inspection.update_attributes(params[:visual_inspection])
@@ -59,6 +77,9 @@ class VisualInspectionsController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @visual_inspection = VisualInspection.find(params[:id])
     transformer = Transformer.find(@visual_inspection.transformer_id)
     @visual_inspection.destroy
@@ -68,6 +89,9 @@ class VisualInspectionsController < ApplicationController
   end
 
   def show
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @visual_inspection = VisualInspection.find_by_id_and_transformer_id(params[:id], params[:transformer_id])
     respond_to do |format|
       format.html
@@ -76,6 +100,9 @@ class VisualInspectionsController < ApplicationController
   
   private
     def get_visual_inspection
+		if session[:user].nil?
+			redirect_to('/login/login')
+		end
       VisualInspection.find(params[:id])
     end
 end

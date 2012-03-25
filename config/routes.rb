@@ -133,7 +133,7 @@ Egat::Application.routes.draw do
 	   post 'update_criteria_table'
 	   post 'update_y_color_table'
 	   get 'adjust_criteria'
-    
+	   get 'adjust'
     end
   end
 

@@ -1,5 +1,8 @@
 class BushingTestConditionsController < ApplicationController
   def index
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @bushing_test_conditions = BushingTestCondition.where(:testing => params[:testing])
     respond_to do |format|
       format.html

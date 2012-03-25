@@ -1,12 +1,13 @@
 #encoding : UTF-8
 class TransformerInformationsController < ApplicationController
-  def index
-    #@xscale = XAxis.get_x_scale.to_json
-    #@yscale = YAxis.get_y_scale.to_json
-    
+  def index    
+	if session[:user].nil?
+		redirect_to('/login/login')
+	else
     @xscale = ImportanceIndex.get_x_scale.to_json
     @yscale = RiskProbability.get_y_scale.to_json
-    
+
+
     if request.xhr?
       if params[:region]
         @stations = Station.find_all_by_region(params[:region])
@@ -36,13 +37,17 @@ class TransformerInformationsController < ApplicationController
       end
 
     end
-    respond_to do |format|
+	respond_to do |format|
       format.html
       format.js { render :json => {:data_points => @data_points, :xscale => @xscale, :yscale => @yscale}}
     end
+	end
   end
 
   def show
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if request.xhr?
       @no_js = true
       @no_header = true
@@ -55,11 +60,17 @@ class TransformerInformationsController < ApplicationController
   end
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer_information = TransformerInformation.new
     @transformer_information.build_load_pattern_per_year
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer_information =
       TransformerInformation.new(params[:transformer_information])
     if @transformer_information.save
@@ -71,10 +82,16 @@ class TransformerInformationsController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer_information = TransformerInformation.find(params[:id])
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer_information = TransformerInformation.find(params[:id])
     if @transformer_information.update_attributes(params[:transformer_information])
       flash[:notice] = "Successfully updated transformer information."
@@ -85,6 +102,9 @@ class TransformerInformationsController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer_information = TransformerInformation.find(params[:id])
     @transformer_information.destroy
     flash[:notice] = "Successfully destroyed transformer information."
@@ -92,6 +112,9 @@ class TransformerInformationsController < ApplicationController
   end
 
   def redirect_to_edit_if_exists
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if request.xhr?
       @transformer_information = TransformerInformation.find_by_transformer_id(params[:id])
     end
@@ -102,12 +125,18 @@ class TransformerInformationsController < ApplicationController
   end
 
   def search
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if params[:transformer_id]
       @transformer_informations = TransformerInformation.find_all_by_transformer_id(params[:transformer_id])
     end
   end
 
   def importance_and_risk_table
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if request.xhr?
       @no_js = true
       @no_header = true
@@ -127,16 +156,23 @@ class TransformerInformationsController < ApplicationController
   end
 
   def adjust_x_color
-	   #@xdata = XAxis.all
+    if session[:user].nil?
+      redirect_to('/login/login')
+    end
     @xdata = ImportanceIndex.all
   end
 
   def adjust_y_color
-	   #@ydata = YAxis.all
-    @ydata = RiskProbability.all
+	 if session[:user].nil?
+		redirect_to('/login/login')
+	 end
+   @ydata = RiskProbability.all
   end
 
   def adjust_risk
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
 	   @risks = Risk.all
   end
   
@@ -153,6 +189,9 @@ class TransformerInformationsController < ApplicationController
   end
   
   def update_x_color_table
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     for i in 1..3 do
       xdata = ImportanceIndex.find(i)
       xdata[:start] = params["start_"+i.to_s].to_i
@@ -166,6 +205,9 @@ class TransformerInformationsController < ApplicationController
   end
   
   def update_risk_table
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     for i in 1..5 do
       risk = Risk.find(i)
       risk[:start] = params["start_"+i.to_s].to_i
@@ -179,6 +221,11 @@ class TransformerInformationsController < ApplicationController
   
   
   def adjust_criteria
+    if session[:user].nil?
+      redirect_to('/login/login')
+    end
+
+
 	 @lpf = LoadPatternFactor.order("score")
 	 @imp_weight = ImportanceWeight.select("weight").order("id")
 	 @system_locations = SystemLocation.select("value").order("score")
@@ -412,6 +459,6 @@ class TransformerInformationsController < ApplicationController
     brand_weight.update_attributes(brand_weight.attributes)
 
     redirect_to('/transformer_informations/adjust#criteria', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
-  
   end
+
 end

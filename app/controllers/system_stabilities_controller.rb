@@ -1,5 +1,8 @@
 class SystemStabilitiesController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @system_stabilities = SystemStability.all
     respond_to do |format|
       format.html 
@@ -8,6 +11,9 @@ class SystemStabilitiesController < ApplicationController
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @system_stability = SystemStability.find(params[:id])
     params[:system_stability] = { 
       :value => params[:value], 

@@ -1,5 +1,8 @@
 class ProbabilityOfForceOutagesController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @probability_of_force_outages = ProbabilityOfForceOutage.all
     respond_to do |format|
       format.html 
@@ -8,6 +11,9 @@ class ProbabilityOfForceOutagesController < ApplicationController
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @probability_of_force_outage = ProbabilityOfForceOutage.find(params[:id])
     params[:probability_of_force_outage] = { 
       :value => params[:value], 

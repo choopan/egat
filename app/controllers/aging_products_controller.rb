@@ -1,5 +1,8 @@
 class AgingProductsController < ApplicationController
   def index
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     unless params[:name].nil?
       @aging_products = AgingProduct.find_all_by_name_and_transformer(params[:name], @transformer)

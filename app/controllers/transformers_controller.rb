@@ -1,6 +1,9 @@
 class TransformersController < ApplicationController
 
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if request.xhr?
       unless params[:region].nil?
         stations = Station.find_all_by_region(params[:region])
@@ -38,10 +41,16 @@ class TransformersController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:id])
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:id])
     @transformer.brand_id = params[:transformer][:brand_id]
     respond_to do |format|
@@ -54,6 +63,9 @@ class TransformersController < ApplicationController
   end
 
   def show
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     if params[:id].to_i > 0
       @transformer = Transformer.find(params[:id])      
     else

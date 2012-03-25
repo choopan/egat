@@ -1,5 +1,8 @@
 class ArrestersController < ApplicationController
   def new
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @arrester = Arrester.new
   end
@@ -16,6 +19,9 @@ class ArrestersController < ApplicationController
   end
   
   def index
+    if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @arresters = Arrester.where(:transformer_id => params[:transformer_id]).order("test_date DESC")
     @arrester = @arresters.first
@@ -38,11 +44,17 @@ class ArrestersController < ApplicationController
   end
   
   def edit
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @arrester = Arrester.find(params[:id])
   end
   
   def update
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
     @arrester = Arrester.find(params[:id])
     respond_to do |format|

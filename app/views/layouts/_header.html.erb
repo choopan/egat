@@ -93,7 +93,9 @@
 
    
    <li> <%= link_to 'คู่มือการใช้งาน', '#' %>
-
+  <%if ! session[:user].nil?%>
+	<li><a href="/login/logout">ออกจากระบบ</a></li>
+  <%end%>
   
 
  </ul> 

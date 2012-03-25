@@ -1,5 +1,8 @@
 class ArresterConditionsController < ApplicationController
   def index
+    if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @arrester_conditions = ArresterCondition.where(:testing => params[:testing])
     respond_to do |format|
       format.html

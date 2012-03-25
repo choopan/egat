@@ -3,7 +3,9 @@
 class InformationDecisionController < ApplicationController
 
   def index
-
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     #choopan o = OverallCondition.new(params[:transformer_id])
     #@overallcondition = o.percent_overall_health_index
@@ -91,6 +93,9 @@ class InformationDecisionController < ApplicationController
   end
 
   def update_repair_information
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     #fix user_id = 1
     @repair_information = RepairInformation.get_repair_information(1, params[:transformer_id])
     if @repair_information.nil?
@@ -104,6 +109,9 @@ class InformationDecisionController < ApplicationController
   end
 
   def update_option1_information
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     #fix user_id = 1
     @option1_information = EcoOption1.get_option1_information(1, params[:transformer_id])
     params[:eco_option1][:user_id] = 1
@@ -117,6 +125,9 @@ class InformationDecisionController < ApplicationController
   end
 
   def update_option2_information
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     #fix user_id = 1
     @option2_information = EcoOption2.get_option2_information(1, params[:transformer_id])
     if @option2_information.nil?
@@ -130,6 +141,9 @@ class InformationDecisionController < ApplicationController
   end
 
   def update_option3_information
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     #fix user_id = 1
     @option3_information = EcoOption3.get_option3_information(1, params[:transformer_id])
     if @option3_information.nil?
@@ -143,6 +157,9 @@ class InformationDecisionController < ApplicationController
   end
 
   def search
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformers = Transformer.all
   end
 end

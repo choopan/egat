@@ -71,12 +71,12 @@
                 <%= link_to number_with_precision(transformer_information.percent_hi, :precision =>2).to_s , transformer_overall_conditions_path(transformer_information.transformer), {:rel => 'facebox'} %>
 	    </td>
             <td>
-              <%= link_to transformer_information.importance_index.to_s, transformer_information, {:rel => 'facebox'} %>
+              <%#= link_to transformer_information.importance_index.to_s, transformer_information, {:rel => 'facebox'} %>
             </td>
             <td>
-              <%= link_to transformer_information.risk.risk, importance_and_risk_table_transformer_information_url(transformer_information.id),  {:rel => 'facebox'} %>    
+              <%#= link_to transformer_information.risk.risk, importance_and_risk_table_transformer_information_url(transformer_information.id),  {:rel => 'facebox'} %>    
             </td>
-            <td><%= transformer_information.risk.action %></td>
+            <td><%#= transformer_information.risk.action %></td>
             <td>
               <input type="checkbox" name="name[]" 
                     id = "<%= 'transformer_' + transformer_information.transformer.id.to_s -%>"

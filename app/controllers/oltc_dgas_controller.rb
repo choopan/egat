@@ -1,5 +1,8 @@
 class OltcDgasController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_dgas = OltcDga.where("transformer_id = ?",
                               params[:transformer_id]).order("test_date DESC")
@@ -12,11 +15,17 @@ class OltcDgasController < ApplicationController
 
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_dga = OltcDga.new
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_dga = OltcDga.new(params[:oltc_dga])
     respond_to do |format|
@@ -32,11 +41,17 @@ class OltcDgasController < ApplicationController
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_id(params[:transformer_id])
     @oltc_dga = OltcDga.find(params[:id])
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_dga = OltcDga.find(params[:id])
     respond_to do |format|
@@ -51,6 +66,9 @@ class OltcDgasController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oltc_dga = OltcDga.find(params[:id])
     @oltc_dga.destroy

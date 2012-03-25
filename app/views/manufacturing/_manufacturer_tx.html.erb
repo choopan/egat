@@ -4,6 +4,7 @@
 	<table border=1>
 		<tr><th><center>No.</center></th>
 		<th><center>Manufacturer</center></th>
+		<th><center>Score</center></th>
 	<%if @userid.priv9==1%>
 		<th><centeR>Edit</center></th>
 		<th><centeR>Delete</center></th>
@@ -11,7 +12,7 @@
 		</tr>
 	<%if @num2!=0%>
 		<%for i in 0..@num2-1 do%>
-			<tr><td><center><%=i+1%></center></td><td><center><%=@tx[i].manufacturer%></center></td>
+			<tr><td><center><%=i+1%></center></td><td><center><%=@tx[i].name%></center></td><td><center><%=@tx[i].score%></center></td>
 		<%if @userid.priv9==1%>
 			<td><center><%=link_to "Edit", {:controller => "manufacturing", :action => "modify_tx",:id =>@tx[i].id}, :class => 'edit'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
 			<td><center><%=link_to "Delete", {:controller => "manufacturing",:action => "delete_tx",:id =>@tx[i].id}, :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %></center></td>
@@ -22,11 +23,15 @@
 		<tr><td></td><td></td><td></td><td></td></tr>
 	</table>
 </p>
-
 <p>
 <%if @userid.priv9==1%>
 	<%= form_for @tx1 ,:url => {:action => "create_tx"}, :html => {:method => "post", :name => 'Tx'} do |f| %>
-		<b>เพิ่มบริษัทผู้ผลิตหม้อแปลง : </b>&nbsp;&nbsp;<%= f.text_field :manufacturer, :size => 15%>&nbsp;&nbsp;<%= f.submit "Save", :class => "cupid-green2" %>
+		<table>
+		<tr><td><b>เพิ่มบริษัทผู้ผลิตหม้อแปลง : </b>&nbsp;&nbsp;<%= f.text_field :name, :size => 15%></td></tr>
+		<tr><td><b>Score:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.text_field :score, :size => 15%></td></tr>
+		<tr><td><%= f.submit "Save", :class => "cupid-green2" %></td><td></td></tr>
+		</table>
 	<%end%>
 <%end%>
 </p>

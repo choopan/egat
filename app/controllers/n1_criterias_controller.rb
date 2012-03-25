@@ -1,5 +1,8 @@
 class N1CriteriasController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @n1_criterias = N1Criteria.all
     respond_to do |format|
       format.html 
@@ -8,6 +11,9 @@ class N1CriteriasController < ApplicationController
   end
   
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @n1_criteria = N1Criteria.find(params[:id])
     params[:n1_criteria] = { 
       :value => params[:value], 

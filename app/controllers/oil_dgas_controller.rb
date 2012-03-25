@@ -1,5 +1,8 @@
 class OilDgasController < ApplicationController
   def index
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @oil_dgas = OilDga.where(:transformer_id => params[:transformer_id]).order("test_date DESC")
     respond_to do |format|
       format.html {render :layout => false}# index.html.erb
@@ -9,6 +12,9 @@ class OilDgasController < ApplicationController
   end
 
   def graph
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @oil_dgas = OilDga.where(:transformer_id => params[:transformer_id]).order("test_date DESC")
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +24,9 @@ class OilDgasController < ApplicationController
   end
 
   def show
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @oil_dga = OilDga.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
@@ -28,16 +37,25 @@ class OilDgasController < ApplicationController
   end
 
   def new
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_dga = OilDga.new
   end
 
   def edit
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find_by_id(params[:transformer_id])
     @oil_dga = OilDga.find(params[:id])
   end
 
   def create
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_dga = OilDga.new(params[:oil_dga])
     respond_to do |format|
@@ -53,6 +71,9 @@ class OilDgasController < ApplicationController
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_dga = OilDga.find(params[:id])
     respond_to do |format|
@@ -67,6 +88,9 @@ class OilDgasController < ApplicationController
   end
 
   def destroy
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
     @transformer = Transformer.find(params[:transformer_id])
     @oil_dga = OilDga.find(params[:id])
     @oil_dga.destroy

@@ -19,6 +19,9 @@ class PriceLossController < ApplicationController
   end
 
   def update
+	if session[:user].nil?
+		redirect_to('/login/login')
+	end
    if User.get_user(session[:user]).priv9==1
     #fix user_id = 1
     @transformer_price_loss = TransformerPriceLoss.get_transformer_price_loss(1, params[:transformer_id])

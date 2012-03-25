@@ -1,6 +1,9 @@
 #encoding : utf-8
 class EcoReportController < ApplicationController
   def report
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
     @transformer = Transformer.find(params[:transformer_id])
 #choopan
     #o = OverallCondition.new(params[:transformer_id])

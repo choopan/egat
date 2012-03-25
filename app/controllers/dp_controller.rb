@@ -14,6 +14,9 @@ class DpController < ApplicationController
 
 
   def update
+   if session[:user].nil?
+			redirect_to('/login/login')
+		end
    if User.get_user(session[:user]).priv9==1
         @dp = Dp.find(1)
         @dp.update_attributes(params[:dp])
