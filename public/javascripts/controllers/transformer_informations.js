@@ -81,7 +81,7 @@ function plotRiskGraph(points, transformer_names) {
   
 }
 
-function plotImportanceIndex(points, transformer_names, xscale_data) {
+function plotImportanceIndex(points, transformer_names, xscale_data, yscale_data) {
   var placeholder = $("#placeholder"); 
   var options = {
     series: {lines: { show: false }, points: { show: true }},
@@ -89,27 +89,27 @@ function plotImportanceIndex(points, transformer_names, xscale_data) {
       hoverable: true,
       clickable: true,
       markings: [
-        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 0, to: 40 },
+        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 0, to: yscale_data[1][0] },
          color: 'rgb(0, 255, 0)'},
-        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 0, to: 40 },
+        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 0, to: yscale_data[1][0] },
          color: 'rgb(0, 0, 255)'},
-        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 0, to: 40 },
+        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 0, to: yscale_data[1][0] },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 40, to: 60 },
+        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: yscale_data[1][0], to: yscale_data[2][0] },
          color: 'rgb(0, 0, 255)'},
-        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 40, to: 60 },
+        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: yscale_data[1][0], to: yscale_data[2][0] },
          color: 'rgb(255, 255, 0)'},
-        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 40, to: 60 },
+        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: yscale_data[1][0], to: yscale_data[2][0] },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: 60, to: 100 },
+        {xaxis: {from: 0, to: xscale_data[1][0]}, yaxis: {from: yscale_data[2][0], to: 100 },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: 60, to: 100 },
+        {xaxis: {from: xscale_data[1][0], to: xscale_data[2][0]}, yaxis: {from: yscale_data[2][0], to: 100 },
          color: 'rgb(255, 146, 0)'},
-        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: 60, to: 100 },
+        {xaxis: {from: xscale_data[2][0], to: 100}, yaxis: {from: yscale_data[2][0], to: 100 },
          color: 'rgb(255, 0, 0)'}
       ]
     },
-    yaxis: { min: 0, max: 100, ticks: [0, 40, 60, 100], 
+    yaxis: { min: 0, max: 100, ticks: [0, yscale_data[1][0], yscale_data[2][0], 100], 
              axisLabel: 'Probability of Failure',
              axisLabelUseCanvas: false,
              axisLabelFontSizePixels: 12,
@@ -134,18 +134,18 @@ function plotImportanceIndex(points, transformer_names, xscale_data) {
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
                      'px;color:#666;font-size:smaller">' + xscale_data[2][1] + '</div>');
-  o = plot.pointOffset({ x: -8.9, y: 20});
+  o = plot.pointOffset({ x: -10, y: (yscale_data[1][0]/2)});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
-                     'px;color:#666;font-size:smaller">Good</div>'); 
-  o = plot.pointOffset({ x: -5.9, y: 50});
+                     'px;color:#666;font-size:smaller">' + yscale_data[0][1] + '</div>'); 
+  o = plot.pointOffset({ x: -10, y: yscale_data[1][0]+((yscale_data[2][0]-yscale_data[1][0])/2)});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
-                     'px;color:#666;font-size:smaller">Fair</div>');
-  o = plot.pointOffset({ x: -7.9, y: 80});
+                     'px;color:#666;font-size:smaller">' + yscale_data[1][1] + '</div>');
+  o = plot.pointOffset({ x: -10, y: yscale_data[2][0]+((100 - yscale_data[2][0])/2)});
   placeholder.append('<div style="position:absolute;left:' + 
                      (o.left + 4) + 'px;top:' + o.top + 
-                     'px;color:#666;font-size:smaller">Poor</div>'); 
+                     'px;color:#666;font-size:smaller">' + yscale_data[2][1] + '</div>'); 
   var previousPoint = null;
   $("#placeholder").bind("plothover", function (event, pos, item) {
     $("#x").text(pos.x.toFixed(2));
@@ -214,6 +214,7 @@ var app = {
   setupRecordedDate: function () {
     $("#transformer_information_recorded_date").datepicker({
       showOn: 'both',
+      dateFormat: 'dd/mm/yy',
       buttonImage: '/images/icon_calendar.gif',
       buttonImageOnly: true
     });    
@@ -233,6 +234,7 @@ var app = {
       //alert(jsondata.xscale);
       //alert(jsondata.xscale_data.length);
       var xscale_data = eval('(' + jsondata.xscale + ')');
+      var yscale_data = eval('(' + jsondata.yscale + ')');
       //alert(xscale_data);
       //alert(xscale_data.length);  
       //alert(xscale_data[0][0]);    
@@ -243,7 +245,8 @@ var app = {
       var checkedTransformerNames = [];
       $('.transformer_checkbox:checked').each(function () {
         checkedTransformerNames.push(
-          $(this).parent().parent().children()[1].innerHTML);
+          $(this).parent().parent().children()[0].innerHTML);
+        //alert($(this).parent().parent().children()[1].innerHTML);
       });
       for (var i = 0; i < data_points.length; ++i) { 
         if (jQuery.inArray(data_points[i][0], checkedTransformerNames) > -1) {
@@ -257,7 +260,7 @@ var app = {
       if (jQuery.url.param("graph") == "risk") { 
         plotRiskGraph(points, transformer_names);
       } else {
-        plotImportanceIndex(points, transformer_names, xscale_data);
+        plotImportanceIndex(points, transformer_names, xscale_data, yscale_data);
       }
       
     });
@@ -327,14 +330,14 @@ $(document).ready(function() {
     app.getPointsForGraphs();
   }
 
-  if ($('#transformer_transformer_id').length > 0) {
+ /* if ($('#transformer_transformer_id').length > 0) {
     app.setupTransformerNameComboxBox('transformer_transformer_id', 200);
   }
   if ($('#transformer_information_transformer_id').length > 0) {
     app.setupTransformerNameComboxBox(
       'transformer_information_transformer_id', 200);
   }
-
+*/
   app.setupDamageOfProperty();
   
   $('#select_all').attr('checked', true);
@@ -385,6 +388,7 @@ $(document).ready(function() {
   
   $('.importance_index').live('click', function () {
     var id = $(this).parents('tr:first').find('td:first').text();
+    //alert(id);
     jQuery.facybox({ajax: '/transformer_informations/show/' + id});
     return false;
   });

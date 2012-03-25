@@ -103,7 +103,6 @@ class TransformerChartController < ApplicationController
 	  else
 		  @count=params[:count].to_i+1
 	  end
-	
     if params[:group]=='0'   #region
       @titles="Region Graph"
       #@graphdata, @graphpercent = Transformer.graph_numtx_per_region(params[:report2_area], params[:report2_station], params[:report2_manufacturer], params[:report2_transformer])

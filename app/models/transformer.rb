@@ -1772,7 +1772,7 @@ class Transformer < ActiveRecord::Base
         end          
       end
     
-      query = query + " GROUP BY manu_name "
+      query = query + " GROUP BY transformer_name "
     
       
       result = find_by_sql(query)
@@ -1784,7 +1784,7 @@ class Transformer < ActiveRecord::Base
 
       for i in result do
             graphdata[n] = Array.new
-            graphdata[n][0] = i.manu_name
+            graphdata[n][0] = i.transformer_name
             graphdata[n][1] = i.numtx
             n = n + 1
             numtotal = numtotal + i.numtx

@@ -21,11 +21,11 @@ module TransformerInformationsHelper
   def importance(importance)
     case importance
     when "Low"
-      "<span style=\"background:rgb(146,208,80)\">#{importance}</span>".html_safe
+      "<span style=\"padding:0px 40px 0px 40px; background:rgb(146,208,80)\">#{importance}</span>".html_safe
     when "Medium"
-      "<span style=\"background:rgb(255,255,0)\">#{importance}</span>".html_safe
+      "<span style=\"padding:0px 40px 0px 40px; background:#FFFF00\">#{importance}</span>".html_safe
     when "High"
-      "<span style=\"background:rgb(255,0,0)\">#{importance}</span>".html_safe
+      "<span style=\"padding:0px 40px 0px 40px; background:rgb(255,0,0)\">#{importance}</span>".html_safe
     else
       "<span>-</span>".html_safe
     end

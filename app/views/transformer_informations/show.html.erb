@@ -28,7 +28,7 @@
 </div>
 <div class="grid_8">
   <p>
-    <%= importance(@transformer_information.importance) %>
+    <%= importance(@transformer_information.importance.importance) %>
     <%= @transformer_information.action %>
   </p>
 </div>
@@ -133,7 +133,7 @@
 					%>
         </td>        
         <td>
-					<%= @transformer_information.probability_of_force_outage_value %>
+					<%= @transformer_information.probability_of_force_outage_5_years %>
 				</td>                
       </tr>
       <tr>

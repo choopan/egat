@@ -206,13 +206,25 @@ class TransformerInformation < ActiveRecord::Base
       end
     end
 
+    #Choopan : take outage_value and then compare to ProbabilityOfForceOutage, and return the score
+    #need one need to change to 5 years
+   def probability_of_force_outage_5_years
+      TransformerInformation.where("transformer_id=#{transformer_id} and DATEDIFF(year, recorded_date, GETDATE()) <= 5").sum("probability_of_force_outage_value")
+    end
+    
+    
     def probability_of_force_outage(type)
+      sum5years = TransformerInformation.where("transformer_id=#{transformer_id} and DATEDIFF(year, recorded_date, GETDATE()) <= 5").sum("probability_of_force_outage_value")
+      
       unless probability_of_force_outage_value.nil?
-        probability_of_force_outages = ProbabilityOfForceOutage.all
+        probability_of_force_outages = ProbabilityOfForceOutage.where("start >= 0 or [end] >= 0").all
+        
         probability_of_force_outages.each do |p|
           #TODO Remove hard coded values
           p.end = 100 if p.end.nil?
-          if self.probability_of_force_outage_value.between?(p.start, p.end)
+          #if self.probability_of_force_outage_value.between?(p.start, p.end)
+          if sum5years.between?(p.start, p.end)
+
             return p.score if type == :score
             return p.score_message if type == :score_message
           end

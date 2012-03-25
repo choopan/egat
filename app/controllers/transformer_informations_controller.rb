@@ -1,7 +1,12 @@
 #encoding : UTF-8
 class TransformerInformationsController < ApplicationController
   def index
-    @xscale = XAxis.get_x_scale.to_json
+    #@xscale = XAxis.get_x_scale.to_json
+    #@yscale = YAxis.get_y_scale.to_json
+    
+    @xscale = ImportanceIndex.get_x_scale.to_json
+    @yscale = RiskProbability.get_y_scale.to_json
+    
     if request.xhr?
       if params[:region]
         @stations = Station.find_all_by_region(params[:region])
@@ -27,13 +32,13 @@ class TransformerInformationsController < ApplicationController
         transformers = Transformer.find_all_by_transformer_name_initials(names)
         @transformer_informations = TransformerInformation.find_all_by_transformers(transformers)
       else
-        @transformer_informations = TransformerInformation.includes(:transformer => [:brand]).all
+        @transformer_informations = TransformerInformation.includes(:transformer => [:brand]).where("recent = 1").order("transformer.transformer_name")
       end
 
     end
     respond_to do |format|
       format.html
-      format.js { render :json => {:data_points => @data_points, :xscale => @xscale}}
+      format.js { render :json => {:data_points => @data_points, :xscale => @xscale, :yscale => @yscale}}
     end
   end
 
@@ -122,11 +127,13 @@ class TransformerInformationsController < ApplicationController
   end
 
   def adjust_x_color
-	   @xdata = XAxis.all
+	   #@xdata = XAxis.all
+    @xdata = ImportanceIndex.all
   end
 
   def adjust_y_color
-	   @ydata = YAxis.all
+	   #@ydata = YAxis.all
+    @ydata = RiskProbability.all
   end
 
   def adjust_risk
@@ -135,10 +142,10 @@ class TransformerInformationsController < ApplicationController
   
   def update_y_color_table
     for i in 1..3 do
-      ydata = YAxis.find(i)
+      ydata = RiskProbability.find(i)
       ydata[:start] = params["start_"+i.to_s].to_i
       ydata[:end] = params["end_"+i.to_s].to_i
-      ydata[:importance] = params["importance_"+i.to_s].to_s
+      ydata[:probability_of_failure] = params["prf_"+i.to_s].to_s
       ydata[:action] = params["action_"+i.to_s].to_s     
       ydata.update_attributes(ydata.attributes)
     end
@@ -147,7 +154,7 @@ class TransformerInformationsController < ApplicationController
   
   def update_x_color_table
     for i in 1..3 do
-      xdata = XAxis.find(i)
+      xdata = ImportanceIndex.find(i)
       xdata[:start] = params["start_"+i.to_s].to_i
       xdata[:end] = params["end_"+i.to_s].to_i
       xdata[:importance] = params["importance_"+i.to_s].to_s
@@ -172,13 +179,16 @@ class TransformerInformationsController < ApplicationController
   
   
   def adjust_criteria
-	 @lpf = LoadPatternFactor.all
+	 @lpf = LoadPatternFactor.order("score")
 	 @imp_weight = ImportanceWeight.select("weight").order("id")
 	 @system_locations = SystemLocation.select("value").order("score")
 	 @n1s = N1Criteria.select("value").order("score")
 	 @system_stability = SystemStability.select("value").order("score")
    @application_uses = ApplicationUse.select("value").order("score")
-   
+   @bus_voltage = BusVoltage.order("id") #lv first, then hv
+   @lvs = SystemFaultLevel.where("bus_voltage_id = #{@bus_voltage[0].id}").order("score")
+   @hvs = SystemFaultLevel.where("bus_voltage_id = #{@bus_voltage[1].id}").order("score")
+   @pfo = ProbabilityOfForceOutage.order("score")
    @social_aspects = SocialAspect.select("value").order("score")
    @public_images = PublicImage.select("value").order("score")
    @pollutions = Pollution.select("value").order("score")
@@ -191,7 +201,7 @@ class TransformerInformationsController < ApplicationController
     lpfs.each { |lpf|
        if i == 1
          lpf[:end] = params["lpfe_" + i.to_s].to_i
-       elsif i == 5
+       elsif i == lpfs.size
          lpf[:start] = params["lpfs_" + i.to_s].to_i
        else  
          lpf[:start] = params["lpfs_" + i.to_s].to_i
@@ -265,6 +275,88 @@ class TransformerInformationsController < ApplicationController
     app_use_weight.update_attributes(app_use_weight.attributes)
 
 
+    ######################### update System Fault
+    bus_voltages = BusVoltage.order("id") #lv first, then hv
+    lvs = SystemFaultLevel.where("bus_voltage_id = #{bus_voltages[0].id}").order("score")
+    hvs = SystemFaultLevel.where("bus_voltage_id = #{bus_voltages[1].id}").order("score")
+    
+    #update mva
+    bus_voltages[0][:end] = params[:bus_voltage_hv].to_i
+    bus_voltages[0].update_attributes(bus_voltages[0].attributes) 
+    bus_voltages[1][:start] = params[:bus_voltage_hv].to_i + 1
+    bus_voltages[1].update_attributes(bus_voltages[1].attributes) 
+    
+    i = 1
+    lvs.each { |p|
+       if i == 1
+         p[:end] = params["lvse_" + i.to_s].to_i
+       elsif i == lvs.size
+         p[:start] = params["lvss_" + i.to_s].to_i
+       else  
+         p[:start] = params["lvss_" + i.to_s].to_i
+         p[:end] = params["lvse_" + i.to_s].to_i
+       end
+       p.update_attributes(p.attributes)
+       i = i + 1
+    }
+
+    i = 1
+    hvs.each { |p|
+       if i == 1
+         p[:end] = params["hvse_" + i.to_s].to_i
+       elsif i == hvs.size
+         p[:start] = params["hvss_" + i.to_s].to_i
+       else  
+         p[:start] = params["hvss_" + i.to_s].to_i
+         p[:end] = params["hvse_" + i.to_s].to_i
+       end
+       p.update_attributes(p.attributes)
+       i = i + 1
+    }
+
+    #update bus voltage weight (importance_weight no 6)
+    bus_voltage_weight = ImportanceWeight.where("no = 6").first
+    bus_voltage_weight[:weight] = params["bus_voltage_weight"].to_i
+    bus_voltage_weight.update_attributes(bus_voltage_weight.attributes)
+
+
+    ######################### update Probability of Outage
+    pfos = ProbabilityOfForceOutage.order("score")
+    i = 1
+    pfos.each { |p|
+       if i == 1
+         if params["pfo_e_" + i.to_s] == ''
+           p[:end] = nil
+         else
+           p[:end] = params["pfo_e_" + i.to_s].to_i
+         end
+       elsif i == pfos.size
+         if params["pfo_s_" + i.to_s] == ''
+           p[:start] = nil
+         else
+           p[:start] = params["pfo_s_" + i.to_s].to_i
+         end
+       else  
+         if params["pfo_s_" + i.to_s] == ''
+           p[:start] = nil
+         else
+           p[:start] = params["pfo_s_" + i.to_s].to_i
+         end
+         if params["pfo_e_" + i.to_s] == ''
+           p[:end] = nil
+         else
+           p[:end] = params["pfo_e_" + i.to_s].to_i
+         end
+       end
+       p.update_attributes(p.attributes)
+       i = i + 1
+    }
+    #update PFO weight (importance_weight no 7)
+    pfo_weight = ImportanceWeight.where("no = 7").first
+    pfo_weight[:weight] = params["pfo_weight"].to_i
+    pfo_weight.update_attributes(pfo_weight.attributes)
+
+
     #update damage of property weight (importance_weight no 8)
     dmg_weight = ImportanceWeight.where("no = 8").first
     dmg_weight[:weight] = params["dmg_weight"].to_i
@@ -301,7 +393,7 @@ class TransformerInformationsController < ApplicationController
 
 
   ######################### update pollution
-    polutions = Pollution.order("score")
+    pollutions = Pollution.order("score")
 
     i = 1
     pollutions.each { |p|

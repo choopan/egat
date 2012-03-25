@@ -1,8 +1,6 @@
 <h1>การคำนวณระยะ "d"</h1>
 <%= form_tag(update_risk_table_transformer_informations_url, :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
-<table border="2">
-<tr><td colspan=3><center><b>Risk Table</b></center></td><tr>
-
+<center><table class="size80">
 <tr><th><center>d</center></th>
 <th><center>Risk</center></th>
 <th><center>Action</center></th></tr>
@@ -15,9 +13,8 @@
 		<td><center><input type="text" class="medtext" name="risk_<%=r.id%>" value="<%= r.risk %>"></center></td>
 		<td><center><input type="text" class="longtext" name="action_<%=r.id%>" value="<%= r.action %>"></center></td></tr>
 <% end%>
-
-
-<tr><td colspan=3><center><input class="cupid-green" type="submit" value="Save"></center></td></tr>
-
 </table>
+
+<input class="cupid-green" type="submit" value="Save">
 <%end%>
+</center>

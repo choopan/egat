@@ -4,8 +4,20 @@
 		width: 15px;
 	}
 	input[id="text2"] {
-		width: 70px;
+		width: 63px;
 	}
+	input[id="text3"] {
+		width: 22px;
+	}
+	input[id="text4"] {
+		width: 45px;
+	}
+
+	table, th, tr, td{
+ 		font-size: 11px;
+ 		border: 1px solid black;
+	}
+	
 </STYLE> 
 
 <%= form_tag(update_criteria_table_transformer_informations_url, :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>	
@@ -121,39 +133,87 @@
 
 <tr>
 	<td rowspan="2"><center>6</center></td>
-	<td rowspan="2"><center>System<br>Fault Level<br>(MVA)</center></td>
+	<td rowspan="2"><center>System Fault Level (MVA)</center></td>
+	<td><center> &gt; <input id="text3" type="text" name="bus_voltage_hv" value=<%= @bus_voltage[0].end %>></center></td>
+	<% counter = 1
+		hvs_size = @hvs.size
+		@hvs.each { |p|
+			if (counter == 1)
+	%>
+				<td><center> &le; <input id="text4" type="text" name="hvse_<%= counter %>" value="<%=p.end%>"></center></td>
+	<%
+			elsif (counter == hvs_size)
+	%>
+				<td><center> &ge; <input id="text4" type="text" name="hvss_<%= counter %>" value="<%=p.start%>"></center></td>
+	<%
+			else
+	%>
+				<td><center><input id="text2" type="text" name="hvss_<%=counter %>" value="<%=p.start%>">-<input id="text2" type="text" name="hvse_<%= counter %>" value="<%= p.end %>">
+				</center></td>
+	<%			
+			end
+			counter = counter + 1
+		}
+	%>
 	<td><center></center></td>
-	<td><center><input id="text2" type="text" name="Vl6"></center></td>
-	<td><center><input id="text1" type="text" name="ls6">-<input id="text1" type="text" name="le6"></center></td>
-	<td><center><input id="text1" type="text" name="ms6">-<input id="text1" type="text" name="me6"></center></td>
-	<td><center><input id="text1" type="text" name="hs6">-<input id="text1" type="text" name="he6"></center></td>
-	<td><center><input id="text2" type="text" name="Vh6"></center></td>
-	<td><center></center></td>
-	<td rowspan="2"><center><input id="text1" type="text" name="w6"></center></td>
+	<td rowspan="2"><center><input id="text1" type="text" name="bus_voltage_weight" value="<%= @imp_weight[5].weight %>"></center></td>
 </tr>
 
 <tr>
-	<td><center></center></td>
-	<td><center><input id="text2" type="text" name="Vl7"></center></td>
-	<td><center><input id="text1" type="text" name="ls7">-<input id="text1" type="text" name="le7"></center></td>
-	<td><center><input id="text1" type="text" name="ms7">-<input id="text1" type="text" name="me7"></center></td>
-	<td><center><input id="text1" type="text" name="hs7">-<input id="text1" type="text" name="he7"></center></td>
-	<td><center><input id="text2" type="text" name="Vh7"></center></td>
-	<td><center></center></td>
+	<td><center> &le; <input id="text3" type="text" name="bus_voltage_lv" value=<%= @bus_voltage[0].end %>></center></td>
+	<% counter = 1
+		lvs_size = @lvs.size
+		@lvs.each { |p|
+			if (counter == 1)
+	%>
+				<td><center> &le; <input id="text4" type="text" name="lvse_<%= counter %>" value="<%=p.end%>"></center></td>
+	<%
+			elsif (counter == lvs_size)
+	%>
+				<td><center> &ge; <input id="text4" type="text" name="lvss_<%= counter %>" value="<%=p.start%>"></center></td>
+	<%
+			else
+	%>
+				<td><center><input id="text2" type="text" name="lvss_<%=counter %>" value="<%=p.start%>">-<input id="text2" type="text" name="lvse_<%= counter %>" value="<%= p.end %>">
+				</center></td>
+	<%			
+			end
+			counter = counter + 1
+		}
+	%>
+	<td></td>
 </tr>
 
 <tr>
 	<td><center>7</center></td>
-	<td><center>Probability of<br>Force Outage</center></td>
-	<td><center></center></td>
-	<td><center><input id="text2" type="text" name="Vl8"></center></td>
-	<td><center><input id="text2" type="text" name="l8"></center></td>
-	<td><center><input id="text2" type="text" name="m8"></center></td>
-	<td><center><input id="text2" type="text" name="h8"></center></td>
-	<td><center><input id="text2" type="text" name="Vh8"></center></td>
-	<td><center></center></td>
-	<td><center><input id="text1" type="text" name="w8"></center></td>
+	<td><center>Probability of Force Outage per 5 years</center></td>
+	<td><center> - </center></td>
+	
+	<% counter = 1
+		pfo_size = @pfo.size
+		@pfo.each { |p|
+			if (counter == 1)
+	%>
+				<td><center> &le; <input id="text1" type="text" name="pfo_e_<%= counter %>" value="<%=p.end%>"></center></td>
+	<%
+			elsif (counter == lpf_size)
+	%>
+				<td><center> &ge; <input id="text1" type="text" name="pfo_s_<%= counter %>" value="<%=p.start%>"></center></td>
+	<%
+			else
+	%>
+				<td><center><input id="text1" type="text" name="pfo_s_<%=counter %>" value="<%=p.start%>">-<input id="text1" type="text" name="pfo_e_<%= counter %>" value="<%= p.end %>">
+				</center></td>
+	<%			
+			end
+			counter = counter + 1
+		}
+	%>
+	
+	<td></td>
+	<td><center><input id="text1" type="text" name="pfo_weight" value="<%= @imp_weight[6].weight %>"></center></td>
 </tr>
+	
 
 <tr>
 	<td><center>8</center></td>
@@ -227,8 +287,8 @@
 	<td></td>
 	<td><center><input id="text1" type="text" name="brand_weight" value="<%= @imp_weight[11].weight%>"></center></td>
 </tr>
-
-
-<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><center><input type="submit" value="Save"></center></td></tr>
 </table>
+
+<center><input type="submit" class="cupid-green" value="Save"></center>
+
 <%end%>
