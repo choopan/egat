@@ -6,6 +6,7 @@ class TransformerInformationsController < ApplicationController
 	else
     @xscale = ImportanceIndex.get_x_scale.to_json
     @yscale = RiskProbability.get_y_scale.to_json
+    @dscale = Risk.get_d_scale.to_json
 
 
     if request.xhr?
@@ -39,7 +40,7 @@ class TransformerInformationsController < ApplicationController
     end
 	respond_to do |format|
       format.html
-      format.js { render :json => {:data_points => @data_points, :xscale => @xscale, :yscale => @yscale}}
+      format.js { render :json => {:data_points => @data_points, :xscale => @xscale, :yscale => @yscale, :dscale => @dscale}}
     end
 	end
   end
@@ -71,6 +72,8 @@ class TransformerInformationsController < ApplicationController
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
+	  m=params[:transformer_information][:recorded_date].split('/')
+    params[:transformer_information][:recorded_date]=m[2]+"-"+m[1]+"-"+m[0]
     @transformer_information =
       TransformerInformation.new(params[:transformer_information])
     if @transformer_information.save

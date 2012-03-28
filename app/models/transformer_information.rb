@@ -53,7 +53,8 @@ class TransformerInformation < ActiveRecord::Base
   validates_presence_of :recorded_date, :bus_voltage_hv_id, :system_fault_level_hv, :bus_voltage_lv_id,
     :system_fault_level_lv, :probability_of_force_outage_value, :social_aspect_id,
     :system_location_id, :public_image_id, :n1_criteria_id, :application_use_id,
-    :system_stability_id, :pollution_id, :overall_condition
+    :system_stability_id, :pollution_id
+    #, :overall_condition
   validates_numericality_of :system_fault_level_hv, :system_fault_level_lv
   before_create :update_recent
 
