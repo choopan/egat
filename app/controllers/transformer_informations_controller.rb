@@ -1,5 +1,7 @@
 #encoding : UTF-8
 class TransformerInformationsController < ApplicationController
+	@@bc_ic = "ความสำคัญของหม้อแปลง"
+	@@bc_ic_link = "#"
   def index
 	if session[:user].nil?
 		redirect_to('/login/login')
@@ -57,6 +59,12 @@ class TransformerInformationsController < ApplicationController
   end
 
   def new
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'เพิ่มรายการ'
+	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -122,6 +130,12 @@ class TransformerInformationsController < ApplicationController
   end
 
   def search
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'ค้นหาและแก้ไข'
+	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
