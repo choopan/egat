@@ -28,10 +28,29 @@
     <% unless @no_header %>
       <%= render :partial => 'layouts/header' %>    
     <% end %>
+
+	<div id="breadcrumb">
+      <a href="/">Home</a> 
+        <% if !@breadcrumb_title.nil? %>
+        <%   for i in 0..(@breadcrumb_title.size - 1)
+              if @breadcrumb_link[i] == ""
+        %>
+                >> <%= @breadcrumb_title[i] %>
+        <%    else %>
+                >> <a href="<%= @breadcrumb_link[i] %>"><%= @breadcrumb_title[i] %></a>
+       <%
+              end
+             end
+           end 
+        %>
+
+    </div>
+
     <div id="content" class="container_16 clearfix">
     <% if notice %>
 	<p class="success"><%= notice %></p>
-    <%end %>   	
+    <%end %>
+	
     	
       <%= yield %>
     </div>

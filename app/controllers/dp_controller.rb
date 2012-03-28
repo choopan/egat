@@ -1,6 +1,14 @@
 #encoding: utf-8
 class DpController < ApplicationController
+  @@bc_ic = "ค่าประเมินอายุ"
+  @@bc_ic_link = "#"
   def edit
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'DB Limit'
+	@breadcrumb_link[1]  = ""
    if session[:user].nil?
 			redirect_to('/login/login')
 	end

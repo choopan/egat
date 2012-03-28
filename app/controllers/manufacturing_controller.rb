@@ -1,7 +1,15 @@
 #encoding : utf-8
 class ManufacturingController < ApplicationController
+	@@bc_ic = "จัดการ"
+	@@bc_ic_link = "#"
   def index
-   if session[:user].nil?
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = ""
+	if session[:user].nil?
 			redirect_to('/login/login')
 	end
 	@userid = User.get_user(session[:user])
@@ -147,6 +155,14 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_station
+    @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = "/manufacturing#station"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -158,6 +174,14 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_usage
+	 @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = "/manufacturing#usage"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -169,6 +193,14 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_tx
+	 @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = "/manufacturing#tx"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -180,6 +212,14 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_bushing
+	 @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = "/manufacturing#bushing"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -191,6 +231,14 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_arrester
+	 @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = "/manufacturing#arrester"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -202,6 +250,14 @@ class ManufacturingController < ApplicationController
   end
 
   def modify_oltc
+	 @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลพื้นฐาน'
+	@breadcrumb_link[1]  = "/manufacturing#oltc"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end

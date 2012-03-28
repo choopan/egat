@@ -1,6 +1,14 @@
 #encoding : utf-8
 class UsermanageController < ApplicationController
+	@@bc_ic = "จัดการ"
+	@@bc_ic_link = "#"
   def listuser
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'จัดการผู้ใช้'
+	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
@@ -8,6 +16,14 @@ class UsermanageController < ApplicationController
   end
 
   def adduser
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'จัดการผู้ใช้'
+	@breadcrumb_link[1]  = "/usermanage/listuser"
+	@breadcrumb_title[2] = 'เพิ่มผู้ใช้งาน'
+	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
