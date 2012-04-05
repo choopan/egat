@@ -33,7 +33,7 @@ img {
   <div class="grid_4">
     <p>
     <label for="system_fault_level_hv_mva">[MVA]</label>
-    <%= f.text_field :system_fault_level_hv_mva, :size => 5 %>    
+    <%= f.text_field :system_fault_level_hv_mva, :size => 10 ,:disabled => true%>    
     </p>
   </div>
   <div class="clear"></div> 
@@ -46,7 +46,7 @@ img {
   <div class="grid_4">
     <p>
     <label for="system_fault_level_lv_mva">[MVA]</label>
-    <%= f.text_field :system_fault_level_lv_mva, :size => 5 %>    
+    <%= f.text_field :system_fault_level_lv_mva, :size => 10, :disabled => true %>    
     </p>
   </div>
   <div class="clear"></div> 
@@ -82,16 +82,20 @@ img {
              :locals =>{:f => f, :transformer_information => @transformer_information}  
   %>
 
+
+  <br>
   <%= render :partial => 'load_pattern_per_year', :locals =>{:f => f}  %>
   <div class="clear"></div>
   <div class="grid_8">
-    <%= render :partial => 'overall_condition', :locals => {:f => f} %>
+    <%#= render :partial => 'overall_condition', :locals => {:f => f} 
+    %>
   </div>
   
-  
-
+  <center>
+  	<hr>
   <div class="grid_16">
-    <%= f.submit 'Save' %>
+    <%= f.submit 'Save', :class => 'cupid-green' %>
   </div>
+ </center>
 <% end %>
 

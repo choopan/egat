@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321024141) do
+ActiveRecord::Schema.define(:version => 20120322085957) do
 
   create_table "aging_product_factors", :id => false, :force => true do |t|
     t.integer  "id"
@@ -1320,6 +1320,13 @@ ActiveRecord::Schema.define(:version => 20120321024141) do
     t.integer  "end"
     t.string   "importance"
     t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "importance_weights", :force => true do |t|
+    t.integer  "no"
+    t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -2902,7 +2909,7 @@ ActiveRecord::Schema.define(:version => 20120321024141) do
   end
 
   create_table "visual_inspection_conditions", :id => false, :force => true do |t|
-    t.integer  "id"
+    t.integer  "id",                   :null => false
     t.string   "description"
     t.integer  "start"
     t.integer  "end"
@@ -2918,7 +2925,7 @@ ActiveRecord::Schema.define(:version => 20120321024141) do
   end
 
   create_table "visual_inspections", :id => false, :force => true do |t|
-    t.integer  "id"
+    t.integer  "id",             :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "test_type"
@@ -2945,6 +2952,16 @@ ActiveRecord::Schema.define(:version => 20120321024141) do
   end
 
   create_table "x_axes", :force => true do |t|
+    t.integer  "start"
+    t.integer  "end"
+    t.string   "importance"
+    t.string   "action"
+    t.string   "color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "y_axes", :force => true do |t|
     t.integer  "start"
     t.integer  "end"
     t.string   "importance"

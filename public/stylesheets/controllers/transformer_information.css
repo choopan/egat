@@ -45,5 +45,19 @@ th.headerSortDown {
 }
 
 input[type="submit"].cupid-green, button.cupid-green {
-  width: 370px;
+  width: 300px;
+}
+
+.ui-tabs-nav li {
+	margin-top: 0em;
+	font-size: 85%;
+}
+.ui-tabs-nav li.ui-tabs-selected {
+	margin-top: 0em;
+	font-size: 85%;
+}
+
+table.size80 {
+	width: 80%;
+}
 }

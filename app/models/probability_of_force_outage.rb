@@ -17,7 +17,8 @@ class ProbabilityOfForceOutage < ActiveRecord::Base
   before_save :insert_null_if_empty
 
   def insert_null_if_empty
-    self.value = nil if self.value == ''
+    self.start = nil if self.start == ''
+    self.end = nil if self.end == ''
   end
   
 end

@@ -12,4 +12,12 @@
 
 class Risk < ActiveRecord::Base
   set_primary_key "id"
+  def self.get_d_scale
+     dscale = []
+     select("[end]").order("id").each { |e|
+       dscale << (e.end)
+     }
+     return dscale
+  end
+  
 end

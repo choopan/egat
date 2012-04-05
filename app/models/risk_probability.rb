@@ -12,5 +12,13 @@
 #  updated_at             :datetime
 #
 
-class RiskProbability < ActiveRecord::Base
+class RiskProbability < ActiveRecord::Base  
+  def self.get_y_scale
+     yscale = []
+     select("start, probability_of_failure").each { |e|
+       yscale << ([e.start-1, e.probability_of_failure])
+     }
+     return yscale
+  end
+  
 end

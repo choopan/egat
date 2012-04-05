@@ -1,0 +1,23 @@
+<h1>ปรับค่าสีในแนวแกน y</h1>
+<%= form_tag(update_y_color_table_transformer_informations_url, :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+<center>
+<table class="size80">
+<tr><th><center>%II</center></th>
+<th><center>Importance</center></th>
+<th><center>Action</center></th>
+
+<% @ydata.each do |r| %>
+	<tr>
+		<td><center>
+		<input type="text" name="start_<%=r.id%>" value="<%= r.start %>"> - <input type="text" name="end_<%=r.id%>" value="<%= r.end %>">
+		</center></td>
+	
+		<td><center><input type="text" class="medtext" name="prf_<%=r.id%>" value="<%= r.probability_of_failure %>"></center></td>
+		<td><center><input type="text" class="longtext" name="action_<%=r.id%>" value="<%= r.action %>"></center></td>
+		</tr>
+<% end%>
+</table>
+
+<input class="cupid-green" type="submit" value="Save">
+<%end%>
+</center>

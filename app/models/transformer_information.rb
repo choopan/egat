@@ -53,7 +53,8 @@ class TransformerInformation < ActiveRecord::Base
   validates_presence_of :recorded_date, :bus_voltage_hv_id, :system_fault_level_hv, :bus_voltage_lv_id,
     :system_fault_level_lv, :probability_of_force_outage_value, :social_aspect_id,
     :system_location_id, :public_image_id, :n1_criteria_id, :application_use_id,
-    :system_stability_id, :pollution_id, :overall_condition
+    :system_stability_id, :pollution_id
+    #, :overall_condition
   validates_numericality_of :system_fault_level_hv, :system_fault_level_lv
   before_create :update_recent
 
@@ -149,27 +150,30 @@ class TransformerInformation < ActiveRecord::Base
   
   def importance_index 
     return Rails.cache.fetch("importance_index.#{self.transformer_id}") unless Rails.cache.fetch("importance_index.#{self.transformer_id}").nil?
-    ii = (((load_pattern_per_year.load_pattern_factor.score * 4) + 
-      (system_location.score * 4) + 
-      (n1_criteria.score * 5) + 
-      (system_stability.score * 4) + 
-      (application_use.score * 3)  + 
-      (system_fault_level_score * 4) + 
-      (probability_of_force_outage(:score) * 4) + 
-      (damage_of_property_score * 3) + 
-      (social_aspect.score * 3) + 
-      (public_image.score * 1) + 
-      (pollution.score * 1) + 
-      (transformer.brand.score * 2)).to_f / 
+    imp = ImportanceWeight.order("no")
+    ii = (((load_pattern_per_year.load_pattern_factor.score * imp[0].weight) + 
+      (system_location.score * imp[1].weight) + 
+      (n1_criteria.score * imp[2].weight) + 
+      (system_stability.score * imp[3].weight) + 
+      (application_use.score * imp[4].weight)  + 
+      (system_fault_level_score * imp[5].weight) + 
+      (probability_of_force_outage(:score) * imp[6].weight) + 
+      (damage_of_property_score * imp[7].weight) + 
+      (social_aspect.score * imp[8].weight) + 
+      (public_image.score * imp[9].weight) + 
+      (pollution.score * imp[10].weight) + 
+      (transformer.brand.score * imp[11].weight)).to_f / 
            (denominator).to_f * 100.to_f )
       ii = ii.round(2)
       Rails.cache.write("importance_index.#{self.transformer_id}", ii)
       return ii
     end
 
-    def denominator
-      (5 * 4) + (6 * 4) + (5 * 5) + (5 * 4) + (4 * 3) + (5 * 4) + (5 * 4) + 
-      (5 * 3) + (5 * 3) + (5 * 1) + (5 * 1) + (5 * 2)
+    def denominator 
+      imp = ImportanceWeight.order("no")
+      (5 * imp[0].weight) + (6 * imp[1].weight) + (5 * imp[2].weight) + (5 * imp[3].weight) + (4 * imp[4].weight) + 
+      (5 * imp[5].weight) + (5 * imp[6].weight) + (5 * imp[7].weight) + (5 * imp[8].weight) + (5 * imp[9].weight) + 
+      (5 * imp[10].weight) + (5 * imp[11].weight)
     end
 
     def percent_hi
@@ -203,13 +207,25 @@ class TransformerInformation < ActiveRecord::Base
       end
     end
 
+    #Choopan : take outage_value and then compare to ProbabilityOfForceOutage, and return the score
+    #need one need to change to 5 years
+   def probability_of_force_outage_5_years
+      TransformerInformation.where("transformer_id=#{transformer_id} and DATEDIFF(year, recorded_date, GETDATE()) <= 5").sum("probability_of_force_outage_value")
+    end
+    
+    
     def probability_of_force_outage(type)
+      sum5years = TransformerInformation.where("transformer_id=#{transformer_id} and DATEDIFF(year, recorded_date, GETDATE()) <= 5").sum("probability_of_force_outage_value")
+      
       unless probability_of_force_outage_value.nil?
-        probability_of_force_outages = ProbabilityOfForceOutage.all
+        probability_of_force_outages = ProbabilityOfForceOutage.where("start >= 0 or [end] >= 0").all
+        
         probability_of_force_outages.each do |p|
           #TODO Remove hard coded values
           p.end = 100 if p.end.nil?
-          if self.probability_of_force_outage_value.between?(p.start, p.end)
+          #if self.probability_of_force_outage_value.between?(p.start, p.end)
+          if sum5years.between?(p.start, p.end)
+
             return p.score if type == :score
             return p.score_message if type == :score_message
           end

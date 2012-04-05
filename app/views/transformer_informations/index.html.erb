@@ -39,13 +39,13 @@
     %>    
   <% end %>
 </div>
+<BR>
 <div class="clear"></div> 
 <br/>
 <div id="transformers" class="grid_16">    
   <table id="transformers_table">
     <thead>
       <tr>
-      <th>Id</th>
       <th>Device No.</th>
       <th>Equipment No.</th>
       <th>Overall Condition(%)</th>
@@ -59,7 +59,6 @@
       <% if !@transformer_informations.blank? %>
         <% for transformer_information in @transformer_informations %>
           <tr>
-            <td><%= transformer_information.transformer.id %></td>
             <td><%= transformer_information.transformer.transformer_name %></td>
             <td>
               <a class="title" href="javascript:void(0)" 
@@ -69,7 +68,7 @@
             </td>
             <td>
 
-                <%= link_to number_with_precision(transformer_information.percent_hi, :precision =>2).to_s , transformer_overall_conditions_path(transformer_information.transformer), {:rel => 'facebox'} %>
+                <%#= link_to number_with_precision(transformer_information.percent_hi, :precision =>2).to_s , transformer_overall_conditions_path(transformer_information.transformer), {:rel => 'facebox'} %>
 	    </td>
             <td>
               <%#= link_to transformer_information.importance_index.to_s, transformer_information, {:rel => 'facebox'} %>
