@@ -19,15 +19,11 @@ module TransformerInformationsHelper
   end
   
   def importance(importance)
-    case importance
-    when "Low"
-      "<span style=\"padding:0px 40px 0px 40px; background:rgb(146,208,80)\">#{importance}</span>".html_safe
-    when "Medium"
-      "<span style=\"padding:0px 40px 0px 40px; background:#FFFF00\">#{importance}</span>".html_safe
-    when "High"
-      "<span style=\"padding:0px 40px 0px 40px; background:rgb(255,0,0)\">#{importance}</span>".html_safe
+    imp_importance = ImportanceIndex.where("importance = '#{importance}'").first
+    if imp_importance.nil?
+       "<span>-</span>".html_safe
     else
-      "<span>-</span>".html_safe
-    end
+      "<span style=\"padding:0px 40px 0px 40px; background:##{imp_importance[:color]}\">#{importance}</span>".html_safe
+    end   
   end
 end

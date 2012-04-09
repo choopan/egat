@@ -23,12 +23,15 @@
 <div class="grid_8">
   <p>
     <strong>Last Updated: </strong>
-    <%= @transformer_information.recorded_date %>
+    <%= 
+    	m = @transformer_information.recorded_date.to_s.split("-")
+    	recorded_date = m[2] + "-" + m[1] + "-" + m[0]
+	%>
   </p>
 </div>
 <div class="grid_8">
   <p>
-    <%= importance(@transformer_information.importance.importance) %>
+    <%= importance(@transformer_information.importance.importance) %> - 
     <%= @transformer_information.action %>
   </p>
 </div>

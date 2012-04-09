@@ -66,7 +66,14 @@
           <td>
             <%= transformer_information.transformer.transformer_name %>
           </td>
-          <td><%= transformer_information.recorded_date %></td>
+          <td>
+          	<%  recorded_dateDB = transformer_information.recorded_date.to_s.split('-')
+    			recorded_dateshow = recorded_dateDB[2]+"/"+recorded_dateDB[1]+"/"+recorded_dateDB[0]
+			%>
+          
+          	<%= recorded_dateshow %>
+          
+          </td>
           <td>
             <%= 
                link_to 'Edit', 
@@ -76,9 +83,9 @@
             %>
           </td>
           <td>
-            <%= link_to 'Delete', transformer_information, 
-                :confirm => 'Are you sure?', :method => :delete, 
-            :class => 'delete' %>
+          	<%=link_to "Delete", {:controller =>"transformer_informations",:action => "delete_record", :id => transformer_information.id}, 
+          	   :confirm => 'ยืนยันการลบข้อมูล', :class => 'delete' %>
+
           </td>
         </tr>            
         <% end %>          

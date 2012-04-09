@@ -86,6 +86,7 @@ class TransformerInformation < ActiveRecord::Base
     }
     return points
   end
+  
 
   def risk
     risks = Risk.all

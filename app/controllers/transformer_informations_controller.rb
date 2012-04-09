@@ -98,6 +98,8 @@ class TransformerInformationsController < ApplicationController
 		redirect_to('/login/login')
 	end
     @transformer_information = TransformerInformation.find(params[:id])
+    m = @transformer_information[:recorded_date].to_s.split('-')
+    @transformer_information[:recorded_date] = m[2] + "/" + m[1] + "/" + m[0]
   end
 
   def update
@@ -113,13 +115,13 @@ class TransformerInformationsController < ApplicationController
     end
   end
 
-  def destroy
+  def delete_record
 	if session[:user].nil?
 		redirect_to('/login/login')
 	end
     @transformer_information = TransformerInformation.find(params[:id])
     @transformer_information.destroy
-    flash[:notice] = "Successfully destroyed transformer information."
+    flash[:notice] = "Successfully deleted transformer information."
     redirect_to transformer_informations_url
   end
 
@@ -147,7 +149,7 @@ class TransformerInformationsController < ApplicationController
 		redirect_to('/login/login')
 	end
     if params[:transformer_id]
-      @transformer_informations = TransformerInformation.find_all_by_transformer_id(params[:transformer_id])
+      @transformer_informations = TransformerInformation.find_all_by_transformer_id(params[:transformer_id], :order => "recorded_date DESC")
     end
   end
 

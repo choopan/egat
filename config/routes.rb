@@ -123,6 +123,7 @@ Egat::Application.routes.draw do
 
     end
     collection do
+      get 'delete_record'
      get 'search'
      get 'adjust'
 	   get 'adjust_x_color'
