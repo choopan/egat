@@ -1,0 +1,69 @@
+label.inline {
+  width: 400px;
+  display: inline !important;
+  float: left;
+  font-size: 14px
+}
+
+
+select, .chemicals input[type="text"] {
+	width: 100px;
+}
+
+select, .chemicals input[type="text"] {
+	display: inline !important;
+}
+
+
+.span-ppm {
+  font-size: 15px;
+}
+
+sub {
+  font-size: 12px;
+  vertical-align: bottom;
+}
+
+dt {
+  float: left;
+  width: 250px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+dd {
+  float: left;
+  font-size: 12px;
+}
+
+dt, dd {
+  display: inline;
+}
+
+input[type="submit"].cupid-green, button.cupid-green {
+  width: 370px;
+}
+
+input[type="submit"].ic-cupid-green, button.cupid-green {
+  width: 250px;
+}
+
+
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+}
+
+p.ecoconclusion { 
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  background-color: #66ccff; 
+  padding: 10px 20px 10px 20px;
+}
+
+p.ecoconclusionlabel { 
+  display: inline;
+  font-size: 16px;
+}

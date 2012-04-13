@@ -5,7 +5,7 @@
 		width: 140px;
 	}
 </STYLE>
-<%= form_tag('/login/confirm', :method=>'post', :multipart => true, :name => 'login') do %>
+<%= form_tag(confirm_login_index_path, :method=>'post', :multipart => true, :name => 'login') do %>
 <div class="grid_6 prefix_5">
   <table border="1">
   <tr><td><label>Username :</label></td><td><input type="text" name="user" id="text1"/></td></tr>

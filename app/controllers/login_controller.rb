@@ -7,20 +7,20 @@ class LoginController < ApplicationController
 	if !data_user.nil?
 		if params[:passwd]==data_user.password
 			session[:user]=data_user.login
-			redirect_to('/transformer_informations')
+			redirect_to(transformer_informations_path)
 		else
 			session[:user]=nil
-			redirect_to('/login/login')
+			redirect_to(login_login_url)
 		end
 	else
 		session[:user]=nil
-		redirect_to('/login/login')
+		redirect_to(login_login_url)
 	end
   end
 
   def logout
 	session[:user]=nil
-	redirect_to('/login/login')
+	redirect_to(login_login_url)
   end
 
 end

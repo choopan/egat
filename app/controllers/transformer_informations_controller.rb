@@ -6,7 +6,7 @@ class TransformerInformationsController < ApplicationController
   def index
 
 	 if session[:user].nil?
-		  redirect_to('/login/login')
+		  redirect_to(login_login_index_path)
 	 else
       @xscale = ImportanceIndex.get_x_scale.to_json
       @yscale = RiskProbability.get_y_scale.to_json
@@ -50,7 +50,7 @@ class TransformerInformationsController < ApplicationController
 
   def show
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     if request.xhr?
       @no_js = true
@@ -71,7 +71,7 @@ class TransformerInformationsController < ApplicationController
 	@breadcrumb_title[1] = 'เพิ่มรายการ'
 	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_path)
 	end
     @transformer_information = TransformerInformation.new
     @transformer_information.build_load_pattern_per_year
@@ -79,7 +79,7 @@ class TransformerInformationsController < ApplicationController
 
   def create
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
 	  m=params[:transformer_information][:recorded_date].split('/')
     params[:transformer_information][:recorded_date]=m[2]+"-"+m[1]+"-"+m[0]
@@ -95,7 +95,7 @@ class TransformerInformationsController < ApplicationController
 
   def edit
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     @transformer_information = TransformerInformation.find(params[:id])
     m = @transformer_information[:recorded_date].to_s.split('-')
@@ -104,7 +104,7 @@ class TransformerInformationsController < ApplicationController
 
   def update
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     @transformer_information = TransformerInformation.find(params[:id])
     if @transformer_information.update_attributes(params[:transformer_information])
@@ -117,7 +117,7 @@ class TransformerInformationsController < ApplicationController
 
   def delete_record
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     @transformer_information = TransformerInformation.find(params[:id])
     @transformer_information.destroy
@@ -127,7 +127,7 @@ class TransformerInformationsController < ApplicationController
 
   def redirect_to_edit_if_exists
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     if request.xhr?
       @transformer_information = TransformerInformation.find_by_transformer_id(params[:id])
@@ -146,7 +146,7 @@ class TransformerInformationsController < ApplicationController
 	@breadcrumb_title[1] = 'ค้นหาและแก้ไข'
 	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     if params[:transformer_id]
       @transformer_informations = TransformerInformation.find_all_by_transformer_id(params[:transformer_id], :order => "recorded_date DESC")
@@ -155,7 +155,7 @@ class TransformerInformationsController < ApplicationController
 
   def importance_and_risk_table
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     if request.xhr?
       @no_js = true
@@ -177,21 +177,21 @@ class TransformerInformationsController < ApplicationController
 
   def adjust_x_color
     if session[:user].nil?
-      redirect_to('/login/login')
+      redirect_to(login_login_index_path)
     end
     @xdata = ImportanceIndex.all
   end
 
   def adjust_y_color
 	 if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	 end
    @ydata = RiskProbability.all
   end
 
   def adjust_risk
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
 	   @risks = Risk.all
   end
@@ -210,7 +210,7 @@ class TransformerInformationsController < ApplicationController
   
   def update_x_color_table
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     for i in 1..3 do
       xdata = ImportanceIndex.find(i)
@@ -226,7 +226,7 @@ class TransformerInformationsController < ApplicationController
   
   def update_risk_table
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     for i in 1..5 do
       risk = Risk.find(i)
@@ -242,7 +242,7 @@ class TransformerInformationsController < ApplicationController
   
   def adjust_criteria
     if session[:user].nil?
-      redirect_to('/login/login')
+      redirect_to(login_login_index_path)
     end
 
 

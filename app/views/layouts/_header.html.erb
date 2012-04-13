@@ -12,14 +12,14 @@
 
     <li> <%= link_to 'ข้อมูลพื้นฐานของหม้อแปลง', '#' %>
       <ul>  
-        <li><%= link_to 'หม้อแปลงไฟฟ้า', '/transformer_info/txlist' %></li>
-		<li><%= link_to 'การย้ายหม้อแปลง', '/transformer_info/txlistmove' %></li>
+        <li><%= link_to 'หม้อแปลงไฟฟ้า', txlist_transformer_info_index_path %></li>
+		<li><%= link_to 'การย้ายหม้อแปลง', txlistmove_transformer_info_index_path %></li>
 		
      </ul> 
    </li>
  
    
-   <li><%= link_to 'ความผิดปกติหม้อแปลง', '/transformer_info/failurereport?region=' %></li>
+   <li><%= link_to 'ความผิดปกติหม้อแปลง', '/ptu3/transformer_info/failurereport?region=' %></li>
    
     <li><%= link_to 'ข้อมูลบำรุงรักษาหม้อแปลง', '#' %>
 		<ul>
@@ -69,12 +69,12 @@
      <%= link_to 'Inventory Control', ic_oil_index_path %>
       <ul>  
         <li><%= link_to 'น้ำมันหม้อแปลง', oil_chart_ic_oil_index_path %></li>
-				<li><a href="/ic_oil/menu_store">&nbsp;&nbsp;&nbsp; - คลังรายการน้ำมัน</a></li>
-       			<li><a href="/ic_oil/menu_withdraw">&nbsp;&nbsp;&nbsp; - รายการเบิกจ่าย</a></li> 
-       			<li><a href="/ic_oil/oil_buy">&nbsp;&nbsp;&nbsp; - รายการสั่งซื้อ/รับน้ำมัน</a></li> 
-       			<li><a href="/ic_oil/payment_list">&nbsp;&nbsp;&nbsp; - รายการค่าใช้จ่าย</a></li> 
-       			<li><a href="/ic_oil/oil_calresult">&nbsp;&nbsp;&nbsp; - ผลการคำนวณ</a></li> 
-       			<li><a href="/ic_oil/oil_period">&nbsp;&nbsp;&nbsp; - ระยะเวลาได้รับน้ำมัน</a></li> 
+				<li><a href="<%= menu_store_ic_oil_index_path %>">&nbsp;&nbsp;&nbsp; - คลังรายการน้ำมัน</a></li>
+       			<li><a href="<%= menu_withdraw_ic_oil_index_path%>">&nbsp;&nbsp;&nbsp; - รายการเบิกจ่าย</a></li> 
+       			<li><a href="<%= oil_buy_ic_oil_index_path%>">&nbsp;&nbsp;&nbsp; - รายการสั่งซื้อ/รับน้ำมัน</a></li> 
+       			<li><a href="<%= payment_list_ic_oil_index_path%>">&nbsp;&nbsp;&nbsp; - รายการค่าใช้จ่าย</a></li> 
+       			<li><a href="<%= oil_calresult_ic_oil_index_path%>">&nbsp;&nbsp;&nbsp; - ผลการคำนวณ</a></li> 
+       			<li><a href="<%= oil_period_ic_oil_index_path%>">&nbsp;&nbsp;&nbsp; - ระยะเวลาได้รับน้ำมัน</a></li> 
 	<li><%= link_to 'Bushing, Arrester, OLTC', weibull_select_weibull_index_path %></li>
      </ul> 
    </li>
@@ -94,7 +94,7 @@
    
    <li> <%= link_to 'คู่มือการใช้งาน', '#' %>
   <%if ! session[:user].nil?%>
-	<li><a href="/login/logout">ออกจากระบบ</a></li>
+	<li><a href="<%= logout_login_index_path %>">ออกจากระบบ</a></li>
   <%end%>
   
 

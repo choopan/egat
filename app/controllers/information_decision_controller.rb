@@ -4,7 +4,7 @@ class InformationDecisionController < ApplicationController
 
   def index
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     @transformer = Transformer.find(params[:transformer_id])
     #choopan o = OverallCondition.new(params[:transformer_id])
@@ -94,7 +94,7 @@ class InformationDecisionController < ApplicationController
 
   def update_repair_information
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     #fix user_id = 1
     @repair_information = RepairInformation.get_repair_information(1, params[:transformer_id])
@@ -105,12 +105,12 @@ class InformationDecisionController < ApplicationController
     else
       @repair_information.update_attributes(params[:repair_information])
     end
-    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#repair_information")
+    redirect_to("/ptu3/transformers/" + params[:transformer_id] + "/information_decision#repair_information")
   end
 
   def update_option1_information
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     #fix user_id = 1
     @option1_information = EcoOption1.get_option1_information(1, params[:transformer_id])
@@ -121,12 +121,12 @@ class InformationDecisionController < ApplicationController
     else
       @option1_information.update_attributes(params[:eco_option1])
     end
-    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option1")
+    redirect_to("/ptu3/transformers/" + params[:transformer_id] + "/information_decision#option1")
   end
 
   def update_option2_information
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     #fix user_id = 1
     @option2_information = EcoOption2.get_option2_information(1, params[:transformer_id])
@@ -137,12 +137,12 @@ class InformationDecisionController < ApplicationController
     else
       @option2_information.update_attributes(params[:eco_option2])
     end
-    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option2")
+    redirect_to("/ptu3/transformers/" + params[:transformer_id] + "/information_decision#option2")
   end
 
   def update_option3_information
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     #fix user_id = 1
     @option3_information = EcoOption3.get_option3_information(1, params[:transformer_id])
@@ -153,12 +153,12 @@ class InformationDecisionController < ApplicationController
     else
       @option3_information.update_attributes(params[:eco_option3])
     end
-    redirect_to("/transformers/" + params[:transformer_id] + "/information_decision#option3")
+    redirect_to("/ptu3/transformers/" + params[:transformer_id] + "/information_decision#option3")
   end
 
   def search
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to(login_login_index_path)
 	end
     @transformers = Transformer.all
   end

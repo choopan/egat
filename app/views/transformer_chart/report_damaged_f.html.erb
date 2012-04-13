@@ -154,7 +154,8 @@ $(document).ready(function(){
 	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
-        }
+        },
+        highlighter: {show: true,tooltipAxes: 'both',sizeAdjust: 7.5}
     });
 
 $('#chart').bind('jqplotDataHighlight', 
@@ -183,7 +184,8 @@ $('#chart').bind('jqplotDataHighlight',
 	  legend: { show: true, placement: 'outside',  rendererOptions:{numberColumns: 4}, location: 'e'},
         seriesDefaults: {
             renderer:$.jqplot.PieRenderer
-        }
+        },
+         highlighter: {show: true,tooltipAxes: 'both',sizeAdjust: 7.5}
     });
 
 $('#chart').bind('jqplotDataHighlight', 

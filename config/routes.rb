@@ -1,6 +1,12 @@
 Egat::Application.routes.draw do
 
-  get "login/login"
+  resources :login do
+    collection do
+      get "login"
+      get "confirm"
+      get "logout"
+    end
+  end
 
   resources :usermanage do
     collection do
@@ -260,7 +266,12 @@ Egat::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "transformer_informations#index"
+  
+ # scope "/ptu3" do
+ #  resources :posts
+   root :to => "transformer_informations#index"
+ # end
+
 
   # See how all your routes lay out with "rake routes"
 
