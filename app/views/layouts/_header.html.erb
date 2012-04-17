@@ -23,13 +23,13 @@
    
     <li><%= link_to 'ข้อมูลบำรุงรักษาหม้อแปลง', '#' %>
 		<ul>
-			<li><%= link_to 'ค้นหาข้อมูลบำรุงรักษาหม้อแปลง', '#' %></li>    			
-			<li><%= link_to 'Visual Inspection', search_visual_inspections_path %></li>    
-			<li><%= link_to 'ผลทดสอบทางน้ำมัน', search_oil_input_index_path %></li> 
-			<li><%= link_to 'ผลทดสอบทางไฟฟ้า', search_electrical_tests_path %></li>      
-			<li><%= link_to 'บำรุงรักษา OLTC', '#' %></li>      
-			<li><%= link_to 'ดูข้อมูลผลการทดสอบทั้งหมด', '#' %></li>      
-			<li><%= link_to 'ตรวจสอบสภาพหม้อแปลงไฟฟ้า', '#' %></li>      
+			<li><%= link_to 'ค้นหาข้อมูลบำรุงรักษาหม้อแปลง', '/ptu2/webtool/searchform' %></li>    			
+			<li><%= link_to 'Visual Inspection', '/ptu2/chartpresent/menu?id=1' %></li>    
+			<li><%= link_to 'ผลทดสอบทางน้ำมัน', '/ptu2/chartpresent/menu?id=2' %></li> 
+			<li><%= link_to 'ผลทดสอบทางไฟฟ้า', '/ptu2/chartpresent/menu?id=3' %></li>      
+			<li><%= link_to 'บำรุงรักษา OLTC', '/ptu2/chartpresent/menu?id=4' %></li>      
+			<li><%= link_to 'ดูข้อมูลผลการทดสอบทั้งหมด', '/ptu2/chartpresent/createtranform?performance=start&action=start' %></li>      
+			<li><%= link_to 'ตรวจสอบสภาพหม้อแปลงไฟฟ้า', '/ptu2/performdraftresult/checkform' %></li>      
 
 		</ul>
 	<li>
@@ -42,9 +42,9 @@
 	
 	<li><%= link_to 'Upload ข้อมูล', '#'%>
 		<ul>
-			<li><%= link_to 'การทดสอบทางน้ำมัน', '#' %></li>    			
-			<li><%= link_to 'การทดสอบทางไฟฟ้า', '#' %></li>    
-			<li><%= link_to 'Ativate Data', '#' %></li> 
+			<li><%= link_to 'การทดสอบทางน้ำมัน', '/ptu2/webtool/uploadoilform' %></li>    			
+			<li><%= link_to 'การทดสอบทางไฟฟ้า', '/ptu2/webtool/uploadelecform' %></li>    
+			<li><%= link_to 'ตรวจสอบความถูกต้อง', '/ptu2/performdraftresult/updateform' %></li> 
 		</ul>				
 	</li>
 	
@@ -86,7 +86,15 @@
        <li><%= link_to 'การจัดการผู้ใช้', listuser_usermanage_index_path %></li>
        <li><%= link_to 'กำหนดข้อมูลพื้นฐานหม้อแปลง', manufacturing_index_path %></li>
        <li><%= link_to 'กำหนดข้อมูลความสำคัญหม้อแปลง', adjust_transformer_informations_path %></li> 
-       <li><%= link_to 'กำหนดข้อมูลการทดสอบ', '#' %></li> 
+       <li><%= link_to 'กำหนดข้อมูลการทดสอบ' %></li>
+       		<li><a href="/ptu2/inspection?page=1&size=10">- เงื่อนไขของ Visual</a></li>
+       		<li><a href="/ptu2/inspection_detail?page=1&size=10">- รายละเอียดเงื่อนไขของ Visual</a></li>
+       		<li><a href="/ptu2/performancegroup?page=1&size=10">- กลุ่มของคะแนน</a></li>
+       		<li><a href="/ptu2/performsubgroup?page=1&size=10">- กลุ่มย่อยของคะแนน</a></li>
+       		<li><a href="/ptu2/performpart?page=1&size=10">- กลุ่มชิ้นส่วนของคะแนน</a></li>
+       		<li><a href="/ptu2/performscore?page=1&size=10">- คะแนน</a></li>
+       		<li><a href="/ptu2/chiscore?page=1&size=10">- คะแนน %CHI</a></li>
+       </li> 
      </ul> 
    </li>
 

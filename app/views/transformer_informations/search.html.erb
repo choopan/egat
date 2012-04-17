@@ -67,7 +67,8 @@
             <%= transformer_information.transformer.transformer_name %>
           </td>
           <td>
-          	<%  recorded_dateDB = transformer_information.recorded_date.to_s.split('-')
+          	<%  recorded_onlydate = transformer_information.recorded_date.to_s.split(' ')
+    			recorded_dateDB = recorded_onlydate[0].split('-')
     			recorded_dateshow = recorded_dateDB[2]+"/"+recorded_dateDB[1]+"/"+recorded_dateDB[0]
 			%>
           

@@ -22,7 +22,12 @@ class Brand < ActiveRecord::Base
 
   def self.get_tx_id(id)
 		where("id = '#{id}'").first
-    	     rescue Exception
+    rescue Exception
       		return nil
-  	end
+  end
+
+  def self.getname(id)
+    where("id = '#{id}'").first.name
+  end
+
 end

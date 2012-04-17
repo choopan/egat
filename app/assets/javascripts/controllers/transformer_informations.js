@@ -219,7 +219,7 @@ var app = {
     $("#transformer_information_recorded_date").datepicker({
       showOn: 'both',
       dateFormat: 'dd/mm/yy',
-      buttonImage: '/images/icon_calendar.gif',
+      buttonImage: '/ptu3/assets/icon_calendar.gif',
       buttonImageOnly: true
     });    
   },
@@ -263,7 +263,7 @@ var app = {
   },
   
   setupTransformerNameComboxBox: function (id, width) {
-    var widgetsJsUrl = '/javascripts/widgets.js';
+    var widgetsJsUrl = '/ptu3/assets/widgets.js';
     $.getScript(widgetsJsUrl, function () {
       WIDGETS.transformerNameComboBox(id, width)
     });
@@ -311,8 +311,8 @@ $(document).ready(function() {
     dropShadow: false, cluetipClass: 'rounded', showTitle: false
   });
   
-  $.facebox.settings.closeImage = '/images/facebox/closelabel.png';
-	$.facebox.settings.loadingImage = '/images/facebox/loading.gif';
+  $.facebox.settings.closeImage = '/ptu3/assets/facebox/closelabel.png';
+	$.facebox.settings.loadingImage = '/ptu3/assets/facebox/loading.gif';
   $('a[rel*=facebox]').facebox();
  
 
@@ -376,15 +376,15 @@ $(document).ready(function() {
     }    
     if (region != 'All') {
       queryString += "&region=" + encodeURI(region); 
-      window.location.replace('/transformer_informations' + queryString);
+      window.location.replace('/ptu3/transformer_informations' + queryString);
     } else {
-      window.location.replace('/transformer_informations' + queryString);
+      window.location.replace('/ptu3/transformer_informations' + queryString);
     }
   });
   
   $('.importance_index').live('click', function () {
     var id = $(this).parents('tr:first').find('td:first').text();
-    jQuery.facybox({ajax: '/transformer_informations/show/' + id});
+    jQuery.facybox({ajax: '/ptu3/transformer_informations/show/' + id});
     return false;
   });
 

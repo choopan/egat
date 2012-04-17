@@ -138,7 +138,7 @@ class FailureDatabase < ActiveRecord::Base
 
       for i in result do
             graphdata[n] = Array.new
-            graphdata[n][0] = ManufacturerTx.getname(i.brand_id)
+            graphdata[n][0] = Brand.getname(i.brand_id)
             graphdata[n][1] = i.numtx
             n = n + 1
             numtotal = numtotal + i.numtx

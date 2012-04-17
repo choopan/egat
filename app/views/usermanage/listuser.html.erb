@@ -1,6 +1,6 @@
 <h1>การจัดการผู้ใช้งานในระบบ</h1>
 <p align=center>
-  <%= link_to("เพิ่มผู้ใช้งานในระบบ", "/usermanage/adduser", :class => 'add') %> 
+  <%= link_to("เพิ่มผู้ใช้งานในระบบ", "/ptu3/usermanage/adduser", :class => 'add') %> 
 </p>
 <p><div class='grid_16'>&nbsp;</div></p>
 <p>
@@ -39,8 +39,8 @@
             <td><%= user.priv7 %> </td>
             <td><%= user.priv8 %> </td>
             <td><%= user.priv9 %> </td>
-            <td><%= link_to("Edit", "/usermanage/edituser?id=#{user.id}", :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to("Delete", "/usermanage/deleteuser?id=#{user.id}", :class => 'delete') %> </td>
+            <td><%= link_to("Edit", "/ptu3/usermanage/edituser?id=#{user.id}", :class => 'edit') %> &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to("Delete", "/ptu3/usermanage/deleteuser?id=#{user.id}", :class => 'delete') %> </td>
 	</tr>
 	<%end%>
       <%end%>

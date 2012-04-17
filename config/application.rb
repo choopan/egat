@@ -38,7 +38,7 @@ module Egat
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
     config.assets.enabled = true
-    #config.assets.prefix = "/ptu3"
+    #config.assets.prefix = "/ptu3/assets"
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.middleware.use PDFKit::Middleware,  {}, :only => '/eco_report', :print_media_type => true

@@ -256,19 +256,19 @@ function setValueText1(){
 		$("#downdatetime").datepicker({
                      dateFormat: 'dd/mm/yy',
 		     showOn : "button",
-                     buttonImage: "/images/icon_calendar.gif",
+                     buttonImage: "/ptu3/assets/icon_calendar.gif",
 		     buttonImageOnly : true
                 });
 		$("#updatetime").datepicker({
                      dateFormat: 'dd/mm/yy',
 		     showOn : "button",
-                     buttonImage: "/images/icon_calendar.gif",
+                     buttonImage: "/ptu3/assets/icon_calendar.gif",
 		     buttonImageOnly : true
                 });
 		$("#eventdate").datepicker({
                      dateFormat: 'dd/mm/yy',
 		     showOn : "button",
-                     buttonImage: "/images/icon_calendar.gif",
+                     buttonImage: "/ptu3/assets/icon_calendar.gif",
 		     buttonImageOnly : true
                 });
 }
@@ -280,7 +280,7 @@ $(function(){
 </script>
 
 <h1>เพิ่มรายงานความผิดปกติหม้อแปลงไฟฟ้า</h1>
-<%= form_tag('/transformer_info/create_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
+<%= form_tag('/ptu3/transformer_info/create_failurereport', :method=>'post', :multipart => true, :name => 'dynamiccombo') do %>
 	<input type=hidden name="tid" value=<%= @tid %>>
 <table>
 <tr>

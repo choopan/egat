@@ -30913,3 +30913,1703 @@ ActionController::RoutingError (No route matches [GET] "/assets/flash/repair_fla
 
 Started GET "/ptu3/assets/repair_flash.swf?catNUM=1&x1=20&y1=55" for 127.0.0.1 at 2012-04-13 21:46:37 +0700
 Served asset /repair_flash.swf - 200 OK (31ms)
+
+
+Started GET "/ptu3" for 127.0.0.1 at 2012-04-13 21:53:42 +0700
+Processing by TransformerInformationsController#index as HTML
+Redirected to http://localhost/ptu3/login/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/ptu3/login/login" for 127.0.0.1 at 2012-04-13 21:53:42 +0700
+Processing by LoginController#login as HTML
+  Rendered login/login.html.erb within layouts/login (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 203ms (Views: 202.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:53:42 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:53:42 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (46ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /facybox.js - 304 Not Modified (62ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /json2.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (46ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.min.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.flot.min.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.selection.min.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.flot.selection.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.axislabels.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.flot.axislabels.js - 304 Not Modified (62ms)
+
+
+Started GET "/ptu3/assets/controllers/furans.js" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /controllers/furans.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /ext-all.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (62ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /template.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /nav.css - 304 Not Modified (62ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /colour.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /facybox.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /faceplant.css - 304 Not Modified (46ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-13 21:53:43 +0700
+Served asset /buttons.css - 304 Not Modified (62ms)
+
+
+Started GET "/ptu3/assets/controllers/furans.css" for 127.0.0.1 at 2012-04-13 21:53:44 +0700
+Served asset /controllers/furans.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/login/stylelog.css" for 127.0.0.1 at 2012-04-13 21:53:44 +0700
+
+AbstractController::ActionNotFound (The action 'show' could not be found for LoginController):
+  actionpack (3.2.3) lib/abstract_controller/base.rb:116:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/rack.rb:27:in `call'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/bundler/gems/PDFKit-e4a8a67a6939/lib/pdfkit/middleware.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__439149506__call__451478737__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-13 21:53:44 +0700
+Served asset /facybox_urls.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/login/login" for 127.0.0.1 at 2012-04-13 21:54:01 +0700
+Processing by LoginController#login as HTML
+  Rendered login/login.html.erb within layouts/login (0.0ms)
+  Rendered layouts/_header.html.erb (31.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 47ms (Views: 46.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:54:01 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:54:01 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:54:01 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:54:01 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:54:01 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.selection.min.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.flot.selection.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.min.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.flot.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.axislabels.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /jquery.flot.axislabels.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /ext-all.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/furans.js" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /controllers/furans.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /template.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /nav.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:54:02 +0700
+Served asset /facybox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+Served asset /faceplant.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+Served asset /buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/login/stylelog.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+
+AbstractController::ActionNotFound (The action 'show' could not be found for LoginController):
+  actionpack (3.2.3) lib/abstract_controller/base.rb:116:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/rack.rb:27:in `call'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/bundler/gems/PDFKit-e4a8a67a6939/lib/pdfkit/middleware.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__439149506__call__451478737__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/assets/controllers/furans.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+Served asset /controllers/furans.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+Served asset /facybox_urls.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/login/stylelog.css" for 127.0.0.1 at 2012-04-13 21:54:03 +0700
+
+AbstractController::ActionNotFound (The action 'show' could not be found for LoginController):
+  actionpack (3.2.3) lib/abstract_controller/base.rb:116:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/rack.rb:27:in `call'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/bundler/gems/PDFKit-e4a8a67a6939/lib/pdfkit/middleware.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__439149506__call__451478737__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started POST "/ptu3/login/confirm" for 127.0.0.1 at 2012-04-13 21:54:13 +0700
+Processing by LoginController#confirm as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ylW4AQhB8lVHeW3FqcF+6C2KKrCdjr8rW6pstD/7Sps=", "user"=>"choopan", "passwd"=>"pingpong"}
+Redirected to http://localhost/ptu3/transformer_informations
+Completed 302 Found in 78ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/ptu3/transformer_informations" for 127.0.0.1 at 2012-04-13 21:54:13 +0700
+Processing by TransformerInformationsController#index as HTML
+  Rendered transformer_informations/index.html.erb within layouts/transformer_informations (546.0ms)
+  Rendered layouts/_header.html.erb (15.6ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 608ms (Views: 546.0ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facebox.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /facebox.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.min.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.flot.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.multirowcheckboxmenu.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.multirowcheckboxmenu.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.axislabels.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.flot.axislabels.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/transformer_informations.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /controllers/transformer_informations.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.selection.min.js" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /jquery.flot.selection.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /ext-all.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /template.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:54:14 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /nav.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facebox.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /facebox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/transformer_information.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /controllers/transformer_information.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /facybox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /faceplant.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/oil_input.css" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /controllers/oil_input.css - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/transformer_informations_index.js" for 127.0.0.1 at 2012-04-13 21:54:15 +0700
+Served asset /transformer_informations_index.js - 404 Not Found (77ms)
+Processing by Jammit::Controller#package as */*
+  Parameters: {"package"=>"transformer_informations_index", "extension"=>"js"}
+Completed 500 Internal Server Error in 125ms
+** [Hoptoad] Success: Net::HTTPOK
+** [Hoptoad] Environment Info: [Ruby: 1.9.3] [Rails: 3.2.3] [Env: production]
+** [Hoptoad] Response from Hoptoad: 
+<?xml version="1.0" encoding="UTF-8"?>
+<notice>
+  <error-id type="integer">44592050</error-id>
+  <url>http://egat.airbrake.io/errors/44592050/notices/5063730173</url>
+  <id type="integer">5063730173</id>
+</notice>
+
+
+Errno::EINVAL (Invalid argument - java -jar C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/yui-compressor-0.9.6/lib/yui/../yuicompressor-2.4.4.jar --type js --charset utf-8):
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/open3.rb:202:in `spawn'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/open3.rb:202:in `popen_run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/open3.rb:90:in `popen3'
+  win32-open3-19 (0.0.2) lib/win32/open3.rb:5:in `popen4'
+  POpen4 (0.1.4) lib/popen4.rb:48:in `popen4'
+  yui-compressor (0.9.6) lib/yui/compressor.rb:68:in `block in compress'
+  yui-compressor (0.9.6) lib/yui/compressor.rb:117:in `streamify'
+  yui-compressor (0.9.6) lib/yui/compressor.rb:66:in `compress'
+  jammit (0.6.5) lib/jammit/compressor.rb:74:in `compress_js'
+  jammit (0.6.5) lib/jammit/packager.rb:81:in `pack_javascripts'
+  jammit (0.6.5) lib/jammit/controller.rb:23:in `package'
+  actionpack (3.2.3) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:403:in `_run__1038949067__process_action__370605003__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.3) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+  activerecord (3.2.3) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/rack.rb:27:in `call'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/bundler/gems/PDFKit-e4a8a67a6939/lib/pdfkit/middleware.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__439149506__call__451478737__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/transformer_informations" for 127.0.0.1 at 2012-04-13 21:54:17 +0700
+Processing by TransformerInformationsController#index as JS
+Completed 200 OK in 250ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ptu3/ic_oil/menu_withdraw" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Processing by IcOilController#menu_withdraw as HTML
+  Rendered ic_oil/_oil_withdraw.html.erb (31.2ms)
+  Rendered ic_oil/_oil_annually.html.erb (0.0ms)
+  Rendered ic_oil/menu_withdraw.html.erb within layouts/ic_oil (46.8ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+Completed 200 OK in 140ms (Views: 62.4ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /ext-all.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/rails.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /rails.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /ext-all.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /template.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /nav.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /facybox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /faceplant.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /facybox_urls.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:54:27 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:54:28 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:54:28 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/ic_oil/menu_withdraw" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Processing by IcOilController#menu_withdraw as HTML
+  Rendered ic_oil/_oil_withdraw.html.erb (62.4ms)
+  Rendered ic_oil/_oil_annually.html.erb (0.0ms)
+  Rendered ic_oil/menu_withdraw.html.erb within layouts/ic_oil (62.4ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+Completed 200 OK in 78ms (Views: 62.4ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/rails.js" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/ic_oil/menu_withdraw" for 127.0.0.1 at 2012-04-13 21:54:59 +0700
+Processing by IcOilController#menu_withdraw as HTML
+  Rendered ic_oil/_oil_withdraw.html.erb (0.0ms)
+  Rendered ic_oil/_oil_annually.html.erb (62.4ms)
+  Rendered ic_oil/menu_withdraw.html.erb within layouts/ic_oil (62.4ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+Completed 200 OK in 78ms (Views: 78.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/ic_oil/menu_withdraw" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Processing by IcOilController#menu_withdraw as HTML
+  Rendered ic_oil/_oil_withdraw.html.erb (0.0ms)
+  Rendered ic_oil/_oil_annually.html.erb (15.6ms)
+  Rendered ic_oil/menu_withdraw.html.erb within layouts/ic_oil (15.6ms)
+  Rendered layouts/_header.html.erb (15.6ms)
+Completed 200 OK in 78ms (Views: 62.4ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/ic_oil.js" for 127.0.0.1 at 2012-04-13 21:55:00 +0700
+Served asset /controllers/ic_oil.js - 304 Not Modified (109ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /ext-all.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/rails.js" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /template.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /nav.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /facybox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /faceplant.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/glow/1.7.0/widgets/widgets.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /glow/1.7.0/widgets/widgets.css - 304 Not Modified (171ms)
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /facybox_urls.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/ic_oil.css" for 127.0.0.1 at 2012-04-13 21:55:01 +0700
+Served asset /controllers/ic_oil.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:02 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:02 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:03 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:55:04 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/icons/delete.png" for 127.0.0.1 at 2012-04-13 21:55:04 +0700
+
+ActionController::RoutingError (No route matches [GET] "/icons/delete.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/information_decision/search" for 127.0.0.1 at 2012-04-13 21:55:39 +0700
+Processing by InformationDecisionController#search as HTML
+  Rendered information_decision/_transformer_search_form.html.haml (140.4ms)
+  Rendered information_decision/search.html.haml within layouts/information_decision (140.4ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+Completed 200 OK in 328ms (Views: 187.2ms | ActiveRecord: 62.4ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/information_decision.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /controllers/information_decision.js - 304 Not Modified (15ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /ext-all.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /nav.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /template.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /facybox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /faceplant.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/information_decision.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /controllers/information_decision.css - 304 Not Modified (93ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /facybox_urls.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:40 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:55:41 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/images/gray/form/trigger.gif" for 127.0.0.1 at 2012-04-13 21:55:41 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/gray/form/trigger.gif"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/images/default/form/text-bg.gif" for 127.0.0.1 at 2012-04-13 21:55:41 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/form/text-bg.gif"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/images/default/shadow-lr.png" for 127.0.0.1 at 2012-04-13 21:55:52 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/shadow-lr.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/images/default/shadow.png" for 127.0.0.1 at 2012-04-13 21:55:52 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/shadow.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/images/default/shadow-c.png" for 127.0.0.1 at 2012-04-13 21:55:52 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/shadow-c.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/transformers/1/information_decision" for 127.0.0.1 at 2012-04-13 21:55:53 +0700
+Processing by InformationDecisionController#index as HTML
+  Parameters: {"transformer_id"=>"1"}
+  Rendered information_decision/_transformer_search_form.html.haml (187.2ms)
+  Rendered information_decision/_transformer_details.html.haml (15.6ms)
+  Rendered information_decision/_repair_information_form.html.erb (0.0ms)
+  Rendered information_decision/_option1_form.html.erb (0.0ms)
+  Rendered information_decision/_option2_form.html.erb (46.8ms)
+  Rendered information_decision/_option3_form.html.erb (15.6ms)
+  Rendered information_decision/_conclusion_form.html.erb (0.0ms)
+  Rendered information_decision/index.html.erb within layouts/information_decision (280.8ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+Completed 200 OK in 593ms (Views: 265.2ms | ActiveRecord: 62.4ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery-1.4.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.blockUI.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.tmpl.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /json2.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /facybox.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.tablesorter.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/information_decision.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /controllers/information_decision.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /ext-all.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /xtheme-gray.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /template.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /960.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /nav.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /colour.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /facybox.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /faceplant.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery-ui-1.8.4.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/controllers/information_decision.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /controllers/information_decision.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery-ui-1.8.4.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /facybox_urls.css - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /ext-jquery-adapter.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /ext-all.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-13 21:55:54 +0700
+Served asset /jquery.url.js - 304 Not Modified (0ms)
+
+
+Started GET "/ptu3/images/default/form/text-bg.gif" for 127.0.0.1 at 2012-04-13 21:55:55 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/form/text-bg.gif"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+
+
+Started GET "/ptu3/images/gray/form/trigger.gif" for 127.0.0.1 at 2012-04-13 21:55:55 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/gray/form/trigger.gif"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  thin (1.3.1) lib/thin/connection.rb:80:in `block in pre_process'
+  thin (1.3.1) lib/thin/connection.rb:78:in `catch'
+  thin (1.3.1) lib/thin/connection.rb:78:in `pre_process'
+  thin (1.3.1) lib/thin/connection.rb:53:in `process'
+  thin (1.3.1) lib/thin/connection.rb:38:in `receive_data'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run_machine'
+  eventmachine-1.0.0.beta.4.1-x86 (mingw32) lib/eventmachine.rb:179:in `run'
+  thin (1.3.1) lib/thin/backends/base.rb:61:in `start'
+  thin (1.3.1) lib/thin/server.rb:159:in `start'
+  thin (1.3.1) lib/thin/controllers/controller.rb:86:in `start'
+  thin (1.3.1) lib/thin/runner.rb:185:in `run_command'
+  thin (1.3.1) lib/thin/runner.rb:151:in `run!'
+  thin (1.3.1) bin/thin:6:in `<top (required)>'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `load'
+  C:/RailsInstaller/Ruby1.9.3/bin/thin:19:in `<main>'
+
+
+Compiled application.js  (0ms)  (pid 3096)

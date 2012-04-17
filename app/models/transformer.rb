@@ -33,7 +33,7 @@
 class Transformer < ActiveRecord::Base
   set_table_name "transformer"
   belongs_to :brand
-  belongs_to :station, :class_name => "Station",  :foreign_key => "station_id"
+  #belongs_to :station, :class_name => "Station",  :foreign_key => "station_id"
 
   has_many :transformer_information
   has_many :oil_dgas
@@ -1472,8 +1472,8 @@ class Transformer < ActiveRecord::Base
   end
 
   def self.graph2
-      result   = find_by_sql("SELECT manufacturer AS manuname, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
-                              (SELECT distinct id, manufacturer from manufacturer_txes) AS A  ON transformer.brand_id = A.id group by manufacturer")
+      result   = find_by_sql("SELECT name AS manuname, count(*) AS numtx FROM transformer LEFT OUTER JOIN \
+                              (SELECT distinct id, name from brands) AS A ON transformer.brand_id = A.id group by name")
       n = 0
       numtotal = 0
       graphdata = Array.new

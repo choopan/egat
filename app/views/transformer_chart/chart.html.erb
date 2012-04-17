@@ -1,5 +1,5 @@
 <h1>รายงานมาตรฐาน</h1>
-<%= form_tag('/transformer_chart/select_chart', :method=>'post', :multipart => true, :name => 'transfor_name') do %>
+<%= form_tag(select_chart_transformer_chart_index_path, :method=>'post', :multipart => true, :name => 'transfor_name') do %>
 <p><table><tr><td><b><%= radio_button_tag 'charts', '1', true %>&nbsp;แสดงความสัมพันธ์ของจำนวนหม้อแปลงเมื่อเทียบกับอายุการใช้งาน</b><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ช่วงอายุ&nbsp;&nbsp;เริ่มต้น : <input type='text' name='start_old1' value=0><br><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สิ้นสุด : <input type='text' name='end_old1' value=0></td></tr>

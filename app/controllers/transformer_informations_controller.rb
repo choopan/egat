@@ -98,7 +98,8 @@ class TransformerInformationsController < ApplicationController
 		redirect_to(login_login_index_path)
 	end
     @transformer_information = TransformerInformation.find(params[:id])
-    m = @transformer_information[:recorded_date].to_s.split('-')
+     recorded_onlydate = @transformer_information[:recorded_date].to_s.split(' ')
+     m = recorded_onlydate[0].split('-')
     @transformer_information[:recorded_date] = m[2] + "/" + m[1] + "/" + m[0]
   end
 

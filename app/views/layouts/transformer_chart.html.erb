@@ -11,9 +11,13 @@
                               'ext-all', 'jquery-ui-1.8.4.custom.min', 
                               'jquery.blockUI', 'jquery.tmpl', 'facybox', 
                               'json2', 'jquery.url', 'jquery.tablesorter.min',
-                              'jquery.cluetip', 'rails'
+                              'jquery.cluetip', 'rails', 'jquery.jqplot.js', 'jqplot.logAxisRenderer.js',
+                              'jqplot.canvasTextRenderer.js', 'jqplot.canvasAxisLabelRenderer.js',
+                              'jqplot.canvasAxisTickRenderer.js', 'jqplot.dateAxisRenderer.js', 'jqplot.categoryAxisRenderer.js',
+                              'jqplot.barRenderer.js', 'jqplot.pieRenderer.js', 'jqplot.pointLabels.js' 
       %>
-      <%= javascript_includes %>
+      
+    <%= javascript_includes %>
       <%= yield :javascript %>
     <% end %>
     <%= stylesheet_link_tag 'ext-all', 'xtheme-gray' %>
@@ -22,7 +26,8 @@
     <%= stylesheet_link_tag'jquery-ui-1.8.4.custom' %>
     <%= stylesheet_link_tag'jquery.cluetip' %>   
     <%= stylesheet_link_tag 'buttons' %>     
-    <%= stylesheet_link_tag 'controllers/transformer_chart' %>
+    <%= stylesheet_link_tag 'controllers/transformer_chart', 'jquery.jqplot.css', 'examples.css'%>
+    
     <%= yield :css %>
   </head>
   <body name="<%= controller.action_name %>">

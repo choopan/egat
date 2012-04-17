@@ -1,6 +1,6 @@
 #encoding : UTF-8
 @@bc_tx = "ข้อมูลหม้อแปลง"
-@@bc_tx_link = "/transformer_info/txlist"
+@@bc_tx_link = "/ptu3/transformer_info/txlist"
 
 class TransformerInfoController < ApplicationController
   def txlist
@@ -33,7 +33,7 @@ class TransformerInfoController < ApplicationController
 
   def txadd
 	if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to(login_login_index_path)
 	end
    if User.get_user(session[:user]).priv5==1
     @breadcrumb_title = Array.new()
@@ -41,7 +41,7 @@ class TransformerInfoController < ApplicationController
     @breadcrumb_title[0] = @@bc_tx
     @breadcrumb_link[0]  = @@bc_tx_link
     @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
-    @breadcrumb_link[1]  = '/transformer_info/txlist'
+    @breadcrumb_link[1]  = '/ptu3/transformer_info/txlist'
     @breadcrumb_title[2] = 'เพิ่มหม้อแปลงไฟฟ้า'
     @breadcrumb_link[2]  = ''
 
@@ -67,13 +67,13 @@ class TransformerInfoController < ApplicationController
 	@manufacturer_oltc = ManufacturerOltc.new
     end
 	else
-		redirect_to("/transformer_info/txlist")
+		redirect_to("/ptu3/transformer_info/txlist")
    end
   end
 
   def txlistmove
 		if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -87,14 +87,14 @@ class TransformerInfoController < ApplicationController
 
   def txshowmove
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
 		@breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
-        @breadcrumb_link[1]  = '/transformer_info/txlistmove'
+        @breadcrumb_link[1]  = '/ptu3/transformer_info/txlistmove'
         @breadcrumb_title[2] = 'รายละเอียดการย้ายหม้อแปลง'
         @breadcrumb_link[2]  = ''
 
@@ -103,7 +103,7 @@ class TransformerInfoController < ApplicationController
 
   def txaddmove
     if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
 	if User.get_user(session[:user]).priv6==1
         @breadcrumb_title = Array.new()
@@ -111,7 +111,7 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
-        @breadcrumb_link[1]  = '/transformer_info/txlistmove'
+        @breadcrumb_link[1]  = '/ptu3/transformer_info/txlistmove'
         @breadcrumb_title[2] = 'เพิ่มการย้ายหม้อแปลง'
         @breadcrumb_link[2]  = ''
 
@@ -128,24 +128,24 @@ class TransformerInfoController < ApplicationController
 		end
 		@station = Station.where("name = '#{station_name}'").first.full_name
 		@stations = Station.order("name")
-	  else
-		redirect_to("/transformer_info/txlistmove")
-	  end
-  end
+  else
+		redirect_to("/ptu3/transformer_info/txlistmove")
+	end
+end
 	
   def txdeletemove
     if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
 	if User.get_user(session[:user]).priv6==1
       TransformerTransfer.delete(params[:id])
 	end
-	redirect_to('/transformer_info/txlistmove')
+	redirect_to('/ptu3/transformer_info/txlistmove')
   end
 
   def txeditmove
      if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
      if User.get_user(session[:user]).priv6==1
         @breadcrumb_title = Array.new()
@@ -153,7 +153,7 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'การย้ายหม้อแปลง'
-        @breadcrumb_link[1]  = '/transformer_info/txlistmove'
+        @breadcrumb_link[1]  = '/ptu3/transformer_info/txlistmove'
         @breadcrumb_title[2] = 'แก้ไขการย้ายหม้อแปลง'
         @breadcrumb_link[2]  = ''
 
@@ -165,13 +165,13 @@ class TransformerInfoController < ApplicationController
 		da = dt[0].split("-")
 		@txmove[:action_date] = da[2] + "/" + da[1] + "/" + da[0]
 	 else
-		redirect_to('/transformer_info/txlistmove')
+		redirect_to('/ptu3/transformer_info/txlistmove')
 	 end
   end
 
   def update_txaddmove
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
    if User.get_user(session[:user]).priv6==1
 	#Get old transformer information
@@ -187,7 +187,7 @@ class TransformerInfoController < ApplicationController
 	   if(!new_txinfos.nil?) 
 		for new_txinfo in new_txinfos do
 			if(new_txinfo.status == 1) #there is a using transformer on that name
-				redirect_to("/transformer_info/txaddmove", :notice => 'ชื่อหม้อแปลงที่สถานีใหม่กำลังใช้งานอยู่')
+				redirect_to("/ptu3/transformer_info/txaddmove", :notice => 'ชื่อหม้อแปลงที่สถานีใหม่กำลังใช้งานอยู่')
 				return
 			end
 		end
@@ -213,13 +213,13 @@ class TransformerInfoController < ApplicationController
 	end	
 	#transformer_transfer_attribute.save
 	end
-	redirect_to('/transformer_info/txlistmove')
+	redirect_to('/ptu3/transformer_info/txlistmove')
   end
 
 
   def failurereport
      if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	 else
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -228,7 +228,7 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[1] = 'รายงานความผิดปกติ'
         @breadcrumb_link[1]  = ''
 	if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
 	@userid = User.get_user(session[:user])
 	if params[:region] == "" or params[:region].nil?
@@ -258,7 +258,7 @@ class TransformerInfoController < ApplicationController
 
   def addfailurereport
     if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
      if User.get_user(session[:user]).priv7==1
         @breadcrumb_title = Array.new()
@@ -266,7 +266,7 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'รายงานความผิดปกติ'
-        @breadcrumb_link[1]  = '/transformer_info/failurereport?region='
+        @breadcrumb_link[1]  = '/ptu3/transformer_info/failurereport?region='
         @breadcrumb_title[2] = 'เพิ่มรายงานความผิดปกติ'
         @breadcrumb_link[2]  = ''
 
@@ -319,13 +319,13 @@ class TransformerInfoController < ApplicationController
 		@manufacturer_arrester = ManufacturerArrester.get_arrester()
 		@num_arrester = @manufacturer_arrester.count
 	else
-		redirect_to('/transformer_info/failurereport?region=')
+		redirect_to('/ptu3/transformer_info/failurereport?region=')
 	end
   end
 
   def modify_failurere
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
    if User.get_user(session[:user]).priv7==1
 	@region = params[:region]
@@ -374,13 +374,13 @@ class TransformerInfoController < ApplicationController
 	@manufacturer_arrester = ManufacturerArrester.get_arrester()
 	@num_arrester = @manufacturer_arrester.count
    else
-	redirect_to('/transformer_info/failurereport?region=')
+	redirect_to('/ptu3/transformer_info/failurereport?region=')
    end
   end
 
   def update_failurereport
     if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
 	failure = FailureDatabase.get_failure_id(params[:id])
 	failure[:egatsn] = params[:egatsn]
@@ -525,25 +525,25 @@ class TransformerInfoController < ApplicationController
 	failure[:remark] = params[:remark]
 	failure[:user] = params[:user]
 	failure.update_attributes(failure.attributes)
-	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+	redirect_to("/ptu3/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
 	
   end
 
   def delete_failurere
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
    if User.get_user(session[:user]).priv7==1
 	FailureDatabase.delete(params[:id])
-	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+	redirect_to("/ptu3/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
    else
-	redirect_to('/transformer_info/failurereport?region=')
+	redirect_to('/ptu3/transformer_info/failurereport?region=')
    end
   end
 
   def create_failurereport
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
    if User.get_user(session[:user]).priv7==1
 	failure = FailureDatabase.new
@@ -688,15 +688,15 @@ class TransformerInfoController < ApplicationController
 	failure[:remark] = params[:remark]
 	failure[:user] = params[:user]
 	failure.save
-	redirect_to("/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+	redirect_to("/ptu3/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
 	else
-	 redirect_to('/transformer_info/failurereport?region=')
+	 redirect_to('/ptu3/transformer_info/failurereport?region=')
 	end
   end
   
   def txcreate
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
    if User.get_user(session[:user]).priv5==1
 	@transformer = Transformer.new
@@ -794,12 +794,12 @@ class TransformerInfoController < ApplicationController
 		@transformer.save
 	
 	end
-	redirect_to("/transformer_info/txlist")
+	redirect_to("/ptu3/transformer_info/txlist")
   end
 
   def modify_transformer
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
 		if User.get_user(session[:user]).priv5==1
         @breadcrumb_title = Array.new()
@@ -807,7 +807,7 @@ class TransformerInfoController < ApplicationController
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
-        @breadcrumb_link[1]  = '/transformer_info/txlist'
+        @breadcrumb_link[1]  = '/ptu3/transformer_info/txlist'
         @breadcrumb_title[2] = 'แก้ไขข้อมูลหม้อแปลงไฟฟ้า'
         @breadcrumb_link[2]  = ''
 
@@ -842,13 +842,13 @@ class TransformerInfoController < ApplicationController
 		@manufacturer_oltc = ManufacturerOltc.new
     	end	
 	else
-		redirect_to("/transformer_info/txlist")
+		redirect_to("/ptu3/transformer_info/txlist")
 	end
   end
 
   def updat_transformer
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
    if User.get_user(session[:user]).priv5==1
 	transformer = Transformer.get_transformer_id(params[:transformer_id])	
@@ -951,31 +951,31 @@ class TransformerInfoController < ApplicationController
 	end
 	transformer.update_attributes(transformer.attributes)	
 	end
-	redirect_to("/transformer_info/txlist")
+	redirect_to("/ptu3/transformer_info/txlist")
   end
 
   def delete_transformer
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 		end
 	if User.get_user(session[:user]).priv5==1
 	transformer = Transformer.get_transformer_id(params[:id])
 	#TransformerAccessory.delete(transformer.transformer_accessories_id)
 	Transformer.delete(params[:id])
 	end
-	redirect_to("/transformer_info/txlist")
+	redirect_to("/ptu3/transformer_info/txlist")
   end
   
   def show_image
    if session[:user].nil?
-			redirect_to('/login/login')
+			redirect_to('/ptu3/login/login')
 	end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'หม้อแปลงไฟฟ้า'
-        @breadcrumb_link[1]  = '/transformer_info/txlist'
+        @breadcrumb_link[1]  = '/ptu3/transformer_info/txlist'
         @breadcrumb_title[2] = 'รายละเอียดหม้อแปลงไฟฟ้า'
         @breadcrumb_link[2]  = ''
 

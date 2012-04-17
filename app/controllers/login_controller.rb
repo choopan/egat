@@ -10,17 +10,17 @@ class LoginController < ApplicationController
 			redirect_to(transformer_informations_path)
 		else
 			session[:user]=nil
-			redirect_to(login_login_url)
+			redirect_to(login_login_index_path)
 		end
 	else
 		session[:user]=nil
-		redirect_to(login_login_url)
+		redirect_to(login_login_index_path)
 	end
   end
 
   def logout
 	session[:user]=nil
-	redirect_to(login_login_url)
+	redirect_to(login_login_index_path)
   end
 
 end

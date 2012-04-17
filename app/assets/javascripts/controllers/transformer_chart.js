@@ -1,6 +1,3 @@
-
-
-
 var Cbox = { };
 Cbox.setupComboxBox = function(id) {
   if ($('#' + id).length > 0) {
@@ -52,7 +49,7 @@ RegionName.setupRegionNameComboBox = function(id) {
   }
 };
 RegionName.onRegionNameChange = function(transformerId) {
-    window.location.href = "/transformer_chart/report_transformer?report2_area=" + transformerId;
+    window.location.href = "/ptu3/transformer_chart/report_transformer?report2_area=" + transformerId;
 };
 
 
@@ -157,7 +154,7 @@ Station.setupComboxBox = function(id) {
 };
 Station.onStationChange = function(transformerId) {
 	var area = Ext.getCmp('report2_area');
-    window.location.href = "/transformer_chart/report_transformer?report2_area=" + area.getValue() + "&report2_station="+transformerId;
+    window.location.href = "/ptu3/transformer_chart/report_transformer?report2_area=" + area.getValue() + "&report2_station="+transformerId;
 
 };
 
@@ -193,7 +190,7 @@ Manu.onManuChange = function(transformerId) {
 	var station = Ext.getCmp('report2_station');
 	//var manufacturer = Ext.getCmp('report_manufacturer');
 
-    window.location.href = "/transformer_chart/report_transformer?report2_area=" + area.getValue() + "&report2_station="+ station.getValue() + "&report2_manufacturer="+ transformerId;
+    window.location.href = "/ptu3/transformer_chart/report_transformer?report2_area=" + area.getValue() + "&report2_station="+ station.getValue() + "&report2_manufacturer="+ transformerId;
 
 };
 

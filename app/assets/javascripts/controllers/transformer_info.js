@@ -51,9 +51,9 @@ Region.setupTransformerNameComboxBox = function(id) {
 };
 Region.onTransformerNamChange = function(transformerId) {
   if ($('body').attr('name') == "new") {
-    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
+    window.location.href = "/ptu3/transformer_info/failurereport?region=" + transformerId + "&";
   } else {
-    window.location.href = "/transformer_info/failurereport?region=" + transformerId + "&";
+    window.location.href = "/ptu3/transformer_info/failurereport?region=" + transformerId + "&";
   }
 };
 
@@ -129,7 +129,7 @@ TxFailure.setupTransformerNameComboxBox = function(id) {
 TxFailure.onTransformerNamChange = function(transformerId) {
     var region = jQuery.url.param("region");
     //if(region != "")
-    window.location.href = "/transformer_info/failurereport?region=" + jQuery.url.param("region") + "&tid=" + transformerId;
+    window.location.href = "/ptu3/transformer_info/failurereport?region=" + jQuery.url.param("region") + "&tid=" + transformerId;
 };
 
 
@@ -164,9 +164,9 @@ PriceLoss.setupTransformerNameComboxBox = function(id) {
 
 PriceLoss.onTransformerNamChange = function(transformerId) {
   if ($('body').attr('name') == "new") {
-    window.location.href = "/transformer_info/txlist?region=" + transformerId;
+    window.location.href = "/ptu3/transformer_info/txlist?region=" + transformerId;
   } else {
-    window.location.href = "/transformer_info/txlist?region=" + transformerId;
+    window.location.href = "/ptu3/transformer_info/txlist?region=" + transformerId;
   }
 };
 
@@ -198,7 +198,7 @@ TxName.setupTransformerNameComboxBox = function(id) {
 };
 
 TxName.onTransformerNameChange = function(transformerId) {
-    window.location.href = "/transformer_info/txaddmove?transformer_name=" + transformerId;
+    window.location.href = "/ptu3/transformer_info/txaddmove?transformer_name=" + transformerId;
 };
 
 var FGroup = { };
@@ -307,14 +307,14 @@ function setCalendar(){
                 $("#transformer_transfer_action_date").datepicker({
                      dateFormat: 'dd/mm/yy',
                      showOn : "button",
-                     buttonImage: "/images/icon_calendar.gif",
+                     buttonImage: "/ptu3/assets/icon_calendar.gif",
                      buttonImageOnly : true
                 });
 
                 $("#first_energize").datepicker({
                      dateFormat: 'dd/mm/yy',
                      showOn : "button",
-                     buttonImage: "/images/icon_calendar.gif",
+                     buttonImage: "/ptu3/assets/icon_calendar.gif",
                      buttonImageOnly : true
                 });
  

@@ -1,3 +1,9 @@
+<style type="text/css">
+.grid_14 select, .grid_14 input, .grid_14 textarea {
+    width: 10px;
+}
+</style>
+
 <h1>เพิ่มบัญชีผู้ใช้งานระบบ</h1>
 <%= form_for @user, :url => {:action => "createuser"}, :html => {:method => 'post'} do |f| %>
 <div class='grid_14 chemicals' >
@@ -6,11 +12,12 @@
         <td><B>Login :</B></td><td><%= f.text_field :login, :size => 15 %></td>
         <td><B>Password :</B></td><td><%= f.password_field :password, :size => 15 %></td>
     </tr>
+    
     <tr>
         <td><B>Firstname :</B></td><td><%= f.text_field :firstname, :size => 15 %></td>
-	<td><B>Lastname :</B></td><td><%= f.text_field :lastname, :size => 15 %></td>
+		<td><B>Lastname :</B></td><td><%= f.text_field :lastname, :size => 15 %></td>
     </tr>
-    <tr><td></td></tr>
+    
     <tr>
       <td colspan=4>สิทธิการใช้งาน</td>
     </tr>

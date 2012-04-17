@@ -5,7 +5,7 @@ class TransformerChartController < ApplicationController
 
   def chart
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
@@ -21,11 +21,11 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_title[0] = @@bc_ic
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'รายงานมาตรฐาน'
-	@breadcrumb_link[1]  = "/transformer_chart/chart"
+	@breadcrumb_link[1]  = "/ptu3/transformer_chart/chart"
 	@breadcrumb_title[2] = 'กราฟแสดงผล'
 	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
 	if params[:count]==nil
 		@count=1
@@ -78,7 +78,7 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_title[1] = 'รายงานข้อมูลหม้อแปลงไฟฟ้า'
 	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
         @regions  = Station.group("region").order("region").select("region")
         if params[:report2_area] == "" or params[:report2_area].nil?
@@ -135,11 +135,11 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_title[0] = @@bc_ic
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'รายงานข้อมูลหม้อแปลงไฟฟ้า'
-	@breadcrumb_link[1]  = "/transformer_chart/report_transformer"
+	@breadcrumb_link[1]  = "/ptu3/transformer_chart/report_transformer"
 	@breadcrumb_title[2] = 'กราฟแสดงผล'
 	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
     if params[:count]==nil
 	 	 @count=1
@@ -174,7 +174,7 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_title[1] = 'รายงานข้อมูลความเสียหาย'
 	@breadcrumb_link[1]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
     @regions  = Station.group("region").order("region").select("region")
     @stations = Station.order("name")
@@ -196,11 +196,11 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_title[0] = @@bc_ic
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'รายงานข้อมูลความเสียหาย'
-	@breadcrumb_link[1]  = "/transformer_chart/report_transformer_f"
+	@breadcrumb_link[1]  = "/ptu3/transformer_chart/report_transformer_f"
 	@breadcrumb_title[2] = 'กราฟแสดงผล'
 	@breadcrumb_link[2]  = ""
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
 	  if params[:count]==nil
 		  @count=1
