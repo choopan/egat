@@ -29,9 +29,9 @@ PriceLoss.setupTransformerNameComboxBox = function(id) {
 
 PriceLoss.onTransformerNamChange = function(transformerId) {
   if ($('body').attr('name') == "new") {
-    window.location.href = "/transformers/" + transformerId + "/price_loss/new";
+    window.location.href = "/ptu3/transformers/" + transformerId + "/price_loss/new";
   } else {
-    window.location.href = "/transformers/" + transformerId + "/price_loss";
+    window.location.href = "/ptu3/transformers/" + transformerId + "/price_loss";
   }
 };
 
