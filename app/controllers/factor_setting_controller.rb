@@ -1,9 +1,10 @@
 #encoding : utf-8
 class FactorSettingController < ApplicationController
   def edit
-   if session[:user].nil?
-		redirect_to('/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 	@userid = User.get_user(session[:user])
     @factor = FactorSetting.find_by_user_id(1)
 	
@@ -15,9 +16,10 @@ class FactorSettingController < ApplicationController
 
 
   def update
-   if session[:user].nil?
-			redirect_to('/login/login')
-		end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
    if User.get_user(session[:user]).priv9==1
 	@factor = FactorSetting.find_by_user_id(1)
 	if @factor.update_attributes(params[:factor_setting])
@@ -26,7 +28,7 @@ class FactorSettingController < ApplicationController
 		redirect_to(edit_factor_setting_index_path, :notice => @factor.errors)
 	end
    else
-	redirect_to('/factor_setting/edit')
+	redirect_to('/ptu3/factor_setting/edit')
    end
   end
 end

@@ -2,7 +2,7 @@ class TransformersController < ApplicationController
 
   def index
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
     if request.xhr?
       unless params[:region].nil?
@@ -42,14 +42,14 @@ class TransformersController < ApplicationController
 
   def edit
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
     @transformer = Transformer.find(params[:id])
   end
 
   def update
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
     @transformer = Transformer.find(params[:id])
     @transformer.brand_id = params[:transformer][:brand_id]
@@ -64,7 +64,7 @@ class TransformersController < ApplicationController
 
   def show
 	if session[:user].nil?
-		redirect_to('/login/login')
+		redirect_to('/ptu3/login/login')
 	end
     if params[:id].to_i > 0
       @transformer = Transformer.find(params[:id])      

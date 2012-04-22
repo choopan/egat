@@ -4,9 +4,10 @@ class TransformerChartController < ApplicationController
 @@bc_ic_link = "#"
 
   def chart
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 	@breadcrumb_title = Array.new()
 	@breadcrumb_link  = Array.new()
 	@breadcrumb_title[0] = @@bc_ic
@@ -24,9 +25,10 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_link[1]  = "/ptu3/transformer_chart/chart"
 	@breadcrumb_title[2] = 'กราฟแสดงผล'
 	@breadcrumb_link[2]  = ""
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 	if params[:count]==nil
 		@count=1
 	else
@@ -77,9 +79,10 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'รายงานข้อมูลหม้อแปลงไฟฟ้า'
 	@breadcrumb_link[1]  = ""
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
         @regions  = Station.group("region").order("region").select("region")
         if params[:report2_area] == "" or params[:report2_area].nil?
           if params[:report2_station] == "" or params[:report2_station].nil?
@@ -138,9 +141,10 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_link[1]  = "/ptu3/transformer_chart/report_transformer"
 	@breadcrumb_title[2] = 'กราฟแสดงผล'
 	@breadcrumb_link[2]  = ""
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     if params[:count]==nil
 	 	 @count=1
 	  else
@@ -173,9 +177,10 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'รายงานข้อมูลความเสียหาย'
 	@breadcrumb_link[1]  = ""
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     @regions  = Station.group("region").order("region").select("region")
     @stations = Station.order("name")
     @txnames  = Transformer.order("transformer_name")
@@ -199,9 +204,10 @@ class TransformerChartController < ApplicationController
 	@breadcrumb_link[1]  = "/ptu3/transformer_chart/report_transformer_f"
 	@breadcrumb_title[2] = 'กราฟแสดงผล'
 	@breadcrumb_link[2]  = ""
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 	  if params[:count]==nil
 		  @count=1
 	  else

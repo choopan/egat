@@ -3,11 +3,15 @@ class TransformerInformationsController < ApplicationController
 
 	@@bc_ic = "ความสำคัญของหม้อแปลง"
 	@@bc_ic_link = "#"
-  def index
 
-	 if session[:user].nil?
-		  redirect_to(login_login_index_path)
-	 else
+	@@bc_ma = "จัดการ"
+	@@bc_ma_link = "#"
+  def index
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
+	  
       @xscale = ImportanceIndex.get_x_scale.to_json
       @yscale = RiskProbability.get_y_scale.to_json
       @dscale = Risk.get_d_scale.to_json
@@ -45,13 +49,13 @@ class TransformerInformationsController < ApplicationController
       format.html
       format.js { render :json => {:data_points => @data_points, :xscale => @xscale, :yscale => @yscale, :dscale => @dscale}}
     end
-	end
   end
 
   def show
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     if request.xhr?
       @no_js = true
       @no_header = true
@@ -70,17 +74,19 @@ class TransformerInformationsController < ApplicationController
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'เพิ่มรายการ'
 	@breadcrumb_link[1]  = ""
-	if session[:user].nil?
-		redirect_to(login_login_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     @transformer_information = TransformerInformation.new
     @transformer_information.build_load_pattern_per_year
   end
 
   def create
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 	  m=params[:transformer_information][:recorded_date].split('/')
     params[:transformer_information][:recorded_date]=m[2]+"-"+m[1]+"-"+m[0]
     @transformer_information =
@@ -94,9 +100,18 @@ class TransformerInformationsController < ApplicationController
   end
 
   def edit
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
+	@breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ic
+	@breadcrumb_link[0]  = @@bc_ic_link
+	@breadcrumb_title[1] = 'ค้นหาและแก้ไข'
+	@breadcrumb_link[1]  = "/ptu3/transformer_informations/search"
+	@breadcrumb_title[2] = 'แก้ไข'
+	@breadcrumb_link[2]  = ""
     @transformer_information = TransformerInformation.find(params[:id])
      recorded_onlydate = @transformer_information[:recorded_date].to_s.split(' ')
      m = recorded_onlydate[0].split('-')
@@ -104,9 +119,10 @@ class TransformerInformationsController < ApplicationController
   end
 
   def update
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     @transformer_information = TransformerInformation.find(params[:id])
     if @transformer_information.update_attributes(params[:transformer_information])
       flash[:notice] = "Successfully updated transformer information."
@@ -117,9 +133,10 @@ class TransformerInformationsController < ApplicationController
   end
 
   def delete_record
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     @transformer_information = TransformerInformation.find(params[:id])
     @transformer_information.destroy
     flash[:notice] = "Successfully deleted transformer information."
@@ -127,9 +144,10 @@ class TransformerInformationsController < ApplicationController
   end
 
   def redirect_to_edit_if_exists
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     if request.xhr?
       @transformer_information = TransformerInformation.find_by_transformer_id(params[:id])
     end
@@ -146,18 +164,20 @@ class TransformerInformationsController < ApplicationController
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'ค้นหาและแก้ไข'
 	@breadcrumb_link[1]  = ""
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     if params[:transformer_id]
       @transformer_informations = TransformerInformation.find_all_by_transformer_id(params[:transformer_id], :order => "recorded_date DESC")
     end
   end
 
   def importance_and_risk_table
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     if request.xhr?
       @no_js = true
       @no_header = true
@@ -170,6 +190,16 @@ class TransformerInformationsController < ApplicationController
   end
   
   def adjust
+   @breadcrumb_title = Array.new()
+	@breadcrumb_link  = Array.new()
+	@breadcrumb_title[0] = @@bc_ma
+	@breadcrumb_link[0]  = @@bc_ma_link
+	@breadcrumb_title[1] = 'กำหนดข้อมูลความสำคัญของหม้อแปลง'
+	@breadcrumb_link[1]  = ""
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     adjust_x_color
     adjust_y_color
     adjust_criteria
@@ -177,27 +207,25 @@ class TransformerInformationsController < ApplicationController
   end
 
   def adjust_x_color
-    if session[:user].nil?
-      redirect_to(login_login_index_path)
-    end
+   
     @xdata = ImportanceIndex.all
   end
 
   def adjust_y_color
-	 if session[:user].nil?
-		redirect_to(login_login_index_path)
-	 end
+	
    @ydata = RiskProbability.all
   end
 
   def adjust_risk
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	
 	   @risks = Risk.all
   end
   
   def update_y_color_table
+ 	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     for i in 1..3 do
       ydata = RiskProbability.find(i)
       ydata[:start] = params["start_"+i.to_s].to_i
@@ -206,13 +234,14 @@ class TransformerInformationsController < ApplicationController
       ydata[:action] = params["action_"+i.to_s].to_s     
       ydata.update_attributes(ydata.attributes)
     end
-    redirect_to('/transformer_informations/adjust#yscale', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
+    redirect_to('/ptu3/transformer_informations/adjust#yscale', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
   
   def update_x_color_table
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     for i in 1..3 do
       xdata = ImportanceIndex.find(i)
       xdata[:start] = params["start_"+i.to_s].to_i
@@ -222,13 +251,14 @@ class TransformerInformationsController < ApplicationController
       xdata[:color] = params["color_"+i.to_s].to_s
       xdata.update_attributes(xdata.attributes)
     end
-    redirect_to('/transformer_informations/adjust#xscale', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
+    redirect_to('/ptu3/transformer_informations/adjust#xscale', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
   
   def update_risk_table
-	if session[:user].nil?
-		redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     for i in 1..5 do
       risk = Risk.find(i)
       risk[:start] = params["start_"+i.to_s].to_i
@@ -237,16 +267,15 @@ class TransformerInformationsController < ApplicationController
       risk[:action] = params["action_"+i.to_s].to_s     
       risk.update_attributes(risk.attributes)
     end
-    redirect_to('/transformer_informations/adjust#risk', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
+    redirect_to('/ptu3/transformer_informations/adjust#risk', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
   
   
   def adjust_criteria
-    if session[:user].nil?
-      redirect_to(login_login_index_path)
-    end
-
-
+ 	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end   
 	 @lpf = LoadPatternFactor.order("score")
 	 @imp_weight = ImportanceWeight.select("weight").order("id")
 	 @system_locations = SystemLocation.select("value").order("score")
@@ -263,6 +292,10 @@ class TransformerInformationsController < ApplicationController
   end
   
   def update_criteria_table
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
     ######################### update load_pattern_factor table
     lpfs = LoadPatternFactor.order("id")
     i = 1
@@ -479,7 +512,7 @@ class TransformerInformationsController < ApplicationController
     brand_weight[:weight] = params["brand_weight"].to_i
     brand_weight.update_attributes(brand_weight.attributes)
 
-    redirect_to('/transformer_informations/adjust#criteria', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
+    redirect_to('/ptu3/transformer_informations/adjust#criteria', :notice => 'บันทึกค่าเรียบร้อยแล้ว')    
   end
 
 end

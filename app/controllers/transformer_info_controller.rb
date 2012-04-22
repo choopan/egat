@@ -4,9 +4,10 @@
 
 class TransformerInfoController < ApplicationController
   def txlist
-		if session[:user].nil?
-			redirect_to('/login/login')
-		end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -29,12 +30,17 @@ class TransformerInfoController < ApplicationController
   end
 
   def txedit
+  	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
   end
 
   def txadd
-	if session[:user].nil?
-			redirect_to(login_login_index_path)
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
    if User.get_user(session[:user]).priv5==1
     @breadcrumb_title = Array.new()
     @breadcrumb_link  = Array.new()
@@ -72,9 +78,10 @@ class TransformerInfoController < ApplicationController
   end
 
   def txlistmove
-		if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -86,9 +93,10 @@ class TransformerInfoController < ApplicationController
   end
 
   def txshowmove
-	if session[:user].nil?
-		redirect_to('/ptu3/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 		@breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx
@@ -102,9 +110,10 @@ class TransformerInfoController < ApplicationController
   end
 
   def txaddmove
-    if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
 	if User.get_user(session[:user]).priv6==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -134,9 +143,10 @@ class TransformerInfoController < ApplicationController
 end
 	
   def txdeletemove
-    if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
 	if User.get_user(session[:user]).priv6==1
       TransformerTransfer.delete(params[:id])
 	end
@@ -144,9 +154,10 @@ end
   end
 
   def txeditmove
-     if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
      if User.get_user(session[:user]).priv6==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -170,9 +181,10 @@ end
   end
 
   def update_txaddmove
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
    if User.get_user(session[:user]).priv6==1
 	#Get old transformer information
 	old_transformer_egatsn = params[:transformer_transfer][:egatsn]
@@ -220,6 +232,7 @@ end
   def failurereport
      if session[:user].nil?
 			redirect_to('/ptu3/login/login')
+			return
 	 else
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -227,9 +240,7 @@ end
         @breadcrumb_link[0]  = @@bc_tx_link
         @breadcrumb_title[1] = 'รายงานความผิดปกติ'
         @breadcrumb_link[1]  = ''
-	if session[:user].nil?
-			redirect_to('/ptu3/login/login')
-	end
+
 	@userid = User.get_user(session[:user])
 	if params[:region] == "" or params[:region].nil?
 		@txnames = Transformer.order("transformer_name")
@@ -257,9 +268,10 @@ end
   end
 
   def addfailurereport
-    if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
      if User.get_user(session[:user]).priv7==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -324,9 +336,10 @@ end
   end
 
   def modify_failurere
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
    if User.get_user(session[:user]).priv7==1
 	@region = params[:region]
 	@tid = params[:tid]
@@ -379,9 +392,10 @@ end
   end
 
   def update_failurereport
-    if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
 	failure = FailureDatabase.get_failure_id(params[:id])
 	failure[:egatsn] = params[:egatsn]
 	if params[:eventdate]!=""
@@ -530,9 +544,10 @@ end
   end
 
   def delete_failurere
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
    if User.get_user(session[:user]).priv7==1
 	FailureDatabase.delete(params[:id])
 	redirect_to("/ptu3/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
@@ -542,9 +557,10 @@ end
   end
 
   def create_failurereport
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
    if User.get_user(session[:user]).priv7==1
 	failure = FailureDatabase.new
 	failure[:egatsn] = params[:egatsn]
@@ -689,15 +705,18 @@ end
 	failure[:user] = params[:user]
 	failure.save
 	redirect_to("/ptu3/transformer_info/failurereport?region="+ params[:region] +"&tid="+params[:tid])
+	 #redirect_to('/ptu3/transformer_info/failurereport?region=')
+	
 	else
 	 redirect_to('/ptu3/transformer_info/failurereport?region=')
 	end
   end
   
   def txcreate
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
    if User.get_user(session[:user]).priv5==1
 	@transformer = Transformer.new
 	#@transformer_accessory = TransformerAccessory.new
@@ -798,9 +817,10 @@ end
   end
 
   def modify_transformer
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
 		if User.get_user(session[:user]).priv5==1
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
@@ -847,9 +867,10 @@ end
   end
 
   def updat_transformer
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
    if User.get_user(session[:user]).priv5==1
 	transformer = Transformer.get_transformer_id(params[:transformer_id])	
 	#-------transformer-------
@@ -955,9 +976,10 @@ end
   end
 
   def delete_transformer
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-		end
+			return
+	  end
 	if User.get_user(session[:user]).priv5==1
 	transformer = Transformer.get_transformer_id(params[:id])
 	#TransformerAccessory.delete(transformer.transformer_accessories_id)
@@ -967,9 +989,10 @@ end
   end
   
   def show_image
-   if session[:user].nil?
+	  if session[:user].nil?
 			redirect_to('/ptu3/login/login')
-	end
+			return
+	  end
         @breadcrumb_title = Array.new()
         @breadcrumb_link  = Array.new()
         @breadcrumb_title[0] = @@bc_tx

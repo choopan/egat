@@ -5,7 +5,7 @@ development:
   #dsn: egat
   mode: dblib
   #dataserver: tsad-db1
-  dataserver: choopan-dell\PSU
+  dataserver: Admin-HP\PSU
   database: egat_production
   #database: 720CETS_ptu
   #username: ptu_admin

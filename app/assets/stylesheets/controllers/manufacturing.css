@@ -78,13 +78,13 @@ a.edit, a.delete, a.add {
         background-position:left center;
 }
 a.add {
-        background-image:url(/images/icons/add.png)
+        background-image:url(/ptu3/assets/icons/add.png)
 }
 a.edit {
-        background-image:url(/images/icons/page_edit.png)
+        background-image:url(/ptu3/assets/icons/page_edit.png)
 }
 a.delete {
-        background-image:url(/images/icons/delete.png)
+        background-image:url(/ptu3/assets/icons/delete.png)
 }
 
 .ui-tabs-nav li {

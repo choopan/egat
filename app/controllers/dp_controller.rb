@@ -9,9 +9,10 @@ class DpController < ApplicationController
 	@breadcrumb_link[0]  = @@bc_ic_link
 	@breadcrumb_title[1] = 'DB Limit'
 	@breadcrumb_link[1]  = ""
-   if session[:user].nil?
-			redirect_to('/login/login')
-	end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
 	@userid = User.get_user(session[:user])
 	@x = session[:username]
     @dp = Dp.find(1)
@@ -22,15 +23,16 @@ class DpController < ApplicationController
 
 
   def update
-   if session[:user].nil?
-			redirect_to('/login/login')
-		end
+	  if session[:user].nil?
+			redirect_to('/ptu3/login/login')
+			return
+	  end
    if User.get_user(session[:user]).priv9==1
         @dp = Dp.find(1)
         @dp.update_attributes(params[:dp])
         redirect_to(edit_dp_index_path, :notice => 'บันทีกค่าเรียบร้อยแล้ว')
     else
-		redirect_to('/dp/edit')
+		redirect_to('/ptu3/dp/edit')
 	end
   end
 end
