@@ -32613,3 +32613,586 @@ ActionController::RoutingError (No route matches [GET] "/images/gray/form/trigge
 
 
 Compiled application.js  (0ms)  (pid 3096)
+
+
+Started GET "/ptu3/price_loss/search" for 127.0.0.1 at 2012-04-17 13:16:27 +0700
+Processing by PriceLossController#search as HTML
+  Rendered price_loss/_transformer_search_form.html.haml (180.0ms)
+  Rendered price_loss/search.html.haml within layouts/price_loss (217.0ms)
+  Rendered layouts/_header.html.erb (9.0ms)
+Completed 200 OK in 570ms (Views: 332.0ms | ActiveRecord: 73.0ms)
+
+
+Started GET "/ptu3/assets/jquery-1.4.2.min.js" for 127.0.0.1 at 2012-04-17 13:16:28 +0700
+Compiled jquery-1.4.2.min.js  (0ms)  (pid 5932)
+Served asset /jquery-1.4.2.min.js - 200 OK (33ms)
+
+
+Started GET "/ptu3/assets/ext-jquery-adapter.js" for 127.0.0.1 at 2012-04-17 13:16:28 +0700
+Compiled ext-jquery-adapter.js  (0ms)  (pid 5932)
+Served asset /ext-jquery-adapter.js - 200 OK (100ms)
+
+
+Started GET "/ptu3/assets/ext-all.js" for 127.0.0.1 at 2012-04-17 13:16:28 +0700
+Compiled ext-all.js  (49ms)  (pid 5932)
+Served asset /ext-all.js - 200 OK (357ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.min.js" for 127.0.0.1 at 2012-04-17 13:16:29 +0700
+Compiled jquery-ui-1.8.4.custom.min.js  (2ms)  (pid 5932)
+Served asset /jquery-ui-1.8.4.custom.min.js - 200 OK (93ms)
+
+
+Started GET "/ptu3/assets/jquery.blockUI.js" for 127.0.0.1 at 2012-04-17 13:16:29 +0700
+Compiled jquery.blockUI.js  (0ms)  (pid 5932)
+Served asset /jquery.blockUI.js - 200 OK (88ms)
+
+
+Started GET "/ptu3/assets/jquery.tmpl.js" for 127.0.0.1 at 2012-04-17 13:16:29 +0700
+Compiled jquery.tmpl.js  (1ms)  (pid 5932)
+Served asset /jquery.tmpl.js - 200 OK (58ms)
+
+
+Started GET "/ptu3/assets/facybox.js" for 127.0.0.1 at 2012-04-17 13:16:29 +0700
+Compiled facybox.js  (2ms)  (pid 5932)
+Served asset /facybox.js - 200 OK (114ms)
+
+
+Started GET "/ptu3/assets/json2.js" for 127.0.0.1 at 2012-04-17 13:16:29 +0700
+Compiled json2.js  (1ms)  (pid 5932)
+Served asset /json2.js - 200 OK (87ms)
+
+
+Started GET "/ptu3/assets/jquery.url.js" for 127.0.0.1 at 2012-04-17 13:16:29 +0700
+Compiled jquery.url.js  (68ms)  (pid 5932)
+Served asset /jquery.url.js - 200 OK (153ms)
+
+
+Started GET "/ptu3/assets/jquery.tablesorter.min.js" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled jquery.tablesorter.min.js  (2ms)  (pid 5932)
+Served asset /jquery.tablesorter.min.js - 200 OK (68ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.js" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled jquery.cluetip.js  (1ms)  (pid 5932)
+Served asset /jquery.cluetip.js - 200 OK (58ms)
+
+
+Started GET "/ptu3/assets/xtheme-gray.css" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled xtheme-gray.css  (0ms)  (pid 5932)
+Served asset /xtheme-gray.css - 200 OK (115ms)
+
+
+Started GET "/ptu3/assets/ext-all.css" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled ext-all.css  (0ms)  (pid 5932)
+Served asset /ext-all.css - 200 OK (167ms)
+
+
+Started GET "/ptu3/assets/960.css" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled 960.css  (0ms)  (pid 5932)
+Served asset /960.css - 200 OK (56ms)
+
+
+Started GET "/ptu3/assets/template.css" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled template.css  (92ms)  (pid 5932)
+Served asset /template.css - 200 OK (290ms)
+
+
+Started GET "/ptu3/assets/nav.css" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled nav.css  (14ms)  (pid 5932)
+Served asset /nav.css - 200 OK (85ms)
+
+
+Started GET "/ptu3/assets/colour.css" for 127.0.0.1 at 2012-04-17 13:16:30 +0700
+Compiled colour.css  (1ms)  (pid 5932)
+Served asset /colour.css - 200 OK (68ms)
+
+
+Started GET "/ptu3/assets/facybox.css" for 127.0.0.1 at 2012-04-17 13:16:31 +0700
+Compiled facybox.css  (6ms)  (pid 5932)
+Served asset /facybox.css - 200 OK (95ms)
+
+
+Started GET "/ptu3/assets/faceplant.css" for 127.0.0.1 at 2012-04-17 13:16:31 +0700
+Compiled faceplant.css  (0ms)  (pid 5932)
+Served asset /faceplant.css - 200 OK (51ms)
+
+
+Started GET "/ptu3/assets/jquery-ui-1.8.4.custom.css" for 127.0.0.1 at 2012-04-17 13:16:31 +0700
+Compiled jquery-ui-1.8.4.custom.css  (3ms)  (pid 5932)
+Served asset /jquery-ui-1.8.4.custom.css - 200 OK (109ms)
+
+
+Started GET "/ptu3/assets/jquery.cluetip.css" for 127.0.0.1 at 2012-04-17 13:16:31 +0700
+Compiled jquery.cluetip.css  (0ms)  (pid 5932)
+Served asset /jquery.cluetip.css - 200 OK (45ms)
+
+
+Started GET "/ptu3/assets/buttons.css" for 127.0.0.1 at 2012-04-17 13:16:31 +0700
+Compiled buttons.css  (11ms)  (pid 5932)
+Served asset /buttons.css - 200 OK (207ms)
+
+
+Started GET "/ptu3/assets/facybox_urls.css" for 127.0.0.1 at 2012-04-17 13:16:31 +0700
+Compiled facybox_urls.css  (4ms)  (pid 5932)
+Served asset /facybox_urls.css - 200 OK (116ms)
+
+
+Started GET "/ptu3/images/default/form/text-bg.gif" for 127.0.0.1 at 2012-04-17 13:16:32 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/form/text-bg.gif"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/images/default/shadow.png" for 127.0.0.1 at 2012-04-17 13:16:44 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/shadow.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/images/default/shadow-c.png" for 127.0.0.1 at 2012-04-17 13:16:44 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/shadow-c.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/images/default/shadow-lr.png" for 127.0.0.1 at 2012-04-17 13:16:44 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/shadow-lr.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/images/default/form/text-bg.gif" for 127.0.0.1 at 2012-04-17 13:16:48 +0700
+
+ActionController::RoutingError (No route matches [GET] "/images/default/form/text-bg.gif"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/transformer_informations" for 127.0.0.1 at 2012-04-17 13:16:49 +0700
+Processing by TransformerInformationsController#index as HTML
+  Rendered transformer_informations/index.html.erb within layouts/transformer_informations (441.0ms)
+  Rendered layouts/_header.html.erb (7.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 547ms (Views: 444.0ms | ActiveRecord: 38.0ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.selection.min.js" for 127.0.0.1 at 2012-04-17 13:16:49 +0700
+Compiled jquery.flot.selection.min.js  (0ms)  (pid 5932)
+Served asset /jquery.flot.selection.min.js - 200 OK (96ms)
+
+
+Started GET "/ptu3/assets/facebox.js" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled facebox.js  (0ms)  (pid 5932)
+Served asset /facebox.js - 200 OK (74ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.axislabels.js" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled jquery.flot.axislabels.js  (0ms)  (pid 5932)
+Served asset /jquery.flot.axislabels.js - 200 OK (46ms)
+
+
+Started GET "/ptu3/assets/jquery.multirowcheckboxmenu.js" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled jquery.multirowcheckboxmenu.js  (0ms)  (pid 5932)
+Served asset /jquery.multirowcheckboxmenu.js - 200 OK (87ms)
+
+
+Started GET "/ptu3/assets/controllers/transformer_informations.js" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled controllers/transformer_informations.js  (0ms)  (pid 5932)
+Served asset /controllers/transformer_informations.js - 200 OK (40ms)
+
+
+Started GET "/ptu3/assets/jquery.flot.min.js" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled jquery.flot.min.js  (1ms)  (pid 5932)
+Served asset /jquery.flot.min.js - 200 OK (48ms)
+
+
+Started GET "/ptu3/assets/facebox.css" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled facebox.css  (0ms)  (pid 5932)
+Served asset /facebox.css - 200 OK (76ms)
+
+
+Started GET "/ptu3/assets/controllers/transformer_information.css" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled controllers/transformer_information.css  (0ms)  (pid 5932)
+Served asset /controllers/transformer_information.css - 200 OK (56ms)
+
+
+Started GET "/ptu3/assets/controllers/oil_input.css" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Compiled controllers/oil_input.css  (0ms)  (pid 5932)
+Served asset /controllers/oil_input.css - 200 OK (39ms)
+
+
+Started GET "/ptu3/assets/transformer_informations_index.js" for 127.0.0.1 at 2012-04-17 13:16:50 +0700
+Served asset /transformer_informations_index.js - 404 Not Found (51ms)
+Processing by Jammit::Controller#package as */*
+  Parameters: {"package"=>"transformer_informations_index", "extension"=>"js"}
+Completed 500 Internal Server Error in 171ms
+** [Hoptoad] Failure: Net::HTTPUnauthorized
+** [Hoptoad] Environment Info: [Ruby: 1.9.3] [Rails: 3.2.3] [Env: production]
+** [Hoptoad] Response from Hoptoad: 
+<HTML><HEAD>
+<TITLE>Access Denied</TITLE>
+</HEAD>
+<BODY>
+<FONT face="Helvetica">
+<big><strong></strong></big><BR>
+</FONT>
+<blockquote>
+<TABLE border=0 cellPadding=1 width="80%">
+<TR><TD>
+<FONT face="Helvetica">
+<big>Access Denied (authentication_failed)</big>
+<BR>
+<BR>
+</FONT>
+</TD></TR>
+<TR><TD>
+<FONT face="Helvetica">
+Your credentials could not be authenticated: "Credentials are missing.". You will not be permitted access until your credentials can be verified.
+</FONT>
+</TD></TR>
+<TR><TD>
+<FONT face="Helvetica">
+This is typically caused by an incorrect username and/or password, but could also be caused by network problems.
+</FONT>
+</TD></TR>
+<TR><TD>
+<FONT face="Helvetica" SIZE=2>
+<BR>
+For assistance, contact your network support team.
+</FONT>
+</TD></TR>
+</TABLE>
+</blockquote>
+</FONT>
+</BODY></HTML>
+
+
+Errno::EINVAL (Invalid argument - java -jar C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/yui-compressor-0.9.6/lib/yui/../yuicompressor-2.4.4.jar --type js --charset utf-8):
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/open3.rb:202:in `spawn'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/open3.rb:202:in `popen_run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/open3.rb:90:in `popen3'
+  win32-open3-19 (0.0.2) lib/win32/open3.rb:5:in `popen4'
+  POpen4 (0.1.4) lib/popen4.rb:48:in `popen4'
+  yui-compressor (0.9.6) lib/yui/compressor.rb:68:in `block in compress'
+  yui-compressor (0.9.6) lib/yui/compressor.rb:117:in `streamify'
+  yui-compressor (0.9.6) lib/yui/compressor.rb:66:in `compress'
+  jammit (0.6.5) lib/jammit/compressor.rb:74:in `compress_js'
+  jammit (0.6.5) lib/jammit/packager.rb:81:in `pack_javascripts'
+  jammit (0.6.5) lib/jammit/controller.rb:23:in `package'
+  actionpack (3.2.3) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:403:in `_run__540177764__process_action__991803350__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.3) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+  activerecord (3.2.3) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/rack.rb:27:in `call'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/bundler/gems/PDFKit-e4a8a67a6939/lib/pdfkit/middleware.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__331365383__call__900164639__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/transformer_informations" for 127.0.0.1 at 2012-04-17 13:16:51 +0700
+Processing by TransformerInformationsController#index as JS
+Completed 200 OK in 222ms (Views: 1.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/ptu3/ic_oil/menu_store" for 127.0.0.1 at 2012-04-17 13:16:54 +0700
+Processing by IcOilController#menu_store as HTML
+  Rendered ic_oil/_oil_store.html.erb (31.0ms)
+  Rendered ic_oil/_oil_start.html.erb (3.0ms)
+  Rendered ic_oil/menu_store.html.erb within layouts/ic_oil (90.0ms)
+  Rendered layouts/_header.html.erb (8.0ms)
+Completed 200 OK in 213ms (Views: 110.0ms | ActiveRecord: 22.0ms)
+
+
+Started GET "/ptu3/assets/rails.js" for 127.0.0.1 at 2012-04-17 13:16:55 +0700
+Compiled rails.js  (5ms)  (pid 5932)
+Served asset /rails.js - 200 OK (134ms)
+
+
+Started GET "/ptu3/assets/controllers/ic_oil.js" for 127.0.0.1 at 2012-04-17 13:16:55 +0700
+Compiled controllers/ic_oil.js  (0ms)  (pid 5932)
+Served asset /controllers/ic_oil.js - 200 OK (146ms)
+
+
+Started GET "/ptu3/assets/controllers/ic_oil.css" for 127.0.0.1 at 2012-04-17 13:16:55 +0700
+Compiled controllers/ic_oil.css  (4ms)  (pid 5932)
+Served asset /controllers/ic_oil.css - 200 OK (341ms)
+
+
+Started GET "/ptu3/assets/glow/1.7.0/widgets/widgets.css" for 127.0.0.1 at 2012-04-17 13:16:55 +0700
+Compiled glow/1.7.0/widgets/widgets.css  (0ms)  (pid 5932)
+Served asset /glow/1.7.0/widgets/widgets.css - 200 OK (111ms)
+
+
+Started GET "/ptu3/ic_oil/menu_withdraw" for 127.0.0.1 at 2012-04-17 13:16:59 +0700
+Processing by IcOilController#menu_withdraw as HTML
+  Rendered ic_oil/_oil_withdraw.html.erb (15.0ms)
+  Rendered ic_oil/_oil_annually.html.erb (20.0ms)
+  Rendered ic_oil/menu_withdraw.html.erb within layouts/ic_oil (49.0ms)
+  Rendered layouts/_header.html.erb (9.0ms)
+Completed 200 OK in 163ms (Views: 138.0ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/ptu3/icons/delete.png" for 127.0.0.1 at 2012-04-17 13:17:00 +0700
+
+ActionController::RoutingError (No route matches [GET] "/icons/delete.png"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  hoptoad_notifier (2.4.11) lib/hoptoad_notifier/user_informer.rb:12:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  railties (3.2.3) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  rack (1.4.1) lib/rack/builder.rb:134:in `call'
+  rack (1.4.1) lib/rack/urlmap.rb:64:in `block in call'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `each'
+  rack (1.4.1) lib/rack/urlmap.rb:49:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+
+Started GET "/ptu3/ic_oil/modify_withdraw/2" for 127.0.0.1 at 2012-04-17 13:17:01 +0700
+Processing by IcOilController#modify_withdraw as HTML
+  Parameters: {"id"=>"2"}
+  Rendered ic_oil/modify_withdraw.html.erb within layouts/ic_oil (4.0ms)
+  Rendered layouts/_header.html.erb (6.0ms)
+Completed 200 OK in 45ms (Views: 38.0ms | ActiveRecord: 1.0ms)

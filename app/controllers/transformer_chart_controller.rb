@@ -122,7 +122,7 @@ class TransformerChartController < ApplicationController
   
               else
                 @stations = Station.where("region = '#{params[:report2_area]}'").order("name")              
-                @manus    = Transformer.find_by_sql("SELECT DISTINCT manuId AS id, A.name AS name FROM transformer LEFT OUTER JOIN (SELECT DISTINCT id as manuId, name FROM brands) A ON transformer.brand_id = A.manuid  WHERE station='#{params[:report2_station]}' and ORDER BY A.name")
+                @manus    = Transformer.find_by_sql("SELECT DISTINCT manuId AS id, A.name AS name FROM transformer LEFT OUTER JOIN (SELECT DISTINCT id as manuId, name FROM brands) A ON transformer.brand_id = A.manuid  WHERE station='#{params[:report2_station]}' ORDER BY A.name")
                 @txnames  = Transformer.find_by_sql("SELECT id, transformer_name FROM transformer WHERE station='#{params[:report2_station]}' and brand_id=#{params[:report2_manufacturer]} ORDER BY transformer_name")
               end
          end
@@ -208,11 +208,11 @@ class TransformerChartController < ApplicationController
 		  @count=params[:count].to_i+1
 	  end
 	  
-	  if params[:group] == 0
+	  if params[:group] == '0'
 	   @graphdata, @graphpercent = FailureDatabase.graph_numfailure_per_region(params[:start_year], params[:end_year],params[:report3_area], params[:report3_station], params[:report3_manufacturer], params[:report3_transformer], params[:report3_environment], params[:report3_function], params[:report3_detail], params[:report3_group], params[:report3_part], params[:report3_mode], params[:report3_reason], params[:report3_manage])
-    elsif params[:group] == 1
+    elsif params[:group] == '1'
      @graphdata, @graphpercent = FailureDatabase.graph_numfailure_per_station(params[:start_year], params[:end_year],params[:report3_area], params[:report3_station], params[:report3_manufacturer], params[:report3_transformer], params[:report3_environment], params[:report3_function], params[:report3_detail], params[:report3_group], params[:report3_part], params[:report3_mode], params[:report3_reason], params[:report3_manage])
-    elsif params[:group] == 2
+    elsif params[:group] == '2'
      @graphdata, @graphpercent = FailureDatabase.graph_numfailure_per_manufacturer(params[:start_year], params[:end_year],params[:report3_area], params[:report3_station], params[:report3_manufacturer], params[:report3_transformer], params[:report3_environment], params[:report3_function], params[:report3_detail], params[:report3_group], params[:report3_part], params[:report3_mode], params[:report3_reason], params[:report3_manage])
     else
      @graphdata, @graphpercent = FailureDatabase.graph_numfailure_per_txname(params[:start_year], params[:end_year],params[:report3_area], params[:report3_station], params[:report3_manufacturer], params[:report3_transformer], params[:report3_environment], params[:report3_function], params[:report3_detail], params[:report3_group], params[:report3_part], params[:report3_mode], params[:report3_reason], params[:report3_manage])

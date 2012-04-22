@@ -68,7 +68,13 @@
             </td>
             <td>
 
-                <%= link_to number_with_precision(transformer_information.percent_hi, :precision =>2).to_s , transformer_overall_conditions_path(transformer_information.transformer), {:rel => 'facebox'} %>
+                <%#= link_to number_with_precision(transformer_information.percent_hi, :precision =>2).to_s , transformer_overall_conditions_path(transformer_information.transformer), {:rel => 'facebox'} 
+                %>
+                <%
+                
+                %>
+                <a href='/ptu2/performdraftresult/checkstatus?transformer=<%=transformer_information.id %>' target='_'>...</a>
+
 	    </td>
             <td>
               <%= link_to transformer_information.importance_index.to_s, transformer_information, {:rel => 'facebox'} %>
