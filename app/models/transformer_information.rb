@@ -42,13 +42,15 @@ class TransformerInformation < ActiveRecord::Base
   belongs_to :public_image, :class_name => "PublicImage", :foreign_key => "public_image_id"
   belongs_to :system_fault_level, :class_name => "SystemFaultLevel",  :foreign_key => "system_fault_level_id"
   belongs_to :transformer, :class_name => "Transformer",  :foreign_key => "transformer_id"
+#  has_one :exchange_data
   has_one :load_pattern_per_year
   has_and_belongs_to_many :damage_of_properties
   belongs_to :bus_voltage
   attr_accessor :system_fault_level_hv_mva, :system_fault_level_lv_mva, :transformer_name
 
   accepts_nested_attributes_for :load_pattern_per_year
-
+#  accepts_nested_attributes_for :exchange_data
+  
   validate :transformer_name_must_be_valid, :at_least_one_damage_of_property_must_be_checked
   validates_presence_of :recorded_date, :bus_voltage_hv_id, :system_fault_level_hv, :bus_voltage_lv_id,
     :system_fault_level_lv, :probability_of_force_outage_value, :social_aspect_id,
@@ -82,7 +84,7 @@ class TransformerInformation < ActiveRecord::Base
   def self.get_points(transformer_informations)
     points = []
     transformer_informations.each { |e|
-      points << [e.transformer.transformer_name, e.importance_index, e.percent_hi]
+      points << [e.transformer.transformer_name, e.importance_index, ExchangeData.get_ohi(e.transformer.egatsn)]
     }
     return points
   end

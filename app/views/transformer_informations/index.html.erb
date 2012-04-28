@@ -58,6 +58,9 @@
     <tbody>
       <% if !@transformer_informations.blank? %>
         <% for transformer_information in @transformer_informations %>
+        	<% ohi = ExchangeData.get_ohi(transformer_information.transformer.egatsn) 
+        		if ohi != -1
+        			ohi = ohi * 100 %>	
           <tr>
             <td><%= transformer_information.transformer.transformer_name %></td>
             <td>
@@ -73,7 +76,7 @@
                 <%
                 
                 %>
-                <a href='/ptu2/performdraftresult/checkstatus?transformer=<%=transformer_information.id %>' target='_'>...</a>
+                <a href='/ptu2/performdraftresult/checkstatus?transformer=<%=transformer_information.id %>' target='_'><%= number_with_precision(ohi, :precision =>2) %></a>
 
 	    </td>
             <td>
@@ -90,6 +93,7 @@
             </td>
           </tr>
         <% end %>
+      <% end %>
       <% else %>
         No transformer was found.
       <% end %>      

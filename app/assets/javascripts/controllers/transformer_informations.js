@@ -247,10 +247,12 @@ var app = {
       });
       for (var i = 0; i < data_points.length; ++i) { 
         if (jQuery.inArray(data_points[i][0], checkedTransformerNames) > -1) {
-          points.push(
-            [parseFloat(data_points[i][1]), parseFloat(data_points[i][2])]);
-          transformer_names.push(data_points[i][0]); 
-          
+        	if (data_points[i][2] != -1) {
+        		data_points[i][2] = 100 - (data_points[i][2] * 100);
+          		points.push(
+            		[parseFloat(data_points[i][1]), parseFloat(data_points[i][2])]);
+          			transformer_names.push(data_points[i][0]); 
+          }
         }
       }
       if (jQuery.url.param("graph") == "risk") { 
