@@ -391,6 +391,6 @@ $(document).ready(function() {
   });
 
   $("#transformers_table").tablesorter({
-    headers: {7 : {sorter: false}}
+    headers: {6 : {sorter: false}}
   }); 
 });
